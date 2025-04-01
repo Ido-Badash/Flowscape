@@ -18,15 +18,29 @@ class FlowHome extends StatefulWidget {
 }
 
 class _FlowHomeState extends State<FlowHome> {
+  String currentQuote = randomQuote();
   int currentScreenIdx = 1;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       // add a full bg image
+      appBar: AppBar(
+        backgroundColor: FlowColors.blue,
+        centerTitle: true,
+        title: const Text(
+          "FlowScape",
+          style: TextStyle(
+        fontSize: FlowTextsSizes.h2,
+        color: FlowColors.white,
+          ),
+        ),
+        toolbarHeight: 45.0, // Reduce the height of the AppBar
+      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
+          spacing: 1.5,
           children: [
             const Text(
               "18:45", // replace with irl time 24 hours clock style
@@ -36,18 +50,11 @@ class _FlowHomeState extends State<FlowHome> {
               ),
             ),
             Text(
-              randomQuote(),
+              currentQuote,
               style: TextStyle(
                 fontSize: FlowTextsSizes.h4,
                 color: FlowColors.blue,
               ),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                // when pressed, goes to flow screen
-                debugPrint("Navigating to flow mode...");
-              },
-              child: Text("Flow", style: TextStyle(color: FlowColors.blue)),
             ),
           ],
         ),
@@ -67,11 +74,16 @@ class _FlowHomeState extends State<FlowHome> {
         selectedItemColor: FlowColors.blue,
         onTap: (int index) {
           setState(() {
+            updateQuote();
             currentScreenIdx = index;
           });
           debugPrint("Navigating to screen index: $currentScreenIdx");
         },
       ),
     );
+  }
+
+  void updateQuote() {
+    currentQuote = randomQuote();
   }
 }
