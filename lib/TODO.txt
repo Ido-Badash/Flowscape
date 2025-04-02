@@ -1,0 +1,6 @@
+--- Learning ---
+yt course: https://youtu.be/CD1Y2DmL5JM?feature=shared
+current time: 1:58:36
+
+--- Tasks ---
+2. Make it so settings and music work

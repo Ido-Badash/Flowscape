@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
 
-class FlowSettings extends StatelessWidget {
-  const FlowSettings({super.key});
+// styles
+import 'package:flowscape/core/styles/colors.dart';
+
+class SettingsScreen extends StatelessWidget {
+  const SettingsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: const Center(child: Text("I Am Settings!")));
+    return Scaffold(
+      backgroundColor: FlowColors.black,
+      body: const Center(
+        child: Text("Music", style: TextStyle(color: FlowColors.white)),
+      ),
+    );
   }
 }

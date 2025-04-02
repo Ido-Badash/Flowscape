@@ -12,7 +12,7 @@ List<String> quoteHanger = [
   "Small steps lead to big results.",  
   "The secret? Just start.",  
   "Grow by achieving your goals.",  
-  "Make time; don’t wait for it.",  
+  "Make time don’t wait for it.",  
   "Love your work to do great work.",  
   "Simplify—cut the excess.",  
   "Do the right things well.",  

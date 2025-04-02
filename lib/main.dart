@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'features/home/home.dart'; // Imports FlowHome
+import 'features/app/app.dart'; // Imports FlowHome
 
 void main() {
   runApp(const MyApp());
