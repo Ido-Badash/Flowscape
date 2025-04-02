@@ -11,7 +11,7 @@ class SettingsScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: FlowColors.black,
       body: const Center(
-        child: Text("Music", style: TextStyle(color: FlowColors.white)),
+        child: Text("Settings", style: TextStyle(color: FlowColors.white)),
       ),
     );
   }

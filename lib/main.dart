@@ -12,6 +12,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      title: "FlowScape",
+      theme: ThemeData(
+        fontFamily: "Raleway",
+      ),
       home: const FlowHome(), // Set the home screen
     );
   }
