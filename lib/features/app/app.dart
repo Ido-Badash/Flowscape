@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 // screens
 import 'package:flowscape/features/settings/settings.dart';
+import 'package:flowscape/features/flow/flow.dart';
 import 'package:flowscape/features/home/home.dart';
 import 'package:flowscape/features/tasks/tasks.dart';
 import 'package:flowscape/features/music/music.dart';
@@ -12,16 +13,17 @@ import 'package:flowscape/core/styles/texts_sizes.dart';
 
 // utils
 import 'package:flowscape/core/utils/general_helpers.dart';
+import 'package:flutter/services.dart';
 
-class FlowHome extends StatefulWidget {
-  const FlowHome({super.key});
+class FlowScape extends StatefulWidget {
+  const FlowScape({super.key});
 
   @override
-  State<FlowHome> createState() => _FlowHomeState();
+  State<FlowScape> createState() => _FlowScapeState();
 }
 
-class _FlowHomeState extends State<FlowHome> {
-  int currentScreenIdx = 1;
+class _FlowScapeState extends State<FlowScape> {
+  int currentScreenIdx = 2;
   Map<String, int> screens = {"Settings": 0, "Home": 1, "Music": 2};
 
   @override
@@ -30,7 +32,17 @@ class _FlowHomeState extends State<FlowHome> {
       // add a full bg image
       appBar: AppBar(
         backgroundColor: FlowColors.darkBlue,
-        centerTitle: true,
+        actions: [
+          IconButton(
+            onPressed: () {
+              Future.delayed(Duration.zero, () {
+                debugPrint("Exiting app...");
+                SystemNavigator.pop();
+              });
+            },
+            icon: const Icon(Icons.exit_to_app_rounded),
+          ),
+        ],
         title: const Text(
           "FlowScape",
           style: TextStyle(fontSize: FlowTextsSizes.h2, color: Colors.white12),
@@ -43,12 +55,15 @@ class _FlowHomeState extends State<FlowHome> {
                 ? SettingsScreen()
                 //
                 : currentScreenIdx == 1
-                ? HomeScreen()
+                ? FlowScreen()
                 //
                 : currentScreenIdx == 2
-                ? TasksScreen()
+                ? HomeScreen()
                 //
                 : currentScreenIdx == 3
+                ? TasksScreen()
+                //
+                : currentScreenIdx == 4
                 ? MusicScreen()
                 //
                 : HomeScreen(), // if currentScreenIdx is none of the above
@@ -61,10 +76,8 @@ class _FlowHomeState extends State<FlowHome> {
         selectedItemColor: FlowColors.blue,
         type: BottomNavigationBarType.fixed,
         items: const [
-          BottomNavigationBarItem(
-            label: "Settings",
-            icon: Icon(Icons.settings),
-          ),
+          BottomNavigationBarItem(label: "Settings", icon: Icon(Icons.settings)),
+          BottomNavigationBarItem(label: "Flow", icon: Icon(Icons.terrain_outlined)),
           BottomNavigationBarItem(label: "Home", icon: Icon(Icons.home)),
           BottomNavigationBarItem(label: "Tasks", icon: Icon(Icons.list_alt)),
           BottomNavigationBarItem(label: "Music", icon: Icon(Icons.music_note)),

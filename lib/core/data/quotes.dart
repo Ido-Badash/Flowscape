@@ -1,5 +1,8 @@
 import "dart:math";
 
+final _random = Random();
+List<String> quoteHistory = [];
+
 List<String> quoteHanger = [
   "Focus makes the impossible real.",
   "Stay present, see real results.",
@@ -76,7 +79,6 @@ List<String> quoteHanger = [
   "Work until luck finds you.",
   "Talk less, achieve more.",
   "Losers wait, winners work.",
-  "The plan means nothing without execution.",
   "No one cares, work harder.",
   "Let your grind be louder than words.",
   "Kill distractions, grow focus.",
@@ -86,7 +88,6 @@ List<String> quoteHanger = [
   "Stop stopping yourself.",
   "Push past pain, find strength.",
   "Turn adversity into fuel.",
-  "Work beats talent when talent stops working.",
   "One more rep, one more step.",
   "What you allow, continues.",
   "Success demands obsession.",
@@ -102,10 +103,14 @@ List<String> quoteHanger = [
   "Everything you want is earned.",
 ];
 
-String randomQuote({List<String>? quoteList}) {
-  final quotes = quoteList ?? quoteHanger;
-  String quote = quotes[_random.nextInt(quotes.length)];
-  return quote;
+String? randomQuote() {
+  String quote = quoteHanger[_random.nextInt(quoteHanger.length)];
+  quoteHistory.add(quote);
+  List<String> lastQuotes = quoteHistory.sublist(quoteHistory.length - 10);
+  if (lastQuotes.contains(quote)) {
+    return quote;
+  } else {
+    randomQuote();
+  }
+  return null;
 }
-
-final _random = Random();
