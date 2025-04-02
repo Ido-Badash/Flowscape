@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: "FlowScape",
       theme: ThemeData(
-        fontFamily: "Raleway",
+        fontFamily: "Default",
       ),
       home: const FlowHome(), // Set the home screen
     );

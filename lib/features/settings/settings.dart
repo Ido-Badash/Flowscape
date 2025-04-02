@@ -9,9 +9,9 @@ class SettingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: FlowColors.black,
+      backgroundColor: FlowColors.body,
       body: const Center(
-        child: Text("Settings", style: TextStyle(color: FlowColors.white)),
+        child: Text("Settings", style: TextStyle(color: FlowColors.lightBlueGray)),
       ),
     );
   }

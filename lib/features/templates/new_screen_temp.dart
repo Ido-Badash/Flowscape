@@ -3,15 +3,15 @@ import 'package:flutter/material.dart';
 // styles
 import 'package:flowscape/core/styles/colors.dart';
 
-class MusicScreen extends StatelessWidget {
-  const MusicScreen({super.key});
+class NameScreen extends StatelessWidget {
+  const NameScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: FlowColors.body,
+      backgroundColor: Colors.black,
       body: const Center(
-        child: Text("Music", style: TextStyle(color: FlowColors.lightBlueGray)),
+        child: Text("Name", style: TextStyle(color: FlowColors.lightBlueGray)),
       ),
     );
   }
