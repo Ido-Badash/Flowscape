@@ -12,7 +12,6 @@ import 'package:flowscape/core/styles/colors.dart';
 import 'package:flowscape/core/styles/texts_sizes.dart';
 
 // utils
-import 'package:flowscape/core/utils/general_helpers.dart';
 import 'package:flutter/services.dart';
 
 class FlowScape extends StatefulWidget {
@@ -24,7 +23,26 @@ class FlowScape extends StatefulWidget {
 
 class _FlowScapeState extends State<FlowScape> {
   int currentScreenIdx = 2;
-  Map<String, int> screens = {"Settings": 0, "Home": 1, "Music": 2};
+  Map<String, int> screens = {
+    "Settings": 0,
+    "Flow": 1,
+    "Home": 2,
+    "Tasks": 3,
+    "Music": 4,
+  };
+
+  String? findKeyByValue(Map map, int value) {
+    for (var entry in map.entries) {
+      if (entry.value == value) {
+        return entry.key;
+      }
+    }
+    return null;
+  }
+
+  String _getScreenKey() {
+    return findKeyByValue(screens, currentScreenIdx) ?? "Unknown";
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,22 +69,7 @@ class _FlowScapeState extends State<FlowScape> {
       ),
       body: Center(
         child:
-            currentScreenIdx == 0
-                ? SettingsScreen()
-                //
-                : currentScreenIdx == 1
-                ? FlowScreen()
-                //
-                : currentScreenIdx == 2
-                ? HomeScreen()
-                //
-                : currentScreenIdx == 3
-                ? TasksScreen()
-                //
-                : currentScreenIdx == 4
-                ? MusicScreen()
-                //
-                : HomeScreen(), // if currentScreenIdx is none of the above
+            _buildScreen(currentScreenIdx),
       ),
 
       bottomNavigationBar: BottomNavigationBar(
@@ -76,23 +79,48 @@ class _FlowScapeState extends State<FlowScape> {
         selectedItemColor: FlowColors.blue,
         type: BottomNavigationBarType.fixed,
         items: const [
-          BottomNavigationBarItem(label: "Settings", icon: Icon(Icons.settings)),
-          BottomNavigationBarItem(label: "Flow", icon: Icon(Icons.terrain_outlined)),
+          BottomNavigationBarItem(
+            label: "Settings",
+            icon: Icon(Icons.settings),
+          ),
+          BottomNavigationBarItem(
+            label: "Flow",
+            icon: Icon(Icons.terrain_outlined),
+          ),
           BottomNavigationBarItem(label: "Home", icon: Icon(Icons.home)),
           BottomNavigationBarItem(label: "Tasks", icon: Icon(Icons.list_alt)),
           BottomNavigationBarItem(label: "Music", icon: Icon(Icons.music_note)),
         ],
         onTap: (int index) {
-          setState(() {
-            currentScreenIdx = index;
-          });
-          debugPrint("Navigating to screen index: ${_getScreenKey()}");
+          if (currentScreenIdx >= 0 && currentScreenIdx <= screens.length) {
+            setState(() {
+              currentScreenIdx = index;
+            });
+            debugPrint("Navigating to screen index: ${_getScreenKey()}");
+          } else {
+            debugPrint(
+              "An error with the `currentScreenIdx`: $currentScreenIdx",
+            );
+          }
         },
       ),
     );
   }
 
-  String? _getScreenKey() {
-    return findKeyByValue(screens, currentScreenIdx);
+  Widget _buildScreen(int index) {
+    switch (index) {
+      case 0:
+        return SettingsScreen();
+      case 1:
+        return FlowScreen();
+      case 2:
+        return HomeScreen();
+      case 3:
+        return TasksScreen();
+      case 4:
+        return MusicScreen();
+      default:
+        return HomeScreen();
+    }
   }
 }

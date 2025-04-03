@@ -1,6 +1,10 @@
 --- Learning ---
 yt course: https://youtu.be/CD1Y2DmL5JM?feature=shared
-current time: 1:58:36
+current time: 2:05:16
 
 --- Tasks ---
-2. Make it so settings and music work
+1.
+2.
+3.
+4.
+5.

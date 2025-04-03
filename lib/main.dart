@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         fontFamily: "Default",
       ),
-      home: const FlowScape(), // Set the home screen
+      home: FlowScape(), // Set the home screen
     );
   }
 }

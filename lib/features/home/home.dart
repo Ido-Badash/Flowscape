@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flowscape/core/styles/colors.dart';
 import 'package:flowscape/core/styles/texts_sizes.dart';
 
-final String? firstQuote = randomQuote();
+final String firstQuote = randomQuote();
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -15,7 +15,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  String? currentQuote = firstQuote;
+  String currentQuote = firstQuote;
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +40,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 splashFactory: NoSplash.splashFactory,
               ),
               child: Text(
-                currentQuote ?? "Quote Not Found Error",
+                currentQuote,
+                textAlign: TextAlign.center,
                 style: const TextStyle(
                   fontSize: FlowTextsSizes.h3,
                   color: FlowColors.lavender,

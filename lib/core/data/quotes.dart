@@ -102,15 +102,7 @@ List<String> quoteHanger = [
   "Take action. Now.",
   "Everything you want is earned.",
 ];
-
-String? randomQuote() {
+String randomQuote() {
   String quote = quoteHanger[_random.nextInt(quoteHanger.length)];
-  quoteHistory.add(quote);
-  List<String> lastQuotes = quoteHistory.sublist(quoteHistory.length - 10);
-  if (lastQuotes.contains(quote)) {
-    return quote;
-  } else {
-    randomQuote();
-  }
-  return null;
+  return quote;
 }
