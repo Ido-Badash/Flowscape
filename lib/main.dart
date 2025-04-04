@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'features/app/app.dart'; // Imports FlowHome
+import 'features/app/app.dart';
+
+const TextStyle white = TextStyle(color: Colors.white);
 
 void main() {
   runApp(const MyApp());
@@ -15,6 +17,11 @@ class MyApp extends StatelessWidget {
       title: "FlowScape",
       theme: ThemeData(
         fontFamily: "Default",
+        textTheme: const TextTheme(
+          bodyLarge: white,
+          bodyMedium: white,
+          bodySmall: white,
+        ),
       ),
       home: FlowScape(), // Set the home screen
     );

@@ -43,7 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 currentQuote,
                 textAlign: TextAlign.center,
                 style: const TextStyle(
-                  fontSize: FlowTextsSizes.h3,
+                  fontSize: FlowTextsSizes.h8,
                   color: FlowColors.lavender,
                 ),
               ),

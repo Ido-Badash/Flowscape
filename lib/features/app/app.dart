@@ -63,7 +63,7 @@ class _FlowScapeState extends State<FlowScape> {
         ],
         title: const Text(
           "FlowScape",
-          style: TextStyle(fontSize: FlowTextsSizes.h2, color: Colors.white12),
+          style: TextStyle(fontSize: FlowTextsSizes.h6, color: Colors.white12),
         ),
         toolbarHeight: 45.0,
       ),
