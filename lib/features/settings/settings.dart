@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 // styles
 import 'package:flowscape/core/styles/colors.dart';
+import 'package:flowscape/core/styles/texts_sizes.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
@@ -10,8 +11,20 @@ class SettingsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: FlowColors.body,
+      appBar: AppBar(
+        backgroundColor: FlowColors.darkBlue,
+        actions: [],
+        title: const Text(
+          "Settings",
+          style: TextStyle(fontSize: FlowTextsSizes.h6, color: Colors.white12),
+        ),
+        toolbarHeight: 45.0,
+      ),
       body: const Center(
-        child: Text("Settings", style: TextStyle(color: FlowColors.lightBlueGray)),
+        child: Text(
+          "Settings",
+          style: TextStyle(color: FlowColors.lightBlueGray),
+        ),
       ),
     );
   }

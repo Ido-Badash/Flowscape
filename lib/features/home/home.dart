@@ -26,7 +26,7 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: FlowColors.darkBlue,
         actions: [buildSavedScapesTooltip(), buildScapesTooltip()],
         title: const Text(
-          "FlowScape",
+          "Home",
           style: TextStyle(fontSize: FlowTextsSizes.h6, color: Colors.white12),
         ),
         toolbarHeight: 45.0,
