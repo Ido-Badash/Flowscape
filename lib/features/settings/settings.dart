@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 // styles
 import 'package:flowscape/core/styles/colors.dart';
 
-class SettingsScreen extends StatelessWidget {
-  const SettingsScreen({super.key});
+class SettingsPage extends StatelessWidget {
+  const SettingsPage({super.key});
 
   @override
   Widget build(BuildContext context) {

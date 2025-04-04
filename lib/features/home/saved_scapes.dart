@@ -9,7 +9,7 @@ class SavedScapesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: FlowColors.body,
       body: const Center(
         child: Text(
           "Saved Scapes",

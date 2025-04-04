@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flowscape/core/styles/colors.dart';
 import 'package:flowscape/core/styles/texts_sizes.dart'; // ignore: unused_import
 
-class FlowScreen extends StatefulWidget {
-  const FlowScreen({super.key});
+class FlowPage extends StatefulWidget {
+  const FlowPage({super.key});
 
   @override
-  State<FlowScreen> createState() => _FlowScreenState();
+  State<FlowPage> createState() => _FlowPageState();
 }
 
-class _FlowScreenState extends State<FlowScreen> {
+class _FlowPageState extends State<FlowPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

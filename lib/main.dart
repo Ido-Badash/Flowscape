@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
           bodySmall: white,
         ),
       ),
-      home: FlowScape(), // Set the home screen
+      home: FlowScape(),
     );
   }
 }
