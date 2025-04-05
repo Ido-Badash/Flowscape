@@ -56,7 +56,7 @@ class _ScapesScreenState extends State<ScapesScreen> {
   }
 
   Icon buildMainCenterIcon() {
-    return Icon(
+    return const Icon(
       Icons.paragliding_outlined,
       size: 50,
       color: FlowColors.lavender,

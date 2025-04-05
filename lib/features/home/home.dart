@@ -53,7 +53,7 @@ class _HomePageState extends State<HomePage> {
 
   IconButton buildSavedScapesIconButton() {
     return IconButton(
-      padding: EdgeInsets.only(left: 10.0, right: 10.0),
+      padding: const EdgeInsets.only(left: 10.0, right: 10.0),
       onPressed: () {
         debugPrint("Navigating to saved scapes");
         setState(() {
@@ -66,7 +66,7 @@ class _HomePageState extends State<HomePage> {
 
   IconButton buildScapesIconButton() {
     return IconButton(
-      padding: EdgeInsets.only(left: 10.0, right: 10.0),
+      padding: const EdgeInsets.only(left: 10.0, right: 10.0),
       onPressed: () {
         debugPrint("Navigating to scapes");
         setState(() {
@@ -78,7 +78,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   BoxDecoration tooltipBoxDecoration() {
-    return BoxDecoration(
+    return const BoxDecoration(
       gradient: RadialGradient(
         colors: [FlowColors.darkLavender, Colors.transparent],
         radius: 2.5,

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+// screens
+import 'timer.dart';
+
 // styles
 import 'package:flowscape/core/styles/colors.dart';
 import 'package:flowscape/core/styles/texts_sizes.dart'; // ignore: unused_import
@@ -12,6 +15,8 @@ class FlowPage extends StatefulWidget {
 }
 
 class _FlowPageState extends State<FlowPage> {
+  Widget? currentBody = TimerScreen();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,12 +30,7 @@ class _FlowPageState extends State<FlowPage> {
         ),
         toolbarHeight: 45.0,
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [Text("Flow")],
-        ),
-      ),
+      body: currentBody,
     );
   }
 }
