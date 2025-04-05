@@ -42,3 +42,6 @@ flutter:
     - family: Default
       fonts:
         - asset: assets/fonts/default.ttf
+
+  assets:
+    - assets/images/flowbgs/
