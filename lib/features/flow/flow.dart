@@ -22,11 +22,11 @@ class _FlowPageState extends State<FlowPage> {
     return Scaffold(
       backgroundColor: FlowColors.body,
       appBar: AppBar(
-        backgroundColor: FlowColors.darkBlue,
+        backgroundColor: FlowColors.bars,
         actions: [],
-        title: const Text(
+        title: Text(
           "Flow",
-          style: TextStyle(fontSize: FlowTextsSizes.h6, color: Colors.white12),
+          style: TextStyle(fontSize: FlowTextsSizes.h6, color: FlowColors.text4),
         ),
         toolbarHeight: 45.0,
       ),

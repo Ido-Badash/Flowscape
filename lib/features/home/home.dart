@@ -23,11 +23,11 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: FlowColors.body,
       appBar: AppBar(
-        backgroundColor: FlowColors.darkBlue,
+        backgroundColor: FlowColors.bars,
         actions: [buildSavedScapesTooltip(), buildScapesTooltip()],
-        title: const Text(
+        title: Text(
           "Home",
-          style: TextStyle(fontSize: FlowTextsSizes.h6, color: Colors.white12),
+          style: TextStyle(fontSize: FlowTextsSizes.h6, color: FlowColors.text4),
         ),
         toolbarHeight: 45.0,
       ),
@@ -60,7 +60,7 @@ class _HomePageState extends State<HomePage> {
           currentBody = SavedScapesScreen();
         });
       },
-      icon: const Icon(Icons.save),
+      icon: Icon(Icons.save, color: FlowColors.text4),
     );
   }
 
@@ -73,14 +73,14 @@ class _HomePageState extends State<HomePage> {
           currentBody = ScapesScreen();
         });
       },
-      icon: const Icon(Icons.chrome_reader_mode),
+      icon: Icon(Icons.chrome_reader_mode, color: FlowColors.text4),
     );
   }
 
   BoxDecoration tooltipBoxDecoration() {
-    return const BoxDecoration(
+    return BoxDecoration(
       gradient: RadialGradient(
-        colors: [FlowColors.darkLavender, Colors.transparent],
+        colors: [FlowColors.tooltip, Colors.transparent],
         radius: 2.5,
       ),
     );

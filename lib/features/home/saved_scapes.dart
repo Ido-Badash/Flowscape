@@ -10,10 +10,10 @@ class SavedScapesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: FlowColors.body,
-      body: const Center(
+      body: Center(
         child: Text(
           "Saved Scapes",
-          style: TextStyle(color: FlowColors.lightBlueGray),
+          style: TextStyle(color: FlowColors.text2),
         ),
       ),
     );

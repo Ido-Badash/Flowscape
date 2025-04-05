@@ -55,9 +55,9 @@ class _FlowScapeState extends State<FlowScape> {
           BottomNavigationBarItem(label: "Tasks", icon: Icon(Icons.list_alt)),
           BottomNavigationBarItem(label: "Music", icon: Icon(Icons.music_note)),
         ],
-        backgroundColor: FlowColors.darkBlue,
-        unselectedItemColor: FlowColors.lightBlueGray,
-        selectedItemColor: FlowColors.blue,
+        backgroundColor: FlowColors.bars,
+        unselectedItemColor: FlowColors.text2,
+        selectedItemColor: FlowColors.selected,
         type: BottomNavigationBarType.fixed,
         onTap: (int index) {
           setState(() {

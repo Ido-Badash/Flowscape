@@ -12,16 +12,16 @@ class TasksPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: FlowColors.body,
       appBar: AppBar(
-        backgroundColor: FlowColors.darkBlue,
+        backgroundColor: FlowColors.bars,
         actions: [],
-        title: const Text(
+        title: Text(
           "Tasks",
-          style: TextStyle(fontSize: FlowTextsSizes.h6, color: Colors.white12),
+          style: TextStyle(fontSize: FlowTextsSizes.h6, color: FlowColors.text4),
         ),
         toolbarHeight: 45.0,
       ),
-      body: const Center(
-        child: Text("Tasks", style: TextStyle(color: FlowColors.lightBlueGray)),
+      body: Center(
+        child: Text("Tasks", style: TextStyle(color: FlowColors.text2)),
       ),
     );
   }

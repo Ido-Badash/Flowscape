@@ -47,19 +47,19 @@ class _ScapesScreenState extends State<ScapesScreen> {
       child: Text(
         currentQuote,
         textAlign: TextAlign.center,
-        style: const TextStyle(
+        style: TextStyle(
           fontSize: FlowTextsSizes.h8,
-          color: FlowColors.lavender,
+          color: FlowColors.text3,
         ),
       ),
     );
   }
 
   Icon buildMainCenterIcon() {
-    return const Icon(
+    return Icon(
       Icons.paragliding_outlined,
       size: 50,
-      color: FlowColors.lavender,
+      color: FlowColors.text3,
     );
   }
 }
