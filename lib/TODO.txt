@@ -3,8 +3,13 @@ yt course: https://youtu.be/CD1Y2DmL5JM?feature=shared
 current time: 2:05:16
 
 --- Tasks ---
-1.
+1. make a button in home-scapes that when clicked takes you down in the screen,
+   then it makes the screen scrollable
+
 2.
+
 3.
+
 4.
+
 5.

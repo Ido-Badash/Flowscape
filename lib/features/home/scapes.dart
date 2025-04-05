@@ -30,33 +30,36 @@ class _ScapesScreenState extends State<ScapesScreen> {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              Icons.paragliding_outlined,
-              size: 50,
-              color: FlowColors.lavender,
-            ),
-            TextButton(
-              onPressed: () {
-                setState(() {
-                  updateQuote();
-                });
-              },
-              style: TextButton.styleFrom(
-                splashFactory: NoSplash.splashFactory,
-              ),
-              child: Text(
-                currentQuote,
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                  fontSize: FlowTextsSizes.h8,
-                  color: FlowColors.lavender,
-                ),
-              ),
-            ),
-          ],
+          children: [buildMainCenterIcon(), buildQuoteButton()],
         ),
       ),
+    );
+  }
+
+  TextButton buildQuoteButton() {
+    return TextButton(
+      onPressed: () {
+        setState(() {
+          updateQuote();
+        });
+      },
+      style: TextButton.styleFrom(splashFactory: NoSplash.splashFactory),
+      child: Text(
+        currentQuote,
+        textAlign: TextAlign.center,
+        style: const TextStyle(
+          fontSize: FlowTextsSizes.h8,
+          color: FlowColors.lavender,
+        ),
+      ),
+    );
+  }
+
+  Icon buildMainCenterIcon() {
+    return Icon(
+      Icons.paragliding_outlined,
+      size: 50,
+      color: FlowColors.lavender,
     );
   }
 }
