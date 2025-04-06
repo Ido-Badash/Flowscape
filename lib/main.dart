@@ -1,10 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 // app
 import 'features/app/app.dart';
-import 'theme.dart';
+import 'core/styles/themes.dart';
+
+ThemeData myAppThemeData = appThemeData();
 
 void main() {
+  SystemChrome.setSystemUIOverlayStyle(
+    SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+      systemNavigationBarColor: myAppThemeData.colorScheme.onSurface,
+    ),
+  );
   runApp(const MyApp());
 }
 
@@ -16,7 +25,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "FlowScape",
-      theme: appThemeData(),
+      theme: myAppThemeData,
       home: FlowScape(),
     );
   }

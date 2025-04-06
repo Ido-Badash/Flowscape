@@ -10,6 +10,3 @@ class FlowTextsSizes {
   static const double h9 = 16.0;
   static const double h10 = 14.0;
 }
-
-// h2 = 22
-// h3 = 18

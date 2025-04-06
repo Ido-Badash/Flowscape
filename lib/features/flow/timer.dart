@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 // data
 import 'package:flowscape/core/data/flowbg_images.dart';
 
-final List<String> bgImages = getRandomImagesList(12);
+final List<String> bgImages = getRandomImagesList(11);
 int currentImage = 0;
 
 class TimerScreen extends StatefulWidget {
