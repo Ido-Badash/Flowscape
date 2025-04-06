@@ -3,10 +3,8 @@ import 'package:flutter/material.dart';
 // data
 import 'package:flowscape/core/data/flowbg_images.dart';
 
-// styles
-import 'package:flowscape/core/styles/colors.dart';
-
 final List<String> bgImages = getRandomImagesList(12);
+int currentImage = 0;
 
 class TimerScreen extends StatefulWidget {
   const TimerScreen({super.key});
@@ -16,22 +14,15 @@ class TimerScreen extends StatefulWidget {
 }
 
 class _TimerScreenState extends State<TimerScreen> {
-  int currentImage = 0;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: FlowColors.body,
       body: Stack(
         children: [
           SizedBox.expand(
             child: Image.asset(bgImages[currentImage], fit: BoxFit.cover),
           ),
-          Positioned(
-            bottom: 0,
-            left: 0,
-            child: buildNextImageIconButton(),
-          ),
+          Positioned(bottom: 0, left: 0, child: buildNextImageIconButton()),
         ],
       ),
     );
@@ -47,7 +38,7 @@ class _TimerScreenState extends State<TimerScreen> {
         });
       },
       iconSize: 30,
-      icon: Icon(color: FlowColors.text3, Icons.next_plan_outlined),
+      icon: Icon(color: Theme.of(context).colorScheme.onSurface,  Icons.next_plan_outlined),
     );
   }
 }

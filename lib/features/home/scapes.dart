@@ -3,10 +3,6 @@ import 'package:flutter/material.dart';
 // data
 import 'package:flowscape/core/data/quotes.dart';
 
-// styles
-import 'package:flowscape/core/styles/colors.dart';
-import 'package:flowscape/core/styles/texts_sizes.dart';
-
 final String firstQuote = randomQuote();
 
 class ScapesScreen extends StatefulWidget {
@@ -26,7 +22,6 @@ class _ScapesScreenState extends State<ScapesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: FlowColors.body,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -40,7 +35,7 @@ class _ScapesScreenState extends State<ScapesScreen> {
     return TextButton(
       onPressed: () {
         setState(() {
-          updateQuote();
+          updateQuote(); // if quote pressed then update the quote
         });
       },
       style: TextButton.styleFrom(splashFactory: NoSplash.splashFactory),
@@ -48,8 +43,7 @@ class _ScapesScreenState extends State<ScapesScreen> {
         currentQuote,
         textAlign: TextAlign.center,
         style: TextStyle(
-          fontSize: FlowTextsSizes.h8,
-          color: FlowColors.text3,
+          fontSize: Theme.of(context).textTheme.headlineMedium?.fontSize,
         ),
       ),
     );
@@ -59,7 +53,6 @@ class _ScapesScreenState extends State<ScapesScreen> {
     return Icon(
       Icons.paragliding_outlined,
       size: 50,
-      color: FlowColors.text3,
     );
   }
 }

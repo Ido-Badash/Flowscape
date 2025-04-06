@@ -3,10 +3,6 @@ import 'package:flutter/material.dart';
 // screens
 import 'timer.dart';
 
-// styles
-import 'package:flowscape/core/styles/colors.dart';
-import 'package:flowscape/core/styles/texts_sizes.dart'; // ignore: unused_import
-
 class FlowPage extends StatefulWidget {
   const FlowPage({super.key});
 
@@ -20,13 +16,12 @@ class _FlowPageState extends State<FlowPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: FlowColors.body,
       appBar: AppBar(
-        backgroundColor: FlowColors.bars,
+        backgroundColor: Theme.of(context).colorScheme.secondary,
         actions: [],
         title: Text(
           "Flow",
-          style: TextStyle(fontSize: FlowTextsSizes.h6, color: FlowColors.text4),
+          style: TextStyle(fontSize: Theme.of(context).textTheme.displaySmall?.fontSize),
         ),
         toolbarHeight: 45.0,
       ),

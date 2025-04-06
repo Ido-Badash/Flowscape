@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'features/app/app.dart';
 
-const TextStyle white = TextStyle(color: Colors.white);
+// app
+import 'features/app/app.dart';
+import 'theme.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,14 +16,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "FlowScape",
-      theme: ThemeData(
-        fontFamily: "Default",
-        textTheme: const TextTheme(
-          bodyLarge: white,
-          bodyMedium: white,
-          bodySmall: white,
-        ),
-      ),
+      theme: appThemeData(),
       home: FlowScape(),
     );
   }

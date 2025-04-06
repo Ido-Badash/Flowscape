@@ -7,9 +7,6 @@ import 'package:flowscape/features/home/home.dart';
 import 'package:flowscape/features/tasks/tasks.dart';
 import 'package:flowscape/features/music/music.dart';
 
-// styles
-import 'package:flowscape/core/styles/colors.dart';
-
 // utils
 import 'package:flowscape/core/utils/general_helpers.dart';
 
@@ -25,7 +22,7 @@ class FlowScape extends StatefulWidget {
 
 class _FlowScapeState extends State<FlowScape> {
   int currentScreenIdx = 2;
-  Map<String, int> pages = {
+  Map<String, int> pages = { // the map is for visualing the index of each page
     "Settings": 0,
     "Flow": 1,
     "Home": 2,
@@ -55,9 +52,6 @@ class _FlowScapeState extends State<FlowScape> {
           BottomNavigationBarItem(label: "Tasks", icon: Icon(Icons.list_alt)),
           BottomNavigationBarItem(label: "Music", icon: Icon(Icons.music_note)),
         ],
-        backgroundColor: FlowColors.bars,
-        unselectedItemColor: FlowColors.text2,
-        selectedItemColor: FlowColors.selected,
         type: BottomNavigationBarType.fixed,
         onTap: (int index) {
           setState(() {

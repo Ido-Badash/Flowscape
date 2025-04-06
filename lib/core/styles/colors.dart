@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class FlowColors {
-  static Color body = const Color.fromRGBO(15, 23, 42, 1.0); // for screens body
+  static Color body = const Color.fromRGBO(25, 34, 49, 1.0); // for screens body
   static Color bars = const Color.fromRGBO(30, 41, 59, 1.0); // for app bars and nav bar
 
   static Color text1 = const Color.fromRGBO(248, 250, 252, 1.0); // for normal text like in the nav icon buttons

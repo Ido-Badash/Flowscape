@@ -4,10 +4,6 @@ import 'package:flutter/material.dart';
 import 'scapes.dart';
 import 'saved_scapes.dart';
 
-// styles
-import 'package:flowscape/core/styles/colors.dart';
-import 'package:flowscape/core/styles/texts_sizes.dart';
-
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -21,13 +17,12 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: FlowColors.body,
       appBar: AppBar(
-        backgroundColor: FlowColors.bars,
+        backgroundColor: Theme.of(context).colorScheme.secondary,
         actions: [buildSavedScapesTooltip(), buildScapesTooltip()],
         title: Text(
           "Home",
-          style: TextStyle(fontSize: FlowTextsSizes.h6, color: FlowColors.text4),
+          style: TextStyle(fontSize: Theme.of(context).textTheme.displaySmall?.fontSize),
         ),
         toolbarHeight: 45.0,
       ),
@@ -60,7 +55,7 @@ class _HomePageState extends State<HomePage> {
           currentBody = SavedScapesScreen();
         });
       },
-      icon: Icon(Icons.save, color: FlowColors.text4),
+      icon: Icon(Icons.save),
     );
   }
 
@@ -73,16 +68,13 @@ class _HomePageState extends State<HomePage> {
           currentBody = ScapesScreen();
         });
       },
-      icon: Icon(Icons.chrome_reader_mode, color: FlowColors.text4),
+      icon: Icon(Icons.chrome_reader_mode),
     );
   }
 
   BoxDecoration tooltipBoxDecoration() {
     return BoxDecoration(
-      gradient: RadialGradient(
-        colors: [FlowColors.tooltip, Colors.transparent],
-        radius: 2.5,
-      ),
+      color: Color.fromRGBO(255, 255, 255, 0.75)
     );
   }
 }
