@@ -12,6 +12,9 @@ class SettingsPage extends StatefulWidget {
 
 class _SettingsPageState extends State<SettingsPage> {
   Widget currentBody = SizedBox();
+  bool settingsCollapsed = false;
+  IconData currentCollapseIconData = Icons.arrow_back;
+  IconData ogCollapseIconData = Icons.arrow_back;
 
   @override
   Widget build(BuildContext context) {
@@ -29,15 +32,43 @@ class _SettingsPageState extends State<SettingsPage> {
       ),
       body: Row(
         children: [
-          Expanded(flex: 1, child: settingsCards()),
+          if (!settingsCollapsed)
+            Expanded(flex: 1, child: Container(child: settingsCards())),
           VerticalDivider(
             color: Theme.of(context).bottomNavigationBarTheme.backgroundColor,
-            thickness: 5.0,
-            width: 5.0,
+            thickness: 4.0,
+            width: 4.0,
           ),
-          Expanded(flex: 5, child: Container(child: currentBody)),
+          Expanded(
+            flex: 1,
+            child: Scaffold(
+              appBar: AppBar(leading: buildCollapseIconButton()),
+              body: currentBody,
+            ),
+          ),
         ],
       ),
+    );
+  }
+
+  void toggleSettingsCollapse() {
+    settingsCollapsed = !settingsCollapsed;
+    if (currentCollapseIconData == ogCollapseIconData) { // if the arrow if facing left (open)
+      currentCollapseIconData = Icons.arrow_forward;
+    } else { // if the arrow if facing right (collapsed)
+      currentCollapseIconData = ogCollapseIconData;
+    }
+  }
+
+  IconButton buildCollapseIconButton() {
+    return IconButton(
+      onPressed: () {
+        setState(() {
+          toggleSettingsCollapse();
+        });
+      },
+      tooltip: currentCollapseIconData == ogCollapseIconData ? "Collapse" : "Open",
+      icon: Icon(size: 15, currentCollapseIconData),
     );
   }
 
@@ -49,7 +80,7 @@ class _SettingsPageState extends State<SettingsPage> {
 
   ExpansionTile buildAccountExpansionTile() {
     return ExpansionTile(
-      title: Text('Account (future update)'),
+      title: Text('Account', softWrap: false),
       textColor: Theme.of(context).expansionTileTheme.textColor,
       children: [
         ListTile(title: Text('Edit')),
@@ -62,7 +93,7 @@ class _SettingsPageState extends State<SettingsPage> {
   ExpansionTile buildAppearanceExpansionTile() {
     return ExpansionTile(
       textColor: Theme.of(context).expansionTileTheme.textColor,
-      title: Text('Appearance'),
+      title: Text('Appearance', softWrap: false),
       children: [
         ListTile(
           title: Text("Theme"),
@@ -72,8 +103,7 @@ class _SettingsPageState extends State<SettingsPage> {
             });
           },
         ),
-        ListTile(
-          title: Text("Flow Backgrounds (future update)")),
+        ListTile(title: Text("Flow Backgrounds")),
       ],
     );
   }
