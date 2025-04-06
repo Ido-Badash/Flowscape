@@ -13,7 +13,7 @@ and I get an overflow problem.
 3. Final resort: Use Copilot.
 
 ## Steps
-1. create a new branch of the settings branch
-2. fix the problem
-3. run the app (in windows and mobile)
-4. merge to settings branch
+1. create a new branch of the settings branch / done (took 4 seconds)
+2. fix the problem                            / undone (took x)
+3. run the app (in windows and mobile)        / undone (took x)
+4. merge to settings branch                   / undone (took x)
