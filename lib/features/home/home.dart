@@ -19,10 +19,12 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.secondary,
-        actions: [buildSavedScapesTooltip(), buildScapesTooltip()],
+        actions: [buildSavedScapesIconButton(), buildScapesIconButton()],
         title: Text(
           "Home",
-          style: TextStyle(fontSize: Theme.of(context).textTheme.displaySmall?.fontSize),
+          style: TextStyle(
+            fontSize: Theme.of(context).textTheme.displaySmall?.fontSize,
+          ),
         ),
         toolbarHeight: 45.0,
       ),
@@ -30,24 +32,9 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Tooltip buildSavedScapesTooltip() {
-    return Tooltip(
-      message: "Saved Scapes",
-      decoration: tooltipBoxDecoration(),
-      child: buildSavedScapesIconButton(),
-    );
-  }
-
-  Tooltip buildScapesTooltip() {
-    return Tooltip(
-      message: "Scapes",
-      decoration: tooltipBoxDecoration(),
-      child: buildScapesIconButton(),
-    );
-  }
-
   IconButton buildSavedScapesIconButton() {
     return IconButton(
+      tooltip: "Saved Scapes",
       padding: const EdgeInsets.only(left: 10.0, right: 10.0),
       onPressed: () {
         debugPrint("Navigating to saved scapes");
@@ -61,6 +48,7 @@ class _HomePageState extends State<HomePage> {
 
   IconButton buildScapesIconButton() {
     return IconButton(
+      tooltip: "Scapes",
       padding: const EdgeInsets.only(left: 10.0, right: 10.0),
       onPressed: () {
         debugPrint("Navigating to scapes");
@@ -69,12 +57,6 @@ class _HomePageState extends State<HomePage> {
         });
       },
       icon: Icon(Icons.chrome_reader_mode),
-    );
-  }
-
-  BoxDecoration tooltipBoxDecoration() {
-    return BoxDecoration(
-      color: Color.fromRGBO(255, 255, 255, 0.75)
     );
   }
 }

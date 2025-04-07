@@ -24,3 +24,6 @@ and I get an overflow problem.
 4. use `git add <changes>` adn then commit and sync changes / done (took 1 minute)
 
 5. merge to settings branch                                 / done (took 2 minutes)
+
+## Total Solve Time
+51 minutes

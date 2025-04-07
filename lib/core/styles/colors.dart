@@ -1,70 +1,27 @@
 import 'package:flutter/material.dart';
 
 class FlowColors {
-  static Color body = const Color.fromRGBO(25, 34, 49, 1.0); // for screens body
-  static Color bars = const Color.fromRGBO(
-    30,
-    41,
-    59,
-    1.0,
-  ); // for app bars and nav bar
+  // Light Theme Colors
+  static const Color backgroundLight = Color(0xFFF8FAFC);
+  static const Color surfaceLight = Color(0xFFFFFFFF);
+  static const Color textPrimaryLight = Color(0xFF0F172A);
+  static const Color textSecondaryLight = Color(0xFF334155);
+  static const Color textTertiaryLight = Color(0xFF64748B);
+  static const Color textDisabledLight = Color(0xFF94A3B8);
+  static const Color accentBlueLight = Color(0xFF0EA5E9);
+  static const Color tooltipLight = Color(0xFFE2E8F0);
 
-  static Color text1 = const Color.fromRGBO(
-    248,
-    250,
-    252,
-    1.0,
-  ); // for normal text like in the nav icon buttons
-  static Color text2 = const Color.fromRGBO(
-    203,
-    213,
-    225,
-    1.0,
-  ); // for nav bar icons buttons and placeholder text
-  static Color text3 = const Color.fromRGBO(
-    148,
-    163,
-    184,
-    1.0,
-  ); // stuff like the quote genrator and icon in home-scapes screen
-  static Color text4 = const Color.fromRGBO(
-    100,
-    116,
-    139,
-    1.0,
-  ); // for page title in top left
+  // Dark Theme Colors
+  static const Color backgroundDark = Color(0xFF192231);
+  static const Color surfaceDark = Color(0xFF1E293B);
+  static const Color textPrimaryDark = Color(0xFFF8FAFC);
+  static const Color textSecondaryDark = Color(0xFFCBD5E1);
+  static const Color textTertiaryDark = Color(0xFF94A3B8);
+  static const Color textDisabledDark = Color(0xFF64748B);
+  static const Color accentBlueDark = Color(0xFF38BDF8);
+  static const Color tooltipDark = Color(0xFF475569);
 
-  static Color selected = const Color.fromRGBO(
-    56,
-    189,
-    248,
-    1.0,
-  ); // for nav bar icons buttons
-
-  static Color tooltip = const Color.fromRGBO(
-    71,
-    85,
-    105,
-    0.8,
-  ); // for pages icon buttons tooltips in top right
-
-  static void invertAllColors() {
-    body = _invertRGBOColor(body);
-    bars = _invertRGBOColor(bars);
-    text1 = _invertRGBOColor(text1);
-    text2 = _invertRGBOColor(text2);
-    text3 = _invertRGBOColor(text3);
-    text4 = _invertRGBOColor(text4);
-    selected = _invertRGBOColor(selected);
-    tooltip = _invertRGBOColor(tooltip);
-  }
-
-  static Color _invertRGBOColor(Color color) {
-    return Color.fromRGBO(
-      255 - color.r.toInt(),
-      255 - color.g.toInt(),
-      255 - color.b.toInt(),
-      color.a,
-    );
-  }
+  // Common Colors
+  static const Color errorRed = Color(0xFFD32F2F);
+  static const Color errorRedLight = Color(0xFFEF5350); // Brighter error
 }
