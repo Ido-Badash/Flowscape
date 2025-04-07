@@ -13,14 +13,14 @@ and I get an overflow problem.
 3. Final resort: Use Copilot.
 
 ## Problem Workflow
-1. create a new branch of the settings branch / done (took 12 seconds)
+1. create a new branch of the settings branch               / done (took 12 seconds)
 
-2. fix the problem where you dont even see it / done (took 38 minutes)
+2. fix the problem where you dont even see it               / done (took 38 minutes)
    - used the Flexable widget and add a collapse button
 
-3. fix the open tiles overflow problem       / done (took 10 minutes)
+3. fix the open tiles overflow problem                      / done (took 10 minutes)
    - i just used ListView widget to make it scollable
 
-4. use `git add <changes>` adn then commit and sync changes 
+4. use `git add <changes>` adn then commit and sync changes / done (took 1 minute)
 
-5. merge to settings branch                   / undone (took x)
+5. merge to settings branch                                 / undone (took x)
