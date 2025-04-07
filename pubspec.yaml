@@ -44,4 +44,5 @@ flutter:
         - asset: assets/fonts/default.ttf
 
   assets:
-    - assets/images/flowbgs/
+    - assets/images/flowbgs_dark/
+    - assets/images/flowbgs_light/
