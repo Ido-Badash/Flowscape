@@ -1,7 +1,22 @@
 import "dart:math";
 
 final _random = Random();
-List<String> quoteHistory = [];
+
+List<String> quoteHistory = []; // future feature
+// tracks last quote and stores them and it will help
+// find out what quote not to use next to no create
+// dups, uses its own grabage collector also
+
+// takes a list and pop out p% of the list for the start
+void listWipeout(List list, int p) {
+  // if (p < 0 || p > 100) => raise Value error
+  
+}
+
+String randomQuote() {
+  String quote = quoteHanger[_random.nextInt(quoteHanger.length)];
+  return quote;
+}
 
 List<String> quoteHanger = [
   "Focus makes the impossible real.",
@@ -84,7 +99,6 @@ List<String> quoteHanger = [
   "Kill distractions, grow focus.",
   "Rest later, build now.",
   "No guts, no glory.",
-  "Everything is earned, nothing is given.",
   "Stop stopping yourself.",
   "Push past pain, find strength.",
   "Turn adversity into fuel.",
@@ -101,8 +115,97 @@ List<String> quoteHanger = [
   "Hard work compounds, excuses don't.",
   "Take action. Now.",
   "Everything you want is earned.",
+  "No one is coming to save you.",
+  "You versus yesterday’s version.",
+  "The world owes you nothing.",
+  "Complaining changes nothing. Ever.",
+  "Your excuses die tonight.",
+  "Either evolve or repeat.",
+  "Victory belongs to the relentless.",
+  "Silence doubt with action.",
+  "Your ceiling is self-imposed.",
+  "Stop romanticizing procrastination.",
+  "Potential means nothing undelivered.",
+  "Bleed now or bleed later.",
+  "Regret weighs more than sweat.",
+  "Your habits don’t lie.",
+  "Weakness is a slow leak.",
+  "Burn the plan B.",
+  "Accountability is your armor.",
+  "Silence the victim mentality.",
+  "Every no brings you closer.",
+  "You atrophy in comfort.",
+  "Suffer now or suffer forever.",
+  "Your comfort zone is decaying.",
+  "Mindsets outlive motivation.",
+  "Delayed gratification builds empires.",
+  "You’re the bottleneck.",
+  "Falling isn’t failure—staying down is.",
+  "Scars prove you showed up.",
+  "Tomorrow’s you is watching.",
+  "Your actions answer your doubts.",
+  "Surrender is a habit.",
+  "The grind never negotiates.",
+  "You starve distractions to feed focus.",
+  "Average is a choice.",
+  "Talent without grit is graffiti.",
+  "Your pain is the tuition.",
+  "Stop rehearsing defeat.",
+  "Insecurity is a tax on greatness.",
+  "The mountain doesn’t care how you feel.",
+  "Your only limit is your surrender.",
+  "Motivation fades—discipline compounds.",
+  "You’re either building or decaying.",
+  "Excuses are the currency of losers.",
+  "The mirror doesn’t negotiate.",
+  "Hustle is the antidote to luck.",
+  "Your future self is begging you to act.",
+  "Winners edit out the noise.",
+  "The trophy goes to the obsessed.",
+  "You can’t negotiate with gravity.",
+  "Self-pity is self-sabotage.",
+  "Your legacy is built daily.",
+  "The universe favors the stubborn.",
+  "You either lead or bleed.",
+  "Your hustle is your resume.",
+  "The fire for greatness is self-lit.",
+  "You can’t outsource your grind.",
+  "The hunger decides the outcome.",
+  "Your demons train when you sleep.",
+  "Opportunity meets the prepared—always.",
+  "You’re the architect of your chaos.",
+  "Victimhood is a prison you built.",
+  "The cost of quitting compounds.",
+  "Your darkest hour is your forge.",
+  "Adversity is the refiner’s fire.",
+  "You’re paid in proportion to your grit.",
+  "The throne belongs to the relentless.",
+  "Your habits outlive your motivation.",
+  "You’re either climbing or sliding.",
+  "The world ignores entitled.",
+  "Excuses are the nails in your coffin.",
+  "The game respects only the obsessed.",
+  "Your mediocrity is a slow suicide.",
+  "Hesitation is the cousin of regret.",
+  "The grind is the only truth.",
+  "Your comfort is the enemy of growth.",
+  "You can’t heal what you won’t face.",
+  "The wolves only respect strength.",
+  "Your effort is your signature.",
+  "The universe rewards the unreasonable.",
+  "You’re either predator or prey.",
+  "Your discipline is your dignity.",
+  "The scoreboard doesn’t lie.",
+  "You’re the CEO of your life.",
+  "Your hustle is your hymn.",
+  "The relentless inherit the earth.",
+  "You’re paid in scars, not wishes.",
+  "The mirror reflects your truth.",
+  "Your grit is your gravity.",
+  "The weak negotiate—the dominant execute.",
+  "The arena doesn’t care about your fears.",
+  "Your actions echo in eternity.",
+  "The hungry don’t beg—they take.",
+  "You’re the sum of your daily battles.",
+  "The throne awaits—earn it.",
 ];
-String randomQuote() {
-  String quote = quoteHanger[_random.nextInt(quoteHanger.length)];
-  return quote;
-}

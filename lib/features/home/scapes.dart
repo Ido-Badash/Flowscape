@@ -23,10 +23,28 @@ class _ScapesScreenState extends State<ScapesScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [buildMainCenterIcon(), buildQuoteButton()],
+        child: ListView(
+          shrinkWrap: true,
+          children: [
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                buildMainCenterIcon(),
+                buildQuoteButton(),
+                buildScrollToSeeText(),
+              ],
+            ),
+          ],
         ),
+      ),
+    );
+  }
+
+  Center buildScrollToSeeText() {
+    return Center(
+      child: Text(
+        "Scroll to see Scapes",
+        style: TextStyle(fontStyle: FontStyle.italic, fontSize: 12),
       ),
     );
   }
@@ -38,7 +56,10 @@ class _ScapesScreenState extends State<ScapesScreen> {
           updateQuote(); // if quote pressed then update the quote
         });
       },
-      style: TextButton.styleFrom(splashFactory: NoSplash.splashFactory, overlayColor: Colors.transparent),
+      style: TextButton.styleFrom(
+        splashFactory: NoSplash.splashFactory,
+        overlayColor: Colors.transparent,
+      ),
       child: Text(
         currentQuote,
         textAlign: TextAlign.center,
@@ -50,9 +71,6 @@ class _ScapesScreenState extends State<ScapesScreen> {
   }
 
   Icon buildMainCenterIcon() {
-    return Icon(
-      Icons.paragliding_outlined,
-      size: 50,
-    );
+    return Icon(Icons.paragliding_outlined, size: 50);
   }
 }
