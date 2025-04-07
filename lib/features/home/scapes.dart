@@ -22,11 +22,13 @@ class _ScapesScreenState extends State<ScapesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [buildMainCenterIcon(), buildQuoteButton()],
-        ),
+      body: ListView(
+        children: [
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [buildMainCenterIcon(), buildQuoteButton()],
+          ),
+        ],
       ),
     );
   }
@@ -50,9 +52,6 @@ class _ScapesScreenState extends State<ScapesScreen> {
   }
 
   Icon buildMainCenterIcon() {
-    return Icon(
-      Icons.paragliding_outlined,
-      size: 50,
-    );
+    return Icon(Icons.paragliding_outlined, size: 50);
   }
 }
