@@ -26,7 +26,7 @@ class _TimerScreenState extends State<TimerScreen> {
       body: Stack(
         children: [
           GestureDetector(
-            onLongPress: () {
+            onDoubleTap: () {
               setState(() {
                 currentImage = (currentImage + 1) % bgImages.length;
                 debugPrint(currentImage.toString());
