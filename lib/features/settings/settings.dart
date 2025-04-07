@@ -22,7 +22,7 @@ class _SettingsPageState extends State<SettingsPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.secondary,
-        actions: [],
+        actions: const [],
         title: Text(
           "Settings",
           style: TextStyle(
@@ -81,19 +81,15 @@ class _SettingsPageState extends State<SettingsPage> {
   Flexible settingsCards() {
     return Flexible(
       flex: 4, // Scale double to int for finer control
-        child: ListView(
-          children: [
-            buildAccountExpansionTile(),
-            buildAppearanceExpansionTile(),
-          ],
-        ),
+      child: ListView(
+        children: [buildAccountExpansionTile(), buildAppearanceExpansionTile()],
+      ),
     );
   }
 
   ExpansionTile buildAccountExpansionTile() {
-    return ExpansionTile(
+    return const ExpansionTile(
       title: Text('Account', softWrap: false),
-      textColor: Theme.of(context).expansionTileTheme.textColor,
       children: [
         ListTile(title: Text('Edit')),
         ListTile(title: Text('Info')),
@@ -104,7 +100,6 @@ class _SettingsPageState extends State<SettingsPage> {
 
   ExpansionTile buildAppearanceExpansionTile() {
     return ExpansionTile(
-      textColor: Theme.of(context).expansionTileTheme.textColor,
       title: Text('Appearance', softWrap: false),
       children: [
         ListTile(
