@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 // ListTile bodys
-import 'appearrance_tile/theme_select.dart';
+import 'appearance_tile/theme_select.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
@@ -81,7 +81,7 @@ class _SettingsPageState extends State<SettingsPage> {
   Flexible settingsCards() {
     return Flexible(
       flex: 4, // Scale double to int for finer control
-        child: Column(
+        child: ListView(
           children: [
             buildAccountExpansionTile(),
             buildAppearanceExpansionTile(),
