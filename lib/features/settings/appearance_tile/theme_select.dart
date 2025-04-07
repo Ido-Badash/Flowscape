@@ -12,16 +12,8 @@ class _ThemeSelectScreenState extends State<ThemeSelectScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            setState(() {
-              //! make it so the theme toggels
-            });
-          },
-          child: Text("Light Theme"),
+        child: Text("Themes"),
         ),
-      ),
     );
   }
 }
-

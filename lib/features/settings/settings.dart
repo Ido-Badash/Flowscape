@@ -14,7 +14,8 @@ class _SettingsPageState extends State<SettingsPage> {
   Widget currentBody = SizedBox();
   bool settingsCollapsed = false;
   IconData currentCollapseIconData = Icons.arrow_back;
-  IconData ogCollapseIconData = Icons.arrow_back;
+  final IconData leftCollapseIconData = Icons.arrow_back;
+  final IconData rightCollapseIconData = Icons.arrow_forward;
 
   @override
   Widget build(BuildContext context) {
@@ -32,15 +33,16 @@ class _SettingsPageState extends State<SettingsPage> {
       ),
       body: Row(
         children: [
+          if (!settingsCollapsed) settingsCards(),
+
           if (!settingsCollapsed)
-            Expanded(flex: 1, child: Container(child: settingsCards())),
-          VerticalDivider(
-            color: Theme.of(context).bottomNavigationBarTheme.backgroundColor,
-            thickness: 4.0,
-            width: 4.0,
-          ),
-          Expanded(
-            flex: 1,
+            VerticalDivider(
+              color: Theme.of(context).bottomNavigationBarTheme.backgroundColor,
+              thickness: 4.0,
+              width: 4.0,
+            ),
+          Flexible(
+            flex: 5, // Scale double to int for finer control
             child: Scaffold(
               appBar: AppBar(leading: buildCollapseIconButton()),
               body: currentBody,
@@ -53,11 +55,13 @@ class _SettingsPageState extends State<SettingsPage> {
 
   void toggleSettingsCollapse() {
     settingsCollapsed = !settingsCollapsed;
-    if (currentCollapseIconData == ogCollapseIconData) { // if the arrow if facing left (open)
-      currentCollapseIconData = Icons.arrow_forward;
-    } else { // if the arrow if facing right (collapsed)
-      currentCollapseIconData = ogCollapseIconData;
-    }
+    currentCollapseIconData =
+        currentCollapseIconData ==
+                leftCollapseIconData // if opened
+            ? currentCollapseIconData =
+                rightCollapseIconData // then make it close
+            : currentCollapseIconData =
+                leftCollapseIconData; // otherwise make it open
   }
 
   IconButton buildCollapseIconButton() {
@@ -67,14 +71,22 @@ class _SettingsPageState extends State<SettingsPage> {
           toggleSettingsCollapse();
         });
       },
-      tooltip: currentCollapseIconData == ogCollapseIconData ? "Collapse" : "Open",
+      tooltip:
+          // toggels the tooltip msg
+          currentCollapseIconData == leftCollapseIconData ? "Collapse" : "Open",
       icon: Icon(size: 15, currentCollapseIconData),
     );
   }
 
-  Column settingsCards() {
-    return Column(
-      children: [buildAccountExpansionTile(), buildAppearanceExpansionTile()],
+  Flexible settingsCards() {
+    return Flexible(
+      flex: 4, // Scale double to int for finer control
+        child: Column(
+          children: [
+            buildAccountExpansionTile(),
+            buildAppearanceExpansionTile(),
+          ],
+        ),
     );
   }
 
@@ -103,7 +115,7 @@ class _SettingsPageState extends State<SettingsPage> {
             });
           },
         ),
-        ListTile(title: Text("Flow Backgrounds")),
+        ListTile(title: Text("Backgrounds")),
       ],
     );
   }
