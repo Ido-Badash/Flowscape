@@ -17,35 +17,26 @@ class TimerScreen extends StatefulWidget {
 class _TimerScreenState extends State<TimerScreen> {
   @override
   Widget build(BuildContext context) {
-    List<String> bgImages = Theme.of(context).brightness == Brightness.dark
-  ? bgImagesDark
-  : bgImagesLight;
-  
+    List<String> bgImages =
+        Theme.of(context).brightness == Brightness.dark
+            ? bgImagesDark
+            : bgImagesLight;
+
     return Scaffold(
       body: Stack(
         children: [
-          SizedBox.expand(
-            child: Image.asset(bgImages[currentImage], fit: BoxFit.cover),
+          GestureDetector(
+            onLongPress: () {
+              setState(() {
+                currentImage = (currentImage + 1) % bgImages.length;
+                debugPrint(currentImage.toString());
+              });
+            },
+            child: SizedBox.expand(
+              child: Image.asset(bgImages[currentImage], fit: BoxFit.cover),
+            ),
           ),
-          Positioned(bottom: 0, left: 0, child: buildNextImageIconButton(bgImages)),
         ],
-      ),
-    );
-  }
-
-  Widget buildNextImageIconButton(List<String> bgImages) {
-    return IconButton(
-      onPressed: () {
-        // Add your button action here
-        setState(() {
-          currentImage = (currentImage + 1) % bgImages.length;
-          debugPrint(currentImage.toString());
-        });
-      },
-      iconSize: 30,
-      icon: Icon(
-        color: Theme.of(context).colorScheme.onSurface,
-        Icons.next_plan_outlined,
       ),
     );
   }

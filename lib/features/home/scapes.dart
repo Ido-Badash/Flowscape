@@ -38,7 +38,7 @@ class _ScapesScreenState extends State<ScapesScreen> {
           updateQuote(); // if quote pressed then update the quote
         });
       },
-      style: TextButton.styleFrom(splashFactory: NoSplash.splashFactory),
+      style: TextButton.styleFrom(splashFactory: NoSplash.splashFactory, overlayColor: Colors.transparent),
       child: Text(
         currentQuote,
         textAlign: TextAlign.center,
