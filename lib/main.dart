@@ -5,15 +5,12 @@ import 'package:flutter/services.dart';
 import 'features/app/app.dart';
 import 'core/styles/themes.dart';
 
-ThemeData appDarkTheme = appDarkThemeData();
-ThemeData appLightTheme = appLightThemeData();
-
 void main() {
   SystemChrome.setSystemUIOverlayStyle(
     SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
       systemNavigationBarColor:
-          appDarkTheme.bottomNavigationBarTheme.backgroundColor,
+          appDarkThemeData.bottomNavigationBarTheme.backgroundColor,
     ),
   );
   runApp(const MyApp());
@@ -27,8 +24,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "FlowScape",
-      theme: appLightTheme,
-      darkTheme: appDarkTheme,
+      theme: appLightThemeData,
+      darkTheme: appDarkThemeData,
       home: FlowScape(),
     );
   }
