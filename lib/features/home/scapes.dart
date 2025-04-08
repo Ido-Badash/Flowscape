@@ -21,31 +21,65 @@ class _ScapesScreenState extends State<ScapesScreen> {
 
   @override
   Widget build(BuildContext context) {
+    List scapesListViewItems = buildScapesListViewItems();
+
     return Scaffold(
       body: Center(
-        child: ListView(
+        child: ListView.separated(
           shrinkWrap: true,
-          children: [
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                buildMainCenterIcon(),
-                buildQuoteButton(),
-                buildScrollToSeeText(),
-              ],
-            ),
-          ],
+          itemBuilder: (BuildContext context, int index) {
+            return scapesListViewItems[index];
+          },
+          separatorBuilder: (BuildContext context, int index) {
+            return Divider(
+              height: 200,
+              thickness: 0,
+              color: Colors.transparent,
+            );
+          },
+          itemCount: scapesListViewItems.length,
         ),
       ),
     );
   }
 
+  List buildScapesListViewItems() {
+    return [
+      const Spacer(),
+      buildTopScapesListViewItem(),
+      const Spacer(),
+      const Text("Scape 1", textAlign: TextAlign.center),
+      const Text("Scape 2", textAlign: TextAlign.center),
+      const Text("Scape 3", textAlign: TextAlign.center),
+      const Text("Scape 4", textAlign: TextAlign.center),
+      const Text("Scape 5", textAlign: TextAlign.center),
+      const Spacer(),
+      buildBackToTopButton(),
+    ];
+  }
+
   Center buildScrollToSeeText() {
-    return Center(
+    return const Center(
       child: Text(
         "Scroll to see Scapes",
         style: TextStyle(fontStyle: FontStyle.italic, fontSize: 12),
       ),
+    );
+  }
+
+  buildBackToTopButton() {
+    return null;
+  }
+
+  /// The build for the top quote area
+  Column buildTopScapesListViewItem() {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        buildMainCenterIcon(),
+        buildQuoteButton(),
+        buildScrollToSeeText(),
+      ],
     );
   }
 
@@ -71,6 +105,6 @@ class _ScapesScreenState extends State<ScapesScreen> {
   }
 
   Icon buildMainCenterIcon() {
-    return Icon(Icons.paragliding_outlined, size: 50);
+    return const Icon(Icons.paragliding_outlined, size: 50);
   }
 }

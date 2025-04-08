@@ -7,7 +7,7 @@ List<String> quoteHistory = []; // future feature
 // find out what quote not to use next to no create
 // dups, uses its own grabage collector also
 
-// takes a list and pop out p% of the list for the start
+/// takes a list and pop out p% of the list for the start
 void listWipeout(List list, int p) {
   // if (p < 0 || p > 100) => raise Value error
   
