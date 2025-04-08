@@ -53,7 +53,6 @@ class _ScapesScreenState extends State<ScapesScreen> {
       const Text("Scape 3", textAlign: TextAlign.center),
       const Text("Scape 4", textAlign: TextAlign.center),
       const Text("Scape 5", textAlign: TextAlign.center),
-      const Spacer(),
       buildBackToTopButton(),
     ];
   }
@@ -67,8 +66,16 @@ class _ScapesScreenState extends State<ScapesScreen> {
     );
   }
 
-  buildBackToTopButton() {
-    return null;
+  Column buildBackToTopButton() {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        IconButton(
+          onPressed: () {},
+          icon: Icon(Icons.arrow_upward_rounded),
+        ),
+      ],
+    );
   }
 
   /// The build for the top quote area
