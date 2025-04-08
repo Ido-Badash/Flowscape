@@ -83,5 +83,9 @@ ThemeData appLightThemeData = ThemeData(
     textColor: FlowColors.textSecondaryLight,
   ),
 
+  floatingActionButtonTheme: const FloatingActionButtonThemeData(
+    backgroundColor: Colors.black,
+  ),
+
   iconTheme: const IconThemeData(color: FlowColors.textTertiaryLight),
 );

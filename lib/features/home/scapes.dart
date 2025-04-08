@@ -13,6 +13,7 @@ class ScapesScreen extends StatefulWidget {
 }
 
 class _ScapesScreenState extends State<ScapesScreen> {
+  final ScrollController listViewController = ScrollController();
   String currentQuote = firstQuote;
 
   void updateQuote() {
@@ -21,40 +22,39 @@ class _ScapesScreenState extends State<ScapesScreen> {
 
   @override
   Widget build(BuildContext context) {
-    List scapesListViewItems = buildScapesListViewItems();
-
     return Scaffold(
+      floatingActionButton: buildBackToTopButton(),
       body: Center(
-        child: ListView.separated(
+        child: ListView.builder(
           shrinkWrap: true,
-          itemBuilder: (BuildContext context, int index) {
-            return scapesListViewItems[index];
-          },
-          separatorBuilder: (BuildContext context, int index) {
-            return Divider(
-              height: 200,
-              thickness: 0,
-              color: Colors.transparent,
-            );
-          },
-          itemCount: scapesListViewItems.length,
+          controller: listViewController,
+          itemBuilder: listViewItemBuilder,
         ),
       ),
     );
   }
 
-  List buildScapesListViewItems() {
-    return [
-      const Spacer(),
-      buildTopScapesListViewItem(),
-      const Spacer(),
-      const Text("Scape 1", textAlign: TextAlign.center),
-      const Text("Scape 2", textAlign: TextAlign.center),
-      const Text("Scape 3", textAlign: TextAlign.center),
-      const Text("Scape 4", textAlign: TextAlign.center),
-      const Text("Scape 5", textAlign: TextAlign.center),
-      buildBackToTopButton(),
-    ];
+  Widget? listViewItemBuilder(BuildContext context, int index) {
+    Widget? currentItem;
+    switch (index) {
+      case 0:
+        final double topNBottomPad = MediaQuery.of(context).size.height * 0.325;
+        currentItem = Padding(
+          padding: EdgeInsets.only(top: topNBottomPad, bottom: topNBottomPad),
+          child: buildTopScapesListViewItem(),
+        );
+      default:
+        currentItem = Text(index.toString());
+    }
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Center(child: currentItem),
+    );
+  }
+
+  void scapesListViewScrollUp() {
+    final double start = 0.0;
+    listViewController.jumpTo(start);
   }
 
   Center buildScrollToSeeText() {
@@ -68,11 +68,15 @@ class _ScapesScreenState extends State<ScapesScreen> {
 
   Column buildBackToTopButton() {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.end,
       children: [
-        IconButton(
-          onPressed: () {},
-          icon: Icon(Icons.arrow_upward_rounded),
+        FloatingActionButton(
+          tooltip: "Back to top", // make in top later
+          onPressed: scapesListViewScrollUp,
+          mini: true, // makes the button small
+          shape: CircleBorder(),
+          child: Icon(
+            Icons.arrow_upward_rounded),
         ),
       ],
     );
