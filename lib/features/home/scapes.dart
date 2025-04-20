@@ -38,9 +38,9 @@ class _ScapesScreenState extends State<ScapesScreen> {
     Widget? currentItem;
     switch (index) {
       case 0:
-        final double topNBottomPad = MediaQuery.of(context).size.height * 0.325;
-        currentItem = Padding(
-          padding: EdgeInsets.only(top: topNBottomPad, bottom: topNBottomPad),
+        currentItem = SizedBox(
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
           child: buildTopScapesListViewItem(),
         );
       default:
@@ -53,8 +53,7 @@ class _ScapesScreenState extends State<ScapesScreen> {
   }
 
   void scapesListViewScrollUp() {
-    final double start = 0.0;
-    listViewController.jumpTo(start);
+    listViewController.jumpTo(0.0); // goes up in the list view
   }
 
   Center buildScrollToSeeText() {
@@ -70,13 +69,16 @@ class _ScapesScreenState extends State<ScapesScreen> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
-        FloatingActionButton(
-          tooltip: "Back to top", // make in top later
-          onPressed: scapesListViewScrollUp,
-          mini: true, // makes the button small
-          shape: CircleBorder(),
-          child: Icon(
-            Icons.arrow_upward_rounded),
+        Tooltip(
+          message: "Back to top",
+          preferBelow: false,
+          child: FloatingActionButton(
+            onPressed: scapesListViewScrollUp,
+            mini: true, // makes the button small
+            shape: const CircleBorder(),
+            elevation: 0, // to remove the black foggy effect
+            child: const Icon(Icons.arrow_upward_rounded),
+          ),
         ),
       ],
     );
@@ -87,9 +89,11 @@ class _ScapesScreenState extends State<ScapesScreen> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
+        Spacer(flex: 4), // balances the flex below ↓
         buildMainCenterIcon(),
         buildQuoteButton(),
         buildScrollToSeeText(),
+        Spacer(flex: 5), // pushes the content a bit higher
       ],
     );
   }

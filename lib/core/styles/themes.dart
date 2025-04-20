@@ -20,7 +20,7 @@ ThemeData appDarkThemeData = ThemeData(
     bodyLarge: TextStyle(fontSize: FlowTextsSizes.h10),
   ),
 
-  colorScheme: ColorScheme(
+  colorScheme: const ColorScheme(
     brightness: Brightness.dark,
     primary: FlowColors.textTertiaryDark,
     onPrimary: FlowColors.textPrimaryDark,
@@ -32,17 +32,21 @@ ThemeData appDarkThemeData = ThemeData(
     onError: Colors.white,
   ),
 
-  bottomNavigationBarTheme: BottomNavigationBarThemeData(
+  bottomNavigationBarTheme: const BottomNavigationBarThemeData(
     backgroundColor: FlowColors.surfaceDark,
     unselectedItemColor: FlowColors.textSecondaryDark,
     selectedItemColor: FlowColors.accentBlueDark,
   ),
 
-  expansionTileTheme: ExpansionTileThemeData(
+  expansionTileTheme: const ExpansionTileThemeData(
     textColor: FlowColors.textSecondaryDark,
   ),
 
-  iconTheme: IconThemeData(color: FlowColors.textTertiaryDark),
+  iconTheme: const IconThemeData(color: FlowColors.textTertiaryDark),
+
+  floatingActionButtonTheme: const FloatingActionButtonThemeData(
+    backgroundColor: FlowColors.surfaceDark,
+  ),
 );
 
 ThemeData appLightThemeData = ThemeData(
@@ -84,7 +88,7 @@ ThemeData appLightThemeData = ThemeData(
   ),
 
   floatingActionButtonTheme: const FloatingActionButtonThemeData(
-    backgroundColor: Colors.black,
+    backgroundColor: FlowColors.surfaceLight,
   ),
 
   iconTheme: const IconThemeData(color: FlowColors.textTertiaryLight),
