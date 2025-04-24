@@ -19,7 +19,9 @@ finished - dd/mm/yyyy hh:mm
   detailed in the whiteboard.
   ~ started - 21/04/2025 19:18, finished - 21/04/2025 19:22
 
-- commited and sync, commit: `Add scape.dart file and update FEATURES.md for Scape class details`
+- commited and published branch, commit: `Add scape.dart file and update FEATURES.md for Scape class details`
+
+- blah blah
 
 --- Template ---
 # Feature name

@@ -3,7 +3,53 @@ import 'package:flutter/material.dart';
 // data
 import 'package:flowscape/core/data/quotes.dart';
 
+// widgets
+import 'widgets/scape.dart';
+
+Widget page(Color color) {
+  return Scaffold(backgroundColor: color);
+}
+
 final String firstQuote = randomQuote();
+final Scape firstScape = Scape(
+  autorBox: Scaffold(
+    appBar: AppBar(
+      backgroundColor: Colors.cyanAccent,
+      title: const Text("Autor", style: TextStyle(fontSize: 15)),
+      actions: [
+        const Padding(
+          padding: EdgeInsets.only(right: 15),
+          child: Text("24/04/2025", style: TextStyle(fontSize: 15)),
+        )
+        ],),
+  ),
+  titleBox: Container(
+    width: double.infinity,
+    color: Colors.indigo,
+    child: Center(
+      child: Text(
+      "Title",
+      textAlign: TextAlign.center,
+      style: TextStyle(fontSize: 15),
+      ),
+    ),
+    ),
+  headBody: page(Colors.deepOrange),
+  bodies: [
+    page(Colors.black),
+    page(Colors.blue),
+    page(Colors.red),
+    page(Colors.green),
+    page(Colors.yellow),
+    page(Colors.orange),
+    page(Colors.purple),
+    page(Colors.brown),
+    page(Colors.pink),
+    page(Colors.cyan),
+    page(Colors.teal),
+    page(Colors.lime),
+  ],
+);
 
 class ScapesScreen extends StatefulWidget {
   const ScapesScreen({super.key});
@@ -42,6 +88,12 @@ class _ScapesScreenState extends State<ScapesScreen> {
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
           child: buildTopScapesListViewItem(),
+        );
+      case 1:
+        currentItem = SizedBox(
+          height: MediaQuery.of(context).size.height / 2,
+          width: MediaQuery.of(context).size.width,
+          child: firstScape,
         );
       default:
         currentItem = Text(index.toString());
