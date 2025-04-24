@@ -12,28 +12,9 @@ Widget page(Color color) {
 
 final String firstQuote = randomQuote();
 final Scape firstScape = Scape(
-  autorBox: Scaffold(
-    appBar: AppBar(
-      backgroundColor: Colors.cyanAccent,
-      title: const Text("Autor", style: TextStyle(fontSize: 15)),
-      actions: [
-        const Padding(
-          padding: EdgeInsets.only(right: 15),
-          child: Text("24/04/2025", style: TextStyle(fontSize: 15)),
-        )
-        ],),
-  ),
-  titleBox: Container(
-    width: double.infinity,
-    color: Colors.indigo,
-    child: Center(
-      child: Text(
-      "Title",
-      textAlign: TextAlign.center,
-      style: TextStyle(fontSize: 15),
-      ),
-    ),
-    ),
+  autorName: "Ido Badash",
+  date: "24/04/2025",
+  title: "Whats so good about push ups?",
   headBody: page(Colors.deepOrange),
   bodies: [
     page(Colors.black),

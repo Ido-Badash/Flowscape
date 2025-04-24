@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 
 class Scape extends StatefulWidget {
-  final Widget? autorBox;
-  final Widget? titleBox;
+  final String? autorName;
+  final String? date;
+  final String? title;
   final Widget headBody;
   final List<Widget> bodies;
 
   const Scape({
     super.key,
-    this.autorBox,
-    this.titleBox,
+    this.autorName,
+    this.date,
+    this.title,
     required this.headBody,
     required this.bodies,
   });
@@ -25,20 +27,55 @@ class _ScapeState extends State<Scape> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          if (currentPageIdx == 0)
-            Expanded(flex: 1, child: widget.autorBox ?? Container()),
-            Expanded(flex: 1, child: widget.titleBox ?? Container()),
-          Expanded(
-            flex: 8,
-            child: PageView(
-              controller: _controller,
-              children: [widget.headBody, ...widget.bodies],
+      body: Expanded(
+        child: Column(
+          children: [
+            if (currentPageIdx == 0)
+              Expanded(
+                flex: 1,
+                child: Scaffold(
+                  appBar: AppBar(
+                    backgroundColor: Colors.cyanAccent,
+                    title: Text(
+                      widget.autorName ?? "",
+                      style: TextStyle(fontSize: 15),
+                    ),
+                    actions: [
+                      Padding(
+                        padding: EdgeInsets.only(right: 15),
+                        child: Text(
+                          widget.date ?? "",
+                          style: TextStyle(fontSize: 15),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            Expanded(
+              flex: 1,
+              child: Container(
+                width: double.infinity,
+                color: Colors.indigo,
+                child: Center(
+                  child: Text(
+                    widget.title ?? "",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 15),
+                  ),
+                ),
+              ),
             ),
-          ),
-          Expanded(flex: 1, child: Container(color: Colors.indigo)),
-        ],
+            Expanded(
+              flex: 8,
+              child: PageView(
+                controller: _controller,
+                children: [widget.headBody, ...widget.bodies],
+              ),
+            ),
+            Expanded(flex: 1, child: Container(color: Colors.indigo)),
+          ],
+        ),
       ),
     );
   }
