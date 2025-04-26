@@ -1,82 +1,52 @@
 import 'package:flutter/material.dart';
 
-class Scape extends StatefulWidget {
-  final String? autorName;
-  final String? date;
-  final String? title;
-  final Widget headBody;
+class Scape extends StatelessWidget {
+  final Text? creator;
+  final Text? date;
+  final Text? title;
+  final Widget? headBody;
   final List<Widget> bodies;
 
-  const Scape({
+  Scape({
     super.key,
-    this.autorName,
-    this.date,
-    this.title,
-    required this.headBody,
-    required this.bodies,
+    this.creator = const Text("No Creator Name"),
+    this.date = const Text("No Date"),
+    this.title = const Text("No Title"),
+    this.headBody = const SizedBox(),
+    this.bodies = const [],
   });
 
   @override
-  State<Scape> createState() => _ScapeState();
-}
-
-class _ScapeState extends State<Scape> {
-  final PageController _controller = PageController();
-  int currentPageIdx = 0;
-
-  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Expanded(
-        child: Column(
-          children: [
-            if (currentPageIdx == 0)
-              Expanded(
-                flex: 1,
-                child: Scaffold(
-                  appBar: AppBar(
-                    backgroundColor: Colors.cyanAccent,
-                    title: Text(
-                      widget.autorName ?? "",
-                      style: TextStyle(fontSize: 15),
-                    ),
-                    actions: [
-                      Padding(
-                        padding: EdgeInsets.only(right: 15),
-                        child: Text(
-                          widget.date ?? "",
-                          style: TextStyle(fontSize: 15),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            Expanded(
-              flex: 1,
-              child: Container(
-                width: double.infinity,
-                color: Colors.indigo,
-                child: Center(
-                  child: Text(
-                    widget.title ?? "",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 15),
-                  ),
-                ),
-              ),
-            ),
-            Expanded(
-              flex: 8,
-              child: PageView(
-                controller: _controller,
-                children: [widget.headBody, ...widget.bodies],
-              ),
-            ),
-            Expanded(flex: 1, child: Container(color: Colors.indigo)),
-          ],
-        ),
+    return SizedBox(
+      width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height,
+      child: Stack(
+        alignment: AlignmentDirectional.topCenter,
+        children: [
+          buildDefaultNavigationContainer(context),
+          Padding(
+            padding: const EdgeInsets.only(top: 12.5),
+            child: buildDefaultBodyContainer(context),
+          ),
+        ],
       ),
+    ); // placeholder
+  }
+
+  Widget buildDefaultNavigationContainer(BuildContext context) {
+    return Container(
+      width: MediaQuery.of(context).size.width * (3 / 4),
+      height: MediaQuery.of(context).size.height  * (11 / 12),
+      color: Colors.blueAccent,
+    );
+  }
+
+  Widget buildDefaultBodyContainer(BuildContext context) {
+    return Container(
+      width: MediaQuery.of(context).size.width * (11 / 12),
+      height: MediaQuery.of(context).size.height * (13 / 15),
+      color: Colors.green,
     );
   }
 }

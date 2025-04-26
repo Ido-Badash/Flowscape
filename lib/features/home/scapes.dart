@@ -7,30 +7,11 @@ import 'package:flowscape/core/data/quotes.dart';
 import 'widgets/scape.dart';
 
 Widget page(Color color) {
-  return Scaffold(backgroundColor: color);
+  return Container(color: color);
 }
 
 final String firstQuote = randomQuote();
-final Scape firstScape = Scape(
-  autorName: "Ido Badash",
-  date: "24/04/2025",
-  title: "Whats so good about push ups?",
-  headBody: page(Colors.deepOrange),
-  bodies: [
-    page(Colors.black),
-    page(Colors.blue),
-    page(Colors.red),
-    page(Colors.green),
-    page(Colors.yellow),
-    page(Colors.orange),
-    page(Colors.purple),
-    page(Colors.brown),
-    page(Colors.pink),
-    page(Colors.cyan),
-    page(Colors.teal),
-    page(Colors.lime),
-  ],
-);
+final Scape firstScape = Scape();
 
 class ScapesScreen extends StatefulWidget {
   const ScapesScreen({super.key});
@@ -71,11 +52,7 @@ class _ScapesScreenState extends State<ScapesScreen> {
           child: buildTopScapesListViewItem(),
         );
       case 1:
-        currentItem = SizedBox(
-          height: MediaQuery.of(context).size.height / 2,
-          width: MediaQuery.of(context).size.width,
-          child: firstScape,
-        );
+        currentItem = firstScape;
       default:
         currentItem = Text(index.toString());
     }

@@ -8,20 +8,17 @@ started - 20/04/2025 14:22
 finished - dd/mm/yyyy hh:mm
 
 ## Feature progress tracking
-- Finished the whiteboard - 21/04/2025 19:13
-  ~ started - 20/04/2025 14:22, finished - 21/04/2025 19:13
+- Finished the whiteboard
 
 - Made a new branch named: "home-scapes"
-  ~ started - 21/04/2025 19:17, finished - 21/04/2025 19:18
 
 - Created a new folder in the lib/features/home named "widgets"
   and made a "scape.dart" file where im going to create the "Scape" class
   detailed in the whiteboard.
-  ~ started - 21/04/2025 19:18, finished - 21/04/2025 19:22
 
 - commited and published branch, commit: `Add scape.dart file and update FEATURES.md for Scape class details`
 
-- blah blah
+- made params in the "Scape" class
 
 --- Template ---
 # Feature name
