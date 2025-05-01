@@ -22,7 +22,7 @@ class ScapesScreen extends StatefulWidget {
 }
 
 class _ScapesScreenState extends State<ScapesScreen> {
-  final ScrollController listViewController = ScrollController();
+  final PageController pageViewController = PageController();
   String currentQuote = firstQuote;
 
   void updateQuote() {
@@ -33,53 +33,41 @@ class _ScapesScreenState extends State<ScapesScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: buildBackToTopButton(),
-      body: Column(
-        // Replace Expanded with Column
-        children: [
-          Expanded(
-            child: ListView.builder(
-              controller: listViewController,
-              itemBuilder: listViewItemBuilder,
-            ),
-          ),
-        ],
+      body: PageView.builder(
+        controller: pageViewController,
+        scrollDirection: Axis.vertical,
+        physics: const PageScrollPhysics(parent: BouncingScrollPhysics()),
+        itemBuilder: pageViewItemBuilder,
+        itemCount: 10,
       ),
     );
   }
 
-  Widget? listViewItemBuilder(BuildContext context, int index) {
+  Widget? pageViewItemBuilder(BuildContext context, int index) {
     Widget? currentItem;
     switch (index) {
       case 0:
-        currentItem = buildTopScapesListViewItem();
+        currentItem = buildTopScapesPageViewItem();
       case 1:
         currentItem = scapes[index - 1];
       default:
-      //* use this text setuo for Scape class title params later
+        //* use this text setuo for Scape class title params later
         currentItem = Text(
           index.toString(),
           textAlign: TextAlign.center,
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 40,
-          ),
-          );
+          style: const TextStyle(color: Colors.black, fontSize: 40),
+        );
     }
     return Padding(
       padding: const EdgeInsets.only(top: 12, bottom: 12, right: 24, left: 24),
       child: Center(
-        child: Container(
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
-          color: Colors.blueAccent,
           child: currentItem,
         ),
-      ),
     );
   }
 
-  void scapesListViewScrollUp() {
-    listViewController.jumpTo(0.0); // goes up in the list view
+  void scapesPageViewScrollUp() {
+    pageViewController.jumpTo(0.0); // goes up in the list view
   }
 
   Center buildScrollToSeeText() {
@@ -99,7 +87,7 @@ class _ScapesScreenState extends State<ScapesScreen> {
           message: "Back to top",
           preferBelow: false,
           child: FloatingActionButton(
-            onPressed: scapesListViewScrollUp,
+            onPressed: scapesPageViewScrollUp,
             mini: true, // makes the button small
             shape: const CircleBorder(),
             elevation: 0, // to remove the black foggy effect
@@ -111,7 +99,7 @@ class _ScapesScreenState extends State<ScapesScreen> {
   }
 
   /// The build for the top quote area
-  Column buildTopScapesListViewItem() {
+  Column buildTopScapesPageViewItem() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
