@@ -12,6 +12,7 @@ Widget page(Color color) {
 
 final String firstQuote = randomQuote();
 final Scape firstScape = Scape();
+final List scapes = [firstScape];
 
 class ScapesScreen extends StatefulWidget {
   const ScapesScreen({super.key});
@@ -32,12 +33,16 @@ class _ScapesScreenState extends State<ScapesScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: buildBackToTopButton(),
-      body: Center(
-        child: ListView.builder(
-          shrinkWrap: true,
-          controller: listViewController,
-          itemBuilder: listViewItemBuilder,
-        ),
+      body: Column(
+        // Replace Expanded with Column
+        children: [
+          Expanded(
+            child: ListView.builder(
+              controller: listViewController,
+              itemBuilder: listViewItemBuilder,
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -46,19 +51,30 @@ class _ScapesScreenState extends State<ScapesScreen> {
     Widget? currentItem;
     switch (index) {
       case 0:
-        currentItem = SizedBox(
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
-          child: buildTopScapesListViewItem(),
-        );
+        currentItem = buildTopScapesListViewItem();
       case 1:
-        currentItem = firstScape;
+        currentItem = scapes[index - 1];
       default:
-        currentItem = Text(index.toString());
+      //* use this text setuo for Scape class title params later
+        currentItem = Text(
+          index.toString(),
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 40,
+          ),
+          );
     }
     return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Center(child: currentItem),
+      padding: const EdgeInsets.only(top: 12, bottom: 12, right: 24, left: 24),
+      child: Center(
+        child: Container(
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          color: Colors.blueAccent,
+          child: currentItem,
+        ),
+      ),
     );
   }
 
