@@ -26,9 +26,11 @@ class Scape extends StatefulWidget {
 
 class _ScapeState extends State<Scape> {
   final PageController _cardsPageController = PageController();
+  List<Widget> updatedBodies = const [];
 
   @override
   Widget build(BuildContext context) {
+    updatedBodies = [buildHeadCard(), ...widget.bodies.sublist(1)];
     scapeDefaultStyle = ScapeStyle(
       background: Theme.of(context).colorScheme.primaryContainer,
     );
@@ -39,12 +41,12 @@ class _ScapeState extends State<Scape> {
     return Expanded(
       child: Container(
         color: widget.style?.background ?? scapeDefaultStyle?.background,
-        child: Column(children: [buildScaoes(), buildNavigationCircles()]),
+        child: Column(children: [buildScapes(), buildNavigationCircles()]),
       ),
     );
   }
 
-  Widget buildScaoes() {
+  Widget buildScapes() {
     return Flexible(
       flex: 9,
       child: PageView.builder(
@@ -57,11 +59,26 @@ class _ScapeState extends State<Scape> {
   }
 
   Widget? cardsPageItemBuilder(BuildContext context, int index) {
-    return widget.bodies[index];
+    return updatedBodies[index];
   }
 
   Widget buildHeadCard() {
-    return Container(color: Colors.amber);
+    return Stack(
+      alignment: AlignmentDirectional.topCenter,
+      children: [
+        widget.bodies[0],
+        widget.title,
+        Positioned(
+          bottom: 0,
+          left: 0,
+          child: widget.creator,
+        ),
+        Positioned(
+          bottom: 0,
+          right: 0,
+          child: widget.date)
+      ],
+    );
   }
 
   Widget buildNavigationCircles() {
