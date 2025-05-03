@@ -18,7 +18,9 @@ finished - dd/mm/yyyy hh:mm
 
 - commited and published branch, commit: `Add scape.dart file and update FEATURES.md for Scape class details`
 
-- made params in the "Scape" class
+- made params in the "Scape" class'
+
+- made Scape class bare bones and a scape design
 
 --- Template ---
 # Feature name

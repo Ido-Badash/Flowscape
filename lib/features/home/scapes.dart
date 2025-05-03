@@ -55,7 +55,7 @@ class _ScapesScreenState extends State<ScapesScreen> {
         currentItem = Text(
           index.toString(),
           textAlign: TextAlign.center,
-          style: const TextStyle(color: Colors.black, fontSize: 40),
+          style: TextStyle(color: Theme.of(context).colorScheme.inversePrimary, fontSize: 40),
         );
     }
     return Padding(
