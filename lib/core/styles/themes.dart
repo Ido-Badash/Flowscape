@@ -31,6 +31,7 @@ ThemeData appDarkThemeData = ThemeData(
     error: Colors.red,
     onError: Colors.white,
     inversePrimary: FlowColors.textPrimaryDark,
+    primaryContainer: FlowColors.primaryContainerDark,
   ),
 
   bottomNavigationBarTheme: const BottomNavigationBarThemeData(
@@ -77,6 +78,7 @@ ThemeData appLightThemeData = ThemeData(
     error: FlowColors.errorRedLight,
     onError: Colors.white,
     inversePrimary: FlowColors.textPrimaryLight,
+    primaryContainer: FlowColors.primaryContainerLight,
   ),
 
   bottomNavigationBarTheme: const BottomNavigationBarThemeData(

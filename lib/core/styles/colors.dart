@@ -10,6 +10,7 @@ class FlowColors {
   static const Color textDisabledLight = Color(0xFF94A3B8);
   static const Color accentBlueLight = Color(0xFF0EA5E9);
   static const Color tooltipLight = Color(0xFFE2E8F0);
+  static const Color primaryContainerLight = Color(0xFFF2F2F2);
 
   // Dark Theme Colors
   static const Color backgroundDark = Color(0xFF192231);
@@ -20,6 +21,7 @@ class FlowColors {
   static const Color textDisabledDark = Color(0xFF64748B);
   static const Color accentBlueDark = Color(0xFF38BDF8);
   static const Color tooltipDark = Color(0xFF475569);
+  static const Color primaryContainerDark = Color(0xFF18202F);
 
   // Common Colors
   static const Color errorRed = Color(0xFFD32F2F);

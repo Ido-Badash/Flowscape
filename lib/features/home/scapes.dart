@@ -11,7 +11,15 @@ Widget page(Color color) {
 }
 
 final String firstQuote = randomQuote();
-final Scape firstScape = Scape();
+final Scape firstScape = Scape(
+  bodies: [
+    page(Colors.white),
+    page(Colors.orangeAccent),
+    page(Colors.cyanAccent),
+    page(Colors.deepOrangeAccent),
+    page(Colors.lightGreenAccent),
+  ],
+);
 final List scapes = [firstScape];
 
 class ScapesScreen extends StatefulWidget {
@@ -22,7 +30,7 @@ class ScapesScreen extends StatefulWidget {
 }
 
 class _ScapesScreenState extends State<ScapesScreen> {
-  final PageController pageViewController = PageController();
+  final PageController scapesPageController = PageController();
   String currentQuote = firstQuote;
 
   void updateQuote() {
@@ -34,9 +42,9 @@ class _ScapesScreenState extends State<ScapesScreen> {
     return Scaffold(
       floatingActionButton: buildBackToTopButton(),
       body: PageView.builder(
-        controller: pageViewController,
         scrollDirection: Axis.vertical,
         physics: const PageScrollPhysics(parent: BouncingScrollPhysics()),
+        controller: scapesPageController,
         itemBuilder: pageViewItemBuilder,
         itemCount: 10,
       ),
@@ -55,19 +63,20 @@ class _ScapesScreenState extends State<ScapesScreen> {
         currentItem = Text(
           index.toString(),
           textAlign: TextAlign.center,
-          style: TextStyle(color: Theme.of(context).colorScheme.inversePrimary, fontSize: 40),
+          style: TextStyle(
+            color: Theme.of(context).colorScheme.inversePrimary,
+            fontSize: 40,
+          ),
         );
     }
     return Padding(
-      padding: const EdgeInsets.only(top: 12, bottom: 12, right: 24, left: 24),
-      child: Center(
-          child: currentItem,
-        ),
+      padding: const EdgeInsets.only(top: 12, bottom: 12, right: 12, left: 12),
+      child: Center(child: currentItem),
     );
   }
 
   void scapesPageViewScrollUp() {
-    pageViewController.jumpTo(0.0); // goes up in the list view
+    scapesPageController.jumpTo(0.0); // goes up in the list view
   }
 
   Center buildScrollToSeeText() {
