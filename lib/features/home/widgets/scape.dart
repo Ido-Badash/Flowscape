@@ -13,9 +13,9 @@ class Scape extends StatefulWidget {
 
   const Scape({
     super.key,
-    this.creator = const Text("No Creator Name"),
-    this.date = const Text("No Date"),
-    this.title = const Text("No Title"),
+    this.creator = const Text("Unknown Creator", style: TextStyle(fontSize: 16)),
+    this.date = const Text("No Date", style: TextStyle(fontSize: 16)),
+    this.title = const Text("No Title", style: TextStyle(fontSize: 16)),
     this.bodies = const [],
     this.style,
   });
@@ -38,22 +38,23 @@ class _ScapeState extends State<Scape> {
   }
 
   Widget buildScapeStack() {
-    return Expanded(
-      child: Container(
-        color: widget.style?.background ?? scapeDefaultStyle?.background,
-        child: Column(children: [buildScapes(), buildNavigationCircles()]),
-      ),
+    return Container(
+      color: widget.style?.background ?? scapeDefaultStyle?.background,
+      child: Column(children: [buildCards(), buildNavigationCircles()]),
     );
   }
 
-  Widget buildScapes() {
+  Widget buildCards() {
     return Flexible(
       flex: 9,
-      child: PageView.builder(
-        physics: const PageScrollPhysics(parent: BouncingScrollPhysics()),
-        controller: _cardsPageController,
-        itemBuilder: cardsPageItemBuilder,
-        itemCount: widget.bodies.length,
+      child: Container(
+        color: widget.style?.background ?? scapeDefaultStyle?.background,
+        child: PageView.builder(
+          physics: const PageScrollPhysics(parent: BouncingScrollPhysics()),
+          controller: _cardsPageController,
+          itemBuilder: cardsPageItemBuilder,
+          itemCount: widget.bodies.length,
+        ),
       ),
     );
   }
@@ -68,20 +69,13 @@ class _ScapeState extends State<Scape> {
       children: [
         widget.bodies[0],
         widget.title,
-        Positioned(
-          bottom: 0,
-          left: 0,
-          child: widget.creator,
-        ),
-        Positioned(
-          bottom: 0,
-          right: 0,
-          child: widget.date)
+        Positioned(bottom: 0, left: 5, child: widget.creator),
+        Positioned(bottom: 0, right: 5, child: widget.date),
       ],
     );
   }
 
   Widget buildNavigationCircles() {
-    return Flexible(flex: 1, child: SizedBox());
+    return Flexible(flex: 1, child: Container(color: Colors.indigoAccent));
   }
 }

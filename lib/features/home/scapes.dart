@@ -79,7 +79,7 @@ class _ScapesScreenState extends State<ScapesScreen> {
     scapesPageController.jumpTo(0.0); // goes up in the list view
   }
 
-  Center buildScrollToSeeText() {
+  Widget buildScrollToSeeText() {
     return const Center(
       child: Text(
         "Scroll to see Scapes",
@@ -88,7 +88,7 @@ class _ScapesScreenState extends State<ScapesScreen> {
     );
   }
 
-  Column buildBackToTopButton() {
+  Widget buildBackToTopButton() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
@@ -108,7 +108,7 @@ class _ScapesScreenState extends State<ScapesScreen> {
   }
 
   /// The build for the top quote area
-  Column buildTopScapesPageViewItem() {
+  Widget buildTopScapesPageViewItem() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -121,7 +121,7 @@ class _ScapesScreenState extends State<ScapesScreen> {
     );
   }
 
-  TextButton buildQuoteButton() {
+  Widget buildQuoteButton() {
     return TextButton(
       onPressed: () {
         setState(() {
@@ -142,7 +142,7 @@ class _ScapesScreenState extends State<ScapesScreen> {
     );
   }
 
-  Icon buildMainCenterIcon() {
+  Widget buildMainCenterIcon() {
     return const Icon(Icons.paragliding_outlined, size: 50);
   }
 }
