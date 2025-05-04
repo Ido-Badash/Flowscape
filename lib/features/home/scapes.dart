@@ -13,11 +13,11 @@ Widget page(Color color) {
 final String firstQuote = randomQuote();
 final Scape firstScape = Scape(
   bodies: [
-    page(Colors.white),
-    page(Colors.orangeAccent),
-    page(Colors.cyanAccent),
-    page(Colors.deepOrangeAccent),
-    page(Colors.lightGreenAccent),
+    page(Colors.white10),
+    page(Colors.white12),
+    page(Colors.white24),
+    page(Colors.white30),
+    page(Colors.white38),
   ],
 );
 final List scapes = [firstScape];

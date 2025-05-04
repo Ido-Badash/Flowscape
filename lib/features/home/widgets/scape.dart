@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'scape_style.dart';
+import 'scape_navigation_circles.dart';
 
 ScapeStyle? scapeDefaultStyle;
 
@@ -13,7 +14,10 @@ class Scape extends StatefulWidget {
 
   const Scape({
     super.key,
-    this.creator = const Text("Unknown Creator", style: TextStyle(fontSize: 16)),
+    this.creator = const Text(
+      "Unknown Creator",
+      style: TextStyle(fontSize: 16),
+    ),
     this.date = const Text("No Date", style: TextStyle(fontSize: 16)),
     this.title = const Text("No Title", style: TextStyle(fontSize: 16)),
     this.bodies = const [],
@@ -34,13 +38,13 @@ class _ScapeState extends State<Scape> {
     scapeDefaultStyle = ScapeStyle(
       background: Theme.of(context).colorScheme.primaryContainer,
     );
-    return buildScapeStack();
+    return buildScapeStack(context);
   }
 
-  Widget buildScapeStack() {
+  Widget buildScapeStack(BuildContext context) {
     return Container(
-      color: widget.style?.background ?? scapeDefaultStyle?.background,
-      child: Column(children: [buildCards(), buildNavigationCircles()]),
+      color: scapeStyleBgColorLogic(),
+      child: Column(children: [buildCards(), buildNavigationCircles(context)]),
     );
   }
 
@@ -48,7 +52,7 @@ class _ScapeState extends State<Scape> {
     return Flexible(
       flex: 9,
       child: Container(
-        color: widget.style?.background ?? scapeDefaultStyle?.background,
+        color: scapeStyleBgColorLogic(),
         child: PageView.builder(
           physics: const PageScrollPhysics(parent: BouncingScrollPhysics()),
           controller: _cardsPageController,
@@ -75,7 +79,20 @@ class _ScapeState extends State<Scape> {
     );
   }
 
-  Widget buildNavigationCircles() {
-    return Flexible(flex: 1, child: Container(color: Colors.indigoAccent));
+  Widget buildNavigationCircles(BuildContext context) {
+    return Flexible(
+      flex: 1,
+      child: Container(
+        alignment: Alignment.center,
+        color: Theme.of(context).bottomNavigationBarTheme.backgroundColor,
+        child: SizedBox(), // TODO: make circles
+      ),
+    );
+  }
+
+  // the logic of the bg color picked in the style param, return a red color when there is an error
+  Color scapeStyleBgColorLogic() {
+    return (widget.style?.background ?? scapeDefaultStyle?.background) ??
+        Colors.red;
   }
 }
