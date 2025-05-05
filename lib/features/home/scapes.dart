@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:math';
 
 // data
 import 'package:flowscape/core/data/quotes.dart';
@@ -7,20 +8,46 @@ import 'package:flowscape/core/data/quotes.dart';
 import 'widgets/scape.dart';
 
 Widget page(Color color) {
-  return Container(color: color);
+  return Container(
+    decoration: BoxDecoration(
+      color: color,
+      borderRadius: BorderRadius.circular(16), // makes the corners round
+    ),
+  );
 }
 
 final String firstQuote = randomQuote();
-final Scape firstScape = Scape(
-  bodies: [
-    page(Colors.white10),
-    page(Colors.white12),
-    page(Colors.white24),
-    page(Colors.white30),
-    page(Colors.white38),
-  ],
+
+// --------------------------------------------------------------------------
+final Random random = Random();
+List<Color> randomColors = [
+  Colors.red,
+  Colors.blue,
+  Colors.green,
+  Colors.yellow,
+  Colors.orange,
+  Colors.purple,
+  Colors.pink,
+  Colors.teal,
+  Colors.cyan,
+  Colors.amber,
+  Colors.indigo,
+  Colors.lime,
+];
+Color getRandomColor() => randomColors[random.nextInt(randomColors.length)];
+List<Widget> generateRandomPages(int count) {
+  return List.generate(
+    count,
+    (index) => page(getRandomColor()),
+  );
+}
+final List scapes = List.generate(
+  12,
+  (index) => Scape(
+    bodies: generateRandomPages(random.nextInt(7) + 3), // Random count between 3 and 15
+  ),
 );
-final List scapes = [firstScape];
+// --------------------------------------------------------------------------
 
 class ScapesScreen extends StatefulWidget {
   const ScapesScreen({super.key});
@@ -51,23 +78,25 @@ class _ScapesScreenState extends State<ScapesScreen> {
     );
   }
 
-  Widget? pageViewItemBuilder(BuildContext context, int index) {
-    Widget? currentItem;
+  Widget pageViewItemBuilder(BuildContext context, int index) {
+    Widget currentItem = Container(color: Theme.of(context).colorScheme.error);
     switch (index) {
       case 0:
         currentItem = buildTopScapesPageViewItem();
-      case 1:
-        currentItem = scapes[index - 1];
       default:
-        //* use this text setuo for Scape class title params later
-        currentItem = Text(
-          index.toString(),
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            color: Theme.of(context).colorScheme.inversePrimary,
-            fontSize: 40,
-          ),
-        );
+        if (index - 1 >= 0 && index - 1 < scapes.length) {
+          // if targetItem is in scapes
+          currentItem = scapes[index - 1];
+        } else {
+          currentItem = Text(
+            "Error: Scape not found!",
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: Theme.of(context).colorScheme.error,
+              fontSize: 16,
+            ),
+          );
+        }
     }
     return Padding(
       padding: const EdgeInsets.only(top: 12, bottom: 12, right: 12, left: 12),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import 'scape_style.dart';
-import 'scape_navigation_circles.dart';
 
 ScapeStyle? scapeDefaultStyle;
 
@@ -16,10 +16,16 @@ class Scape extends StatefulWidget {
     super.key,
     this.creator = const Text(
       "Unknown Creator",
-      style: TextStyle(fontSize: 16),
+      style: TextStyle(fontSize: 14, color: Colors.white),
     ),
-    this.date = const Text("No Date", style: TextStyle(fontSize: 16)),
-    this.title = const Text("No Title", style: TextStyle(fontSize: 16)),
+    this.date = const Text(
+      "No Date",
+      style: TextStyle(fontSize: 14, color: Colors.white),
+    ),
+    this.title = const Text(
+      "No Title",
+      style: TextStyle(fontSize: 20, color: Colors.white),
+    ),
     this.bodies = const [],
     this.style,
   });
@@ -29,7 +35,7 @@ class Scape extends StatefulWidget {
 }
 
 class _ScapeState extends State<Scape> {
-  final PageController _cardsPageController = PageController();
+  final PageController _controller = PageController();
   List<Widget> updatedBodies = const [];
 
   @override
@@ -44,7 +50,7 @@ class _ScapeState extends State<Scape> {
   Widget buildScapeStack(BuildContext context) {
     return Container(
       color: scapeStyleBgColorLogic(),
-      child: Column(children: [buildCards(), buildNavigationCircles(context)]),
+      child: Column(children: [buildCards(), buildPageIndicator(context)]),
     );
   }
 
@@ -55,7 +61,7 @@ class _ScapeState extends State<Scape> {
         color: scapeStyleBgColorLogic(),
         child: PageView.builder(
           physics: const PageScrollPhysics(parent: BouncingScrollPhysics()),
-          controller: _cardsPageController,
+          controller: _controller,
           itemBuilder: cardsPageItemBuilder,
           itemCount: widget.bodies.length,
         ),
@@ -72,20 +78,23 @@ class _ScapeState extends State<Scape> {
       alignment: AlignmentDirectional.topCenter,
       children: [
         widget.bodies[0],
-        widget.title,
-        Positioned(bottom: 0, left: 5, child: widget.creator),
-        Positioned(bottom: 0, right: 5, child: widget.date),
+        Positioned(top: 5, child: widget.title),
+        Positioned(bottom: 0, left: 10, child: widget.creator),
+        Positioned(bottom: 0, right: 10, child: widget.date),
       ],
     );
   }
 
-  Widget buildNavigationCircles(BuildContext context) {
+  Widget buildPageIndicator(BuildContext context) {
     return Flexible(
       flex: 1,
       child: Container(
         alignment: Alignment.center,
-        color: Theme.of(context).bottomNavigationBarTheme.backgroundColor,
-        child: SizedBox(), // TODO: make circles
+        child: SmoothPageIndicator(
+          controller: _controller,
+          count: widget.bodies.length,
+          effect: WormEffect(),
+        ),
       ),
     );
   }
