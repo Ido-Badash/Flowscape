@@ -21,18 +21,12 @@ final String firstQuote = randomQuote();
 // --------------------------------------------------------------------------
 final Random random = Random();
 List<Color> randomColors = [
-  Colors.red,
-  Colors.blue,
-  Colors.green,
-  Colors.yellow,
-  Colors.orange,
-  Colors.purple,
-  Colors.pink,
-  Colors.teal,
-  Colors.cyan,
-  Colors.amber,
-  Colors.indigo,
-  Colors.lime,
+  Colors.blue.shade900,
+  Colors.lightBlue.shade900,
+  Colors.indigo.shade900,
+  Colors.cyan.shade900,
+  Colors.teal.shade900,
+  Colors.blueGrey.shade900,
 ];
 Color getRandomColor() => randomColors[random.nextInt(randomColors.length)];
 List<Widget> generateRandomPages(int count) {

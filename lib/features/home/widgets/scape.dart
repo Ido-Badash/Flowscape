@@ -16,16 +16,10 @@ class Scape extends StatefulWidget {
     super.key,
     this.creator = const Text(
       "Unknown Creator",
-      style: TextStyle(fontSize: 14, color: Colors.white),
+      style: TextStyle(fontSize: 14),
     ),
-    this.date = const Text(
-      "No Date",
-      style: TextStyle(fontSize: 14, color: Colors.white),
-    ),
-    this.title = const Text(
-      "No Title",
-      style: TextStyle(fontSize: 20, color: Colors.white),
-    ),
+    this.date = const Text("No Date", style: TextStyle(fontSize: 14)),
+    this.title = const Text("No Title", style: TextStyle(fontSize: 20)),
     this.bodies = const [],
     this.style,
   });
@@ -94,6 +88,13 @@ class _ScapeState extends State<Scape> {
           controller: _controller,
           count: widget.bodies.length,
           effect: WormEffect(),
+          onDotClicked: (int idx) {
+            _controller.animateToPage(
+              idx,
+              duration: Durations.long4,
+              curve: Curves.easeInOutCubicEmphasized,
+            );
+          },
         ),
       ),
     );
