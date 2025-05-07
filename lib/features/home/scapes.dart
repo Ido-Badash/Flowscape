@@ -1,5 +1,5 @@
+import 'package:flowscape/features/home/widgets/scape_style.dart';
 import 'package:flutter/material.dart';
-import 'dart:math';
 
 // data
 import 'package:flowscape/core/data/quotes.dart';
@@ -17,31 +17,6 @@ Widget page(Color color) {
 }
 
 final String firstQuote = randomQuote();
-
-// --------------------------------------------------------------------------
-final Random random = Random();
-List<Color> randomColors = [
-  Colors.blue.shade900,
-  Colors.lightBlue.shade900,
-  Colors.indigo.shade900,
-  Colors.cyan.shade900,
-  Colors.teal.shade900,
-  Colors.blueGrey.shade900,
-];
-Color getRandomColor() => randomColors[random.nextInt(randomColors.length)];
-List<Widget> generateRandomPages(int count) {
-  return List.generate(
-    count,
-    (index) => page(getRandomColor()),
-  );
-}
-final List scapes = List.generate(
-  12,
-  (index) => Scape(
-    bodies: generateRandomPages(random.nextInt(7) + 3), // Random count between 3 and 15
-  ),
-);
-// --------------------------------------------------------------------------
 
 class ScapesScreen extends StatefulWidget {
   const ScapesScreen({super.key});
@@ -67,39 +42,54 @@ class _ScapesScreenState extends State<ScapesScreen> {
         physics: const PageScrollPhysics(parent: BouncingScrollPhysics()),
         controller: scapesPageController,
         itemBuilder: pageViewItemBuilder,
-        itemCount: 10,
+        itemCount: [buildTopScapesPageViewItem(), ...buildScapes()].length,
       ),
     );
   }
 
   Widget pageViewItemBuilder(BuildContext context, int index) {
-    Widget currentItem = Container(color: Theme.of(context).colorScheme.error);
-    switch (index) {
-      case 0:
-        currentItem = buildTopScapesPageViewItem();
-      default:
-        if (index - 1 >= 0 && index - 1 < scapes.length) {
-          // if targetItem is in scapes
-          currentItem = scapes[index - 1];
-        } else {
-          currentItem = Text(
-            "Error: Scape not found!",
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: Theme.of(context).colorScheme.error,
-              fontSize: 16,
-            ),
-          );
-        }
+    Widget currentItem;
+    List pageWidgets = [buildTopScapesPageViewItem(), ...buildScapes()];
+
+    if (index >= 0 && index < pageWidgets.length) {
+      currentItem = pageWidgets[index];
+    } else {
+      currentItem = Text(
+        "Error: Scape not found!",
+        textAlign: TextAlign.center,
+        style: TextStyle(
+          color: Theme.of(context).colorScheme.error,
+          fontSize: 16,
+        ),
+      );
     }
+
     return Padding(
-      padding: const EdgeInsets.only(top: 12, bottom: 12, right: 12, left: 12),
+      padding: const EdgeInsets.all(12),
       child: Center(child: currentItem),
     );
   }
 
   void scapesPageViewScrollUp() {
     scapesPageController.jumpTo(0.0); // goes up in the list view
+  }
+
+  List<Widget> buildScapes() {
+    return [
+      Scape(
+        creator: Text("Ido Badash", style: TextStyle(fontSize: 14, color: Colors.white)),
+        date: Text("08/05/2025", style: TextStyle(fontSize: 14, color: Colors.white)),
+        title: Text("Title", style: TextStyle(fontSize: 14, color: Colors.white)),
+        bodies: [
+          page(Colors.indigoAccent),
+          page(Colors.blueAccent),
+          page(Colors.lightBlue),
+        ],
+        style: ScapeStyle(
+          offPage: Colors.white.withValues(alpha: 0.35),
+        ),
+      ),
+    ];
   }
 
   Widget buildScrollToSeeText() {

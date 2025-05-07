@@ -18,9 +18,9 @@ class Scape extends StatefulWidget {
       "Unknown Creator",
       style: TextStyle(fontSize: 14),
     ),
-    this.date = const Text("No Date", style: TextStyle(fontSize: 14)),
+    this.date = const Text("Unknown Date", style: TextStyle(fontSize: 14)),
     this.title = const Text("No Title", style: TextStyle(fontSize: 20)),
-    this.bodies = const [],
+    required this.bodies,
     this.style,
   });
 
@@ -34,7 +34,10 @@ class _ScapeState extends State<Scape> {
 
   @override
   Widget build(BuildContext context) {
-    updatedBodies = [buildHeadCard(), ...widget.bodies.sublist(1)];
+    updatedBodies =
+        widget.bodies.isNotEmpty
+            ? [buildHeadCard(), ...widget.bodies.sublist(1)]
+            : [buildHeadCard()];
     scapeDefaultStyle = ScapeStyle(
       background: Theme.of(context).colorScheme.primaryContainer,
     );
@@ -71,7 +74,9 @@ class _ScapeState extends State<Scape> {
     return Stack(
       alignment: AlignmentDirectional.topCenter,
       children: [
-        widget.bodies[0],
+        widget.bodies.isNotEmpty
+        ? widget.bodies[0]
+        : Container(color: Colors.red),
         Positioned(top: 5, child: widget.title),
         Positioned(bottom: 0, left: 10, child: widget.creator),
         Positioned(bottom: 0, right: 10, child: widget.date),
@@ -87,7 +92,10 @@ class _ScapeState extends State<Scape> {
         child: SmoothPageIndicator(
           controller: _controller,
           count: widget.bodies.length,
-          effect: WormEffect(),
+          effect: WormEffect(
+            dotColor: widget.style?.offPage ?? Colors.grey,
+            activeDotColor: widget.style?.onPage ?? Colors.indigo,
+          ),
           onDotClicked: (int idx) {
             _controller.animateToPage(
               idx,

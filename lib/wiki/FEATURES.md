@@ -22,6 +22,10 @@ finished - dd/mm/yyyy hh:mm
 
 - made Scape class bare bones and a scape design
 
+- finished Scape class
+
+- testing Scape class
+
 --- Template ---
 # Feature name
 
