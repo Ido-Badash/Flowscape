@@ -1,3 +1,6 @@
+
+import 'dart:math';
+
 import 'package:flowscape/features/home/widgets/scape_style.dart';
 import 'package:flutter/material.dart';
 
@@ -75,21 +78,42 @@ class _ScapesScreenState extends State<ScapesScreen> {
   }
 
   List<Widget> buildScapes() {
-    return [
-      Scape(
-        creator: Text("Ido Badash", style: TextStyle(fontSize: 14, color: Colors.white)),
-        date: Text("08/05/2025", style: TextStyle(fontSize: 14, color: Colors.white)),
-        title: Text("Title", style: TextStyle(fontSize: 14, color: Colors.white)),
-        bodies: [
-          page(Colors.indigoAccent),
-          page(Colors.blueAccent),
-          page(Colors.lightBlue),
-        ],
-        style: ScapeStyle(
-          offPage: Colors.white.withValues(alpha: 0.35),
-        ),
-      ),
+    final random = Random();
+    List colors = [
+      Colors.amber,
+      Colors.blueAccent,
+      Colors.indigoAccent,
+      Colors.cyanAccent,
+      Colors.brown,
+      Colors.deepOrange,
+      Colors.deepPurpleAccent,
+      Colors.green,
+      Colors.lime,
+      Colors.pink,
+      Colors.teal,
+      Colors.grey
     ];
+
+    return List.generate(10, (int idx) {
+      return Scape(
+        creator: Text(
+          "Ido Badash",
+          style: TextStyle(fontSize: 14, color: Colors.white),
+        ),
+        date: Text(
+          "08/05/2025",
+          style: TextStyle(fontSize: 14, color: Colors.white),
+        ),
+        title: Text(
+          "Title",
+          style: TextStyle(fontSize: 14, color: Colors.white),
+        ),
+        bodies: List.generate(random.nextInt(7) + 1, (int idx) {
+          return page(colors[random.nextInt(colors.length)]);
+        }),
+        style: ScapeStyle(offPage: Colors.white.withValues(alpha: 0.35)),
+      );
+    });
   }
 
   Widget buildScrollToSeeText() {
