@@ -15,25 +15,35 @@ class TimerScreen extends StatefulWidget {
 }
 
 class _TimerScreenState extends State<TimerScreen> {
+  List<String> get _bgImages => Theme.of(context).brightness == Brightness.dark
+      ? bgImagesDark
+      : bgImagesLight;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _precacheNextImage();
+  }
+
+  void _precacheNextImage() {
+    final nextIndex = (currentImage + 1) % _bgImages.length;
+    precacheImage(AssetImage(_bgImages[nextIndex]), context);
+  }
+
   @override
   Widget build(BuildContext context) {
-    List<String> bgImages =
-        Theme.of(context).brightness == Brightness.dark
-            ? bgImagesDark
-            : bgImagesLight;
-
     return Scaffold(
       body: Stack(
         children: [
           GestureDetector(
             onDoubleTap: () {
               setState(() {
-                currentImage = (currentImage + 1) % bgImages.length;
-                debugPrint(currentImage.toString());
+                currentImage = (currentImage + 1) % _bgImages.length;
+                _precacheNextImage(); // precache the next image after changing
               });
             },
             child: SizedBox.expand(
-              child: Image.asset(bgImages[currentImage], fit: BoxFit.cover),
+              child: Image.asset(_bgImages[currentImage], fit: BoxFit.cover),
             ),
           ),
         ],
