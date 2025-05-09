@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 // data
 import 'package:flowscape/core/data/flowbg_images.dart';
 
-final List<String> bgImagesDark = getRandomDarkImages(5);
-final List<String> bgImagesLight = getRandomLightImages(6);
-int currentImage = 0;
+final List<String> bgImagesDark = getRandomDarkImages(10);
+final List<String> bgImagesLight = getRandomLightImages(10);
+int currentImageIdx = 0;
 
 class TimerScreen extends StatefulWidget {
   const TimerScreen({super.key});
@@ -15,25 +15,38 @@ class TimerScreen extends StatefulWidget {
 }
 
 class _TimerScreenState extends State<TimerScreen> {
+  List<String> get _bgImages =>
+      Theme.of(context).brightness == Brightness.dark
+          ? bgImagesDark
+          : bgImagesLight;
+
+  int get _nextImageIdx => (currentImageIdx + 1) % _bgImages.length;
+  String get _nextImage => _bgImages[_nextImageIdx];
+
+  @override
+  void didChangeDependencies() {
+    _precacheNextImage();
+    super.didChangeDependencies();
+  }
+
+  void _precacheNextImage() {
+    precacheImage(AssetImage(_nextImage), context);
+  }
+
   @override
   Widget build(BuildContext context) {
-    List<String> bgImages =
-        Theme.of(context).brightness == Brightness.dark
-            ? bgImagesDark
-            : bgImagesLight;
-
     return Scaffold(
       body: Stack(
         children: [
           GestureDetector(
             onDoubleTap: () {
               setState(() {
-                currentImage = (currentImage + 1) % bgImages.length;
-                debugPrint(currentImage.toString());
+                currentImageIdx = _nextImageIdx;
+                _precacheNextImage();
               });
             },
             child: SizedBox.expand(
-              child: Image.asset(bgImages[currentImage], fit: BoxFit.cover),
+              child: Image.asset(_bgImages[currentImageIdx], fit: BoxFit.cover),
             ),
           ),
         ],
