@@ -5,6 +5,8 @@ import 'scape_style.dart';
 
 ScapeStyle? scapeDefaultStyle;
 
+/// A StatefulWidget that uses PageView and the smooth_page_indicator
+/// to make a beautiful card with custom style and detail params
 class Scape extends StatefulWidget {
   final Text creator;
   final Text date;
@@ -33,13 +35,19 @@ class _ScapeState extends State<Scape> {
   List<Widget> updatedBodies = const [];
 
   @override
+  void dispose() {
+    _controller.dispose(); // cleans up the controller for logic reset
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     updatedBodies =
         widget.bodies.isNotEmpty
             ? [buildHeadCard(), ...widget.bodies.sublist(1)]
             : [buildHeadCard()];
     scapeDefaultStyle = ScapeStyle(
-      background: Theme.of(context).colorScheme.primaryContainer,
+      background: Theme.of(context).colorScheme.surface,
     );
     return buildScapeStack(context);
   }
@@ -75,8 +83,8 @@ class _ScapeState extends State<Scape> {
       alignment: AlignmentDirectional.topCenter,
       children: [
         widget.bodies.isNotEmpty
-        ? widget.bodies[0]
-        : Container(color: Colors.red),
+            ? widget.bodies[0]
+            : Container(color: Colors.red),
         Positioned(top: 5, child: widget.title),
         Positioned(bottom: 0, left: 10, child: widget.creator),
         Positioned(bottom: 0, right: 10, child: widget.date),

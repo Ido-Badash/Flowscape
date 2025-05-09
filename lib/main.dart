@@ -1,31 +1,66 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-// app
 import 'features/app/app.dart';
 import 'core/styles/themes.dart';
 
 void main() {
-  SystemChrome.setSystemUIOverlayStyle(
-    SystemUiOverlayStyle(
-      statusBarColor: Colors.transparent,
-      systemNavigationBarColor:
-          appDarkThemeData.bottomNavigationBarTheme.backgroundColor,
-    ),
-  );
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
-  
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+  @override
+  void didChangePlatformBrightness() {
+    super.didChangePlatformBrightness();
+    _updateSystemUIOverlayStyle();
+  }
+
+  void _updateSystemUIOverlayStyle() {
+    final Brightness brightness =
+        WidgetsBinding.instance.platformDispatcher.platformBrightness;
+    final bool isDarkMode = brightness == Brightness.dark;
+
+    SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        systemNavigationBarColor:
+            isDarkMode
+                ? appDarkThemeData.bottomNavigationBarTheme.backgroundColor
+                : appLightThemeData.bottomNavigationBarTheme.backgroundColor,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    // Update the system UI overlay style initially
+    _updateSystemUIOverlayStyle();
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "FlowScape",
       theme: appLightThemeData,
       darkTheme: appDarkThemeData,
+      themeMode: ThemeMode.system,
       home: FlowScape(),
     );
   }

@@ -28,11 +28,13 @@ class ScapesScreen extends StatefulWidget {
 }
 
 class _ScapesScreenState extends State<ScapesScreen> {
-  final PageController scapesPageController = PageController();
+  final PageController _scapesPageController = PageController();
   String currentQuote = firstQuote;
 
-  void updateQuote() {
-    currentQuote = randomQuote();
+  @override
+  void dispose() {
+    _scapesPageController.dispose(); // cleans up the controller for logic reset
+    super.dispose();
   }
 
   @override
@@ -42,7 +44,7 @@ class _ScapesScreenState extends State<ScapesScreen> {
       body: PageView.builder(
         scrollDirection: Axis.vertical,
         physics: const PageScrollPhysics(parent: BouncingScrollPhysics()),
-        controller: scapesPageController,
+        controller: _scapesPageController,
         itemBuilder: pageViewItemBuilder,
         itemCount: [buildTopScapesPageViewItem(), ...buildScapes()].length,
       ),
@@ -73,7 +75,7 @@ class _ScapesScreenState extends State<ScapesScreen> {
   }
 
   void scapesPageViewScrollUp() {
-    scapesPageController.jumpTo(0.0); // goes up in the page view
+    _scapesPageController.jumpTo(0.0); // goes up in the page view
   }
 
   List<Widget> buildScapes() {
@@ -93,7 +95,7 @@ class _ScapesScreenState extends State<ScapesScreen> {
       Colors.grey,
     ];
 
-    return List.generate(10, (int idx) {
+    return List.generate(5, (int idx) {
       return Scape(
         creator: Text(
           "Ido Badash",
@@ -141,7 +143,10 @@ class _ScapesScreenState extends State<ScapesScreen> {
             mini: true, // makes the button small
             shape: const CircleBorder(),
             elevation: 0, // to remove the black foggy effect
-            child: const Icon(Icons.arrow_upward_rounded),
+            child: const Opacity(
+              opacity: 0.1,
+              child: Icon(Icons.arrow_upward_rounded),
+            ),
           ),
         ),
       ],
@@ -185,5 +190,9 @@ class _ScapesScreenState extends State<ScapesScreen> {
 
   Widget buildMainCenterIcon() {
     return const Icon(Icons.paragliding_outlined, size: 50);
+  }
+
+  void updateQuote() {
+    currentQuote = randomQuote();
   }
 }
