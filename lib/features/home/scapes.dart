@@ -1,4 +1,3 @@
-
 import 'dart:math';
 
 import 'package:flowscape/features/home/widgets/scape_style.dart';
@@ -74,12 +73,12 @@ class _ScapesScreenState extends State<ScapesScreen> {
   }
 
   void scapesPageViewScrollUp() {
-    scapesPageController.jumpTo(0.0); // goes up in the list view
+    scapesPageController.jumpTo(0.0); // goes up in the page view
   }
 
   List<Widget> buildScapes() {
     final random = Random();
-    List colors = [
+    const List colors = [
       Colors.amber,
       Colors.blueAccent,
       Colors.indigoAccent,
@@ -91,7 +90,7 @@ class _ScapesScreenState extends State<ScapesScreen> {
       Colors.lime,
       Colors.pink,
       Colors.teal,
-      Colors.grey
+      Colors.grey,
     ];
 
     return List.generate(10, (int idx) {
@@ -111,7 +110,12 @@ class _ScapesScreenState extends State<ScapesScreen> {
         bodies: List.generate(random.nextInt(7) + 1, (int idx) {
           return page(colors[random.nextInt(colors.length)]);
         }),
-        style: ScapeStyle(offPage: Colors.white.withValues(alpha: 0.35)),
+        style: ScapeStyle(
+          offPage:
+              Theme.of(context).brightness == Brightness.dark
+                  ? Colors.white.withValues(alpha: 0.35)
+                  : Colors.grey,
+        ),
       );
     });
   }
