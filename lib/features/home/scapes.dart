@@ -1,6 +1,3 @@
-import 'dart:math';
-
-import 'package:flowscape/features/home/widgets/scape_style.dart';
 import 'package:flutter/material.dart';
 
 // data
@@ -9,6 +6,7 @@ import 'package:flowscape/core/data/quotes.dart';
 // widgets
 import 'widgets/scape.dart';
 
+// GET RID OF THIS LATER
 Widget page(Color color) {
   return Container(
     decoration: BoxDecoration(
@@ -78,48 +76,39 @@ class _ScapesScreenState extends State<ScapesScreen> {
     _scapesPageController.jumpTo(0.0); // goes up in the page view
   }
 
-  List<Widget> buildScapes() {
-    final random = Random();
-    const List colors = [
-      Colors.amber,
-      Colors.blueAccent,
-      Colors.indigoAccent,
-      Colors.cyanAccent,
-      Colors.brown,
-      Colors.deepOrange,
-      Colors.deepPurpleAccent,
-      Colors.green,
-      Colors.lime,
-      Colors.pink,
-      Colors.teal,
-      Colors.grey,
+  List<Scape> buildScapes() {
+    return [
+      Scape(
+        title: const Text("Morning Routine"),
+        creator: const Text("John Doe"),
+        date: const Text("May 10, 2025"),
+        bodies: [page(Colors.blue.shade900), page(Colors.blue.shade900)],
+      ),
+      Scape(
+        title: const Text("Workout Plan"),
+        creator: const Text("Jane Smith"),
+        date: const Text("May 11, 2025"),
+        bodies: [page(Colors.green.shade900), page(Colors.green.shade900)],
+      ),
+      Scape(
+        title: const Text("Travel Itinerary"),
+        creator: const Text("Alice Johnson"),
+        date: const Text("May 12, 2025"),
+        bodies: [page(Colors.orange.shade900), page(Colors.orange.shade900)],
+      ),
+      Scape(
+        title: const Text("Study Schedule"),
+        creator: const Text("Bob Brown"),
+        date: const Text("May 13, 2025"),
+        bodies: [page(Colors.purple.shade900), page(Colors.purple.shade900)],
+      ),
+      Scape(
+        title: const Text("Meal Prep"),
+        creator: const Text("Charlie Davis"),
+        date: const Text("May 14, 2025"),
+        bodies: [page(Colors.red.shade900), page(Colors.red.shade900)],
+      ),
     ];
-
-    return List.generate(5, (int idx) {
-      return Scape(
-        creator: Text(
-          "Ido Badash",
-          style: TextStyle(fontSize: 14, color: Colors.white),
-        ),
-        date: Text(
-          "08/05/2025",
-          style: TextStyle(fontSize: 14, color: Colors.white),
-        ),
-        title: Text(
-          "Title",
-          style: TextStyle(fontSize: 14, color: Colors.white),
-        ),
-        bodies: List.generate(random.nextInt(7) + 1, (int idx) {
-          return page(colors[random.nextInt(colors.length)]);
-        }),
-        style: ScapeStyle(
-          offPage:
-              Theme.of(context).brightness == Brightness.dark
-                  ? Colors.white.withValues(alpha: 0.35)
-                  : Colors.grey,
-        ),
-      );
-    });
   }
 
   Widget buildScrollToSeeText() {
