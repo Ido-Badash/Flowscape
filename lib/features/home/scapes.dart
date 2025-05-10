@@ -2,17 +2,30 @@ import 'package:flutter/material.dart';
 
 // data
 import 'package:flowscape/core/data/quotes.dart';
+import 'package:like_button/like_button.dart';
 
 // widgets
 import 'widgets/scape.dart';
 
-// GET RID OF THIS LATER
-Widget page(Color color) {
+// GET RID OF THIS LATER AND PUT IT IN SOMEWHERE ELSE
+Widget page(Color color, {bool isMain = false}) {
   return Container(
     decoration: BoxDecoration(
       color: color,
       borderRadius: BorderRadius.circular(16), // makes the corners round
     ),
+    child:
+        isMain
+            ? Row(
+              children: [
+                const Expanded(child: SizedBox.expand()),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [LikeButton(size: 40)],
+                ),
+              ],
+            )
+            : const SizedBox.expand(),
   );
 }
 

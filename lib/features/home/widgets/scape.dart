@@ -32,7 +32,6 @@ class Scape extends StatefulWidget {
 
 class _ScapeState extends State<Scape> {
   final PageController _controller = PageController();
-  bool isLiked = false;
   List<Widget> updatedBodies = const [];
 
   @override
@@ -63,27 +62,20 @@ class _ScapeState extends State<Scape> {
   Widget buildCards() {
     return Flexible(
       flex: 9,
-      child: GestureDetector(
-        onDoubleTap:
-            () => setState(() {
-              toggleScapeLikeState();
-            }),
-        child: Container(
-          color: scapeStyleBgColorLogic(),
-          child: Stack(
-            alignment: AlignmentDirectional.center,
-            children: [
-              PageView.builder(
-                physics: const PageScrollPhysics(
-                  parent: BouncingScrollPhysics(),
-                ),
-                controller: _controller,
-                itemBuilder: _itemBuilder,
-                itemCount: widget.bodies.length,
+      child: Container(
+        color: scapeStyleBgColorLogic(),
+        child: Stack(
+          alignment: AlignmentDirectional.center,
+          children: [
+            PageView.builder(
+              physics: const PageScrollPhysics(
+                parent: BouncingScrollPhysics(),
               ),
-              buildLikeScapePopout(),
-            ],
-          ),
+              controller: _controller,
+              itemBuilder: _itemBuilder,
+              itemCount: widget.bodies.length,
+            ),
+          ],
         ),
       ),
     );
@@ -131,27 +123,10 @@ class _ScapeState extends State<Scape> {
     );
   }
 
-  Widget buildLikeScapePopout() {
-    Widget likeButton = SizedBox.shrink();
-    if (isLiked) {
-      likeButton = Container(color: Colors.red, width: 100, height: 100);
-    } else {
-      likeButton = Container(color: Colors.red[900], width: 100, height: 100);
-    }
-    return likeButton;
-  }
-
   // the logic of the bg color picked in the style param, return a red color when there is an error
   Color scapeStyleBgColorLogic() {
     return (widget.style?.background ?? scapeDefaultStyle?.background) ??
         Colors.red;
-  }
-
-  void toggleScapeLikeState() {
-    debugPrint(
-      "Scape ${getScapeData()} is ${isLiked == true ? "unliked" : "liked"}",
-    );
-    isLiked = !isLiked;
   }
 
   String getScapeData() {
