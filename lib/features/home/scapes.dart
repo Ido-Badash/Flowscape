@@ -80,6 +80,12 @@ class _ScapesScreenState extends State<ScapesScreen> {
               debugPrint("Scape froze");
               pullUpBarState = !pullUpBarState;
             }),
+        barWidgets: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Icon(Icons.man_2, color: Colors.white, size: 30),
+          ),
+        ],
         child: Scape(
           title: const Text("Morning Routine"),
           creator: const Text("John Doe"),
@@ -87,26 +93,16 @@ class _ScapesScreenState extends State<ScapesScreen> {
           ignored: pullUpBarState,
           children: [
             ScapePage(
-              color: Colors.blue.shade900,
-              child: Image.network(
-                "https://cloudinary-marketing-res.cloudinary.com/image/upload/w_1300/q_auto/f_auto/hiking_dog_mountain",
+              color: Colors.green[900],
+              child: Center(
+                child: Image.network(
+                  "https://cloudinary-marketing-res.cloudinary.com/image/upload/w_1300/q_auto/f_auto/hiking_dog_mountain",
+                ),
               ),
             ),
             ScapePage(color: Colors.blue.shade700),
           ],
         ),
-      ),
-      Scape(
-        title: const Text("Workout Plan"),
-        creator: const Text("Jane Smith"),
-        date: const Text("May 11, 2025"),
-        children: [ScapePage(color: Colors.green.shade900)],
-      ),
-      Scape(
-        title: const Text("Travel Itinerary"),
-        creator: const Text("Alice Johnson"),
-        date: const Text("May 12, 2025"),
-        children: [ScapePage(color: Colors.orange.shade900)],
       ),
     ];
   }

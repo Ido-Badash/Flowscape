@@ -3,6 +3,8 @@ import 'dart:ui';
 
 class ScapePullUpBar extends StatelessWidget {
   final Widget? child;
+  final List<Widget> barWidgets;
+  final Color? barColor;
   final double sigmaX;
   final double sigmaY;
   final TileMode? tileMode;
@@ -12,6 +14,8 @@ class ScapePullUpBar extends StatelessWidget {
   const ScapePullUpBar({
     super.key,
     this.child,
+    this.barWidgets = const [SizedBox.shrink()],
+    this.barColor,
     this.sigmaX = 5.0,
     this.sigmaY = 5.0,
     this.tileMode,
@@ -31,17 +35,44 @@ class ScapePullUpBar extends StatelessWidget {
       currentChild = wrapWithBlur(currentChild);
     }
 
-    return currentChild;
+    return Stack(
+      children: [
+        currentChild,
+        Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            blur ? buildRowBar() : SizedBox(),
+          ],
+        ),
+      ],
+    );
   }
 
-  ImageFiltered wrapWithBlur(Widget? child) {
-    return ImageFiltered(
-      imageFilter: ImageFilter.blur(
-        sigmaX: sigmaX,
-        sigmaY: sigmaY,
-        tileMode: tileMode ?? TileMode.clamp,
+  Widget buildRowBar() {
+    return Container(
+      decoration: BoxDecoration(
+        color: barColor ?? Color.fromARGB(100, 63, 81, 181),
+        borderRadius: BorderRadius.circular(16), // makes the corners round
       ),
-      child: child,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        spacing: 0.5,
+        children: [...barWidgets],
+      ),
+    );
+  }
+
+  Widget wrapWithBlur(Widget? child) {
+    return ClipRect(
+      // makes sure the child dosent expand out
+      child: ImageFiltered(
+        imageFilter: ImageFilter.blur(
+          sigmaX: sigmaX,
+          sigmaY: sigmaY,
+          tileMode: tileMode,
+        ),
+        child: child,
+      ),
     );
   }
 
