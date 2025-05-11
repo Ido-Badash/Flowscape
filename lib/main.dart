@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 
 import 'features/app/app.dart';
 import 'core/styles/themes.dart';
+import 'package:flowscape/features/settings/appearance_tile/theme_provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(ChangeNotifierProvider(create: (context) => ThemeProvider(), child: const MyApp(),));
 }
 
 class MyApp extends StatefulWidget {
@@ -58,8 +60,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "FlowScape",
-      theme: appLightThemeData,
-      darkTheme: appDarkThemeData,
+      theme: Provider.of<ThemeProvider>(context).themeData,
       themeMode: ThemeMode.system,
       home: FlowScape(),
     );
