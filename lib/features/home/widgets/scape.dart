@@ -13,6 +13,7 @@ class Scape extends StatefulWidget {
   final Text title;
   final List<Widget> children;
   final ScapeStyle? style;
+  final bool ignored;
 
   const Scape({
     super.key,
@@ -24,6 +25,7 @@ class Scape extends StatefulWidget {
     this.title = const Text("No Title", style: TextStyle(fontSize: 20)),
     required this.children,
     this.style,
+    this.ignored = false,
   });
 
   @override
@@ -49,7 +51,10 @@ class _ScapeState extends State<Scape> {
     scapeDefaultStyle = ScapeStyle(
       background: Theme.of(context).colorScheme.surface,
     );
-    return buildScapeStack(context);
+    return AbsorbPointer(
+      absorbing: widget.ignored,
+      child: buildScapeStack(context),
+    );
   }
 
   Widget buildScapeStack(BuildContext context) {
@@ -68,9 +73,7 @@ class _ScapeState extends State<Scape> {
           alignment: AlignmentDirectional.center,
           children: [
             PageView.builder(
-              physics: const PageScrollPhysics(
-                parent: BouncingScrollPhysics(),
-              ),
+              physics: const PageScrollPhysics(parent: BouncingScrollPhysics()),
               controller: _controller,
               itemBuilder: _itemBuilder,
               itemCount: widget.children.length,

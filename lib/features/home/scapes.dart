@@ -1,3 +1,4 @@
+import 'widgets/scape_style.dart';
 import 'package:flutter/material.dart';
 
 // data
@@ -7,6 +8,7 @@ import 'package:flowscape/core/data/quotes.dart';
 import 'widgets/scape.dart';
 import 'widgets/scape_page.dart';
 import 'widgets/scape_actions.dart';
+import 'widgets/scape_pullup_bar.dart';
 
 final String firstQuote = randomQuote();
 
@@ -20,6 +22,7 @@ class ScapesScreen extends StatefulWidget {
 class _ScapesScreenState extends State<ScapesScreen> {
   final PageController _scapesPageController = PageController();
   String currentQuote = firstQuote;
+  bool pullUpBarState = false;
 
   @override
   void dispose() {
@@ -68,37 +71,42 @@ class _ScapesScreenState extends State<ScapesScreen> {
     _scapesPageController.jumpTo(0.0); // goes up in the page view
   }
 
-  List<Scape> buildScapes() {
+  List<Widget> buildScapes() {
     return [
-      Scape(
-        title: const Text("Morning Routine"),
-        creator: const Text("John Doe"),
-        date: const Text("May 10, 2025"),
-        children: [ScapePage(color: Colors.blue.shade900, child: ScapeActions(),)],
+      ScapePullUpBar(
+        blur: pullUpBarState,
+        onDoubleTap:
+            () => setState(() {
+              debugPrint("Scape froze");
+              pullUpBarState = !pullUpBarState;
+            }),
+        child: Scape(
+          title: const Text("Morning Routine"),
+          creator: const Text("John Doe"),
+          date: const Text("May 10, 2025"),
+          ignored: pullUpBarState,
+          children: [
+            ScapePage(
+              color: Colors.blue.shade900,
+              child: Image.network(
+                "https://cloudinary-marketing-res.cloudinary.com/image/upload/w_1300/q_auto/f_auto/hiking_dog_mountain",
+              ),
+            ),
+            ScapePage(color: Colors.blue.shade700),
+          ],
+        ),
       ),
       Scape(
         title: const Text("Workout Plan"),
         creator: const Text("Jane Smith"),
         date: const Text("May 11, 2025"),
-        children: [ScapePage(color: Colors.green.shade900, child: ScapeActions())],
+        children: [ScapePage(color: Colors.green.shade900)],
       ),
       Scape(
         title: const Text("Travel Itinerary"),
         creator: const Text("Alice Johnson"),
         date: const Text("May 12, 2025"),
-        children: [ScapePage(color: Colors.orange.shade900, child: ScapeActions())],
-      ),
-      Scape(
-        title: const Text("Study Schedule"),
-        creator: const Text("Bob Brown"),
-        date: const Text("May 13, 2025"),
-        children: [ScapePage(color: Colors.purple.shade900, child: ScapeActions())],
-      ),
-      Scape(
-        title: const Text("Meal Prep"),
-        creator: const Text("Charlie Davis"),
-        date: const Text("May 14, 2025"),
-        children: [ScapePage(color: Colors.red.shade900, child: ScapeActions())],
+        children: [ScapePage(color: Colors.orange.shade900)],
       ),
     ];
   }

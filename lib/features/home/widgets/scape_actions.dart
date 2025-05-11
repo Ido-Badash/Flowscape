@@ -10,7 +10,7 @@ class ScapeActions extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        const Expanded(child: Spacer()),
+        const Expanded(child: SizedBox()),
         Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [LikeButton(size: 40)],
