@@ -20,6 +20,10 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
 
+  smooth_page_indicator: ^1.2.1
+
+  like_button: ^2.0.5
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -44,4 +48,5 @@ flutter:
         - asset: assets/fonts/default.ttf
 
   assets:
-    - assets/images/flowbgs/
+    - assets/images/flowbgs_dark/
+    - assets/images/flowbgs_light/

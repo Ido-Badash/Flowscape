@@ -1,7 +1,14 @@
+import 'widgets/scape_style.dart';
 import 'package:flutter/material.dart';
 
 // data
 import 'package:flowscape/core/data/quotes.dart';
+
+// widgets
+import 'widgets/scape.dart';
+import 'widgets/scape_page.dart';
+import 'widgets/scape_actions.dart';
+import 'widgets/scape_pullup_bar.dart';
 
 final String firstQuote = randomQuote();
 
@@ -13,34 +20,149 @@ class ScapesScreen extends StatefulWidget {
 }
 
 class _ScapesScreenState extends State<ScapesScreen> {
+  final PageController _scapesPageController = PageController();
   String currentQuote = firstQuote;
+  bool pullUpBarState = false;
 
-  void updateQuote() {
-    currentQuote = randomQuote();
+  @override
+  void dispose() {
+    _scapesPageController.dispose(); // cleans up the controller for logic reset
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView(
-        children: [
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [buildMainCenterIcon(), buildQuoteButton()],
-          ),
-        ],
+      floatingActionButton: buildBackToTopButton(),
+      body: PageView.builder(
+        scrollDirection: Axis.vertical,
+        physics: const PageScrollPhysics(parent: BouncingScrollPhysics()),
+        controller: _scapesPageController,
+        itemBuilder: pageViewItemBuilder,
+        itemCount: [buildTopScapesPageViewItem(), ...buildScapes()].length,
       ),
     );
   }
 
-  TextButton buildQuoteButton() {
+  Widget pageViewItemBuilder(BuildContext context, int index) {
+    Widget currentItem;
+    List pageWidgets = [buildTopScapesPageViewItem(), ...buildScapes()];
+
+    if (index >= 0 && index < pageWidgets.length) {
+      currentItem = pageWidgets[index];
+    } else {
+      currentItem = Text(
+        "Error: Scape not found!",
+        textAlign: TextAlign.center,
+        style: TextStyle(
+          color: Theme.of(context).colorScheme.error,
+          fontSize: 16,
+        ),
+      );
+    }
+
+    return Padding(
+      padding: const EdgeInsets.all(12),
+      child: Center(child: currentItem),
+    );
+  }
+
+  void scapesPageViewScrollUp() {
+    _scapesPageController.jumpTo(0.0); // goes up in the page view
+  }
+
+  List<Widget> buildScapes() {
+    return [
+      ScapePullUpBar(
+        blur: pullUpBarState,
+        onDoubleTap:
+            () => setState(() {
+              debugPrint("Scape froze");
+              pullUpBarState = !pullUpBarState;
+            }),
+        barWidgets: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Icon(Icons.man_2, color: Colors.white, size: 30),
+          ),
+        ],
+        child: Scape(
+          title: const Text("Morning Routine"),
+          creator: const Text("John Doe"),
+          date: const Text("May 10, 2025"),
+          ignored: pullUpBarState,
+          children: [
+            ScapePage(
+              color: Colors.green[900],
+              child: Center(
+                child: Image.network(
+                  "https://cloudinary-marketing-res.cloudinary.com/image/upload/w_1300/q_auto/f_auto/hiking_dog_mountain",
+                ),
+              ),
+            ),
+            ScapePage(color: Colors.blue.shade700),
+          ],
+        ),
+      ),
+    ];
+  }
+
+  Widget buildScrollToSeeText() {
+    return const Center(
+      child: Text(
+        "Scroll to see Scapes",
+        style: TextStyle(fontStyle: FontStyle.italic, fontSize: 12),
+      ),
+    );
+  }
+
+  Widget buildBackToTopButton() {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        Tooltip(
+          message: "Back to top",
+          preferBelow: false,
+          child: FloatingActionButton(
+            onPressed: scapesPageViewScrollUp,
+            mini: true, // makes the button small
+            shape: const CircleBorder(),
+            elevation: 0, // to remove the black foggy effect
+            child: const Opacity(
+              opacity: 0.1,
+              child: Icon(Icons.arrow_upward_rounded),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  /// The build for the top quote area
+  Widget buildTopScapesPageViewItem() {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Spacer(flex: 4), // balances the flex below ↓
+        buildMainCenterIcon(),
+        buildQuoteButton(),
+        buildScrollToSeeText(),
+        Spacer(flex: 5), // pushes the content a bit higher
+      ],
+    );
+  }
+
+  Widget buildQuoteButton() {
     return TextButton(
       onPressed: () {
         setState(() {
           updateQuote(); // if quote pressed then update the quote
         });
       },
-      style: TextButton.styleFrom(splashFactory: NoSplash.splashFactory),
+      style: TextButton.styleFrom(
+        splashFactory: NoSplash.splashFactory,
+        overlayColor: Colors.transparent,
+      ),
       child: Text(
         currentQuote,
         textAlign: TextAlign.center,
@@ -51,7 +173,11 @@ class _ScapesScreenState extends State<ScapesScreen> {
     );
   }
 
-  Icon buildMainCenterIcon() {
-    return Icon(Icons.paragliding_outlined, size: 50);
+  Widget buildMainCenterIcon() {
+    return const Icon(Icons.paragliding_outlined, size: 50);
+  }
+
+  void updateQuote() {
+    currentQuote = randomQuote();
   }
 }

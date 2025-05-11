@@ -20,7 +20,7 @@ ThemeData appDarkThemeData = ThemeData(
     bodyLarge: TextStyle(fontSize: FlowTextsSizes.h10),
   ),
 
-  colorScheme: ColorScheme(
+  colorScheme: const ColorScheme(
     brightness: Brightness.dark,
     primary: FlowColors.textTertiaryDark,
     onPrimary: FlowColors.textPrimaryDark,
@@ -30,19 +30,25 @@ ThemeData appDarkThemeData = ThemeData(
     onSurface: FlowColors.textDisabledDark,
     error: Colors.red,
     onError: Colors.white,
+    inversePrimary: FlowColors.textPrimaryDark,
+    primaryContainer: FlowColors.primaryContainerDark,
   ),
 
-  bottomNavigationBarTheme: BottomNavigationBarThemeData(
+  bottomNavigationBarTheme: const BottomNavigationBarThemeData(
     backgroundColor: FlowColors.surfaceDark,
     unselectedItemColor: FlowColors.textSecondaryDark,
     selectedItemColor: FlowColors.accentBlueDark,
   ),
 
-  expansionTileTheme: ExpansionTileThemeData(
+  expansionTileTheme: const ExpansionTileThemeData(
     textColor: FlowColors.textSecondaryDark,
   ),
 
-  iconTheme: IconThemeData(color: FlowColors.textTertiaryDark),
+  iconTheme: const IconThemeData(color: FlowColors.textTertiaryDark),
+
+  floatingActionButtonTheme: const FloatingActionButtonThemeData(
+    backgroundColor: Color.fromARGB(25, 30, 41, 59)
+  ),
 );
 
 ThemeData appLightThemeData = ThemeData(
@@ -71,6 +77,8 @@ ThemeData appLightThemeData = ThemeData(
     onSurface: FlowColors.textDisabledLight,
     error: FlowColors.errorRedLight,
     onError: Colors.white,
+    inversePrimary: FlowColors.textPrimaryLight,
+    primaryContainer: FlowColors.primaryContainerLight,
   ),
 
   bottomNavigationBarTheme: const BottomNavigationBarThemeData(
@@ -81,6 +89,10 @@ ThemeData appLightThemeData = ThemeData(
 
   expansionTileTheme: const ExpansionTileThemeData(
     textColor: FlowColors.textSecondaryLight,
+  ),
+
+  floatingActionButtonTheme: const FloatingActionButtonThemeData(
+    backgroundColor: FlowColors.surfaceLight,
   ),
 
   iconTheme: const IconThemeData(color: FlowColors.textTertiaryLight),
