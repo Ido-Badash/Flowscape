@@ -2,32 +2,11 @@ import 'package:flutter/material.dart';
 
 // data
 import 'package:flowscape/core/data/quotes.dart';
-import 'package:like_button/like_button.dart';
 
 // widgets
 import 'widgets/scape.dart';
-
-// GET RID OF THIS LATER AND PUT IT IN SOMEWHERE ELSE
-Widget page(Color color, {bool isMain = false}) {
-  return Container(
-    decoration: BoxDecoration(
-      color: color,
-      borderRadius: BorderRadius.circular(16), // makes the corners round
-    ),
-    child:
-        isMain
-            ? Row(
-              children: [
-                const Expanded(child: SizedBox.expand()),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [LikeButton(size: 40)],
-                ),
-              ],
-            )
-            : const SizedBox.expand(),
-  );
-}
+import 'widgets/scape_page.dart';
+import 'widgets/scape_actions.dart';
 
 final String firstQuote = randomQuote();
 
@@ -95,31 +74,31 @@ class _ScapesScreenState extends State<ScapesScreen> {
         title: const Text("Morning Routine"),
         creator: const Text("John Doe"),
         date: const Text("May 10, 2025"),
-        bodies: [page(Colors.blue.shade900), page(Colors.blue.shade900)],
+        children: [ScapePage(color: Colors.blue.shade900, child: ScapeActions(),)],
       ),
       Scape(
         title: const Text("Workout Plan"),
         creator: const Text("Jane Smith"),
         date: const Text("May 11, 2025"),
-        bodies: [page(Colors.green.shade900), page(Colors.green.shade900)],
+        children: [ScapePage(color: Colors.green.shade900, child: ScapeActions())],
       ),
       Scape(
         title: const Text("Travel Itinerary"),
         creator: const Text("Alice Johnson"),
         date: const Text("May 12, 2025"),
-        bodies: [page(Colors.orange.shade900), page(Colors.orange.shade900)],
+        children: [ScapePage(color: Colors.orange.shade900, child: ScapeActions())],
       ),
       Scape(
         title: const Text("Study Schedule"),
         creator: const Text("Bob Brown"),
         date: const Text("May 13, 2025"),
-        bodies: [page(Colors.purple.shade900), page(Colors.purple.shade900)],
+        children: [ScapePage(color: Colors.purple.shade900, child: ScapeActions())],
       ),
       Scape(
         title: const Text("Meal Prep"),
         creator: const Text("Charlie Davis"),
         date: const Text("May 14, 2025"),
-        bodies: [page(Colors.red.shade900), page(Colors.red.shade900)],
+        children: [ScapePage(color: Colors.red.shade900, child: ScapeActions())],
       ),
     ];
   }

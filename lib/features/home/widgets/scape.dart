@@ -11,7 +11,7 @@ class Scape extends StatefulWidget {
   final Text creator;
   final Text date;
   final Text title;
-  final List<Widget> bodies;
+  final List<Widget> children;
   final ScapeStyle? style;
 
   const Scape({
@@ -22,7 +22,7 @@ class Scape extends StatefulWidget {
     ),
     this.date = const Text("Unknown Date", style: TextStyle(fontSize: 14)),
     this.title = const Text("No Title", style: TextStyle(fontSize: 20)),
-    required this.bodies,
+    required this.children,
     this.style,
   });
 
@@ -32,7 +32,7 @@ class Scape extends StatefulWidget {
 
 class _ScapeState extends State<Scape> {
   final PageController _controller = PageController();
-  List<Widget> updatedBodies = const [];
+  List<Widget> updatedChildren = const [];
 
   @override
   void dispose() {
@@ -42,9 +42,9 @@ class _ScapeState extends State<Scape> {
 
   @override
   Widget build(BuildContext context) {
-    updatedBodies =
-        widget.bodies.isNotEmpty
-            ? [buildHeadCard(), ...widget.bodies.sublist(1)]
+    updatedChildren =
+        widget.children.isNotEmpty
+            ? [buildHeadCard(), ...widget.children.sublist(1)]
             : [buildHeadCard()];
     scapeDefaultStyle = ScapeStyle(
       background: Theme.of(context).colorScheme.surface,
@@ -73,7 +73,7 @@ class _ScapeState extends State<Scape> {
               ),
               controller: _controller,
               itemBuilder: _itemBuilder,
-              itemCount: widget.bodies.length,
+              itemCount: widget.children.length,
             ),
           ],
         ),
@@ -82,15 +82,15 @@ class _ScapeState extends State<Scape> {
   }
 
   Widget? _itemBuilder(BuildContext context, int index) {
-    return updatedBodies[index];
+    return updatedChildren[index];
   }
 
   Widget buildHeadCard() {
     return Stack(
       alignment: AlignmentDirectional.topCenter,
       children: [
-        widget.bodies.isNotEmpty
-            ? widget.bodies[0]
+        widget.children.isNotEmpty
+            ? widget.children[0]
             : Container(color: Colors.red),
         Positioned(top: 5, child: widget.title),
         Positioned(bottom: 0, left: 10, child: widget.creator),
@@ -106,7 +106,7 @@ class _ScapeState extends State<Scape> {
         alignment: Alignment.center,
         child: SmoothPageIndicator(
           controller: _controller,
-          count: widget.bodies.length,
+          count: widget.children.length,
           effect: WormEffect(
             dotColor: widget.style?.offPage ?? Colors.grey,
             activeDotColor: widget.style?.onPage ?? Colors.indigo,
