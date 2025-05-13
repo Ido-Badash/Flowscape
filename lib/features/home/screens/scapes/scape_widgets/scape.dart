@@ -1,4 +1,4 @@
-import 'package:flowscape/features/home/screens/scapes/widgets/scapes.dart';
+import 'package:flowscape/features/home/screens/scapes/scape_widgets/scapes.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -12,7 +12,7 @@ class Scape extends StatefulWidget {
   final Widget title;
   final List<Widget> children;
   final Color headPageColor;
-  final ScapeFrame headFrame;
+  final ScapeHeadFrame headFrame;
   final ScapeStyle? style;
   final bool ignored;
 

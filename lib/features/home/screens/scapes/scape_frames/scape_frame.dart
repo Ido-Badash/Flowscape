@@ -1,21 +1,13 @@
 import 'package:flutter/material.dart';
 
+/// This class is used to create a frame for the child in ScapePage class
 abstract class ScapeFrame extends StatelessWidget {
-  const ScapeFrame({
-    super.key,
-    required this.children,
-    this.title,
-    this.creator,
-    this.date,
-  });
+  final Widget? child;
 
-  final List<Widget> children;
-  final Widget? title;
-  final Widget? creator;
-  final Widget? date;
+  const ScapeFrame({super.key, this.child = const SizedBox.shrink()});
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox.shrink();
+    return child ?? const SizedBox.shrink();
   }
 }

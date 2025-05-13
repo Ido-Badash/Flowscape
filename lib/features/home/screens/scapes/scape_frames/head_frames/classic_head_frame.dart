@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'scape_frame.dart';
+import '../scape_head_frame.dart';
 
 /// Frame for the child in ScapePage class
-class ClassicHeadFrame extends ScapeFrame {
+class ClassicHeadFrame extends ScapeHeadFrame {
   const ClassicHeadFrame({
     super.key,
     super.children = const [],
