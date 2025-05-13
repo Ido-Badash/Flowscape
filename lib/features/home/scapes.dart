@@ -3,11 +3,8 @@ import 'package:flutter/material.dart';
 // data
 import 'package:flowscape/core/data/quotes.dart';
 
-// widgets
-import 'widgets/scape.dart';
-import 'widgets/scape_page.dart';
-import 'widgets/scape_actions.dart';
-import 'widgets/scape_pullup_bar.dart';
+// generator
+import 'package:flowscape/core/generators/scape_generator.dart';
 
 final String firstQuote = randomQuote();
 
@@ -21,7 +18,6 @@ class ScapesScreen extends StatefulWidget {
 class _ScapesScreenState extends State<ScapesScreen> {
   final PageController _scapesPageController = PageController();
   String currentQuote = firstQuote;
-  bool pullUpBarState = false;
 
   @override
   void dispose() {
@@ -67,40 +63,11 @@ class _ScapesScreenState extends State<ScapesScreen> {
   }
 
   void scapesPageViewScrollUp() {
-    _scapesPageController.jumpTo(0.0); // goes up in the page view
+    _scapesPageController.jumpTo(0.0); // goes to the top in the page view
   }
 
   List<Widget> buildScapes() {
-    return [
-      ScapePullUpBar(
-        blur: pullUpBarState,
-        onDoubleTap:
-            () => setState(() {
-              debugPrint("Scape froze");
-              pullUpBarState = !pullUpBarState;
-            }),
-        barWidgets: [
-          ScapeActions()
-        ],
-        child: Scape(
-          title: const Text("Morning Routine"),
-          creator: const Text("John Doe"),
-          date: const Text("May 10, 2025"),
-          ignored: pullUpBarState,
-          children: [
-            ScapePage(
-              color: Colors.green[900],
-              child: Center(
-                child: Image.network(
-                  "https://cloudinary-marketing-res.cloudinary.com/image/upload/w_1300/q_auto/f_auto/hiking_dog_mountain",
-                ),
-              ),
-            ),
-            ScapePage(color: Colors.blue.shade700),
-          ],
-        ),
-      ),
-    ];
+    return [ScapeGenerator()];
   }
 
   Widget buildScrollToSeeText() {
