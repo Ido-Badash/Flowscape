@@ -1,9 +1,9 @@
 // ignore_for_file: unused_import
 
 import 'package:flutter/material.dart';
-import 'package:flowscape/features/home/widgets/scape.dart';
-import 'package:flowscape/features/home/widgets/scape_page.dart';
-import 'package:flowscape/features/home/widgets/scape_style.dart';
+import 'package:flowscape/features/home/screens/scapes/widgets/scape.dart';
+import 'package:flowscape/features/home/screens/scapes/widgets/scape_page.dart';
+import 'package:flowscape/features/home/screens/scapes/widgets/scape_style.dart';
 
 /// Creates scapes and stores them in memory.
 ///

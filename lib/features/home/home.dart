@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 // screens
-import 'scapes.dart';
-import 'saved_scapes.dart';
+import 'screens/scapes/scapes.dart';
+import 'screens/saved_scapes/saved_scapes.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
