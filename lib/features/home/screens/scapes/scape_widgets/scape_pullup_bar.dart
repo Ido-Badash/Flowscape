@@ -19,7 +19,7 @@ class ScapePullUpBar extends StatelessWidget {
     this.sigmaX = 5.0,
     this.sigmaY = 5.0,
     this.tileMode,
-    this.blur = false,
+    this.blur = true,
     this.onDoubleTap,
   });
 

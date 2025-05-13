@@ -8,7 +8,10 @@ class MeditationScape extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scape(
       children: [
-        ScapePage(child: ClassicHeadFrame(child: Container(color: Colors.red))),
+        ScapePage(child: ClassicHeadFrame(child: Container(color: Colors.indigo[800]))),
+        ScapePage(child: ClassicFrame(child: Container(color: Colors.indigo[700]))),
+        ScapePage(child: ClassicFrame(child: Container(color: Colors.indigo[600]))),
+        ScapePage(child: ClassicFrame(child: Container(color: Colors.indigo[500]))),
       ],
     );
   }
