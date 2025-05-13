@@ -5,7 +5,7 @@ import '../scape_head_frame.dart';
 class ClassicHeadFrame extends ScapeHeadFrame {
   const ClassicHeadFrame({
     super.key,
-    super.children = const [],
+    super.child = const SizedBox.shrink(),
     super.title,
     super.creator,
     super.date,
@@ -16,7 +16,7 @@ class ClassicHeadFrame extends ScapeHeadFrame {
     return Stack(
       alignment: AlignmentDirectional.topCenter,
       children: [
-        children.isNotEmpty ? children[0] : Container(color: Colors.red),
+        child,
         Positioned(top: 5, child: title ?? SizedBox.shrink()),
         Positioned(bottom: 0, left: 10, child: creator ?? SizedBox.shrink()),
         Positioned(bottom: 0, right: 10, child: date ?? SizedBox.shrink()),

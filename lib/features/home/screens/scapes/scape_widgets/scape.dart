@@ -11,8 +11,6 @@ class Scape extends StatefulWidget {
   final Widget date;
   final Widget title;
   final List<Widget> children;
-  final Color headPageColor;
-  final ScapeHeadFrame headFrame;
   final ScapeStyle? style;
   final bool ignored;
 
@@ -25,8 +23,6 @@ class Scape extends StatefulWidget {
     this.date = const Text("Unknown Date", style: TextStyle(fontSize: 14)),
     this.title = const Text("No Title", style: TextStyle(fontSize: 20)),
     this.children = const [],
-    this.headPageColor = Colors.indigo,
-    this.headFrame = const ClassicHeadFrame(),
     this.style,
     this.ignored = false,
   });
@@ -57,9 +53,7 @@ class _ScapeState extends State<Scape> {
   @override
   Widget build(BuildContext context) {
     updatedChildren =
-        widget.children.isNotEmpty
-            ? [buildHeadCard(widget.headPageColor, widget.headFrame), ...widget.children.sublist(1)]
-            : [buildHeadCard(widget.headPageColor, widget.headFrame)];
+        widget.children.isNotEmpty ? [...widget.children] : [buildDefaultHeadCard()];
     return AbsorbPointer(
       absorbing: widget.ignored,
       child: buildScapeStack(context),
@@ -97,8 +91,13 @@ class _ScapeState extends State<Scape> {
     return updatedChildren[index];
   }
 
-  Widget buildHeadCard(Color color, Widget frame) {
-    return ScapePage(color: color, child: frame);
+  Widget buildDefaultHeadCard() {
+    return ScapePage(color: Colors.indigo, child: ClassicHeadFrame(
+      title: widget.title,
+      creator: widget.creator,
+      date: widget.date,
+      child: SizedBox.expand(),
+    ));
   }
 
   Widget buildPageIndicator(BuildContext context) {

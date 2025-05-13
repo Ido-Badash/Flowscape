@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'scapes_warehouse/scapes_warehouse.dart';
 
 // data
 import 'package:flowscape/core/data/quotes.dart';
@@ -64,7 +65,9 @@ class _ScapesScreenState extends State<ScapesScreen> {
   }
 
   List<Widget> buildScapes() {
-    return [];
+    return [
+      MeditationScape(),
+    ];
   }
 
   Widget buildScrollToSeeText() {
