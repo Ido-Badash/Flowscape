@@ -79,7 +79,7 @@ class _ScapeState extends State<Scape> {
   }
 
   Widget buildDefaultHeadCard() {
-    return ScapePage(color: Colors.indigo, child: ClassicHeadFrame());
+    return Container(color: Colors.indigo, child: ClassicHeadFrame());
   }
 
   Widget buildPageIndicator(BuildContext context) {
