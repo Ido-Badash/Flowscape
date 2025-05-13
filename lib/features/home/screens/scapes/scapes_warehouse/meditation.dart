@@ -7,11 +7,8 @@ class MeditationScape extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scape(
-      creator: const Text("creator name"),
-      date: const Text("date"),
-      title: const Text("title", style: TextStyle(),),
       children: [
-        ScapePage(child: ClassicFrame(),)
+        ScapePage(child: ClassicHeadFrame(child: Container(color: Colors.red))),
       ],
     );
   }

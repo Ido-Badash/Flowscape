@@ -5,9 +5,5 @@ class ScapeStyle {
   final Color? onPage;
   final Color? offPage;
 
-  const ScapeStyle({
-    this.background,
-    this.onPage,
-    this.offPage,
-  });
+  const ScapeStyle({this.background, this.onPage, this.offPage});
 }

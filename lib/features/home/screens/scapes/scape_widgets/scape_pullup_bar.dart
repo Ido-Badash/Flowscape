@@ -40,9 +40,7 @@ class ScapePullUpBar extends StatelessWidget {
         currentChild,
         Column(
           mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            blur ? buildRowBar() : SizedBox(),
-          ],
+          children: [blur ? buildRowBar() : SizedBox()],
         ),
       ],
     );

@@ -1,14 +1,21 @@
 import 'package:flutter/material.dart';
-import '../scape_head_frame.dart';
 
 /// Frame for the child in ScapePage class
-class ClassicHeadFrame extends ScapeHeadFrame {
+class ClassicHeadFrame extends StatelessWidget {
+  final Widget? title;
+  final Widget? creator;
+  final Widget? date;
+  final Widget child;
+
   const ClassicHeadFrame({
     super.key,
-    super.child = const SizedBox.shrink(),
-    super.title,
-    super.creator,
-    super.date,
+    this.child = const SizedBox.shrink(),
+    this.creator = const Text(
+      "Unknown Creator",
+      style: TextStyle(fontSize: 14),
+    ),
+    this.date = const Text("Unknown Date", style: TextStyle(fontSize: 14)),
+    this.title = const Text("No Title", style: TextStyle(fontSize: 20)),
   });
 
   @override

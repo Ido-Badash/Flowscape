@@ -7,21 +7,12 @@ ScapeStyle? scapeDefaultStyle;
 /// A StatefulWidget that uses PageView and the smooth_page_indicator
 /// to make a beautiful card with custom style and detail params
 class Scape extends StatefulWidget {
-  final Widget creator;
-  final Widget date;
-  final Widget title;
   final List<Widget> children;
   final ScapeStyle? style;
   final bool ignored;
 
   const Scape({
     super.key,
-    this.creator = const Text(
-      "Unknown Creator",
-      style: TextStyle(fontSize: 14),
-    ),
-    this.date = const Text("Unknown Date", style: TextStyle(fontSize: 14)),
-    this.title = const Text("No Title", style: TextStyle(fontSize: 20)),
     this.children = const [],
     this.style,
     this.ignored = false,
@@ -34,15 +25,6 @@ class Scape extends StatefulWidget {
 class _ScapeState extends State<Scape> {
   final PageController _controller = PageController();
   List<Widget> updatedChildren = const [];
-  ScapeStyle scapeDefaultStyle = ScapeStyle();
-
-  @override
-  void initState() {
-    super.initState();
-    scapeDefaultStyle = ScapeStyle(
-      background: Theme.of(context).colorScheme.surface,
-    );
-  }
 
   @override
   void dispose() {
@@ -53,7 +35,12 @@ class _ScapeState extends State<Scape> {
   @override
   Widget build(BuildContext context) {
     updatedChildren =
-        widget.children.isNotEmpty ? [...widget.children] : [buildDefaultHeadCard()];
+        widget.children.isNotEmpty
+            ? [...widget.children]
+            : [buildDefaultHeadCard()];
+    scapeDefaultStyle = ScapeStyle(
+      background: Theme.of(context).colorScheme.surface,
+    );
     return AbsorbPointer(
       absorbing: widget.ignored,
       child: buildScapeStack(context),
@@ -92,12 +79,7 @@ class _ScapeState extends State<Scape> {
   }
 
   Widget buildDefaultHeadCard() {
-    return ScapePage(color: Colors.indigo, child: ClassicHeadFrame(
-      title: widget.title,
-      creator: widget.creator,
-      date: widget.date,
-      child: SizedBox.expand(),
-    ));
+    return ScapePage(color: Colors.indigo, child: ClassicHeadFrame());
   }
 
   Widget buildPageIndicator(BuildContext context) {
@@ -126,7 +108,7 @@ class _ScapeState extends State<Scape> {
 
   // the logic of the bg color picked in the style param, return a red color when there is an error
   Color scapeStyleBgColorLogic() {
-    return (widget.style?.background ?? scapeDefaultStyle.background) ??
+    return (widget.style?.background ?? scapeDefaultStyle?.background) ??
         Colors.red;
   }
 }
