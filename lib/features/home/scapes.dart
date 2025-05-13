@@ -1,4 +1,3 @@
-import 'widgets/scape_style.dart';
 import 'package:flutter/material.dart';
 
 // data
@@ -81,10 +80,7 @@ class _ScapesScreenState extends State<ScapesScreen> {
               pullUpBarState = !pullUpBarState;
             }),
         barWidgets: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Icon(Icons.man_2, color: Colors.white, size: 30),
-          ),
+          ScapeActions()
         ],
         child: Scape(
           title: const Text("Morning Routine"),
