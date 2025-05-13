@@ -9,13 +9,13 @@ class ClassicHeadFrame extends StatelessWidget {
 
   const ClassicHeadFrame({
     super.key,
-    this.child = const SizedBox.shrink(),
     this.creator = const Text(
       "Unknown Creator",
       style: TextStyle(fontSize: 14),
     ),
     this.date = const Text("Unknown Date", style: TextStyle(fontSize: 14)),
     this.title = const Text("No Title", style: TextStyle(fontSize: 20)),
+    this.child = const SizedBox.shrink(),
   });
 
   @override
