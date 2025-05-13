@@ -6,17 +6,36 @@ class MeditationScape extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = [
+      Colors.indigo[700],
+      Colors.indigo[600],
+      Colors.indigo[700],
+      Colors.indigo[800],
+    ];
+
     return Scape(
       children: [
         ClassicHeadFrame(
           title: const Text("Meditation"),
           creator: const Text("By FlowScape"),
           date: const Text("13/05/2025"),
-          child: Container(color: Colors.indigo[800])
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.indigo[800],
+              borderRadius: BorderRadius.circular(16),
+            ),
           ),
-        ClassicFrame(child: Container(color: Colors.indigo[700])),
-        ClassicFrame(child: Container(color: Colors.indigo[600])),
-        ClassicFrame(child: Container(color: Colors.indigo[500])),
+        ),
+        ...colors.map(
+          (color) => ClassicFrame(
+            child: Container(
+              decoration: BoxDecoration(
+                color: color,
+                borderRadius: BorderRadius.circular(12),
+              ),
+            ),
+          ),
+        ),
       ],
     );
   }

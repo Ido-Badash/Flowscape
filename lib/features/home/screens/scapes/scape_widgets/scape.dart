@@ -66,7 +66,7 @@ class _ScapeState extends State<Scape> {
               physics: const PageScrollPhysics(parent: BouncingScrollPhysics()),
               controller: _controller,
               itemBuilder: _itemBuilder,
-              itemCount: widget.children.length,
+              itemCount: updatedChildren.length,
             ),
           ],
         ),
@@ -89,7 +89,7 @@ class _ScapeState extends State<Scape> {
         alignment: Alignment.center,
         child: SmoothPageIndicator(
           controller: _controller,
-          count: widget.children.length,
+          count: updatedChildren.length,
           effect: WormEffect(
             dotColor: widget.style?.offPage ?? Colors.grey,
             activeDotColor: widget.style?.onPage ?? Colors.indigo,
