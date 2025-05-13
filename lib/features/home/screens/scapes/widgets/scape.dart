@@ -1,17 +1,18 @@
+import 'package:flowscape/features/home/screens/scapes/widgets/scapes.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-
-import 'scape_style.dart';
 
 ScapeStyle? scapeDefaultStyle;
 
 /// A StatefulWidget that uses PageView and the smooth_page_indicator
 /// to make a beautiful card with custom style and detail params
 class Scape extends StatefulWidget {
-  final Text creator;
-  final Text date;
-  final Text title;
+  final Widget creator;
+  final Widget date;
+  final Widget title;
   final List<Widget> children;
+  final Color headPageColor;
+  final ScapeFrame headFrame;
   final ScapeStyle? style;
   final bool ignored;
 
@@ -23,7 +24,9 @@ class Scape extends StatefulWidget {
     ),
     this.date = const Text("Unknown Date", style: TextStyle(fontSize: 14)),
     this.title = const Text("No Title", style: TextStyle(fontSize: 20)),
-    required this.children,
+    this.children = const [],
+    this.headPageColor = Colors.indigo,
+    this.headFrame = const ClassicHeadFrame(),
     this.style,
     this.ignored = false,
   });
@@ -35,6 +38,15 @@ class Scape extends StatefulWidget {
 class _ScapeState extends State<Scape> {
   final PageController _controller = PageController();
   List<Widget> updatedChildren = const [];
+  ScapeStyle scapeDefaultStyle = ScapeStyle();
+
+  @override
+  void initState() {
+    super.initState();
+    scapeDefaultStyle = ScapeStyle(
+      background: Theme.of(context).colorScheme.surface,
+    );
+  }
 
   @override
   void dispose() {
@@ -46,11 +58,8 @@ class _ScapeState extends State<Scape> {
   Widget build(BuildContext context) {
     updatedChildren =
         widget.children.isNotEmpty
-            ? [buildHeadCard(), ...widget.children.sublist(1)]
-            : [buildHeadCard()];
-    scapeDefaultStyle = ScapeStyle(
-      background: Theme.of(context).colorScheme.surface,
-    );
+            ? [buildHeadCard(widget.headPageColor, widget.headFrame), ...widget.children.sublist(1)]
+            : [buildHeadCard(widget.headPageColor, widget.headFrame)];
     return AbsorbPointer(
       absorbing: widget.ignored,
       child: buildScapeStack(context),
@@ -88,18 +97,8 @@ class _ScapeState extends State<Scape> {
     return updatedChildren[index];
   }
 
-  Widget buildHeadCard() {
-    return Stack(
-      alignment: AlignmentDirectional.topCenter,
-      children: [
-        widget.children.isNotEmpty
-            ? widget.children[0]
-            : Container(color: Colors.red),
-        Positioned(top: 5, child: widget.title),
-        Positioned(bottom: 0, left: 10, child: widget.creator),
-        Positioned(bottom: 0, right: 10, child: widget.date),
-      ],
-    );
+  Widget buildHeadCard(Color color, Widget frame) {
+    return ScapePage(color: color, child: frame);
   }
 
   Widget buildPageIndicator(BuildContext context) {
@@ -128,11 +127,7 @@ class _ScapeState extends State<Scape> {
 
   // the logic of the bg color picked in the style param, return a red color when there is an error
   Color scapeStyleBgColorLogic() {
-    return (widget.style?.background ?? scapeDefaultStyle?.background) ??
+    return (widget.style?.background ?? scapeDefaultStyle.background) ??
         Colors.red;
-  }
-
-  String getScapeData() {
-    return "title: ${widget.title.data}, creator: ${widget.creator.data}, data: ${widget.date.data}";
   }
 }

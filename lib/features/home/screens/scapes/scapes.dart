@@ -3,9 +3,6 @@ import 'package:flutter/material.dart';
 // data
 import 'package:flowscape/core/data/quotes.dart';
 
-// generator
-import 'package:flowscape/core/generators/scape_generator.dart';
-
 final String firstQuote = randomQuote();
 
 class ScapesScreen extends StatefulWidget {
@@ -67,7 +64,7 @@ class _ScapesScreenState extends State<ScapesScreen> {
   }
 
   List<Widget> buildScapes() {
-    return [ScapeGenerator()];
+    return [];
   }
 
   Widget buildScrollToSeeText() {
