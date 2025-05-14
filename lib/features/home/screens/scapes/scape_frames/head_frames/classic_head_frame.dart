@@ -1,20 +1,18 @@
 import 'package:flutter/material.dart';
+import 'head_frame.dart';
 
 /// Frame for the child in ScapePage class
-class ClassicHeadFrame extends StatelessWidget {
-  final Widget? title;
-  final Widget? creator;
-  final Widget? date;
+class ClassicHeadFrame extends StatelessWidget with HeadFrame {
+  final String? title;
+  final String? creator;
+  final String? date;
   final Widget child;
 
   const ClassicHeadFrame({
     super.key,
-    this.creator = const Text(
-      "Unknown Creator",
-      style: TextStyle(fontSize: 14),
-    ),
-    this.date = const Text("Unknown Date", style: TextStyle(fontSize: 14)),
-    this.title = const Text("No Title", style: TextStyle(fontSize: 20)),
+    this.creator = "Unknown Creator",
+    this.date = "Unknown Date",
+    this.title = "Untitled",
     this.child = const SizedBox.shrink(),
   });
 
@@ -24,9 +22,17 @@ class ClassicHeadFrame extends StatelessWidget {
       alignment: AlignmentDirectional.topCenter,
       children: [
         child,
-        Positioned(top: 5, child: title ?? SizedBox.shrink()),
-        Positioned(bottom: 0, left: 10, child: creator ?? SizedBox.shrink()),
-        Positioned(bottom: 0, right: 10, child: date ?? SizedBox.shrink()),
+        Positioned(top: 5, child: textBlueprint(title, nullText: "Untitled")),
+        Positioned(
+          bottom: 0,
+          left: 10,
+          child: textBlueprint(creator, nullText: "Unknown Creator"),
+        ),
+        Positioned(
+          bottom: 0,
+          right: 10,
+          child: textBlueprint(date, nullText: "Unknown Date"),
+        ),
       ],
     );
   }

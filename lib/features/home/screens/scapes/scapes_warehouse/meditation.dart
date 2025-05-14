@@ -16,9 +16,9 @@ class MeditationScape extends StatelessWidget {
     return Scape(
       children: [
         ClassicHeadFrame(
-          title: const Text("Meditation"),
-          creator: const Text("By FlowScape"),
-          date: const Text("13/05/2025"),
+          title: "Meditation",
+          creator: "By FlowScape",
+          date: "13/05/2025",
           child: Container(
             decoration: BoxDecoration(
               color: Colors.indigo[800],
