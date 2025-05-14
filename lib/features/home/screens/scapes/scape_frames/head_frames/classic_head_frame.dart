@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'head_frame_mixin.dart';
+import '../../scape_utils.dart';
 
 /// Frame for the child in ScapePage class
-class ClassicHeadFrame extends StatelessWidget with HeadFrameMixin {
+class ClassicHeadFrame extends StatelessWidget with ScapeUtils {
   final String? title;
   final String? creator;
   final String? date;

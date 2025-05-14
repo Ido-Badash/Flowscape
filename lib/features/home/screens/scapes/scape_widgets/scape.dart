@@ -1,4 +1,4 @@
-import 'package:flowscape/features/home/screens/scapes/scape_widgets/scapes.dart';
+import 'package:flowscape/features/home/screens/scapes/scape_widgets/scapes_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
