@@ -3,11 +3,13 @@
 Flowscape is a focus and learning app designed to help you stay productive and informed. It features:  
 
 - **Scroll Feed**: Stay updated with a curated selection of health news, books, and more.  
-- **Music Page**: Choose from built-in music or upload your own tracks to enhance your focus.  
-- **Timer**: A focus timer with customizable focus and break sessions to help improve productivity.  
+- **Music**: Choose from built-in music or upload your own tracks to enhance your focus.
+- **Task** : Add your todo list and checkout and change dates and mark V's.
+- **Flow**: A focus timer with customizable focus and break sessions to help improve productivity.  
 - **Settings**: Personalize your experience with customizable settings.  
 
 Built with **Dart & Flutter** for a seamless and responsive experience.  
+Recommended to lunch on Ios and Android.
 
 ## Installation  
 
