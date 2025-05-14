@@ -1,23 +1,22 @@
 import 'package:flutter/material.dart';
 
-mixin HeadFrame {
-  Widget textBlueprint(String? text, {String nullText = "Unknown Text"}) {
+mixin HeadFrameMixin {
+  Widget textBlueprint(String? text, [String? nullText = "Unknown String"]) {
     return Text(
-      text ?? nullText,
+      text ?? nullText ?? "Unknown Text",
       style: const TextStyle(
         color: Colors.white,
         fontSize: 16,
-        fontWeight: FontWeight.bold,
       ),
     );
   }
 
-  Widget titleTextBlueprint(String? text, {String nullText = "Unknown Text"}) {
+  Widget titleTextBlueprint(String? text, [String? nullText = "Unknown String"]) {
     return Text(
-      text ?? nullText,
+      text ?? nullText ?? "Unknown Title",
       style: const TextStyle(
         color: Colors.white,
-        fontSize: 22,
+        fontSize: 26,
         fontWeight: FontWeight.bold,
       ),
     );
