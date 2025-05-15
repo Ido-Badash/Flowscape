@@ -110,7 +110,6 @@ class _SettingsPageState extends State<SettingsPage> {
             });
           },
         ),
-        ListTile(title: Text("Backgrounds")),
       ],
     );
   }
