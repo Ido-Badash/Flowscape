@@ -6,4 +6,8 @@ mixin ScapeUtils {
   List<Widget> pageManager(List<Widget Function()> pages) {
     return List.generate(pages.length, (int idx) => pages[idx]());
   }
+
+  Widget buildAClipRRPage({Widget? child}) {
+    return ClipRRect(borderRadius: BorderRadius.circular(12.0), child: child);
+  }
 }

@@ -22,13 +22,10 @@ class NameScape extends StatelessWidget with ScapeUtils {
   }
 
   Widget buildHeadPageMainBody() {
-    return Center(
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(12.0),
-        child: Stack(alignment: AlignmentDirectional.center, children: [
-            
-          ],
-        ),
+    return buildAClipRRPage(
+      child: Stack(alignment: AlignmentDirectional.center, children: [
+          
+        ],
       ),
     );
   }
