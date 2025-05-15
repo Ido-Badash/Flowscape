@@ -1,1 +1,1 @@
-export 'the_ticeps.dart';
+export 'manage_your_time/manage_your_time.dart';

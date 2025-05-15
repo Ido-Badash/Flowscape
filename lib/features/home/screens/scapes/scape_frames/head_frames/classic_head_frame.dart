@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../scape_utils.dart';
+import 'package:flowscape/core/helpers/helpers.dart';
 
 /// Frame for the child in ScapePage class
 class ClassicHeadFrame extends StatelessWidget with ScapeUtils {
@@ -31,12 +32,12 @@ class ClassicHeadFrame extends StatelessWidget with ScapeUtils {
             style: TextStyle(
               color: Colors.white,
               fontSize: 26,
+              shadows: [TextUtils.textOutlineShadow()],
               decoration:
                   titleUnderline
                       ? TextDecoration.underline
                       : TextDecoration.none,
               decorationColor: Color.fromARGB(150, 255, 255, 255),
-              height: 1,
             ),
           ),
         ),
@@ -45,7 +46,7 @@ class ClassicHeadFrame extends StatelessWidget with ScapeUtils {
           left: 10,
           child: Text(
             creator ?? "Unknown Creator",
-            style: const TextStyle(color: Colors.white, fontSize: 16),
+            style: TextStyle(color: Colors.white, fontSize: 16, shadows: [TextUtils.textOutlineShadow()],),
           ),
         ),
         Positioned(
@@ -53,7 +54,7 @@ class ClassicHeadFrame extends StatelessWidget with ScapeUtils {
           right: 10,
           child: Text(
             date ?? "Unknown Date",
-            style: const TextStyle(color: Colors.white, fontSize: 16),
+            style: TextStyle(color: Colors.white, fontSize: 16, shadows: [TextUtils.textOutlineShadow()],),
           ),
         ),
       ],

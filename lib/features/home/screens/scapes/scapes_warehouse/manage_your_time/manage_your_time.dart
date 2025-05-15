@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flowscape/features/home/screens/scapes/scape_lib.dart';
 import 'package:flowscape/features/home/screens/scapes/scape_utils.dart';
-import 'package:flowscape/core/helpers/color_utils.dart';
+import 'package:flowscape/core/helpers/helpers.dart';
 
-class TheTricepsScape extends StatelessWidget with ScapeUtils {
-  const TheTricepsScape({super.key});
+class ManageYourTimeScape extends StatelessWidget with ScapeUtils {
+  const ManageYourTimeScape({super.key});
 
   List<Color> get scapeColors =>
       ColorUtils.colorShades(Colors.indigo, colorsAmount: 10);
@@ -20,12 +20,10 @@ class TheTricepsScape extends StatelessWidget with ScapeUtils {
     return ClassicHeadFrame(
       creator: "Flowscape",
       date: "15/05/2025",
-      title: "The Triceps",
-      child: TextFrame(
+      title: "Manage Your Time",
+      child: ClassicFrame(
         background: scapeColors[0],
-        mainText: "What are the best exercises for the triceps?",
-        
-        ),
+      ),
     );
   }
 
