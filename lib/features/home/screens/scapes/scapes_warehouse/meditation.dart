@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flowscape/features/home/screens/scapes/scape_widgets/scapes_widgets.dart';
 import 'package:flowscape/features/home/screens/scapes/scape_utils.dart';
+import 'package:flowscape/core/helpers/color_utils.dart';
 
-List<Color> scapeColors = ScapeUtils.colorShades(
+List<Color> scapeColors = ColorUtils.colorShades(
   Colors.indigo,
   colorsAmount: 7,
 );
