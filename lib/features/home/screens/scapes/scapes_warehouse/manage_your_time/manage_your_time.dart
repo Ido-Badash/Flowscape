@@ -32,11 +32,13 @@ class ManageYourTimeScape extends StatelessWidget with ScapeUtils {
       child: Stack(
         alignment: AlignmentDirectional.center,
         children: [
-          Image.network(
-            "https://images.unsplash.com/photo-1723572215980-2bc603c97001",
-            fit: BoxFit.cover,
-            width: double.infinity,
-            height: double.infinity,
+          ClassicFrame(
+            background: Image.asset(
+              "assets/images/scapes/manage_your_time/head_page.jpg",
+              fit: BoxFit.cover,
+              width: double.infinity,
+              height: double.infinity,
+            ),
           ),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
