@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flowscape/features/home/screens/scapes/scape_widgets/scapes_widgets.dart';
+import 'package:flowscape/features/home/screens/scapes/scape_lib.dart';
 import 'package:flowscape/features/home/screens/scapes/scape_utils.dart';
 
 class NameScape extends StatelessWidget with ScapeUtils {

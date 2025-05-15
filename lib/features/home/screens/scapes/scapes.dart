@@ -65,7 +65,7 @@ class _ScapesScreenState extends State<ScapesScreen> {
   }
 
   List<Widget> buildScapes() {
-    return [MeditationScape()];
+    return [TheTricepsScape()];
   }
 
   Widget buildScrollToSeeText() {

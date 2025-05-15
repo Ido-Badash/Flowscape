@@ -9,12 +9,16 @@ class ClassicFrame extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: background,
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: child,
+    return Stack(
+      children: [
+        Container(
+          decoration: BoxDecoration(
+            color: background,
+            borderRadius: BorderRadius.circular(12),
+          ),
+        ),
+        child ?? const SizedBox.shrink(),
+      ],
     );
   }
 }

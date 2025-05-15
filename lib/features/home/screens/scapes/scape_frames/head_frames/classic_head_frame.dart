@@ -7,6 +7,7 @@ class ClassicHeadFrame extends StatelessWidget with ScapeUtils {
   final String? creator;
   final String? date;
   final Widget child;
+  final bool titleUnderline;
 
   const ClassicHeadFrame({
     super.key,
@@ -14,6 +15,7 @@ class ClassicHeadFrame extends StatelessWidget with ScapeUtils {
     this.date,
     this.title,
     this.child = const SizedBox.shrink(),
+    this.titleUnderline = true,
   });
 
   @override
@@ -26,7 +28,16 @@ class ClassicHeadFrame extends StatelessWidget with ScapeUtils {
           top: 5,
           child: Text(
             title ?? "Untitled",
-            style: const TextStyle(color: Colors.white, fontSize: 26),
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 26,
+              decoration:
+                  titleUnderline
+                      ? TextDecoration.underline
+                      : TextDecoration.none,
+              decorationColor: Color.fromARGB(150, 255, 255, 255),
+              height: 1,
+            ),
           ),
         ),
         Positioned(

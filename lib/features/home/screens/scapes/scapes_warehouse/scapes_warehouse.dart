@@ -1,1 +1,1 @@
-export 'meditation.dart';
+export 'the_ticeps.dart';
