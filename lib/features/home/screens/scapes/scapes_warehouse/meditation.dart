@@ -3,13 +3,13 @@ import 'package:flowscape/features/home/screens/scapes/scape_widgets/scapes_widg
 import 'package:flowscape/features/home/screens/scapes/scape_utils.dart';
 import 'package:flowscape/core/helpers/color_utils.dart';
 
-List<Color> scapeColors = ColorUtils.colorShades(
-  Colors.indigo,
-  colorsAmount: 7,
-);
-
 class MeditationScape extends StatelessWidget with ScapeUtils {
   const MeditationScape({super.key});
+
+  List<Color> get scapeColors => ColorUtils.colorShades(
+    Colors.indigo,
+    colorsAmount: buildPagesFunctionList().length,
+  );
 
   @override
   Widget build(BuildContext context) {
