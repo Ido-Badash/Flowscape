@@ -23,12 +23,10 @@ class MeditationScape extends StatelessWidget with ScapeUtils {
       title: "Meditation",
       creator: "By FlowScape",
       date: "13/05/2025",
-      child: Container(
-        decoration: BoxDecoration(
-          color: Colors.indigo[800],
-          borderRadius: BorderRadius.circular(16),
-        ),
-      ),
+      child: ClassicFrame(
+        background: Colors.indigo[900],
+        child: Container(),
+      )
     );
   }
 
