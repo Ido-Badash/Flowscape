@@ -8,7 +8,7 @@ class MeditationScape extends StatelessWidget with ScapeUtils {
 
   List<Color> get scapeColors => ColorUtils.colorShades(
     Colors.indigo,
-    colorsAmount: buildPagesFunctionList().length,
+    colorsAmount: 9,
   );
 
   @override
