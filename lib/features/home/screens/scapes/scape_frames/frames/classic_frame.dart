@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 
 /// Frame for the child in ScapePage class
 class ClassicFrame extends StatelessWidget {
-  final Color? background;
+  final Color? color;
+  final Widget? background;
   final Widget? child;
 
-  const ClassicFrame({super.key, this.child, this.background});
+  const ClassicFrame({super.key, this.child, this.background, this.color});
 
   @override
   Widget build(BuildContext context) {
@@ -13,9 +14,10 @@ class ClassicFrame extends StatelessWidget {
       children: [
         Container(
           decoration: BoxDecoration(
-            color: background,
+            color: color,
             borderRadius: BorderRadius.circular(12),
           ),
+          child: background ?? const SizedBox.shrink(),
         ),
         child ?? const SizedBox.shrink(),
       ],

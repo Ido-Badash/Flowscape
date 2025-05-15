@@ -28,7 +28,7 @@ class ClassicHeadFrame extends StatelessWidget with ScapeUtils {
         Positioned(
           top: 5,
           child: Text(
-            title ?? "Untitled",
+            title ?? "",
             style: TextStyle(
               color: Colors.white,
               fontSize: 26,
@@ -45,7 +45,7 @@ class ClassicHeadFrame extends StatelessWidget with ScapeUtils {
           bottom: 0,
           left: 10,
           child: Text(
-            creator ?? "Unknown Creator",
+            creator ?? "",
             style: TextStyle(color: Colors.white, fontSize: 16, shadows: [TextUtils.textOutlineShadow()],),
           ),
         ),
@@ -53,7 +53,7 @@ class ClassicHeadFrame extends StatelessWidget with ScapeUtils {
           bottom: 0,
           right: 10,
           child: Text(
-            date ?? "Unknown Date",
+            date ?? "",
             style: TextStyle(color: Colors.white, fontSize: 16, shadows: [TextUtils.textOutlineShadow()],),
           ),
         ),

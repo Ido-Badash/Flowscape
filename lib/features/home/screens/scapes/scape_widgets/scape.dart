@@ -59,23 +59,18 @@ class _ScapeState extends State<Scape> {
       flex: 9,
       child: Container(
         color: scapeStyleBgColorLogic(),
-        child: Stack(
-          alignment: AlignmentDirectional.center,
-          children: [
-            PageView.builder(
-              physics: const PageScrollPhysics(parent: BouncingScrollPhysics()),
-              controller: _controller,
-              itemBuilder: _itemBuilder,
-              itemCount: updatedChildren.length,
-            ),
-          ],
+        child: PageView.builder(
+          physics: const PageScrollPhysics(parent: BouncingScrollPhysics()),
+          controller: _controller,
+          itemBuilder: _itemBuilder,
+          itemCount: updatedChildren.length,
         ),
       ),
     );
   }
 
   Widget? _itemBuilder(BuildContext context, int index) {
-    return updatedChildren[index];
+    return Container(child: updatedChildren[index]);
   }
 
   Widget buildDefaultHeadCard() {

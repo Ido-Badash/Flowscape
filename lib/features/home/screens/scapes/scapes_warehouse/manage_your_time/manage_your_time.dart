@@ -20,9 +20,51 @@ class ManageYourTimeScape extends StatelessWidget with ScapeUtils {
     return ClassicHeadFrame(
       creator: "Flowscape",
       date: "15/05/2025",
-      title: "Manage Your Time",
       child: ClassicFrame(
-        background: scapeColors[0],
+        color: Colors.amber,
+        child: buildMainBody(),
+      ),
+    );
+  }
+
+  Widget buildMainBody() {
+    return Center(
+      child: Stack(
+        alignment: AlignmentDirectional.center,
+        children: [
+          Image.network(
+            "https://images.unsplash.com/photo-1723572215980-2bc603c97001",
+            fit: BoxFit.cover,
+            width: double.infinity,
+            height: double.infinity,
+          ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [buildHowToMasterText(), buildTimeManagementText()],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget buildTimeManagementText() {
+    return Text(
+      "TIME MANAGEMENT",
+      style: TextStyle(
+        color: Colors.white,
+        fontWeight: FontWeight.bold,
+        shadows: [TextUtils.textOutlineShadow()],
+      ),
+    );
+  }
+
+  Widget buildHowToMasterText() {
+    return Text(
+      "how to master",
+      style: TextStyle(
+        color: Colors.white60,
+        fontFamily: "Times New Roman",
+        shadows: [TextUtils.textOutlineShadow()],
       ),
     );
   }
@@ -32,18 +74,18 @@ class ManageYourTimeScape extends StatelessWidget with ScapeUtils {
   }
 
   Widget buildPage1() {
-    return ClassicFrame(background: scapeColors[1], child: null);
+    return ClassicFrame(color: scapeColors[1], child: null);
   }
 
   Widget buildPage2() {
-    return ClassicFrame(background: scapeColors[2], child: null);
+    return ClassicFrame(color: scapeColors[2], child: null);
   }
 
   Widget buildPage3() {
-    return ClassicFrame(background: scapeColors[3], child: null);
+    return ClassicFrame(color: scapeColors[3], child: null);
   }
 
   Widget buildPage4() {
-    return ClassicFrame(background: scapeColors[4], child: null);
+    return ClassicFrame(color: scapeColors[4], child: null);
   }
 }
