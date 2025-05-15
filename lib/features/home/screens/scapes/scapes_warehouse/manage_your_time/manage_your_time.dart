@@ -20,31 +20,30 @@ class ManageYourTimeScape extends StatelessWidget with ScapeUtils {
     return ClassicHeadFrame(
       creator: "Flowscape",
       date: "15/05/2025",
-      child: ClassicFrame(
-        color: Colors.amber,
-        child: buildMainBody(),
-      ),
+      textColor: Colors.white.withAlpha(75),
+      child: buildHeadPageMainBody(),
     );
   }
 
-  Widget buildMainBody() {
+  Widget buildHeadPageMainBody() {
     return Center(
-      child: Stack(
-        alignment: AlignmentDirectional.center,
-        children: [
-          ClassicFrame(
-            background: Image.asset(
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(12.0),
+        child: Stack(
+          alignment: AlignmentDirectional.center,
+          children: [
+            Image.asset(
               "assets/images/scapes/manage_your_time/head_page.jpg",
               fit: BoxFit.cover,
               width: double.infinity,
               height: double.infinity,
             ),
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [buildHowToMasterText(), buildTimeManagementText()],
-          ),
-        ],
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [buildHowToMasterText(), buildTimeManagementText()],
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -54,6 +53,7 @@ class ManageYourTimeScape extends StatelessWidget with ScapeUtils {
       "TIME MANAGEMENT",
       style: TextStyle(
         color: Colors.white,
+        fontSize: 20,
         fontWeight: FontWeight.bold,
         shadows: [TextUtils.textOutlineShadow()],
       ),
@@ -65,6 +65,7 @@ class ManageYourTimeScape extends StatelessWidget with ScapeUtils {
       "how to master",
       style: TextStyle(
         color: Colors.white60,
+        fontSize: 16,
         fontFamily: "Times New Roman",
         shadows: [TextUtils.textOutlineShadow()],
       ),

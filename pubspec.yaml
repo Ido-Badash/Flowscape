@@ -46,4 +46,6 @@ flutter:
         - asset: assets/fonts/default.ttf
 
   assets:
-    - assets/images/
+    - assets/images/flowbgs_dark/
+    - assets/images/flowbgs_light/
+    - assets/images/scapes/manage_your_time/

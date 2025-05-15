@@ -13,7 +13,24 @@ class NameScape extends StatelessWidget with ScapeUtils {
   }
 
   Widget buildHeadPage() {
-    return ClassicHeadFrame();
+    return ClassicHeadFrame(
+      creator: "Flowscape",
+      date: "DATE", // TODO: Add date
+      textColor: Colors.white.withAlpha(75),
+      child: buildHeadPageMainBody(),
+    );
+  }
+
+  Widget buildHeadPageMainBody() {
+    return Center(
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(12.0),
+        child: Stack(alignment: AlignmentDirectional.center, children: [
+            
+          ],
+        ),
+      ),
+    );
   }
 
   List<Widget Function()> buildPagesFunctionList() {

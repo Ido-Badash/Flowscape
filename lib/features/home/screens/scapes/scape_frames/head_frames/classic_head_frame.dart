@@ -7,6 +7,7 @@ class ClassicHeadFrame extends StatelessWidget with ScapeUtils {
   final String? title;
   final String? creator;
   final String? date;
+  final Color? textColor;
   final Widget child;
   final bool titleUnderline;
 
@@ -15,6 +16,7 @@ class ClassicHeadFrame extends StatelessWidget with ScapeUtils {
     this.creator,
     this.date,
     this.title,
+    this.textColor,
     this.child = const SizedBox.shrink(),
     this.titleUnderline = true,
   });
@@ -30,7 +32,7 @@ class ClassicHeadFrame extends StatelessWidget with ScapeUtils {
           child: Text(
             title ?? "",
             style: TextStyle(
-              color: Colors.white,
+              color: textColor ?? Colors.white,
               fontSize: 26,
               shadows: [TextUtils.textOutlineShadow()],
               decoration:
@@ -46,7 +48,13 @@ class ClassicHeadFrame extends StatelessWidget with ScapeUtils {
           left: 10,
           child: Text(
             creator ?? "",
-            style: TextStyle(color: Colors.white, fontSize: 16, shadows: [TextUtils.textOutlineShadow()],),
+            style: TextStyle(
+              color: textColor ?? Colors.white,
+              fontSize: 16,
+              fontFamily: "NotoSans",
+              fontStyle: FontStyle.italic,
+              shadows: [TextUtils.textOutlineShadow()],
+            ),
           ),
         ),
         Positioned(
@@ -54,7 +62,12 @@ class ClassicHeadFrame extends StatelessWidget with ScapeUtils {
           right: 10,
           child: Text(
             date ?? "",
-            style: TextStyle(color: Colors.white, fontSize: 16, shadows: [TextUtils.textOutlineShadow()],),
+            style: TextStyle(
+              color: textColor ?? Colors.white,
+              fontSize: 16,
+              fontStyle: FontStyle.italic,
+              shadows: [TextUtils.textOutlineShadow()],
+            ),
           ),
         ),
       ],
