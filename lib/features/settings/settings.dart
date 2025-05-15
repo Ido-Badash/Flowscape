@@ -82,19 +82,8 @@ class _SettingsPageState extends State<SettingsPage> {
     return Flexible(
       flex: 4, // Scale double to int for finer control
       child: ListView(
-        children: [buildAccountExpansionTile(), buildAppearanceExpansionTile()],
+        children: [buildAppearanceExpansionTile()],
       ),
-    );
-  }
-
-  ExpansionTile buildAccountExpansionTile() {
-    return const ExpansionTile(
-      title: Text('Account', softWrap: false),
-      children: [
-        ListTile(title: Text('Edit')),
-        ListTile(title: Text('Info')),
-        ListTile(title: Text('Sign out')),
-      ],
     );
   }
 

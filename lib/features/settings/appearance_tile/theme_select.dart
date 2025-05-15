@@ -16,7 +16,10 @@ class _ThemeSelectScreenState extends State<ThemeSelectScreen> {
       body: Center(
         child: ElevatedButton(
           onPressed: () => Provider.of<ThemeProvider>(context, listen: false).toggleTheme(),
-          child: Text("Toggle Theme")),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text("Toggle Theme", style: TextStyle(fontSize: 20),),
+          )),
         ),
     );
   }
