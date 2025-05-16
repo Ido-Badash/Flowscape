@@ -47,7 +47,7 @@ ThemeData appDarkThemeData = ThemeData(
   iconTheme: const IconThemeData(color: FlowColors.textTertiaryDark),
 
   floatingActionButtonTheme: const FloatingActionButtonThemeData(
-    backgroundColor: FlowColors.surfaceDark,
+    backgroundColor: Color.fromARGB(25, 30, 41, 59)
   ),
 );
 

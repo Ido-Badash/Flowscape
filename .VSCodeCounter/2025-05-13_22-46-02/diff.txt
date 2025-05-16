@@ -1,0 +1,194 @@
+Date : 2025-05-13 22:46:02
+Directory : c:\Users\idoba\flowscape
+Total : 87 files,  3095 codes, 279 comments, 563 blanks, all 3937 lines
+
+Languages
++------------+------------+------------+------------+------------+------------+
+| language   | files      | code       | comment    | blank      | total      |
++------------+------------+------------+------------+------------+------------+
+| Dart       |         33 |      1,204 |         35 |        189 |      1,428 |
+| C++        |         16 |        540 |        131 |        189 |        860 |
+| XML        |         10 |        470 |         53 |         12 |        535 |
+| CMake      |          8 |        461 |          0 |         92 |        553 |
+| JSON       |          4 |        248 |          0 |          4 |        252 |
+| Markdown   |          4 |         61 |          0 |         35 |         96 |
+| Swift      |          6 |         53 |          7 |         21 |         81 |
+| YAML       |          3 |         31 |         38 |         14 |         83 |
+| HTML       |          1 |         19 |         15 |          5 |         39 |
+| Properties |          2 |          8 |          0 |          2 |         10 |
++------------+------------+------------+------------+------------+------------+
+
+Directories
++------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                       | files      | code       | comment    | blank      | total      |
++------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                          |         87 |      3,095 |        279 |        563 |      3,937 |
+| . (Files)                                                                                                  |          4 |         41 |         38 |         21 |        100 |
+| android                                                                                                    |          9 |         74 |         51 |         11 |        136 |
+| android (Files)                                                                                            |          1 |          3 |          0 |          1 |          4 |
+| android\app                                                                                                |          7 |         66 |         51 |          9 |        126 |
+| android\app\src                                                                                            |          7 |         66 |         51 |          9 |        126 |
+| android\app\src\debug                                                                                      |          1 |          3 |          4 |          1 |          8 |
+| android\app\src\main                                                                                       |          5 |         60 |         43 |          7 |        110 |
+| android\app\src\main (Files)                                                                               |          1 |         34 |         11 |          1 |         46 |
+| android\app\src\main\res                                                                                   |          4 |         26 |         32 |          6 |         64 |
+| android\app\src\main\res\drawable                                                                          |          1 |          4 |          7 |          2 |         13 |
+| android\app\src\main\res\drawable-v21                                                                      |          1 |          4 |          7 |          2 |         13 |
+| android\app\src\main\res\values                                                                            |          1 |          9 |          9 |          1 |         19 |
+| android\app\src\main\res\values-night                                                                      |          1 |          9 |          9 |          1 |         19 |
+| android\app\src\profile                                                                                    |          1 |          3 |          4 |          1 |          8 |
+| android\gradle                                                                                             |          1 |          5 |          0 |          1 |          6 |
+| android\gradle\wrapper                                                                                     |          1 |          5 |          0 |          1 |          6 |
+| ios                                                                                                        |          8 |        229 |          4 |         13 |        246 |
+| ios\Runner                                                                                                 |          7 |        222 |          2 |          9 |        233 |
+| ios\Runner (Files)                                                                                         |          2 |         13 |          0 |          3 |         16 |
+| ios\RunnerTests                                                                                            |          1 |          7 |          2 |          4 |         13 |
+| ios\Runner\Assets.xcassets                                                                                 |          3 |        148 |          0 |          4 |        152 |
+| ios\Runner\Assets.xcassets\AppIcon.appiconset                                                              |          1 |        122 |          0 |          1 |        123 |
+| ios\Runner\Assets.xcassets\LaunchImage.imageset                                                            |          2 |         26 |          0 |          3 |         29 |
+| ios\Runner\Base.lproj                                                                                      |          2 |         61 |          2 |          2 |         65 |
+| lib                                                                                                        |         34 |      1,238 |         25 |        208 |      1,471 |
+| lib (Files)                                                                                                |          1 |         56 |          1 |         12 |         69 |
+| lib\core                                                                                                   |          6 |        330 |          9 |         36 |        375 |
+| lib\core\data                                                                                              |          2 |        203 |          5 |         12 |        220 |
+| lib\core\screen_handle                                                                                     |          1 |          9 |          0 |          3 |         12 |
+| lib\core\styles                                                                                            |          3 |        118 |          4 |         21 |        143 |
+| lib\features                                                                                               |         23 |        785 |         15 |        129 |        929 |
+| lib\features\app                                                                                           |          1 |         66 |          2 |          8 |         76 |
+| lib\features\flow                                                                                          |          2 |         71 |          2 |         16 |         89 |
+| lib\features\flow (Files)                                                                                  |          1 |         25 |          1 |          6 |         32 |
+| lib\features\flow\screens                                                                                  |          1 |         46 |          1 |         10 |         57 |
+| lib\features\flow\screens\timer                                                                            |          1 |         46 |          1 |         10 |         57 |
+| lib\features\home                                                                                          |         15 |        468 |          9 |         78 |        555 |
+| lib\features\home (Files)                                                                                  |          1 |         54 |          1 |          8 |         63 |
+| lib\features\home\screens                                                                                  |         14 |        414 |          8 |         70 |        492 |
+| lib\features\home\screens\saved_scapes                                                                     |          1 |         15 |          0 |          3 |         18 |
+| lib\features\home\screens\scapes                                                                           |         13 |        399 |          8 |         67 |        474 |
+| lib\features\home\screens\scapes (Files)                                                                   |          1 |        124 |          2 |         19 |        145 |
+| lib\features\home\screens\scapes\scape_frames                                                              |          5 |         42 |          2 |         11 |         55 |
+| lib\features\home\screens\scapes\scape_frames (Files)                                                      |          1 |          2 |          0 |          1 |          3 |
+| lib\features\home\screens\scapes\scape_frames\frames                                                       |          2 |         10 |          1 |          5 |         16 |
+| lib\features\home\screens\scapes\scape_frames\head_frames                                                  |          2 |         30 |          1 |          5 |         36 |
+| lib\features\home\screens\scapes\scape_widgets                                                             |          5 |        193 |          4 |         32 |        229 |
+| lib\features\home\screens\scapes\scapes_warehouse                                                          |          2 |         40 |          0 |          5 |         45 |
+| lib\features\music                                                                                         |          1 |         21 |          0 |          3 |         24 |
+| lib\features\settings                                                                                      |          3 |        138 |          2 |         21 |        161 |
+| lib\features\settings (Files)                                                                              |          1 |        104 |          2 |         12 |        118 |
+| lib\features\settings\appearance_tile                                                                      |          2 |         34 |          0 |          9 |         43 |
+| lib\features\tasks                                                                                         |          1 |         21 |          0 |          3 |         24 |
+| lib\templates                                                                                              |          1 |         19 |          0 |          4 |         23 |
+| lib\testing                                                                                                |          1 |          0 |          0 |          1 |          1 |
+| lib\wiki                                                                                                   |          2 |         48 |          0 |         26 |         74 |
+| linux                                                                                                      |          9 |        325 |         37 |         92 |        454 |
+| linux (Files)                                                                                              |          1 |        104 |          0 |         25 |        129 |
+| linux\flutter                                                                                              |          4 |        105 |          9 |         27 |        141 |
+| linux\runner                                                                                               |          4 |        116 |         28 |         40 |        184 |
+| macos                                                                                                      |          6 |        445 |          5 |         17 |        467 |
+| macos\Flutter                                                                                              |          1 |          4 |          3 |          4 |         11 |
+| macos\Runner                                                                                               |          4 |        434 |          0 |          9 |        443 |
+| macos\Runner (Files)                                                                                       |          2 |         23 |          0 |          7 |         30 |
+| macos\RunnerTests                                                                                          |          1 |          7 |          2 |          4 |         13 |
+| macos\Runner\Assets.xcassets                                                                               |          1 |         68 |          0 |          1 |         69 |
+| macos\Runner\Assets.xcassets\AppIcon.appiconset                                                            |          1 |         68 |          0 |          1 |         69 |
+| macos\Runner\Base.lproj                                                                                    |          1 |        343 |          0 |          1 |        344 |
+| test                                                                                                       |          1 |         14 |         10 |          7 |         31 |
+| web                                                                                                        |          2 |         54 |         15 |          6 |         75 |
+| windows                                                                                                    |         14 |        675 |         94 |        188 |        957 |
+| windows (Files)                                                                                            |          1 |         89 |          0 |         20 |        109 |
+| windows\flutter                                                                                            |          4 |        124 |          9 |         29 |        162 |
+| windows\runner                                                                                             |          9 |        462 |         85 |        139 |        686 |
++------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| filename                                                                                                   | language   | code       | comment    | blank      | total      |
++------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| c:\Users\idoba\flowscape\README.md                                                                         | Markdown   |         10 |          0 |          7 |         17 |
+| c:\Users\idoba\flowscape\analysis_options.yaml                                                             | YAML       |          3 |         22 |          4 |         29 |
+| c:\Users\idoba\flowscape\android\app\src\debug\AndroidManifest.xml                                         | XML        |          3 |          4 |          1 |          8 |
+| c:\Users\idoba\flowscape\android\app\src\main\AndroidManifest.xml                                          | XML        |         34 |         11 |          1 |         46 |
+| c:\Users\idoba\flowscape\android\app\src\main\res\drawable-v21\launch_background.xml                       | XML        |          4 |          7 |          2 |         13 |
+| c:\Users\idoba\flowscape\android\app\src\main\res\drawable\launch_background.xml                           | XML        |          4 |          7 |          2 |         13 |
+| c:\Users\idoba\flowscape\android\app\src\main\res\values-night\styles.xml                                  | XML        |          9 |          9 |          1 |         19 |
+| c:\Users\idoba\flowscape\android\app\src\main\res\values\styles.xml                                        | XML        |          9 |          9 |          1 |         19 |
+| c:\Users\idoba\flowscape\android\app\src\profile\AndroidManifest.xml                                       | XML        |          3 |          4 |          1 |          8 |
+| c:\Users\idoba\flowscape\android\gradle.properties                                                         | Properties |          3 |          0 |          1 |          4 |
+| c:\Users\idoba\flowscape\android\gradle\wrapper\gradle-wrapper.properties                                  | Properties |          5 |          0 |          1 |          6 |
+| c:\Users\idoba\flowscape\devtools_options.yaml                                                             | YAML       |          3 |          0 |          1 |          4 |
+| c:\Users\idoba\flowscape\ios\RunnerTests\RunnerTests.swift                                                 | Swift      |          7 |          2 |          4 |         13 |
+| c:\Users\idoba\flowscape\ios\Runner\AppDelegate.swift                                                      | Swift      |         12 |          0 |          2 |         14 |
+| c:\Users\idoba\flowscape\ios\Runner\Assets.xcassets\AppIcon.appiconset\Contents.json                       | JSON       |        122 |          0 |          1 |        123 |
+| c:\Users\idoba\flowscape\ios\Runner\Assets.xcassets\LaunchImage.imageset\Contents.json                     | JSON       |         23 |          0 |          1 |         24 |
+| c:\Users\idoba\flowscape\ios\Runner\Assets.xcassets\LaunchImage.imageset\README.md                         | Markdown   |          3 |          0 |          2 |          5 |
+| c:\Users\idoba\flowscape\ios\Runner\Base.lproj\LaunchScreen.storyboard                                     | XML        |         36 |          1 |          1 |         38 |
+| c:\Users\idoba\flowscape\ios\Runner\Base.lproj\Main.storyboard                                             | XML        |         25 |          1 |          1 |         27 |
+| c:\Users\idoba\flowscape\ios\Runner\Runner-Bridging-Header.h                                               | C++        |          1 |          0 |          1 |          2 |
+| c:\Users\idoba\flowscape\lib\core\data\flowbg_images.dart                                                  | Dart       |         18 |          0 |          6 |         24 |
+| c:\Users\idoba\flowscape\lib\core\data\quotes.dart                                                         | Dart       |        185 |          5 |          6 |        196 |
+| c:\Users\idoba\flowscape\lib\core\screen_handle\screen_checks.dart                                         | Dart       |          9 |          0 |          3 |         12 |
+| c:\Users\idoba\flowscape\lib\core\styles\colors.dart                                                       | Dart       |         23 |          3 |          4 |         30 |
+| c:\Users\idoba\flowscape\lib\core\styles\texts_sizes.dart                                                  | Dart       |         12 |          0 |          1 |         13 |
+| c:\Users\idoba\flowscape\lib\core\styles\themes.dart                                                       | Dart       |         83 |          1 |         16 |        100 |
+| c:\Users\idoba\flowscape\lib\features\app\app.dart                                                         | Dart       |         66 |          2 |          8 |         76 |
+| c:\Users\idoba\flowscape\lib\features\flow\flow.dart                                                       | Dart       |         25 |          1 |          6 |         32 |
+| c:\Users\idoba\flowscape\lib\features\flow\screens\timer\timer.dart                                        | Dart       |         46 |          1 |         10 |         57 |
+| c:\Users\idoba\flowscape\lib\features\home\home.dart                                                       | Dart       |         54 |          1 |          8 |         63 |
+| c:\Users\idoba\flowscape\lib\features\home\screens\saved_scapes\saved_scapes.dart                          | Dart       |         15 |          0 |          3 |         18 |
+| c:\Users\idoba\flowscape\lib\features\home\screens\scapes\scape_frames\frames\classic_frame.dart           | Dart       |          9 |          1 |          4 |         14 |
+| c:\Users\idoba\flowscape\lib\features\home\screens\scapes\scape_frames\frames\frames.dart                  | Dart       |          1 |          0 |          1 |          2 |
+| c:\Users\idoba\flowscape\lib\features\home\screens\scapes\scape_frames\head_frames\classic_head_frame.dart | Dart       |         29 |          1 |          4 |         34 |
+| c:\Users\idoba\flowscape\lib\features\home\screens\scapes\scape_frames\head_frames\head_frames.dart        | Dart       |          1 |          0 |          1 |          2 |
+| c:\Users\idoba\flowscape\lib\features\home\screens\scapes\scape_frames\scape_frames.dart                   | Dart       |          2 |          0 |          1 |          3 |
+| c:\Users\idoba\flowscape\lib\features\home\screens\scapes\scape_widgets\scape.dart                         | Dart       |         98 |          3 |         14 |        115 |
+| c:\Users\idoba\flowscape\lib\features\home\screens\scapes\scape_widgets\scape_actions.dart                 | Dart       |         10 |          0 |          4 |         14 |
+| c:\Users\idoba\flowscape\lib\features\home\screens\scapes\scape_widgets\scape_pullup_bar.dart              | Dart       |         73 |          1 |         10 |         84 |
+| c:\Users\idoba\flowscape\lib\features\home\screens\scapes\scape_widgets\scape_style.dart                   | Dart       |          7 |          0 |          3 |         10 |
+| c:\Users\idoba\flowscape\lib\features\home\screens\scapes\scape_widgets\scapes.dart                        | Dart       |          5 |          0 |          1 |          6 |
+| c:\Users\idoba\flowscape\lib\features\home\screens\scapes\scapes.dart                                      | Dart       |        124 |          2 |         19 |        145 |
+| c:\Users\idoba\flowscape\lib\features\home\screens\scapes\scapes_warehouse\meditation.dart                 | Dart       |         39 |          0 |          4 |         43 |
+| c:\Users\idoba\flowscape\lib\features\home\screens\scapes\scapes_warehouse\scapes_warehouse.dart           | Dart       |          1 |          0 |          1 |          2 |
+| c:\Users\idoba\flowscape\lib\features\music\music.dart                                                     | Dart       |         21 |          0 |          3 |         24 |
+| c:\Users\idoba\flowscape\lib\features\settings\appearance_tile\theme_provider.dart                         | Dart       |         14 |          0 |          5 |         19 |
+| c:\Users\idoba\flowscape\lib\features\settings\appearance_tile\theme_select.dart                           | Dart       |         20 |          0 |          4 |         24 |
+| c:\Users\idoba\flowscape\lib\features\settings\settings.dart                                               | Dart       |        104 |          2 |         12 |        118 |
+| c:\Users\idoba\flowscape\lib\features\tasks\tasks.dart                                                     | Dart       |         21 |          0 |          3 |         24 |
+| c:\Users\idoba\flowscape\lib\main.dart                                                                     | Dart       |         56 |          1 |         12 |         69 |
+| c:\Users\idoba\flowscape\lib\templates\screen_temp.dart                                                    | Dart       |         19 |          0 |          4 |         23 |
+| c:\Users\idoba\flowscape\lib\testing\scarch.dart                                                           | Dart       |          0 |          0 |          1 |          1 |
+| c:\Users\idoba\flowscape\lib\wiki\FEATURES.md                                                              | Markdown   |         27 |          0 |         18 |         45 |
+| c:\Users\idoba\flowscape\lib\wiki\PROBLEMS.md                                                              | Markdown   |         21 |          0 |          8 |         29 |
+| c:\Users\idoba\flowscape\linux\CMakeLists.txt                                                              | CMake      |        104 |          0 |         25 |        129 |
+| c:\Users\idoba\flowscape\linux\flutter\CMakeLists.txt                                                      | CMake      |         79 |          0 |         10 |         89 |
+| c:\Users\idoba\flowscape\linux\flutter\generated_plugin_registrant.cc                                      | C++        |          3 |          4 |          5 |         12 |
+| c:\Users\idoba\flowscape\linux\flutter\generated_plugin_registrant.h                                       | C++        |          5 |          5 |          6 |         16 |
+| c:\Users\idoba\flowscape\linux\flutter\generated_plugins.cmake                                             | CMake      |         18 |          0 |          6 |         24 |
+| c:\Users\idoba\flowscape\linux\runner\CMakeLists.txt                                                       | CMake      |         21 |          0 |          6 |         27 |
+| c:\Users\idoba\flowscape\linux\runner\main.cc                                                              | C++        |          5 |          0 |          2 |          7 |
+| c:\Users\idoba\flowscape\linux\runner\my_application.cc                                                    | C++        |         83 |         21 |         27 |        131 |
+| c:\Users\idoba\flowscape\linux\runner\my_application.h                                                     | C++        |          7 |          7 |          5 |         19 |
+| c:\Users\idoba\flowscape\macos\Flutter\GeneratedPluginRegistrant.swift                                     | Swift      |          4 |          3 |          4 |         11 |
+| c:\Users\idoba\flowscape\macos\RunnerTests\RunnerTests.swift                                               | Swift      |          7 |          2 |          4 |         13 |
+| c:\Users\idoba\flowscape\macos\Runner\AppDelegate.swift                                                    | Swift      |         11 |          0 |          3 |         14 |
+| c:\Users\idoba\flowscape\macos\Runner\Assets.xcassets\AppIcon.appiconset\Contents.json                     | JSON       |         68 |          0 |          1 |         69 |
+| c:\Users\idoba\flowscape\macos\Runner\Base.lproj\MainMenu.xib                                              | XML        |        343 |          0 |          1 |        344 |
+| c:\Users\idoba\flowscape\macos\Runner\MainFlutterWindow.swift                                              | Swift      |         12 |          0 |          4 |         16 |
+| c:\Users\idoba\flowscape\pubspec.yaml                                                                      | YAML       |         25 |         16 |          9 |         50 |
+| c:\Users\idoba\flowscape\test\widget_test.dart                                                             | Dart       |         14 |         10 |          7 |         31 |
+| c:\Users\idoba\flowscape\web\index.html                                                                    | HTML       |         19 |         15 |          5 |         39 |
+| c:\Users\idoba\flowscape\web\manifest.json                                                                 | JSON       |         35 |          0 |          1 |         36 |
+| c:\Users\idoba\flowscape\windows\CMakeLists.txt                                                            | CMake      |         89 |          0 |         20 |        109 |
+| c:\Users\idoba\flowscape\windows\flutter\CMakeLists.txt                                                    | CMake      |         98 |          0 |         12 |        110 |
+| c:\Users\idoba\flowscape\windows\flutter\generated_plugin_registrant.cc                                    | C++        |          3 |          4 |          5 |         12 |
+| c:\Users\idoba\flowscape\windows\flutter\generated_plugin_registrant.h                                     | C++        |          5 |          5 |          6 |         16 |
+| c:\Users\idoba\flowscape\windows\flutter\generated_plugins.cmake                                           | CMake      |         18 |          0 |          6 |         24 |
+| c:\Users\idoba\flowscape\windows\runner\CMakeLists.txt                                                     | CMake      |         34 |          0 |          7 |         41 |
+| c:\Users\idoba\flowscape\windows\runner\flutter_window.cpp                                                 | C++        |         49 |          7 |         16 |         72 |
+| c:\Users\idoba\flowscape\windows\runner\flutter_window.h                                                   | C++        |         20 |          5 |          9 |         34 |
+| c:\Users\idoba\flowscape\windows\runner\main.cpp                                                           | C++        |         30 |          4 |         10 |         44 |
+| c:\Users\idoba\flowscape\windows\runner\resource.h                                                         | C++        |          9 |          6 |          2 |         17 |
+| c:\Users\idoba\flowscape\windows\runner\utils.cpp                                                          | C++        |         54 |          2 |         10 |         66 |
+| c:\Users\idoba\flowscape\windows\runner\utils.h                                                            | C++        |          8 |          6 |          6 |         20 |
+| c:\Users\idoba\flowscape\windows\runner\win32_window.cpp                                                   | C++        |        210 |         24 |         55 |        289 |
+| c:\Users\idoba\flowscape\windows\runner\win32_window.h                                                     | C++        |         48 |         31 |         24 |        103 |
+| Total                                                                                                      |            |      3,095 |        279 |        563 |      3,937 |
++------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+

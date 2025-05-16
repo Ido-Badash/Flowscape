@@ -7,9 +7,6 @@ import 'package:flowscape/features/home/home.dart';
 import 'package:flowscape/features/tasks/tasks.dart';
 import 'package:flowscape/features/music/music.dart';
 
-// utils
-import 'package:flowscape/core/utils/general_helpers.dart';
-
 // screen handlers
 import 'package:flowscape/core/screen_handle/screen_checks.dart';
 
@@ -22,17 +19,13 @@ class FlowScape extends StatefulWidget {
 
 class _FlowScapeState extends State<FlowScape> {
   int currentScreenIdx = 2;
-  Map<String, int> pages = { // the map is for visualing the index of each page
-    "Settings": 0,
-    "Flow": 1,
-    "Home": 2,
-    "Tasks": 3,
-    "Music": 4,
-  };
-
-  String getScreenKey() {
-    return findKeyByValue(pages, currentScreenIdx) ?? "Unknown screen";
-  }
+  final List<String> pages = [
+    "Settings",
+    "Flow",
+    "Home",
+    "Tasks",
+    "Music",
+  ];
 
   @override
   Widget build(BuildContext context) {
