@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'widgets/clock_box.dart';
 
 // data
 import 'package:flowscape/core/data/flowbg_images.dart';
@@ -38,6 +39,7 @@ class _TimerScreenState extends State<TimerScreen> {
     return Scaffold(
       body: Stack(
         children: [
+          ClockBox(),
           GestureDetector(
             onDoubleTap: () {
               setState(() {
