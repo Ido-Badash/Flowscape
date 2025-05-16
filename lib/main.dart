@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 
 import 'features/app/app.dart';
 import 'core/styles/themes.dart';
-import 'package:flowscape/features/settings/appearance_tile/theme_provider.dart';
+import 'package:flowscape/features/settings/appearance/theme_provider.dart';
 
 void main() {
   runApp(ChangeNotifierProvider(create: (context) => ThemeProvider(), child: const MyApp(),));
