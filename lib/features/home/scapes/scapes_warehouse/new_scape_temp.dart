@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flowscape/features/home/screens/scapes/scape_lib.dart';
-import 'package:flowscape/features/home/screens/scapes/scape_utils.dart';
+import 'package:flowscape/features/home/scapes/scape_lib.dart';
+import 'package:flowscape/core/helpers/helpers.dart';
 
 class NameScape extends StatelessWidget with ScapeUtils {
   const NameScape({super.key});
@@ -22,7 +22,7 @@ class NameScape extends StatelessWidget with ScapeUtils {
   }
 
   Widget buildHeadPageMainBody() {
-    return buildAClipRRPage(
+    return GeneralWidgetUtils.buildAClipRRPage(
       child: Stack(alignment: AlignmentDirectional.center, children: [
           
         ],

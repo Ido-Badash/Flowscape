@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flowscape/features/home/screens/scapes/scape_lib.dart';
+import 'package:flowscape/features/home/scapes/scape_lib.dart';
+import 'package:flowscape/core/helpers/helpers.dart';
 
 class AssetFrame extends ClassicFrame with ScapeUtils {
   final List<Widget> children;
@@ -16,7 +17,7 @@ class AssetFrame extends ClassicFrame with ScapeUtils {
 
   @override
   Widget build(BuildContext context) {
-    return buildAClipRRPage(
+    return GeneralWidgetUtils.buildAClipRRPage(
       child: Stack(
         alignment: stackAlignment,
         children: [

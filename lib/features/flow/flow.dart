@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 // screens
-import 'screens/timer/timer.dart';
+import 'timer/timer.dart';
 
 class FlowPage extends StatefulWidget {
   const FlowPage({super.key});
