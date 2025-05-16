@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flowscape/features/home/screens/scapes/scape_lib.dart';
-import 'package:flowscape/features/home/screens/scapes/scape_utils.dart';
 import 'package:flowscape/core/helpers/helpers.dart';
 
 class ManageYourTimeScape extends StatelessWidget with ScapeUtils {
@@ -23,23 +22,15 @@ class ManageYourTimeScape extends StatelessWidget with ScapeUtils {
   }
 
   Widget buildHeadPageMainBody() {
-    return buildAClipRRPage(
-      child: Stack(
-        alignment: AlignmentDirectional.center,
-        children: [
-          Image.asset(
-            "assets/images/scapes/manage_your_time/head_page.jpg",
-            fit: BoxFit.cover,
-            width: double.infinity,
-            height: double.infinity,
-            gaplessPlayback: true,
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [buildHowToMasterText(), buildTimeManagementText()],
-          ),
-        ],
-      ),
+    return AssetFrame(
+      stackAlignment: AlignmentDirectional.center,
+      bgImage: "assets/images/scapes/manage_your_time/head_page.jpg",
+      children: [
+        Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [buildHowToMasterText(), buildTimeManagementText()],
+        ),
+      ],
     );
   }
 
@@ -50,7 +41,7 @@ class ManageYourTimeScape extends StatelessWidget with ScapeUtils {
         color: Colors.white,
         fontSize: 20,
         fontWeight: FontWeight.bold,
-        shadows: [TextUtils.textOutlineShadow()],
+        shadows: TextUtils.textStroke(),
       ),
     );
   }
@@ -72,42 +63,40 @@ class ManageYourTimeScape extends StatelessWidget with ScapeUtils {
   }
 
   Widget buildPage1() {
-    return buildAClipRRPage(
-      child: Stack(
-        alignment: AlignmentDirectional.topCenter,
-        children: [
-          Container(color: Colors.white70),
-          Positioned(
-            top: 30,
-            child: Text(
-              "Plan Ahead",
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                shadows: [TextUtils.textOutlineShadow()],
-                decoration: TextDecoration.underline,
-                decorationColor: Color.fromARGB(255, 0, 0, 0),
-              ),
+    return AssetFrame(
+      stackAlignment: AlignmentDirectional.topCenter,
+      bgImage: "assets/images/scapes/manage_your_time/page_1.jpg",
+      children: [
+        Positioned(
+          top: 30,
+          child: Text(
+            "Plan Ahead",
+            style: TextStyle(
+              color: Colors.yellow[700],
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              shadows: [TextUtils.textOutlineShadow()],
+              decoration: TextDecoration.underline,
+              decorationColor: Color.fromARGB(255, 251, 192, 45),
             ),
           ),
-          Positioned(
-            top: 60,
-            right: 0,
-            left: 0,
-            child: Text(
-              "Set weekly goals and break them into daily tasks.\n"
-              "Helps you stay on track and avoid last-minute stress.",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 16,
-                shadows: [TextUtils.textOutlineShadow()],
-              ),
+        ),
+        Positioned(
+          top: 60,
+          right: 0,
+          left: 0,
+          child: Text(
+            "Set weekly goals and break them into daily tasks.\n"
+            "It will helps you stay on track and avoid last-minute stress.",
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 18,
+              shadows: TextUtils.textStroke(),
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 
@@ -126,4 +115,26 @@ class ManageYourTimeScape extends StatelessWidget with ScapeUtils {
   Widget buildPage5() {
     return buildAClipRRPage(child: null);
   }
+
+  /*
+  Prioritise
+
+  Focus on tougher subjects when you're most productive. Get the hard work done while your mind is fresh!
+
+
+  Take Breaks
+
+  Use the Pomodoro technique: 25 min work, 5 min break. Boosts focus and prevents burnout.
+
+
+  Stay Organised
+
+  Keep your notes and assignments neat and in order. A tidy space leads to a clear mind.
+
+  
+  Eliminate Distractions
+
+  Turn off notifications and stay focused. Increase productivity by minimizing interruptions.
+
+  */
 }

@@ -49,7 +49,7 @@ class ClassicHeadFrame extends StatelessWidget with ScapeUtils {
           child: Text(
             creator ?? "",
             style: TextStyle(
-              color: textColor ?? Colors.white,
+              color: textColor ?? Color.fromARGB(150, 255, 255, 255),
               fontSize: 16,
               fontFamily: "NotoSans",
               fontStyle: FontStyle.italic,
@@ -63,7 +63,7 @@ class ClassicHeadFrame extends StatelessWidget with ScapeUtils {
           child: Text(
             date ?? "",
             style: TextStyle(
-              color: textColor ?? Colors.white,
+              color: textColor ?? Color.fromARGB(150, 255, 255, 255),
               fontSize: 16,
               fontStyle: FontStyle.italic,
               shadows: [TextUtils.textOutlineShadow()],
