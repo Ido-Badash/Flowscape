@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
+import 'tasks_screen/tasks_screen.dart';
 
-class TasksPage extends StatelessWidget {
+class TasksPage extends StatefulWidget {
   const TasksPage({super.key});
+
+  @override
+  State<TasksPage> createState() => _TasksPageState();
+}
+
+class _TasksPageState extends State<TasksPage> {
+  Widget? currentBody = TasksScreen();
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +24,7 @@ class TasksPage extends StatelessWidget {
         toolbarHeight: 45.0,
       ),
       body: Center(
-        child: Text("Tasks"),
+        child: currentBody,
       ),
     );
   }

@@ -1,0 +1,21 @@
+{
+    "custom": {
+        "completed": [],
+        "missed": [],
+        "onGoing": []
+    },
+    "daily": {
+        "completed": [
+            "#d-512"
+        ],
+        "missed": [],
+        "onGoing": [
+            "#d-512"
+        ]
+    },
+    "weekly": {
+        "completed": [],
+        "missed": [],
+        "onGoing": []
+    }
+}

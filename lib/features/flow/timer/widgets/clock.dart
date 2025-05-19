@@ -11,7 +11,7 @@ class _ClockState extends State<Clock> with TickerProviderStateMixin {
   late AnimationController _controller;
 
   String get countText {
-    Duration count = _controller.duration! * _controller.value;
+    // Duration count = _controller.duration! * _controller.value;
     return '';
   }
 
