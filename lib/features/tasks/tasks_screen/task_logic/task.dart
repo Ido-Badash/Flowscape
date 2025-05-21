@@ -20,37 +20,70 @@ class Task {
     this.isMissed = false,
   });
 
+  // TODO: dupes when isCompleted or isMissed set to a diffrent value in the json file
+
   /// Saves the task to a local file. The file is located in the lib/core/data directory
   /// The file name is tasks.json. The key param is the key in the json
   /// the key param can be "daily" | "weekly" | "custom"
   void save(dynamic key) {
     writeToJSON(
       file: File("lib/core/data/tasks.json"),
-      func: (dynamic decodedJson) => _addToJSONLogic(key, decodedJson),
+      jsonChange: (dynamic decodedJson) => _addToJSONLogic(key, decodedJson),
     );
   }
 
-  void _addToJSONLogic(dynamic key, dynamic decodedJson) {
+  dynamic _addToJSONLogic(dynamic key, dynamic decodedJson) {
     if (decodedJson is Map<String, dynamic> && decodedJson.containsKey(key)) {
-      final taskList = decodedJson[key];
       final idStr = id.toString();
 
-      void taskListATLIE(String section) => _addToListIfExists(taskList[section], idStr);
+      // decodedJson = stores all the keys
+      // key = ["custom", "daily", "weekly"]
+      // section = ["onGoing", "completed", "missed"]
+      // value = the task itself
+
+      void saveToSection(String section) {
+        if (_taskNullAndDupeCheck(decodedJson, key, section, idStr)) {
+          decodedJson[key][section].add(idStr);
+        }
+      }
 
       if (isCompleted) {
-        taskListATLIE("completed");
+        saveToSection("completed");
       } else if (isMissed) {
-        taskListATLIE("missed");
+        saveToSection("missed");
       } else {
-        taskListATLIE("onGoing");
+        saveToSection("onGoing");
       }
     }
+    return decodedJson;
   }
 
-  void _addToListIfExists(List? list, dynamic value) {
-    if (list != null && !list.contains(value)) {
-      list.add(value);
+  bool _ifTaskExists(
+    Map<String, dynamic> decodedJson,
+    String key,
+    String section,
+    dynamic value,
+  ) {
+    // Check if the section exists and is a list
+    if (decodedJson[key][section] is List) {
+      return decodedJson[key][section].contains(value);
     }
+    return false;
+  }
+
+  bool _taskNullAndDupeCheck(
+    Map<String, dynamic> decodedJson,
+    String key,
+    String section,
+    dynamic value,
+  ) {
+    // Check if section exists and value is not already present
+    if (decodedJson[key] != null &&
+        decodedJson[key][section] != null &&
+        !decodedJson[key][section].contains(value)) {
+      return true;
+    }
+    return false;
   }
 
   String info() {

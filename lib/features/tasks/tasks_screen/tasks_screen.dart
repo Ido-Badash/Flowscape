@@ -7,8 +7,7 @@ class TasksScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Tasker tasker = Tasker();
-    // TODO: dupes when isCompleted or isMissed set to a diffrent value in the json file
-    tasker.add(Task("#d-512", isCompleted: true));
+    tasker.add(Task("#c-512", isCompleted: true));
     tasker.save();
     return Container();
   }
