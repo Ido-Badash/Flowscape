@@ -7,6 +7,8 @@ class Tasker {
   Tasker({this.name});
 
   List<Task> tasks = [];
+  
+  List<Task> get getTasks => tasks;
 
   void add(Task task) {
     tasks.add(task);

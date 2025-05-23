@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import './task_logic/task_logic.dart';
 import 'widgets/task_container.dart';
 import 'package:flowscape/core/helpers/text_utils.dart';
 
@@ -8,51 +7,59 @@ class TasksScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Tasker tasker = Tasker();
-    tasker.add(Task("#1", "d", isCompleted: false));
-    tasker.save();
-    return Padding(
-      padding: const EdgeInsets.all(24.0),
-      child: Column(
-        // This makes the children of the Column stretch to fill the available width.
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          Expanded(
-            child: TaskContainer(
-              title: buildTaskContainerTitle(context, data: "Daily"),
-            ),
-          ),
+    return Row(
+      children: [
+        _buildTaskColumn(context),
+        _buildSidePlaceholder(), // Placeholder for the left side of the screen
+      ],
+    );
+  }
 
-          const SizedBox(height: 24.0), // Separator
-
-          Expanded(
-            child: TaskContainer(
-              title: buildTaskContainerTitle(context, data: "Weekly"),
-            ),
-          ),
-
-          const SizedBox(height: 24.0), // Separator
-
-          Expanded(
-            child: TaskContainer(
-              title: buildTaskContainerTitle(context, data: "Custom"),
-            ),
-          ),
-        ],
+  Widget _buildTaskColumn(BuildContext context) {
+    return Flexible(
+      flex: 3,
+      child: Padding(
+        padding: const EdgeInsets.all(12.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            _buildTaskContainer(context, "Daily"),
+            const SizedBox(height: 12.0), // Separator
+            _buildTaskContainer(context, "Weekly"),
+            const SizedBox(height: 12.0), // Separator
+            _buildTaskContainer(context, "Custom"),
+          ],
+        ),
       ),
     );
   }
 
-  Text buildTaskContainerTitle(
+  Widget _buildTaskContainer(BuildContext context, String label) {
+    return Expanded(
+      child: TaskContainer(
+        title: buildTaskContainerTitle(context, data: label),
+        background: Theme.of(context).colorScheme.secondary,
+      ),
+    );
+  }
+
+  Widget _buildSidePlaceholder() {
+    return Flexible(flex: 1, child: Container());
+  }
+
+  Widget buildTaskContainerTitle(
     BuildContext context, {
     String data = "My tasks",
   }) {
-    return Text(
-      data,
-      style: TextStyle(
-        fontSize: 16,
-        color: Theme.of(context).colorScheme.onPrimary,
-        shadows: [TextUtils.textOutlineShadow()],
+    return Padding(
+      padding: const EdgeInsets.only(right: 4.0, left: 4.0),
+      child: Text(
+        data,
+        style: TextStyle(
+          fontSize: 16,
+          color: Theme.of(context).colorScheme.onSecondary,
+          shadows: [TextUtils.textOutlineShadow()],
+        ),
       ),
     );
   }

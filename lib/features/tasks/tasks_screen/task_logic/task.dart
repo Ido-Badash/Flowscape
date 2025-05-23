@@ -78,7 +78,7 @@ class Task {
     }
   }
 
-  String info() {
-    return 'Id: $id, Task: $name, Description: $description, Due Date: $dueDate, Completed: $isCompleted';
+  List info() {
+    return [name, description, dueDate, isCompleted, isMissed];
   }
 }
