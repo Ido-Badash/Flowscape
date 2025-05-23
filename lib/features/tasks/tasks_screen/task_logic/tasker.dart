@@ -29,15 +29,7 @@ class Tasker {
   /// The file name is tasks.json
   void save() {
     for (int i = 0; i < tasks.length; i++) {
-      Task task = tasks[i];
-      String id = task.id;
-      if (id.startsWith("#d-")) {
-        task.save("daily");
-      } else if (id.startsWith("#w-")) {
-        task.save("weekly");
-      } else {
-        task.save("custom");
-      }
+      tasks[i].save();
     }
   }
 }

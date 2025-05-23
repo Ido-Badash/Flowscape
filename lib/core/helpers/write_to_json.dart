@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 
 /// The jsonChange param takes a dynamic decodedJson
-void writeToJSON({required File file, required dynamic jsonChange(dynamic decodedJson)}) async {
+void writeToJSON({required File file, required dynamic Function(dynamic decodedJson) jsonChange}) async {
   try {
     final file = File("lib/core/data/tasks.json");
     final jsonString = await file.readAsString();

@@ -7,7 +7,12 @@ import 'core/styles/themes.dart';
 import 'package:flowscape/features/settings/appearance/theme_provider.dart';
 
 void main() {
-  runApp(ChangeNotifierProvider(create: (context) => ThemeProvider(), child: const MyApp(),));
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => ThemeProvider(),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatefulWidget {

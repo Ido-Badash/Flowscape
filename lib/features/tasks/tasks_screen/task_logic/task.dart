@@ -2,17 +2,19 @@ import 'dart:io';
 import '../../../../core/helpers/write_to_json.dart';
 
 class Task {
-  /// A unique id for each task, an id starts with a "#" and then with a letter and a "-"
-  /// and followed by a number
   final String id;
+  final String key;
   final String? name;
   final String? description;
   final String? dueDate;
   bool isCompleted;
   bool isMissed;
 
+  /// A unique id for each task, an id starts with a "#"
+  /// and followed by a number
   Task(
-    this.id, {
+    this.id,
+    this.key, {
     this.name = '',
     this.description = '',
     this.dueDate = '',
@@ -25,14 +27,14 @@ class Task {
   /// Saves the task to a local file. The file is located in the lib/core/data directory
   /// The file name is tasks.json. The key param is the key in the json
   /// the key param can be "daily" | "weekly" | "custom"
-  void save(dynamic key) {
+  void save() {
     writeToJSON(
       file: File("lib/core/data/tasks.json"),
-      jsonChange: (dynamic decodedJson) => _addToJSONLogic(key, decodedJson),
+      jsonChange: (dynamic decodedJson) => _addToJSONLogic(decodedJson),
     );
   }
 
-  dynamic _addToJSONLogic(dynamic key, dynamic decodedJson) {
+  dynamic _addToJSONLogic(dynamic decodedJson) {
     if (decodedJson is Map<String, dynamic> && decodedJson.containsKey(key)) {
       final idStr = id.toString();
 
@@ -42,9 +44,8 @@ class Task {
       // value = the task itself
 
       void saveToSection(String section) {
-        if (_taskNullAndDupeCheck(decodedJson, key, section, idStr)) {
-          decodedJson[key][section].add(idStr);
-        }
+        _removeValueInJson(decodedJson, idStr);
+        decodedJson[key][section].add(idStr);
       }
 
       if (isCompleted) {
@@ -58,32 +59,23 @@ class Task {
     return decodedJson;
   }
 
-  bool _ifTaskExists(
-    Map<String, dynamic> decodedJson,
-    String key,
-    String section,
-    dynamic value,
-  ) {
-    // Check if the section exists and is a list
-    if (decodedJson[key][section] is List) {
-      return decodedJson[key][section].contains(value);
+  void _removeValueInJson(Map<String, dynamic> decodedJson, dynamic value) {
+    // decodedJson must be Map<String, Map<String, List>> here
+    try {
+      decodedJson.forEach((outerKey, outerValue) { // for {"d", "w", "c"}
+        if (outerValue is Map<String, dynamic>) {
+          outerValue.forEach((innerKey, innerValue) { // for {"onGoing", "completed", "missed"}
+            if (innerValue is List) {
+              innerValue.remove(value); // removes the task from the list
+            }
+          });
+        }
+      });
+    } catch (e) {
+      if ((decodedJson is! Map<String, Map<String, List>>)) {
+        throw Exception('decodedJson is not a Map<String, Map<String, List>>');
+      }
     }
-    return false;
-  }
-
-  bool _taskNullAndDupeCheck(
-    Map<String, dynamic> decodedJson,
-    String key,
-    String section,
-    dynamic value,
-  ) {
-    // Check if section exists and value is not already present
-    if (decodedJson[key] != null &&
-        decodedJson[key][section] != null &&
-        !decodedJson[key][section].contains(value)) {
-      return true;
-    }
-    return false;
   }
 
   String info() {

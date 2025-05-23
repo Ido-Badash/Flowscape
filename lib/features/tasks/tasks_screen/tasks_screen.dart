@@ -7,7 +7,7 @@ class TasksScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Tasker tasker = Tasker();
-    tasker.add(Task("#c-512", isCompleted: true));
+    tasker.add(Task("#512", "d", isCompleted: false));
     tasker.save();
     return Container();
   }
