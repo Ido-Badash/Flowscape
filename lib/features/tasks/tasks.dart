@@ -23,9 +23,7 @@ class _TasksPageState extends State<TasksPage> {
         ),
         toolbarHeight: 45.0,
       ),
-      body: Center(
-        child: currentBody,
-      ),
+      body: currentBody,
     );
   }
 }
