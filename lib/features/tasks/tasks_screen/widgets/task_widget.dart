@@ -8,6 +8,8 @@ class TaskWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(width: 10, height: 10,);
+    return SizedBox(width: 10, height: 10,);
   }
+
+  // TODO: turn a task object into a widget
 }

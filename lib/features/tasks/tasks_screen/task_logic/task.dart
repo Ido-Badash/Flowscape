@@ -22,8 +22,6 @@ class Task {
     this.isMissed = false,
   });
 
-  // TODO: dupes when isCompleted or isMissed set to a diffrent value in the json file
-
   /// Saves the task to a local file. The file is located in the lib/core/data directory
   /// The file name is tasks.json. The key param is the key in the json
   /// the key param can be "daily" | "weekly" | "custom"
@@ -45,7 +43,7 @@ class Task {
 
       void saveToSection(String section) {
         _removeValueInJson(decodedJson, idStr);
-        decodedJson[key][section].add(idStr);
+        decodedJson[key][section].add("$idStr|${name!}|${description!}|${dueDate!}");
       }
 
       if (isCompleted) {

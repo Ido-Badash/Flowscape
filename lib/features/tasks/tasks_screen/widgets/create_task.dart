@@ -11,6 +11,7 @@ class CreateTask extends StatelessWidget {
     return TaskWidget(task: createTheTask());
   }
 
+  // TODO: Implement the task creation, where the can input all parameters
   Task createTheTask() {
     return Task(
       "#1",

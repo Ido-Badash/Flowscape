@@ -3,15 +3,18 @@ import 'package:flowscape/core/helpers/general_widget_utils.dart';
 import '../tasks_lib.dart';
 
 class TaskContainer extends StatefulWidget {
-  final String jsonKey = "d";
   final Widget title;
   final Color background;
+  final Map<String, List<Widget?>> tasks;
+  final String jsonKey;
 
   /// The [jsonKey] is used to identify the task in the database, it can be ["d", "w", "c"]
   const TaskContainer({
     super.key,
     this.title = const Text("My tasks", style: TextStyle(color: Colors.white)),
     this.background = Colors.grey,
+    this.tasks = const {},
+    this.jsonKey = "d",
   });
 
   @override
@@ -19,15 +22,14 @@ class TaskContainer extends StatefulWidget {
 }
 
 class _TaskContainerState extends State<TaskContainer> {
-  List<Widget> tasks = [];
-
   @override
   Widget build(BuildContext context) {
     return GeneralWidgetUtils.buildAClipRRPage(
       child: Container(
         color: widget.background,
         alignment: Alignment.topLeft,
-        child: ListView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [_buildTitle(), _buildTasks(), _buildNewTaskButton()],
         ),
       ),
@@ -35,7 +37,7 @@ class _TaskContainerState extends State<TaskContainer> {
   }
 
   Widget _buildTasks() {
-    return _defaultPad(Column(children: tasks));
+    return _defaultPad(Column(children: [Container()])); // TODO: make the tasks map into 3 parts
   }
 
   Widget _buildTitle() {
@@ -66,10 +68,10 @@ class _TaskContainerState extends State<TaskContainer> {
   void _createNewTask() {
     // adds a TaskWidget to the `tasks` list
     setState(() {
-      tasks.add(CreateTask(jsonKey: widget.jsonKey,));
+      // TODO: use the CreateTask widget to make a new on and put it into the tasks map
     });
     debugPrint("A new task was created");
-    debugPrint("Tasks list amount: ${tasks.length}");
+    debugPrint("Tasks list amount: ${widget.tasks.length}");
   }
 
   Widget _defaultPad(Widget child) {
