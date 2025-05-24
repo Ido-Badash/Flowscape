@@ -88,7 +88,7 @@ class ManageYourTimeScape extends StatelessWidget with ScapeUtils {
       children: TextUtils.buildTitleAndText(
         title: TextUtils.buildClassicTitle(
           "Prioritise",
-          color: Color.fromRGBO(188, 164, 140, 1.0),
+          color: const Color.fromRGBO(188, 164, 140, 1.0),
         ),
         text: TextUtils.buildClassicText(
           "Focus on tougher subjects when you're most productive. Get the hard work done while your mind is fresh!",
@@ -106,7 +106,7 @@ class ManageYourTimeScape extends StatelessWidget with ScapeUtils {
       children: TextUtils.buildTitleAndText(
         title: TextUtils.buildClassicTitle(
           "Take Breaks",
-          color: Color.fromRGBO(24, 20, 20, 1.0),
+          color: const Color.fromRGBO(24, 20, 20, 1.0),
         ),
         text: TextUtils.buildClassicText(
           "Use the Pomodoro technique: 25 min work, 5 min break. Boosts focus and prevents burnout.",
@@ -124,7 +124,7 @@ class ManageYourTimeScape extends StatelessWidget with ScapeUtils {
       children: TextUtils.buildTitleAndText(
         title: TextUtils.buildClassicTitle(
           "Stay Organised",
-          color: Color.fromRGBO(24, 20, 20, 1.0),
+          color: const Color.fromRGBO(24, 20, 20, 1.0),
         ),
         text: TextUtils.buildClassicText(
           "Keep your notes and assignments neat and in order. A tidy space leads to a clear mind.",
@@ -142,7 +142,7 @@ class ManageYourTimeScape extends StatelessWidget with ScapeUtils {
       children: TextUtils.buildTitleAndText(
         title: TextUtils.buildClassicTitle(
           "Eliminate Distractions",
-          color: Color.fromRGBO(132, 201, 182, 1),
+          color: const Color.fromRGBO(132, 201, 182, 1),
         ),
         text: TextUtils.buildClassicText(
           "Turn off notifications and stay focused. Increase productivity by minimizing interruptions.",

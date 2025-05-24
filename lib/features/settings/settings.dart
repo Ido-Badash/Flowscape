@@ -102,13 +102,13 @@ class _SettingsPageState extends State<SettingsPage> {
 
   Widget buildAppearanceExpansionTile() {
     return ExpansionTile(
-      title: Text('Appearance', softWrap: false),
+      title: const Text('Appearance', softWrap: false),
       children: [
         ListTile(
-          title: Text("Theme"),
+          title: const Text("Theme"),
           onTap: () {
             setState(() {
-              currentBody = ThemeSelectScreen();
+              currentBody = const ThemeSelectScreen();
             });
           },
         ),

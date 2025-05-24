@@ -23,7 +23,7 @@ class NameScape extends StatelessWidget with ScapeUtils {
 
   Widget buildHeadPageMainBody() {
     return GeneralWidgetUtils.buildAClipRRPage(
-      child: Stack(alignment: AlignmentDirectional.center, children: [
+      child: const Stack(alignment: AlignmentDirectional.center, children: [
           
         ],
       ),
@@ -35,6 +35,6 @@ class NameScape extends StatelessWidget with ScapeUtils {
   }
 
   Widget buildPage1() {
-    return ClassicFrame();
+    return const ClassicFrame();
   }
 }

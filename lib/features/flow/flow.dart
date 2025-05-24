@@ -11,7 +11,7 @@ class FlowPage extends StatefulWidget {
 }
 
 class _FlowPageState extends State<FlowPage> {
-  Widget? currentBody = TimerScreen();
+  Widget? currentBody = const TimerScreen();
 
   @override
   Widget build(BuildContext context) {

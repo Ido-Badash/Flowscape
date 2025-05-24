@@ -46,10 +46,10 @@ class TextUtils {
 
   static List<Shadow> textStroke() {
     return [
-      textOutlineShadow(offset: Offset(1, 0)),
-      textOutlineShadow(offset: Offset(-1, 0)),
-      textOutlineShadow(offset: Offset(0, 1)),
-      textOutlineShadow(offset: Offset(0, -1)),
+      textOutlineShadow(offset: const Offset(1, 0)),
+      textOutlineShadow(offset: const Offset(-1, 0)),
+      textOutlineShadow(offset: const Offset(0, 1)),
+      textOutlineShadow(offset: const Offset(0, -1)),
     ];
   }
 

@@ -40,7 +40,7 @@ class ScapePullUpBar extends StatelessWidget {
         currentChild,
         Column(
           mainAxisAlignment: MainAxisAlignment.start,
-          children: [blur ? buildRowBar() : SizedBox()],
+          children: [blur ? buildRowBar() : const SizedBox()],
         ),
       ],
     );
@@ -49,7 +49,7 @@ class ScapePullUpBar extends StatelessWidget {
   Widget buildRowBar() {
     return Container(
       decoration: BoxDecoration(
-        color: barColor ?? Color.fromARGB(100, 63, 81, 181),
+        color: barColor ?? const Color.fromARGB(100, 63, 81, 181),
         borderRadius: BorderRadius.circular(16), // makes the corners round
       ),
       child: Row(

@@ -39,7 +39,7 @@ class _TimerScreenState extends State<TimerScreen> {
     return Scaffold(
       body: Stack(
         children: [
-          ClockBox(),
+          const ClockBox(),
           GestureDetector(
             onDoubleTap: () {
               setState(() {

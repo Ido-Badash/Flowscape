@@ -11,7 +11,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  Widget? currentBody = ScapesScreen();
+  Widget? currentBody = const ScapesScreen();
 
   @override
   Widget build(BuildContext context) {
@@ -38,10 +38,10 @@ class _HomePageState extends State<HomePage> {
       onPressed: () {
         debugPrint("Navigating to scapes");
         setState(() {
-          currentBody = ScapesScreen();
+          currentBody = const ScapesScreen();
         });
       },
-      icon: Icon(Icons.chrome_reader_mode),
+      icon: const Icon(Icons.chrome_reader_mode),
     );
   }
 }

@@ -65,7 +65,7 @@ class _ScapesScreenState extends State<ScapesScreen> {
   }
 
   List<Widget> buildScapes() {
-    return [ManageYourTimeScape()];
+    return [const ManageYourTimeScape()];
   }
 
   Widget buildScrollToSeeText() {
@@ -104,11 +104,11 @@ class _ScapesScreenState extends State<ScapesScreen> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Spacer(flex: 4), // balances the flex below ↓
+        const Spacer(flex: 4), // balances the flex below ↓
         buildMainCenterIcon(),
         buildQuoteButton(),
         buildScrollToSeeText(),
-        Spacer(flex: 5), // pushes the content a bit higher
+        const Spacer(flex: 5), // pushes the content a bit higher
       ],
     );
   }

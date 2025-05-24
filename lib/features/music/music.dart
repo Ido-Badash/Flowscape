@@ -15,7 +15,7 @@ class MusicPage extends StatelessWidget {
         ),
         toolbarHeight: 45.0,
       ),
-      body: Center(
+      body: const Center(
         child: Text("Music"),
       ),
     );

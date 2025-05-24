@@ -6,6 +6,6 @@ class ClockBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(child: ClockController());
+    return const Center(child: ClockController());
   }
 }
