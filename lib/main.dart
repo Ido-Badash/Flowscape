@@ -1,22 +1,43 @@
+import 'package:flowscape/features/tasks/data/models/isar_task.dart';
+import 'package:flowscape/features/tasks/data/repo/isar_task_repo.dart';
+import 'package:flowscape/features/tasks/domain/repo/task_repo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:isar/isar.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 
 import 'features/app/app.dart';
 import 'core/styles/themes.dart';
 import 'package:flowscape/features/settings/appearance/theme_provider.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  //* --- Tasks ---
+  // get dir path for db storage
+  final dir = await getApplicationDocumentsDirectory();
+
+  // open Isar db
+  final isarDb = await Isar.open([TaskIsarSchema], directory: dir.path);
+
+  // init task repo with this Isar db
+  final isarTaskRepo = IsarTaskRepo(isarDb);
+
+  //* --- Run App ---
   runApp(
     ChangeNotifierProvider(
       create: (context) => ThemeProvider(),
-      child: const MyApp(),
+      child: MyApp(taskRepo: isarTaskRepo),
     ),
   );
 }
 
 class MyApp extends StatefulWidget {
-  const MyApp({super.key});
+  // Tasks isar db injection to the app
+  final TaskRepo taskRepo;
+
+  const MyApp({super.key, required this.taskRepo});
 
   @override
   State<MyApp> createState() => _MyAppState();
@@ -67,7 +88,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
       title: "FlowScape",
       theme: Provider.of<ThemeProvider>(context).themeData,
       themeMode: ThemeMode.system,
-      home: FlowScape(),
+      home: FlowScape(taskRepo: widget.taskRepo),
     );
   }
 }

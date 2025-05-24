@@ -1,3 +1,4 @@
+import 'package:flowscape/features/tasks/domain/repo/task_repo.dart';
 import 'package:flutter/material.dart';
 
 // screens
@@ -11,7 +12,9 @@ import 'package:flowscape/features/music/music.dart';
 import 'package:flowscape/core/screen_handle/screen_checks.dart';
 
 class FlowScape extends StatefulWidget {
-  const FlowScape({super.key});
+  final TaskRepo taskRepo;
+
+  const FlowScape({super.key, required this.taskRepo});
 
   @override
   State<FlowScape> createState() => _FlowScapeState();
@@ -19,13 +22,7 @@ class FlowScape extends StatefulWidget {
 
 class _FlowScapeState extends State<FlowScape> {
   int currentScreenIdx = 2;
-  final List<String> pages = [
-    "Settings",
-    "Flow",
-    "Home",
-    "Tasks",
-    "Music",
-  ];
+  final List<String> pages = ["Settings", "Flow", "Home", "Tasks", "Music"];
 
   @override
   Widget build(BuildContext context) {
@@ -59,17 +56,17 @@ class _FlowScapeState extends State<FlowScape> {
   Widget _buildScreen(int index) {
     switch (index) {
       case 0:
-        return SettingsPage();
+        return const SettingsPage();
       case 1:
-        return FlowPage();
+        return const FlowPage();
       case 2:
-        return HomePage();
+        return const HomePage();
       case 3:
-        return TasksPage();
+        return TasksPage(taskRepo: widget.taskRepo,);
       case 4:
-        return MusicPage();
+        return const MusicPage();
       default:
-        return HomePage();
+        return const HomePage();
     }
   }
 }
