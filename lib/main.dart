@@ -18,7 +18,7 @@ import 'features/app/app.dart';
 import 'core/styles/themes.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized(); // init widgets for db
 
   //* --- Tasks ---
   // get dir path for db storage
