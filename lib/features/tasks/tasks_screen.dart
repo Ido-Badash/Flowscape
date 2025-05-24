@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
 
+/*
+
+displays all the tasks
+
+*/
+
 class TasksScreen extends StatelessWidget {
   const TasksScreen({super.key});
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'tasks_screen/tasks_screen.dart';
+import 'tasks_screen.dart';
 
 class TasksPage extends StatefulWidget {
   const TasksPage({super.key});
