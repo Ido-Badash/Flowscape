@@ -10,9 +10,9 @@ import 'package:flowscape/features/tasks/domain/models/task.dart';
 import 'package:isar/isar.dart';
 
 // to generate isar task object, run: "dart run build_runner build"
-// part 'isar_task.g.dart';
+part 'isar_task.g.dart';
 
-@collection
+@Collection()
 class TaskIsar {
   Id id; // Uinique ID for the task
   late String text;

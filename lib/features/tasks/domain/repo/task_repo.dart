@@ -19,7 +19,7 @@ abstract class TaskRepo {
   Future<void> updateTask(Task task);
 
   /// Deletes a task from the list
-  Future<void> deleteTask(int taskId);
+  Future<void> deleteTask(Task task);
 }
 
 /*
