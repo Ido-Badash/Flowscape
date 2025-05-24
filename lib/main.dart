@@ -1,15 +1,21 @@
+// Tasks page stuff
 import 'package:flowscape/features/tasks/data/models/isar_task.dart';
 import 'package:flowscape/features/tasks/data/repo/isar_task_repo.dart';
 import 'package:flowscape/features/tasks/domain/repo/task_repo.dart';
+import 'package:flowscape/features/settings/appearance/theme_provider.dart';
+
+// flutter
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+// dependencies
 import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 
+// app and theme
 import 'features/app/app.dart';
 import 'core/styles/themes.dart';
-import 'package:flowscape/features/settings/appearance/theme_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -67,6 +73,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
         WidgetsBinding.instance.platformDispatcher.platformBrightness;
     final bool isDarkMode = brightness == Brightness.dark;
 
+    // the bar at the bottom of the phone
     SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
