@@ -13,12 +13,12 @@ import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 
-// app and theme
+// app and themeַ
 import 'features/app/app.dart';
 import 'core/styles/themes.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized(); // init widgets for db
+  WidgetsFlutterBinding.ensureInitialized(); // init glue for flutter engine and UI
 
   //* --- Tasks ---
   // get dir path for db storage
