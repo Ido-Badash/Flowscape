@@ -187,7 +187,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.9.1"
-<<<<<<< HEAD
   path_drawing:
     dependency: transitive
     description:
@@ -284,7 +283,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.5.1"
-=======
   provider:
     dependency: "direct main"
     description:
@@ -293,7 +291,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.1.5"
->>>>>>> master
   sky_engine:
     dependency: transitive
     description: flutter
