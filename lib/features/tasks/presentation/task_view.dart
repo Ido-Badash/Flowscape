@@ -21,10 +21,16 @@ class TaskView extends StatelessWidget {
     final TaskCubit taskCubit = context.read<TaskCubit>();
 
     return Scaffold(
+      // FLOATINGACTIONBUTTON
       floatingActionButton: FloatingActionButton(
         onPressed: () => _showAddTaskBox(context),
-        child: const Icon(Icons.add),
+        elevation: 0, // Removes the shadow
+        shape: const CircleBorder(),
+        backgroundColor: Theme.of(context).colorScheme.secondary,
+        child: const Icon(Icons.add, size: 24),
       ),
+
+      // BODY
       body: BlocBuilder<TaskCubit, List<Task>>(
         builder: (context, tasks) {
           return ListView.builder(
@@ -34,25 +40,39 @@ class TaskView extends StatelessWidget {
               final task = tasks[idx];
 
               // List tile UI
-              return ListTile(
-                // text
-                title: Text(task.text),
-
-                // checkbox
-                leading: Checkbox(
-                  value: task.isComplete,
-                  onChanged: (value) => taskCubit.toggleTask(task),
-                ),
-
-                // delete
-                trailing: IconButton(
-                  onPressed: () => taskCubit.deleteTask(task),
-                  icon: const Icon(CupertinoIcons.trash),
-                ),
-              );
+              return buildTasksListTile(context, task, taskCubit);
             },
           );
         },
+      ),
+    );
+  }
+
+  Widget buildTasksListTile(
+    BuildContext context,
+    Task task,
+    TaskCubit taskCubit,
+  ) {
+    return ListTile(
+      // text
+      title: Text(
+        task.text,
+        style: TextStyle(
+          color: Theme.of(context).colorScheme.primary,
+          fontSize: 16,
+        ),
+      ),
+
+      // checkbox
+      leading: Checkbox(
+        value: task.isComplete,
+        onChanged: (value) => taskCubit.toggleTask(task),
+      ),
+
+      // delete
+      trailing: IconButton(
+        onPressed: () => taskCubit.deleteTask(task),
+        icon: const Icon(CupertinoIcons.trash, size: 20),
       ),
     );
   }
@@ -61,17 +81,22 @@ class TaskView extends StatelessWidget {
   void _showAddTaskBox(BuildContext context) {
     final taskCubit = context.read<TaskCubit>();
     final textController = TextEditingController();
+    final actionButtons = buildActionsButtons(
+      context,
+      taskCubit: taskCubit,
+      textController: textController,
+    );
 
     showDialog(
       context: context,
       builder:
           (context) => AlertDialog(
-            content: TextField(controller: textController),
-            actions: buildActionsButtons(
-              context,
-              taskCubit: taskCubit,
-              textController: textController,
+            content: TextField(
+              controller: textController,
+              style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
             ),
+            actionsAlignment: MainAxisAlignment.center,
+            actions: actionButtons,
           ),
     );
   }
@@ -83,12 +108,12 @@ class TaskView extends StatelessWidget {
     TextEditingController? textController,
   }) {
     return [
-      buildCancelTaskButton(context),
       buildAddTaskButton(
         context,
         taskCubit: taskCubit,
         textController: textController,
       ),
+      buildCancelTaskButton(context),
     ];
   }
 
