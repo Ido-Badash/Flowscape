@@ -22,7 +22,7 @@ class TaskView extends StatelessWidget {
 
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: () => _showAddTaskBox,
+        onPressed: () => _showAddTaskBox(context),
         child: const Icon(Icons.add),
       ),
       body: BlocBuilder<TaskCubit, List<Task>>(
@@ -111,7 +111,7 @@ class TaskView extends StatelessWidget {
         taskCubit?.addTask(textController!.text);
         Navigator.of(context).pop();
       },
-      child: const Text("cancel"),
+      child: const Text("add"),
     );
   }
 }
