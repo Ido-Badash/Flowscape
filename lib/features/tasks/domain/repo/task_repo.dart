@@ -6,7 +6,7 @@ here is the task repo the defines what the app can do with the task object
 
 */
 
-import 'package:flowscape/features/tasks/domain/models/task.dart';
+import 'package:flowscape/features/tasks/domain/models/task_model.dart';
 
 abstract class TaskRepo {
   /// Gets a list of all the tasks

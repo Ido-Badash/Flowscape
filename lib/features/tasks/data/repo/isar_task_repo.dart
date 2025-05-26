@@ -6,8 +6,8 @@ Handles data storage from task repo
 
 */
 
-import 'package:flowscape/features/tasks/data/models/isar_task.dart';
-import 'package:flowscape/features/tasks/domain/models/task.dart';
+import 'package:flowscape/features/tasks/data/models/isar_task_model.dart';
+import 'package:flowscape/features/tasks/domain/models/task_model.dart';
 import 'package:flowscape/features/tasks/domain/repo/task_repo.dart';
 import 'package:isar/isar.dart';
 

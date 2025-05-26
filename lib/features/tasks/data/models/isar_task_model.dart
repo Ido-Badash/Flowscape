@@ -6,7 +6,7 @@ this is the task model that is used to store the task object in the db
 Converts a task model to an isar task model
 */
 
-import 'package:flowscape/features/tasks/domain/models/task.dart';
+import 'package:flowscape/features/tasks/domain/models/task_model.dart';
 import 'package:isar/isar.dart';
 
 // to generate isar task object, run: "dart run build_runner build"

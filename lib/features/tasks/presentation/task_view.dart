@@ -7,7 +7,7 @@ the UI of the tasks screen, displays all the tasks in the repo
 
 */
 
-import 'package:flowscape/features/tasks/domain/models/task.dart';
+import 'package:flowscape/features/tasks/domain/models/task_model.dart';
 import 'package:flowscape/features/tasks/presentation/task_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
