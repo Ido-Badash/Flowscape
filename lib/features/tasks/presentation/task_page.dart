@@ -14,14 +14,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'task_view.dart';
 
 class TaskPage extends StatelessWidget {
-  final TaskRepo taskRepo;
-
-  const TaskPage({super.key, required this.taskRepo});
+  const TaskPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => TaskCubit(taskRepo),
+      create: (context) => TaskCubit(RepositoryProvider.of<TaskRepo>(context)),
       child: const TaskView());
   }
 }

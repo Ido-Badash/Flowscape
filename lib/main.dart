@@ -1,47 +1,57 @@
-// Tasks page stuff
-import 'package:flowscape/features/tasks/tasks_lib.dart';
-import 'package:flowscape/features/settings/appearance/theme_provider.dart';
+// Tasks & Hive
+import 'package:flowscape/features/tasks/data/models/tasks_models_lib.dart';
+import 'package:flowscape/features/tasks/data/repo/hive_task_repo.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'core/data/hive_boxes_names.dart';
+
+// BLoC
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 // flutter
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 // dependencies
-import 'package:isar/isar.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:path_provider/path_provider.dart';
 
 // app and theme
 import 'features/app/app.dart';
 import 'core/styles/themes.dart';
+import 'features/settings/appearance/theme_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized(); // init glue for flutter engine and UI
 
+  // where all the user-generated data goes
+  final appDocDir = await getApplicationDocumentsDirectory();
+
   //* --- Tasks ---
-  // get dir path for db storage
-  final dir = await getApplicationDocumentsDirectory();
+  // To intialise the hive database
+  await Hive.initFlutter(appDocDir.path);
 
-  // open Isar db
-  final isarDb = await Isar.open([TaskIsarSchema], directory: dir.path);
+  // Register the adapter in the [hive_task_model.g.dart]
+  Hive.registerAdapter(TaskHiveAdapter());
 
-  // init task repo with this Isar db
-  final isarTaskRepo = IsarTaskRepo(isarDb);
+  // open Hive db
+  await Hive.openBox<TaskHive>(HiveBoxesNames.taskHive);
 
   //* --- Run App ---
   runApp(
-    ChangeNotifierProvider(
-      create: (context) => ThemeProvider(),
-      child: MyApp(taskRepo: isarTaskRepo),
+    RepositoryProvider(
+      create: (context) => HiveTaskRepo(),
+      child: ChangeNotifierProvider(
+        create: (context) => ThemeProvider(),
+        child: const MyApp(),
+      ),
     ),
   );
 }
 
 class MyApp extends StatefulWidget {
   // Tasks isar db injection to the app
-  final TaskRepo taskRepo;
 
-  const MyApp({super.key, required this.taskRepo});
+  const MyApp({super.key});
 
   @override
   State<MyApp> createState() => _MyAppState();
@@ -93,7 +103,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
       title: "FlowScape",
       theme: Provider.of<ThemeProvider>(context).themeData,
       themeMode: ThemeMode.system,
-      home: FlowScape(taskRepo: widget.taskRepo),
+      home: const FlowScape(),
     );
   }
 }

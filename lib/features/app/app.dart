@@ -1,4 +1,3 @@
-import 'package:flowscape/features/tasks/domain/repo/task_repo.dart';
 import 'package:flutter/material.dart';
 
 // screens
@@ -12,9 +11,7 @@ import 'package:flowscape/features/music/music.dart';
 import 'package:flowscape/core/screen_handle/screen_checks.dart';
 
 class FlowScape extends StatefulWidget {
-  final TaskRepo taskRepo;
-
-  const FlowScape({super.key, required this.taskRepo});
+  const FlowScape({super.key});
 
   @override
   State<FlowScape> createState() => _FlowScapeState();
@@ -62,7 +59,7 @@ class _FlowScapeState extends State<FlowScape> {
       case 2:
         return const HomePage();
       case 3:
-        return TasksPage(taskRepo: widget.taskRepo,);
+        return const TasksPage();
       case 4:
         return const MusicPage();
       default:

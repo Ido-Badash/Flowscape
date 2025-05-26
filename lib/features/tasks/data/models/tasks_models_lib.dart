@@ -1,0 +1,1 @@
+export 'hive_task_model.dart';

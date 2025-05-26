@@ -1,11 +1,8 @@
-import 'package:flowscape/features/tasks/domain/repo/task_repo.dart';
 import 'package:flutter/material.dart';
 import 'tasks_screen.dart';
 
 class TasksPage extends StatefulWidget {
-  final TaskRepo taskRepo;
-
-  const TasksPage({super.key, required this.taskRepo});
+  const TasksPage({super.key});
 
   @override
   State<TasksPage> createState() => _TasksPageState();
@@ -17,7 +14,7 @@ class _TasksPageState extends State<TasksPage> {
   @override
   void initState() {
     super.initState();
-    currentBody = TasksScreen(taskRepo: widget.taskRepo);
+    currentBody = const TasksScreen();
   }
 
   @override

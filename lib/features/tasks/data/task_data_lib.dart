@@ -1,2 +1,2 @@
-export 'models/isar_task_model.dart';
-export 'repo/isar_task_repo.dart';
+export 'models/tasks_models_lib.dart';
+export 'repo/tasks_repo_lib.dart';
