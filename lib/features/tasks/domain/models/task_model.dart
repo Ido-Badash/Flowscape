@@ -19,13 +19,13 @@ Methods:
 */
 
 class Task {
-  final int id;
+  final String id;
   final String text;
   final bool isComplete;
 
   Task({required this.id, required this.text, this.isComplete = false});
 
-  Task copyWith({int? id, String? text, bool? isComplete}) {
+  Task copyWith({String? id, String? text, bool? isComplete}) {
     return Task(
       id: id ?? this.id,
       text: text ?? this.text,

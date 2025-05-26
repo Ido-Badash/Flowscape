@@ -17,7 +17,7 @@ part 'hive_task_model.g.dart';
 @HiveType(typeId: HiveTypeIds.taskHive)
 class TaskHive extends HiveObject {
   @HiveField(0)
-  int id;
+  String id;
 
   @HiveField(1)
   late String text;

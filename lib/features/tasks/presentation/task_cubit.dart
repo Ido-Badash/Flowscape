@@ -30,13 +30,13 @@ class TaskCubit extends Cubit<List<Task>> {
   // add
   Future<void> addTask(String text) async {
     // create new task with uniqe ID
-    Task newTask = Task(id: DateTime.now().millisecondsSinceEpoch, text: text);
+    Task newTask = Task(id: DateTime.now().millisecondsSinceEpoch.toString(), text: text);
 
     // save new task to the repo
     await taskRepo.addTask(newTask);
 
     // reload the repo
-    loadTasks();
+    await loadTasks();
   }
 
   // delete
@@ -45,7 +45,7 @@ class TaskCubit extends Cubit<List<Task>> {
     await taskRepo.deleteTask(task);
 
     // reload the repo
-    loadTasks();
+    await loadTasks();
   }
 
   // toggle [isComplete] state
@@ -57,6 +57,6 @@ class TaskCubit extends Cubit<List<Task>> {
     await taskRepo.updateTask(updatedTask);
 
     // reload the repo
-    loadTasks();
+    await loadTasks();
   }
 }
