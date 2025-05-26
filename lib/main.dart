@@ -53,8 +53,6 @@ void main() async {
 }
 
 class MyApp extends StatefulWidget {
-  // Tasks isar db injection to the app
-
   const MyApp({super.key});
 
   @override

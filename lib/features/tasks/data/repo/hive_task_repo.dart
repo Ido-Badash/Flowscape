@@ -22,8 +22,11 @@ class HiveTaskRepo implements TaskRepo {
   /// get all tasks
   @override
   Future<List<Task>> getAllTasks() async {
-    // returns as a list of tasks and give to domian layer
-    return _db.values.map((taskHive) => taskHive.toDomain()).toList();
+    // Iterate over keys and get the value for each key
+    return _db.keys.map((key) {
+      final taskHive = _db.get(key)!;
+      return taskHive.toDomain(id: key);
+    }).toList(); // return as a list of Tasks
   }
 
   /// add a task
@@ -33,7 +36,7 @@ class HiveTaskRepo implements TaskRepo {
     TaskHive taskHive = TaskHive.fromDomain(task);
 
     // adds Hive obj to the db
-    await _db.put(taskHive.id, taskHive);
+    await _db.add(taskHive); // Lets Hive assign the key
   }
 
   /// update a task

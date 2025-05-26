@@ -17,7 +17,7 @@ class TaskHiveAdapter extends TypeAdapter<TaskHive> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return TaskHive(
-      id: fields[0] as String,
+      id: fields[0] as int,
       text: fields[1] as String,
       isComplete: fields[2] as bool,
     );

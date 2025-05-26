@@ -32,6 +32,7 @@ class TaskView extends StatelessWidget {
       body: BlocBuilder<TaskCubit, List<Task>>(
         builder: (blocBuilderContext, tasks) {
           final TaskCubit taskCubit = blocBuilderContext.read<TaskCubit>();
+          debugPrint('REBUILD: ${tasks.map((t) => '${t.id} ${t.text}').toList()}');
 
           return ListView.builder(
             itemCount: tasks.length,

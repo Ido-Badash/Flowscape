@@ -17,7 +17,7 @@ part 'hive_task_model.g.dart';
 @HiveType(typeId: HiveTypeIds.taskHive)
 class TaskHive extends HiveObject {
   @HiveField(0)
-  String id;
+  int id;
 
   @HiveField(1)
   late String text;
@@ -29,7 +29,7 @@ class TaskHive extends HiveObject {
   TaskHive({required this.id, this.text = "", this.isComplete = false});
 
   /// converts a Task object -> Hive task object
-  Task toDomain() {
+  Task toDomain({int id = -1}) {
     return Task(id: id, text: text, isComplete: isComplete);
   }
 
