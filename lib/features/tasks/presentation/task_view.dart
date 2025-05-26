@@ -18,8 +18,6 @@ class TaskView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TaskCubit taskCubit = context.read<TaskCubit>();
-
     return Scaffold(
       // FLOATINGACTIONBUTTON
       floatingActionButton: FloatingActionButton(
@@ -32,15 +30,17 @@ class TaskView extends StatelessWidget {
 
       // BODY
       body: BlocBuilder<TaskCubit, List<Task>>(
-        builder: (context, tasks) {
+        builder: (blocBuilderContext, tasks) {
+          final TaskCubit taskCubit = blocBuilderContext.read<TaskCubit>();
+
           return ListView.builder(
             itemCount: tasks.length,
-            itemBuilder: (context, idx) {
+            itemBuilder: (itemBuilderContext, idx) {
               // gets a task
               final task = tasks[idx];
 
               // List tile UI
-              return buildTasksListTile(context, task, taskCubit);
+              return buildTasksListTile(itemBuilderContext, task, taskCubit);
             },
           );
         },
@@ -49,7 +49,7 @@ class TaskView extends StatelessWidget {
   }
 
   Widget buildTasksListTile(
-    BuildContext context,
+    BuildContext itemBuilderContext,
     Task task,
     TaskCubit taskCubit,
   ) {
@@ -58,7 +58,7 @@ class TaskView extends StatelessWidget {
       title: Text(
         task.text,
         style: TextStyle(
-          color: Theme.of(context).colorScheme.primary,
+          color: Theme.of(itemBuilderContext).colorScheme.primary,
           fontSize: 16,
         ),
       ),
@@ -79,25 +79,25 @@ class TaskView extends StatelessWidget {
 
   // show dialog box for the user to make a new task
   void _showAddTaskBox(BuildContext context) {
-    final taskCubit = context.read<TaskCubit>();
-    final textController = TextEditingController();
-    final actionButtons = buildActionsButtons(
-      context,
-      taskCubit: taskCubit,
-      textController: textController,
-    );
-
     showDialog(
       context: context,
-      builder:
-          (context) => AlertDialog(
-            content: TextField(
-              controller: textController,
-              style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
-            ),
-            actionsAlignment: MainAxisAlignment.center,
-            actions: actionButtons,
+      builder: (context) {
+        final taskCubit = context.read<TaskCubit>();
+        final textController = TextEditingController();
+        final actionButtons = buildActionsButtons(
+          context,
+          taskCubit: taskCubit,
+          textController: textController,
+        );
+        return AlertDialog(
+          content: TextField(
+            controller: textController,
+            style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
           ),
+          actionsAlignment: MainAxisAlignment.center,
+          actions: actionButtons,
+        );
+      },
     );
   }
 

@@ -20,6 +20,7 @@ class TaskPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => TaskCubit(RepositoryProvider.of<TaskRepo>(context)),
-      child: const TaskView());
+      child: const TaskView(),
+    );
   }
 }

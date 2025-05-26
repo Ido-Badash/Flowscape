@@ -12,6 +12,6 @@ class TasksScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TaskPage();
+    return const TaskPage();
   }
 }

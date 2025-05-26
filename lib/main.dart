@@ -1,6 +1,7 @@
 // Tasks & Hive
 import 'package:flowscape/features/tasks/data/models/tasks_models_lib.dart';
 import 'package:flowscape/features/tasks/data/repo/hive_task_repo.dart';
+import 'package:flowscape/features/tasks/domain/repo/task_repo.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'core/data/hive_boxes_names.dart';
 
@@ -38,8 +39,8 @@ void main() async {
 
   //* --- Run App ---
   runApp(
-    RepositoryProvider(
-      create: (context) => HiveTaskRepo(),
+    RepositoryProvider<TaskRepo>(
+      create: (_) => HiveTaskRepo(),
       child: ChangeNotifierProvider(
         create: (context) => ThemeProvider(),
         child: const MyApp(),
