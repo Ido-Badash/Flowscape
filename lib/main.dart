@@ -1,7 +1,5 @@
 // Tasks page stuff
-import 'package:flowscape/features/tasks/data/models/isar_task.dart';
-import 'package:flowscape/features/tasks/data/repo/isar_task_repo.dart';
-import 'package:flowscape/features/tasks/domain/repo/task_repo.dart';
+import 'package:flowscape/features/tasks/tasks_lib.dart';
 import 'package:flowscape/features/settings/appearance/theme_provider.dart';
 
 // flutter
@@ -13,7 +11,7 @@ import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 
-// app and themeַ
+// app and theme
 import 'features/app/app.dart';
 import 'core/styles/themes.dart';
 

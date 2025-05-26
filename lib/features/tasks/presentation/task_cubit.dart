@@ -7,8 +7,7 @@ each cubit is a list of tasks
 
 */
 
-import 'package:flowscape/features/tasks/domain/models/task.dart';
-import 'package:flowscape/features/tasks/domain/repo/task_repo.dart';
+import 'package:flowscape/features/tasks/domain/task_domain_lib.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class TaskCubit extends Cubit<List<Task>> {
