@@ -26,8 +26,7 @@ class TaskHive extends HiveObject {
   late bool isComplete;
 
   /// If no `id` is provided, it defaults to the current timestamp in milliseconds.
-  TaskHive({int? id, this.text = "", this.isComplete = false})
-    : id = id ?? DateTime.now().millisecondsSinceEpoch;
+  TaskHive({required this.id, this.text = "", this.isComplete = false});
 
   /// converts a Task object -> Hive task object
   Task toDomain() {

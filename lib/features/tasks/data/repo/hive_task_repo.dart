@@ -33,7 +33,12 @@ class HiveTaskRepo implements TaskRepo {
     TaskHive taskHive = TaskHive.fromDomain(task);
 
     // adds Hive obj to the db
-    return _db.put(taskHive.id, taskHive);
+    // If id is not a valid int, use add() instead of put()
+    if (taskHive.id >= 0 && taskHive.id <= 0xFFFFFFFF) {
+      return _db.put(taskHive.id, taskHive);
+    } else {
+      await _db.add(taskHive); // Let Hive assign the key
+    }
   }
 
   /// update a task
