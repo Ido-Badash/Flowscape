@@ -2,11 +2,6 @@
 import 'package:flowscape/features/tasks/data/task_data_lib.dart';
 import 'package:flowscape/features/tasks/domain/repo/task_repo.dart';
 import 'package:flowscape/features/tasks/presentation/task_presentation_lib.dart';
-import 'package:hive_flutter/hive_flutter.dart';
-import 'core/data/hive_boxes_names.dart';
-
-// BLoC
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 // flutter
 import 'package:flutter/material.dart';
@@ -28,26 +23,12 @@ void main() async {
   final appDocDir = await getApplicationDocumentsDirectory();
 
   //* --- Tasks ---
-  // To intialise the hive database
-  await Hive.initFlutter(appDocDir.path);
-
-  // Register the adapter in the [hive_task_model.g.dart]
-  Hive.registerAdapter(TaskHiveAdapter());
-
-  // open Hive db
-  await Hive.openBox<TaskHive>(HiveBoxesNames.taskHive);
 
   //* --- Run App ---
   runApp(
-    RepositoryProvider<TaskRepo>(
-      create: (_) => HiveTaskRepo(),
-      child: BlocProvider(
-        create: (cubitContext) => TaskCubit(cubitContext.read<TaskRepo>()),
-        child: ChangeNotifierProvider(
-          create: (context) => ThemeProvider(),
-          child: const MyApp(),
-        ),
-      ),
+    ChangeNotifierProvider(
+      create: (context) => ThemeProvider(),
+      child: const MyApp(),
     ),
   );
 }

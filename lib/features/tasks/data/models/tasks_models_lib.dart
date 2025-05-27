@@ -1,1 +1,1 @@
-export 'hive_task_model.dart';
+export 'tasks_db_model.dart';
