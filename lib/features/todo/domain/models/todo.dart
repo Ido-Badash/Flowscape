@@ -1,12 +1,12 @@
 /*
 
 TO DO MODEL
-
+Pure dart code
 This is what a todo object is.
 
 --------------------------------------------------------------------------------
 
-It has these properties:
+properties:
 
 - id
 - text
@@ -32,10 +32,20 @@ class Todo {
   });
 
   Todo toggleCompletion() {
-    return Todo(
-      id: id,
-      text: text,
+    return copyWith(
       isCompleted: !isCompleted,
+    );
+  }
+
+  Todo copyWith({
+    int? id,
+    String? text,
+    bool? isCompleted,
+  }) {
+    return Todo(
+      id: id ?? this.id,
+      text: text ?? this.text,
+      isCompleted: isCompleted ?? this.isCompleted,
     );
   }
 }

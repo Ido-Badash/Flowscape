@@ -39,7 +39,7 @@ const TodoIsarSchema = CollectionSchema(
   getId: _todoIsarGetId,
   getLinks: _todoIsarGetLinks,
   attach: _todoIsarAttach,
-  version: '3.1.0+1',
+  version: '3.1.8',
 );
 
 int _todoIsarEstimateSize(

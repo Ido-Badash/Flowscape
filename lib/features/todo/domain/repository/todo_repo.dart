@@ -1,7 +1,7 @@
 /*
 
 TO DO REPOSITORY
-
+Pure dart code
 Here you define what the app can do.
 
 */

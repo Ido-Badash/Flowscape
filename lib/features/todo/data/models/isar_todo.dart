@@ -9,7 +9,7 @@ Converts todo model into isar todo model hat we can store in our isar db.
 import 'package:isar/isar.dart';
 import 'package:flowscape/features/todo/domain/models/todo.dart';
 
-// to generate isar todo object, run: dart run build_runner build
+// to generate isar todo object, run: "dart run build_runner build"
 part 'isar_todo.g.dart';
 
 @collection
