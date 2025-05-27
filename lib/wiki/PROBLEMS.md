@@ -1,3 +1,18 @@
+# Tasks adding dosent re-build problem
+
+## Problem
+When i make a new task and click on the add button
+it dosent re-built the BLoC, but when i delete it does
+ 
+## Ideas on How to Fix
+1. Find how the delete re-builds and try to mimic that to the add and update
+
+## Problem Workflow
+1. 
+
+
+
+
 # Settings Page Expanded Widgets Problem
 
 ## Problem

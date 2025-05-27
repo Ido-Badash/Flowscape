@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
 
 class FlowColors {
-  // Light Theme Colors
-  static const Color backgroundLight = Color(0xFFF8FAFC);
-  static const Color surfaceLight = Color(0xFFFFFFFF);
+  static const Color backgroundLight = Color(0xFFF1F5F9);
+  static const Color surfaceLight = Color(0xFFF8F9FB);
   static const Color textPrimaryLight = Color(0xFF0F172A);
   static const Color textSecondaryLight = Color(0xFF334155);
   static const Color textTertiaryLight = Color(0xFF64748B);
-  static const Color textDisabledLight = Color(0xFF94A3B8);
+  static const Color textDisabledLight = Color(0xFF8CA0B3);
   static const Color accentBlueLight = Color(0xFF0EA5E9);
-  static const Color tooltipLight = Color(0xFFE2E8F0);
-  static const Color primaryContainerLight = Color(0xFFF2F2F2);
+  static const Color tooltipLight = Color(0xFFD7DEE8);
+  static const Color primaryContainerLight = Color(0xFFE6E6E6);
 
-  // Dark Theme Colors
   static const Color backgroundDark = Color(0xFF192231);
   static const Color surfaceDark = Color(0xFF1E293B);
   static const Color textPrimaryDark = Color(0xFFF8FAFC);

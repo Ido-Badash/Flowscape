@@ -1,7 +1,27 @@
 import 'package:flutter/material.dart';
+<<<<<<< HEAD:lib/features/tasks/tasks.dart
 
 class TasksPage extends StatelessWidget {
   const TasksPage({super.key});
+=======
+import 'todo_screen.dart';
+
+class TasksPage extends StatefulWidget {
+  const TasksPage({super.key});
+
+  @override
+  State<TasksPage> createState() => _TasksPageState();
+}
+
+class _TasksPageState extends State<TasksPage> {
+  Widget? currentBody;
+
+  @override
+  void initState() {
+    super.initState();
+    currentBody = const TasksScreen();
+  }
+>>>>>>> tasks:lib/features/todo/todo.dart
 
   @override
   Widget build(BuildContext context) {

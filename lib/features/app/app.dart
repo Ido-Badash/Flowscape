@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flowscape/features/settings/settings.dart';
 import 'package:flowscape/features/flow/flow.dart';
 import 'package:flowscape/features/home/home.dart';
-import 'package:flowscape/features/tasks/tasks.dart';
+import 'package:flowscape/features/todo/todo.dart';
 import 'package:flowscape/features/music/music.dart';
 
 // screen handlers
@@ -19,12 +19,12 @@ class FlowScape extends StatefulWidget {
 
 class _FlowScapeState extends State<FlowScape> {
   int currentScreenIdx = 2;
-  final List<String> pages = [
-    "Settings",
-    "Flow",
-    "Home",
-    "Tasks",
-    "Music",
+  final List<Widget> pages = [
+    const SettingsPage(),
+    const FlowPage(),
+    const HomePage(),
+    const TasksPage(),
+    const MusicPage(),
   ];
 
   @override
@@ -57,19 +57,6 @@ class _FlowScapeState extends State<FlowScape> {
   }
 
   Widget _buildScreen(int index) {
-    switch (index) {
-      case 0:
-        return SettingsPage();
-      case 1:
-        return FlowPage();
-      case 2:
-        return HomePage();
-      case 3:
-        return TasksPage();
-      case 4:
-        return MusicPage();
-      default:
-        return HomePage();
-    }
+    return pages[index];
   }
 }
