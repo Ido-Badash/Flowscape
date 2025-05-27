@@ -1,12 +1,18 @@
+// flutter SDK
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+// third-party package
+import 'package:provider/provider.dart';
+import 'package:isar/isar.dart';
+import 'package:path_provider/path_provider.dart';
+
+// feature
 import 'package:flowscape/features/todo/data/models/isar_todo.dart';
 import 'package:flowscape/features/todo/data/repository/isar_todo_repo.dart';
 import 'package:flowscape/features/todo/domain/repository/todo_repo.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:isar/isar.dart';
-import 'package:provider/provider.dart';
-import 'package:path_provider/path_provider.dart';
 
+// app
 import 'features/app/app.dart';
 import 'core/styles/themes.dart';
 import 'features/settings/appearance/theme_provider.dart';
