@@ -1,40 +1,31 @@
-// Tasks & Isar
-import 'package:flowscape/features/tasks/tasks_lib.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:isar/isar.dart';
-
-// flutter
+import 'package:flowscape/features/todo/data/models/isar_todo.dart';
+import 'package:flowscape/features/todo/data/repository/isar_todo_repo.dart';
+import 'package:flowscape/features/todo/domain/repository/todo_repo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
-// dependencies
+import 'package:isar/isar.dart';
 import 'package:provider/provider.dart';
 import 'package:path_provider/path_provider.dart';
 
-// app and theme
 import 'features/app/app.dart';
 import 'core/styles/themes.dart';
 import 'features/settings/appearance/theme_provider.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized(); // init glue for flutter engine and UI
+  WidgetsFlutterBinding.ensureInitialized();
 
   // where all the user-generated data goes
-  final appDocDir = await getApplicationDocumentsDirectory();
+  final dir = await getApplicationDocumentsDirectory();
 
-  //* --- Tasks ---
   // open isar db
-  final Isar isar = await Isar.open([
-    TaskIsarSchema,
-  ], directory: appDocDir.path);
+  final isar = await Isar.open([TodoIsarSchema], directory: dir.path);
 
-  // get repo
-  final IsarTaskRepo isarTaskRepo = IsarTaskRepo(isar);
+  // init todo repo
+  final todoRepo = IsarTodoRepo(isar);
 
-  //* --- Run App ---
   runApp(
-    Provider<TaskRepo>(
-      create: (_) => isarTaskRepo,
+    Provider<TodoRepo>.value(
+      value: todoRepo,
       child: ChangeNotifierProvider(
         create: (context) => ThemeProvider(),
         child: const MyApp(),
@@ -53,19 +44,14 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   @override
   Widget build(BuildContext context) {
-    // Update the system UI overlay style initially
     _updateSystemUIOverlayStyle();
 
-    return BlocProvider<TaskCubit>(
-      create:
-          (context) => TaskCubit(Provider.of<TaskRepo>(context, listen: false)),
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: "FlowScape",
-        theme: Provider.of<ThemeProvider>(context).themeData,
-        themeMode: ThemeMode.system,
-        home: const FlowScape(),
-      ),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: "FlowScape",
+      theme: Provider.of<ThemeProvider>(context).themeData,
+      themeMode: ThemeMode.system,
+      home: const FlowScape(),
     );
   }
 
@@ -92,7 +78,6 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
         WidgetsBinding.instance.platformDispatcher.platformBrightness;
     final bool isDarkMode = brightness == Brightness.dark;
 
-    // the bar at the bottom of the phone
     SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,

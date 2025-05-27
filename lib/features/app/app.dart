@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flowscape/features/settings/settings.dart';
 import 'package:flowscape/features/flow/flow.dart';
 import 'package:flowscape/features/home/home.dart';
-import 'package:flowscape/features/tasks/tasks.dart';
+import 'package:flowscape/features/todo/todo.dart';
 import 'package:flowscape/features/music/music.dart';
 
 // screen handlers

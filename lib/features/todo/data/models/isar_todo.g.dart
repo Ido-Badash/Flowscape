@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'task_isar.dart';
+part of 'isar_todo.dart';
 
 // **************************************************************************
 // IsarCollectionGenerator
@@ -9,17 +9,17 @@ part of 'task_isar.dart';
 // coverage:ignore-file
 // ignore_for_file: duplicate_ignore, non_constant_identifier_names, constant_identifier_names, invalid_use_of_protected_member, unnecessary_cast, prefer_const_constructors, lines_longer_than_80_chars, require_trailing_commas, inference_failure_on_function_invocation, unnecessary_parenthesis, unnecessary_raw_strings, unnecessary_null_checks, join_return_with_assignment, prefer_final_locals, avoid_js_rounded_ints, avoid_positional_boolean_parameters, always_specify_types
 
-extension GetTaskIsarCollection on Isar {
-  IsarCollection<TaskIsar> get taskIsars => this.collection();
+extension GetTodoIsarCollection on Isar {
+  IsarCollection<TodoIsar> get todoIsars => this.collection();
 }
 
-const TaskIsarSchema = CollectionSchema(
-  name: r'TaskIsar',
-  id: 656882633111093395,
+const TodoIsarSchema = CollectionSchema(
+  name: r'TodoIsar',
+  id: -495579864114062347,
   properties: {
-    r'isComplete': PropertySchema(
+    r'isCompleted': PropertySchema(
       id: 0,
-      name: r'isComplete',
+      name: r'isCompleted',
       type: IsarType.bool,
     ),
     r'text': PropertySchema(
@@ -28,22 +28,22 @@ const TaskIsarSchema = CollectionSchema(
       type: IsarType.string,
     )
   },
-  estimateSize: _taskIsarEstimateSize,
-  serialize: _taskIsarSerialize,
-  deserialize: _taskIsarDeserialize,
-  deserializeProp: _taskIsarDeserializeProp,
+  estimateSize: _todoIsarEstimateSize,
+  serialize: _todoIsarSerialize,
+  deserialize: _todoIsarDeserialize,
+  deserializeProp: _todoIsarDeserializeProp,
   idName: r'id',
   indexes: {},
   links: {},
   embeddedSchemas: {},
-  getId: _taskIsarGetId,
-  getLinks: _taskIsarGetLinks,
-  attach: _taskIsarAttach,
+  getId: _todoIsarGetId,
+  getLinks: _todoIsarGetLinks,
+  attach: _todoIsarAttach,
   version: '3.1.0+1',
 );
 
-int _taskIsarEstimateSize(
-  TaskIsar object,
+int _todoIsarEstimateSize(
+  TodoIsar object,
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
@@ -52,31 +52,30 @@ int _taskIsarEstimateSize(
   return bytesCount;
 }
 
-void _taskIsarSerialize(
-  TaskIsar object,
+void _todoIsarSerialize(
+  TodoIsar object,
   IsarWriter writer,
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
-  writer.writeBool(offsets[0], object.isComplete);
+  writer.writeBool(offsets[0], object.isCompleted);
   writer.writeString(offsets[1], object.text);
 }
 
-TaskIsar _taskIsarDeserialize(
+TodoIsar _todoIsarDeserialize(
   Id id,
   IsarReader reader,
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
-  final object = TaskIsar(
-    id: id,
-    isComplete: reader.readBoolOrNull(offsets[0]) ?? false,
-    text: reader.readStringOrNull(offsets[1]) ?? "",
-  );
+  final object = TodoIsar();
+  object.id = id;
+  object.isCompleted = reader.readBool(offsets[0]);
+  object.text = reader.readString(offsets[1]);
   return object;
 }
 
-P _taskIsarDeserializeProp<P>(
+P _todoIsarDeserializeProp<P>(
   IsarReader reader,
   int propertyId,
   int offset,
@@ -84,36 +83,36 @@ P _taskIsarDeserializeProp<P>(
 ) {
   switch (propertyId) {
     case 0:
-      return (reader.readBoolOrNull(offset) ?? false) as P;
+      return (reader.readBool(offset)) as P;
     case 1:
-      return (reader.readStringOrNull(offset) ?? "") as P;
+      return (reader.readString(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
   }
 }
 
-Id _taskIsarGetId(TaskIsar object) {
+Id _todoIsarGetId(TodoIsar object) {
   return object.id;
 }
 
-List<IsarLinkBase<dynamic>> _taskIsarGetLinks(TaskIsar object) {
+List<IsarLinkBase<dynamic>> _todoIsarGetLinks(TodoIsar object) {
   return [];
 }
 
-void _taskIsarAttach(IsarCollection<dynamic> col, Id id, TaskIsar object) {
+void _todoIsarAttach(IsarCollection<dynamic> col, Id id, TodoIsar object) {
   object.id = id;
 }
 
-extension TaskIsarQueryWhereSort on QueryBuilder<TaskIsar, TaskIsar, QWhere> {
-  QueryBuilder<TaskIsar, TaskIsar, QAfterWhere> anyId() {
+extension TodoIsarQueryWhereSort on QueryBuilder<TodoIsar, TodoIsar, QWhere> {
+  QueryBuilder<TodoIsar, TodoIsar, QAfterWhere> anyId() {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(const IdWhereClause.any());
     });
   }
 }
 
-extension TaskIsarQueryWhere on QueryBuilder<TaskIsar, TaskIsar, QWhereClause> {
-  QueryBuilder<TaskIsar, TaskIsar, QAfterWhereClause> idEqualTo(Id id) {
+extension TodoIsarQueryWhere on QueryBuilder<TodoIsar, TodoIsar, QWhereClause> {
+  QueryBuilder<TodoIsar, TodoIsar, QAfterWhereClause> idEqualTo(Id id) {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(IdWhereClause.between(
         lower: id,
@@ -122,7 +121,7 @@ extension TaskIsarQueryWhere on QueryBuilder<TaskIsar, TaskIsar, QWhereClause> {
     });
   }
 
-  QueryBuilder<TaskIsar, TaskIsar, QAfterWhereClause> idNotEqualTo(Id id) {
+  QueryBuilder<TodoIsar, TodoIsar, QAfterWhereClause> idNotEqualTo(Id id) {
     return QueryBuilder.apply(this, (query) {
       if (query.whereSort == Sort.asc) {
         return query
@@ -144,7 +143,7 @@ extension TaskIsarQueryWhere on QueryBuilder<TaskIsar, TaskIsar, QWhereClause> {
     });
   }
 
-  QueryBuilder<TaskIsar, TaskIsar, QAfterWhereClause> idGreaterThan(Id id,
+  QueryBuilder<TodoIsar, TodoIsar, QAfterWhereClause> idGreaterThan(Id id,
       {bool include = false}) {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(
@@ -153,7 +152,7 @@ extension TaskIsarQueryWhere on QueryBuilder<TaskIsar, TaskIsar, QWhereClause> {
     });
   }
 
-  QueryBuilder<TaskIsar, TaskIsar, QAfterWhereClause> idLessThan(Id id,
+  QueryBuilder<TodoIsar, TodoIsar, QAfterWhereClause> idLessThan(Id id,
       {bool include = false}) {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(
@@ -162,7 +161,7 @@ extension TaskIsarQueryWhere on QueryBuilder<TaskIsar, TaskIsar, QWhereClause> {
     });
   }
 
-  QueryBuilder<TaskIsar, TaskIsar, QAfterWhereClause> idBetween(
+  QueryBuilder<TodoIsar, TodoIsar, QAfterWhereClause> idBetween(
     Id lowerId,
     Id upperId, {
     bool includeLower = true,
@@ -179,9 +178,9 @@ extension TaskIsarQueryWhere on QueryBuilder<TaskIsar, TaskIsar, QWhereClause> {
   }
 }
 
-extension TaskIsarQueryFilter
-    on QueryBuilder<TaskIsar, TaskIsar, QFilterCondition> {
-  QueryBuilder<TaskIsar, TaskIsar, QAfterFilterCondition> idEqualTo(Id value) {
+extension TodoIsarQueryFilter
+    on QueryBuilder<TodoIsar, TodoIsar, QFilterCondition> {
+  QueryBuilder<TodoIsar, TodoIsar, QAfterFilterCondition> idEqualTo(Id value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'id',
@@ -190,7 +189,7 @@ extension TaskIsarQueryFilter
     });
   }
 
-  QueryBuilder<TaskIsar, TaskIsar, QAfterFilterCondition> idGreaterThan(
+  QueryBuilder<TodoIsar, TodoIsar, QAfterFilterCondition> idGreaterThan(
     Id value, {
     bool include = false,
   }) {
@@ -203,7 +202,7 @@ extension TaskIsarQueryFilter
     });
   }
 
-  QueryBuilder<TaskIsar, TaskIsar, QAfterFilterCondition> idLessThan(
+  QueryBuilder<TodoIsar, TodoIsar, QAfterFilterCondition> idLessThan(
     Id value, {
     bool include = false,
   }) {
@@ -216,7 +215,7 @@ extension TaskIsarQueryFilter
     });
   }
 
-  QueryBuilder<TaskIsar, TaskIsar, QAfterFilterCondition> idBetween(
+  QueryBuilder<TodoIsar, TodoIsar, QAfterFilterCondition> idBetween(
     Id lower,
     Id upper, {
     bool includeLower = true,
@@ -233,17 +232,17 @@ extension TaskIsarQueryFilter
     });
   }
 
-  QueryBuilder<TaskIsar, TaskIsar, QAfterFilterCondition> isCompleteEqualTo(
+  QueryBuilder<TodoIsar, TodoIsar, QAfterFilterCondition> isCompletedEqualTo(
       bool value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'isComplete',
+        property: r'isCompleted',
         value: value,
       ));
     });
   }
 
-  QueryBuilder<TaskIsar, TaskIsar, QAfterFilterCondition> textEqualTo(
+  QueryBuilder<TodoIsar, TodoIsar, QAfterFilterCondition> textEqualTo(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -256,7 +255,7 @@ extension TaskIsarQueryFilter
     });
   }
 
-  QueryBuilder<TaskIsar, TaskIsar, QAfterFilterCondition> textGreaterThan(
+  QueryBuilder<TodoIsar, TodoIsar, QAfterFilterCondition> textGreaterThan(
     String value, {
     bool include = false,
     bool caseSensitive = true,
@@ -271,7 +270,7 @@ extension TaskIsarQueryFilter
     });
   }
 
-  QueryBuilder<TaskIsar, TaskIsar, QAfterFilterCondition> textLessThan(
+  QueryBuilder<TodoIsar, TodoIsar, QAfterFilterCondition> textLessThan(
     String value, {
     bool include = false,
     bool caseSensitive = true,
@@ -286,7 +285,7 @@ extension TaskIsarQueryFilter
     });
   }
 
-  QueryBuilder<TaskIsar, TaskIsar, QAfterFilterCondition> textBetween(
+  QueryBuilder<TodoIsar, TodoIsar, QAfterFilterCondition> textBetween(
     String lower,
     String upper, {
     bool includeLower = true,
@@ -305,7 +304,7 @@ extension TaskIsarQueryFilter
     });
   }
 
-  QueryBuilder<TaskIsar, TaskIsar, QAfterFilterCondition> textStartsWith(
+  QueryBuilder<TodoIsar, TodoIsar, QAfterFilterCondition> textStartsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -318,7 +317,7 @@ extension TaskIsarQueryFilter
     });
   }
 
-  QueryBuilder<TaskIsar, TaskIsar, QAfterFilterCondition> textEndsWith(
+  QueryBuilder<TodoIsar, TodoIsar, QAfterFilterCondition> textEndsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -331,7 +330,7 @@ extension TaskIsarQueryFilter
     });
   }
 
-  QueryBuilder<TaskIsar, TaskIsar, QAfterFilterCondition> textContains(
+  QueryBuilder<TodoIsar, TodoIsar, QAfterFilterCondition> textContains(
       String value,
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -343,7 +342,7 @@ extension TaskIsarQueryFilter
     });
   }
 
-  QueryBuilder<TaskIsar, TaskIsar, QAfterFilterCondition> textMatches(
+  QueryBuilder<TodoIsar, TodoIsar, QAfterFilterCondition> textMatches(
       String pattern,
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -355,7 +354,7 @@ extension TaskIsarQueryFilter
     });
   }
 
-  QueryBuilder<TaskIsar, TaskIsar, QAfterFilterCondition> textIsEmpty() {
+  QueryBuilder<TodoIsar, TodoIsar, QAfterFilterCondition> textIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'text',
@@ -364,7 +363,7 @@ extension TaskIsarQueryFilter
     });
   }
 
-  QueryBuilder<TaskIsar, TaskIsar, QAfterFilterCondition> textIsNotEmpty() {
+  QueryBuilder<TodoIsar, TodoIsar, QAfterFilterCondition> textIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
         property: r'text',
@@ -374,86 +373,86 @@ extension TaskIsarQueryFilter
   }
 }
 
-extension TaskIsarQueryObject
-    on QueryBuilder<TaskIsar, TaskIsar, QFilterCondition> {}
+extension TodoIsarQueryObject
+    on QueryBuilder<TodoIsar, TodoIsar, QFilterCondition> {}
 
-extension TaskIsarQueryLinks
-    on QueryBuilder<TaskIsar, TaskIsar, QFilterCondition> {}
+extension TodoIsarQueryLinks
+    on QueryBuilder<TodoIsar, TodoIsar, QFilterCondition> {}
 
-extension TaskIsarQuerySortBy on QueryBuilder<TaskIsar, TaskIsar, QSortBy> {
-  QueryBuilder<TaskIsar, TaskIsar, QAfterSortBy> sortByIsComplete() {
+extension TodoIsarQuerySortBy on QueryBuilder<TodoIsar, TodoIsar, QSortBy> {
+  QueryBuilder<TodoIsar, TodoIsar, QAfterSortBy> sortByIsCompleted() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'isComplete', Sort.asc);
+      return query.addSortBy(r'isCompleted', Sort.asc);
     });
   }
 
-  QueryBuilder<TaskIsar, TaskIsar, QAfterSortBy> sortByIsCompleteDesc() {
+  QueryBuilder<TodoIsar, TodoIsar, QAfterSortBy> sortByIsCompletedDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'isComplete', Sort.desc);
+      return query.addSortBy(r'isCompleted', Sort.desc);
     });
   }
 
-  QueryBuilder<TaskIsar, TaskIsar, QAfterSortBy> sortByText() {
+  QueryBuilder<TodoIsar, TodoIsar, QAfterSortBy> sortByText() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'text', Sort.asc);
     });
   }
 
-  QueryBuilder<TaskIsar, TaskIsar, QAfterSortBy> sortByTextDesc() {
+  QueryBuilder<TodoIsar, TodoIsar, QAfterSortBy> sortByTextDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'text', Sort.desc);
     });
   }
 }
 
-extension TaskIsarQuerySortThenBy
-    on QueryBuilder<TaskIsar, TaskIsar, QSortThenBy> {
-  QueryBuilder<TaskIsar, TaskIsar, QAfterSortBy> thenById() {
+extension TodoIsarQuerySortThenBy
+    on QueryBuilder<TodoIsar, TodoIsar, QSortThenBy> {
+  QueryBuilder<TodoIsar, TodoIsar, QAfterSortBy> thenById() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'id', Sort.asc);
     });
   }
 
-  QueryBuilder<TaskIsar, TaskIsar, QAfterSortBy> thenByIdDesc() {
+  QueryBuilder<TodoIsar, TodoIsar, QAfterSortBy> thenByIdDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'id', Sort.desc);
     });
   }
 
-  QueryBuilder<TaskIsar, TaskIsar, QAfterSortBy> thenByIsComplete() {
+  QueryBuilder<TodoIsar, TodoIsar, QAfterSortBy> thenByIsCompleted() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'isComplete', Sort.asc);
+      return query.addSortBy(r'isCompleted', Sort.asc);
     });
   }
 
-  QueryBuilder<TaskIsar, TaskIsar, QAfterSortBy> thenByIsCompleteDesc() {
+  QueryBuilder<TodoIsar, TodoIsar, QAfterSortBy> thenByIsCompletedDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'isComplete', Sort.desc);
+      return query.addSortBy(r'isCompleted', Sort.desc);
     });
   }
 
-  QueryBuilder<TaskIsar, TaskIsar, QAfterSortBy> thenByText() {
+  QueryBuilder<TodoIsar, TodoIsar, QAfterSortBy> thenByText() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'text', Sort.asc);
     });
   }
 
-  QueryBuilder<TaskIsar, TaskIsar, QAfterSortBy> thenByTextDesc() {
+  QueryBuilder<TodoIsar, TodoIsar, QAfterSortBy> thenByTextDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'text', Sort.desc);
     });
   }
 }
 
-extension TaskIsarQueryWhereDistinct
-    on QueryBuilder<TaskIsar, TaskIsar, QDistinct> {
-  QueryBuilder<TaskIsar, TaskIsar, QDistinct> distinctByIsComplete() {
+extension TodoIsarQueryWhereDistinct
+    on QueryBuilder<TodoIsar, TodoIsar, QDistinct> {
+  QueryBuilder<TodoIsar, TodoIsar, QDistinct> distinctByIsCompleted() {
     return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'isComplete');
+      return query.addDistinctBy(r'isCompleted');
     });
   }
 
-  QueryBuilder<TaskIsar, TaskIsar, QDistinct> distinctByText(
+  QueryBuilder<TodoIsar, TodoIsar, QDistinct> distinctByText(
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'text', caseSensitive: caseSensitive);
@@ -461,21 +460,21 @@ extension TaskIsarQueryWhereDistinct
   }
 }
 
-extension TaskIsarQueryProperty
-    on QueryBuilder<TaskIsar, TaskIsar, QQueryProperty> {
-  QueryBuilder<TaskIsar, int, QQueryOperations> idProperty() {
+extension TodoIsarQueryProperty
+    on QueryBuilder<TodoIsar, TodoIsar, QQueryProperty> {
+  QueryBuilder<TodoIsar, int, QQueryOperations> idProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'id');
     });
   }
 
-  QueryBuilder<TaskIsar, bool, QQueryOperations> isCompleteProperty() {
+  QueryBuilder<TodoIsar, bool, QQueryOperations> isCompletedProperty() {
     return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'isComplete');
+      return query.addPropertyName(r'isCompleted');
     });
   }
 
-  QueryBuilder<TaskIsar, String, QQueryOperations> textProperty() {
+  QueryBuilder<TodoIsar, String, QQueryOperations> textProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'text');
     });
