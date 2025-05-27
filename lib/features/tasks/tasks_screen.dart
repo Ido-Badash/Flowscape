@@ -2,9 +2,7 @@ import 'package:flowscape/features/tasks/presentation/task_page.dart';
 import 'package:flutter/material.dart';
 
 /*
-
-displays all the tasks
-
+Displays all the tasks
 */
 
 class TasksScreen extends StatelessWidget {

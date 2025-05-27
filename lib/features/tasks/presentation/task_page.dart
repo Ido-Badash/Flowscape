@@ -7,19 +7,19 @@ providing for task cubit and task view (UI)
 
 */
 
-import 'package:flowscape/features/tasks/domain/repo/task_repo.dart';
-import 'package:flowscape/features/tasks/presentation/task_cubit.dart';
+import 'package:flowscape/features/tasks/tasks_lib.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'task_view.dart';
+import 'package:provider/provider.dart';
 
 class TaskPage extends StatelessWidget {
   const TaskPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => TaskCubit(RepositoryProvider.of<TaskRepo>(context)),
+    final taskRepo = Provider.of<TaskRepo>(context, listen: false);
+    return BlocProvider<TaskCubit>(
+      create: (_) => TaskCubit(taskRepo),
       child: const TaskView(),
     );
   }

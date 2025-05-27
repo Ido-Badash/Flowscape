@@ -1,1 +1,1 @@
-export 'tasks_db_model.dart';
+export 'task_isar.dart';

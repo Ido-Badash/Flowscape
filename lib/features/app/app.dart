@@ -19,7 +19,13 @@ class FlowScape extends StatefulWidget {
 
 class _FlowScapeState extends State<FlowScape> {
   int currentScreenIdx = 2;
-  final List<String> pages = ["Settings", "Flow", "Home", "Tasks", "Music"];
+  final List<Widget> pages = [
+    const SettingsPage(),
+    const FlowPage(),
+    const HomePage(),
+    const TasksPage(),
+    const MusicPage(),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -51,19 +57,6 @@ class _FlowScapeState extends State<FlowScape> {
   }
 
   Widget _buildScreen(int index) {
-    switch (index) {
-      case 0:
-        return const SettingsPage();
-      case 1:
-        return const FlowPage();
-      case 2:
-        return const HomePage();
-      case 3:
-        return const TasksPage();
-      case 4:
-        return const MusicPage();
-      default:
-        return const HomePage();
-    }
+    return pages[index];
   }
 }

@@ -19,29 +19,23 @@ class TaskView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // FLOATINGACTIONBUTTON
       floatingActionButton: FloatingActionButton(
         onPressed: () => _showAddTaskBox(context),
-        elevation: 0, // Removes the shadow
+        elevation: 0,
         shape: const CircleBorder(),
         backgroundColor: Theme.of(context).colorScheme.secondary,
         child: const Icon(Icons.add, size: 24),
       ),
-
-      // BODY
       body: BlocBuilder<TaskCubit, List<Task>>(
-        builder: (blocBuilderContext, tasks) {
-          final TaskCubit taskCubit = blocBuilderContext.read<TaskCubit>();
-          debugPrint('REBUILD: ${tasks.map((t) => '${t.id} ${t.text}').toList()}');
-
+        builder: (context, tasks) {
+          debugPrint(
+            'REBUILD: ${tasks.map((t) => '${t.id} ${t.text}').toList()}',
+          );
           return ListView.builder(
             itemCount: tasks.length,
-            itemBuilder: (itemBuilderContext, idx) {
-              // gets a task
+            itemBuilder: (context, idx) {
               final task = tasks[idx];
-
-              // List tile UI
-              return buildTasksListTile(itemBuilderContext, task, taskCubit);
+              return buildTasksListTile(context, task);
             },
           );
         },
@@ -49,28 +43,20 @@ class TaskView extends StatelessWidget {
     );
   }
 
-  Widget buildTasksListTile(
-    BuildContext itemBuilderContext,
-    Task task,
-    TaskCubit taskCubit,
-  ) {
+  Widget buildTasksListTile(BuildContext context, Task task) {
+    final taskCubit = context.read<TaskCubit>();
     return ListTile(
-      // text
       title: Text(
         task.text,
         style: TextStyle(
-          color: Theme.of(itemBuilderContext).colorScheme.primary,
+          color: Theme.of(context).colorScheme.primary,
           fontSize: 16,
         ),
       ),
-
-      // checkbox
       leading: Checkbox(
         value: task.isComplete,
         onChanged: (value) => taskCubit.toggleTask(task),
       ),
-
-      // delete
       trailing: IconButton(
         onPressed: () => taskCubit.deleteTask(task),
         icon: const Icon(CupertinoIcons.trash, size: 20),
@@ -78,66 +64,33 @@ class TaskView extends StatelessWidget {
     );
   }
 
-  // show dialog box for the user to make a new task
   void _showAddTaskBox(BuildContext context) {
     showDialog(
       context: context,
       builder: (context) {
         final taskCubit = context.read<TaskCubit>();
         final textController = TextEditingController();
-        final actionButtons = buildActionsButtons(
-          context,
-          taskCubit: taskCubit,
-          textController: textController,
-        );
         return AlertDialog(
           content: TextField(
             controller: textController,
             style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
           ),
           actionsAlignment: MainAxisAlignment.center,
-          actions: actionButtons,
+          actions: [
+            TextButton(
+              onPressed: () {
+                taskCubit.addTask(textController.text);
+                Navigator.of(context).pop();
+              },
+              child: const Text("add"),
+            ),
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text("cancel"),
+            ),
+          ],
         );
       },
-    );
-  }
-
-  // building the action button
-  List<Widget> buildActionsButtons(
-    BuildContext context, {
-    TaskCubit? taskCubit,
-    TextEditingController? textController,
-  }) {
-    return [
-      buildAddTaskButton(
-        context,
-        taskCubit: taskCubit,
-        textController: textController,
-      ),
-      buildCancelTaskButton(context),
-    ];
-  }
-
-  // building the cancle task button
-  Widget buildCancelTaskButton(BuildContext context) {
-    return TextButton(
-      onPressed: () => Navigator.of(context).pop(),
-      child: const Text("cancel"),
-    );
-  }
-
-  // building the add task button
-  Widget buildAddTaskButton(
-    BuildContext context, {
-    TaskCubit? taskCubit,
-    TextEditingController? textController,
-  }) {
-    return TextButton(
-      onPressed: () {
-        taskCubit?.addTask(textController!.text);
-        Navigator.of(context).pop();
-      },
-      child: const Text("add"),
     );
   }
 }

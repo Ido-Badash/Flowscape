@@ -1,7 +1,7 @@
-// Tasks & Hive
-import 'package:flowscape/features/tasks/data/task_data_lib.dart';
-import 'package:flowscape/features/tasks/domain/repo/task_repo.dart';
-import 'package:flowscape/features/tasks/presentation/task_presentation_lib.dart';
+// Tasks & Isar
+import 'package:flowscape/features/tasks/tasks_lib.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:isar/isar.dart';
 
 // flutter
 import 'package:flutter/material.dart';
@@ -23,12 +23,22 @@ void main() async {
   final appDocDir = await getApplicationDocumentsDirectory();
 
   //* --- Tasks ---
+  // open isar db
+  final Isar isar = await Isar.open([
+    TaskIsarSchema,
+  ], directory: appDocDir.path);
+
+  // get repo
+  final IsarTaskRepo isarTaskRepo = IsarTaskRepo(isar);
 
   //* --- Run App ---
   runApp(
-    ChangeNotifierProvider(
-      create: (context) => ThemeProvider(),
-      child: const MyApp(),
+    Provider<TaskRepo>(
+      create: (_) => isarTaskRepo,
+      child: ChangeNotifierProvider(
+        create: (context) => ThemeProvider(),
+        child: const MyApp(),
+      ),
     ),
   );
 }
@@ -41,6 +51,24 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
+  @override
+  Widget build(BuildContext context) {
+    // Update the system UI overlay style initially
+    _updateSystemUIOverlayStyle();
+
+    return BlocProvider<TaskCubit>(
+      create:
+          (context) => TaskCubit(Provider.of<TaskRepo>(context, listen: false)),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: "FlowScape",
+        theme: Provider.of<ThemeProvider>(context).themeData,
+        themeMode: ThemeMode.system,
+        home: const FlowScape(),
+      ),
+    );
+  }
+
   @override
   void initState() {
     super.initState();
@@ -73,20 +101,6 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
                 ? appDarkThemeData.bottomNavigationBarTheme.backgroundColor
                 : appLightThemeData.bottomNavigationBarTheme.backgroundColor,
       ),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    // Update the system UI overlay style initially
-    _updateSystemUIOverlayStyle();
-
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: "FlowScape",
-      theme: Provider.of<ThemeProvider>(context).themeData,
-      themeMode: ThemeMode.system,
-      home: const FlowScape(),
     );
   }
 }

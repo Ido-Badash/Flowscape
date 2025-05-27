@@ -24,27 +24,23 @@ class TaskCubit extends Cubit<List<Task>> {
     final tasksList = await taskRepo.getAllTasks();
 
     // emit as new state
-    emit(List<Task>.from(tasksList));
+    emit(tasksList);
   }
 
   // add
   Future<void> addTask(String text) async {
+    // create a new task
+    final newTask = Task(
+      id: DateTime.now().millisecondsSinceEpoch, // unique ID
+      text: text,
+    );
+
     // save new task to the repo
-    await taskRepo.addTask(Task(id: 0, text: text));
+    await taskRepo.addTask(newTask);
 
     // reload the repo
     await loadTasks();
   }
-
-  // update
-  Future<void> updateTask(Task task) async {
-    // update the task in the repo
-    await taskRepo.updateTask(task);
-
-    // reload the repo
-    await loadTasks();
-  }
-
 
   // delete
   Future<void> deleteTask(Task task) async {
