@@ -47,7 +47,7 @@ ThemeData appDarkThemeData = ThemeData(
   iconTheme: const IconThemeData(color: FlowColors.textTertiaryDark),
 
   floatingActionButtonTheme: const FloatingActionButtonThemeData(
-    backgroundColor: Color.fromARGB(25, 30, 41, 59),
+    backgroundColor: Color.fromARGB(25, 36, 49, 71),
   ),
 
   checkboxTheme: CheckboxThemeData(

@@ -17,61 +17,85 @@ class TodoView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // todo cubit
+    // cubit
     final todoCubit = context.read<TodoCubit>();
 
     // SCAFFOLD
     return Scaffold(
-      // FAB
       floatingActionButton: FloatingActionButton(
         onPressed: () => _showAddTodoBox(context),
-        child: const Icon(Icons.add),
+        elevation: 0, // Removes the shadow
+        backgroundColor: Color.fromARGB(50, 36, 49, 71),
+        child: Icon(Icons.add),
       ),
 
-      // BLOC BUILDER
       body: BlocBuilder<TodoCubit, List<Todo>>(
         builder: (context, todos) {
           // List View
           return ListView.builder(
             itemCount: todos.length,
             itemBuilder: (context, index) {
-              // get individual todo from todos list
+              // get each todo from todos list
               final todo = todos[index];
 
-              // List Tile UI
-              return ListTile(
-                // text
-                title: Text(
-                  todo.text,
-                    style: TextStyle(
-                    fontSize: 16,
-                    decoration: todo.isCompleted
-                      ? TextDecoration.lineThrough
-                      : TextDecoration.none,
-                    color: Theme.of(context).colorScheme.onSecondary,
-                    ),
-                  ),
-
-                // check box
-                leading: Checkbox(
-                  value: todo.isCompleted,
-                  onChanged: (value) => todoCubit.toggleCompletion(todo),
-                  checkColor: Colors.green,
-                  side: BorderSide(
-                    color: Theme.of(context).colorScheme.onSecondary,
-                  ),
-                ),
-
-                // delete button
-                trailing: IconButton(
-                  icon: const Icon(CupertinoIcons.trash, size: 22),
-                  onPressed: () => todoCubit.deleteTodo(todo),
-                ),
-              );
+              return buildListTile(context, todo, todoCubit);
             },
           );
         },
       ),
+    );
+  }
+
+  Widget buildListTile(BuildContext context, Todo todo, TodoCubit todoCubit) {
+    return ListTile(
+      // text
+      title: buildListTileTitle(context, todo),
+
+      // check box
+      leading: buildListTileLeading(context, todo, todoCubit),
+
+      // delete button
+      trailing: buildListTileTrailing(context, todo, todoCubit),
+    );
+  }
+
+  // List Tile Title
+  Widget buildListTileTitle(BuildContext context, Todo todo) {
+    return Text(
+      todo.text,
+      style: TextStyle(
+        fontSize: 16,
+        decoration:
+            todo.isCompleted ? TextDecoration.lineThrough : TextDecoration.none,
+        color: Theme.of(context).colorScheme.onSecondary,
+      ),
+    );
+  }
+
+  // List Tile Leading
+  Widget buildListTileLeading(
+    BuildContext context,
+    Todo todo,
+    TodoCubit todoCubit,
+  ) {
+    return Checkbox(
+      // TODO: add a cool animation later
+      value: todo.isCompleted,
+      onChanged: (value) => todoCubit.toggleCompletion(todo),
+      checkColor: Colors.green,
+      side: BorderSide(color: Theme.of(context).colorScheme.onSecondary),
+    );
+  }
+
+  // List Tile Trailing
+  Widget buildListTileTrailing(
+    BuildContext context,
+    Todo todo,
+    TodoCubit todoCubit,
+  ) {
+    return IconButton(
+      icon: const Icon(CupertinoIcons.trash, size: 22),
+      onPressed: () => todoCubit.deleteTodo(todo),
     );
   }
 
@@ -84,31 +108,47 @@ class TodoView extends StatelessWidget {
       context: context,
       builder:
           (context) => AlertDialog(
-            content: TextField(
-              controller: textController,
-              style: TextStyle(
-                color: Theme.of(context).colorScheme.onSecondary,
-              )),
-            actions: [
-              // cancel button
-              TextButton(
-                onPressed: () => Navigator.of(context).pop(),
-                child: const Text('Cancel'),
-              ),
-
-              // add button
-              TextButton(
-                onPressed: () {
-                  if (textController.text.isNotEmpty) { // check if text is not empty
-                    // add todo
-                    todoCubit.addTodo(textController.text);
-                  }
-                  Navigator.of(context).pop();
-                },
-                child: const Text('Add'),
-              ),
-            ],
+            content: buildShowDialogContent(context, textController),
+            actions: buildShowDialogActions(context, textController, todoCubit),
           ),
     );
+  }
+
+  Widget buildShowDialogContent(
+    BuildContext context,
+    TextEditingController textController,
+  ) {
+    return TextField(
+      controller: textController,
+      style: TextStyle(color: Theme.of(context).colorScheme.onSecondary),
+      decoration: const InputDecoration(hintText: 'Enter todo...'),
+    );
+  }
+
+  List<Widget> buildShowDialogActions(
+    BuildContext context,
+    TextEditingController textController,
+    TodoCubit todoCubit,
+  ) {
+    return [
+      // cancel button
+      TextButton(
+        onPressed: () => Navigator.of(context).pop(),
+        child: const Text('Cancel'),
+      ),
+
+      // add button
+      TextButton(
+        onPressed: () {
+          if (textController.text.isNotEmpty) {
+            // check if text is not empty
+            // add todo
+            todoCubit.addTodo(textController.text);
+          }
+          Navigator.of(context).pop();
+        },
+        child: const Text('Add'),
+      ),
+    ];
   }
 }
