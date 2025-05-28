@@ -7,10 +7,6 @@ This is what a playlist object is.
 ~~~ PROPERTIES ~~~
 
 *- required:
-  - currentSongIdx
-      int
-      ? NOTE: tracks the current idx in the songs list
-
   - title
       String
 
@@ -21,11 +17,15 @@ This is what a playlist object is.
       String
 
 *- optional:
+  - currentSongIdx
+      int
+      ? NOTE: tracks the current idx in the songs list
+
   - description
-      String?
+      String
 
   - order
-      PlaylistOrder?
+      PlaylistOrder
       ? NOTE: PlaylistOrder is an enum and is [PlaylistOrder.normal] by default
 
   - shuffle
@@ -76,10 +76,10 @@ class PlaylistModel {
   final String creator;
 
   // optional
-  final int? currentSongIdx;
-  final String? description;
-  final PlaylistOrder? order;
-  final bool? shuffle;
+  final int currentSongIdx;
+  final String description;
+  final PlaylistOrder order;
+  final bool shuffle;
 
   // constructor
   const PlaylistModel({
