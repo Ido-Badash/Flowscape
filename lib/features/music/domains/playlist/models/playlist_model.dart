@@ -47,15 +47,16 @@ This is what a playlist object is.
 
 * - play({int atSongIdx = 0})
     starts playing a song from the start aka idx 0
+    if atSongIdx wasent provided
 
 * - stop()
     stops a song but keeps track of what song and when was stopped
     later on the what song and when will be stored in a database
-    so continue() can get to it
+    so resume() can get to it
 
-* - continue()
+* - resume()
     takes the pending song from the database after stop() was called
-    if continue() is called but stop() wasent its just going to call play()
+    if resume() is called but stop() wasent its just going to call play()
 
 --------------------------------------------------------------------------------
 ~~~ MODEL NOTES ~~~
@@ -76,19 +77,49 @@ class PlaylistModel {
   final String creator;
 
   // optional
-  final int currentSongIdx;
+  int _currentSongIdx;
   final String description;
   final PlaylistOrder order;
   final bool shuffle;
 
+  int get currentSongIdx => _currentSongIdx;
+
   // constructor
-  const PlaylistModel({
-    this.currentSongIdx = 1,
+  PlaylistModel({
+    int currentSongIdx = 0,
     required this.songs,
     required this.title,
     required this.creator,
     this.description = "",
     this.order = PlaylistOrder.normal,
     this.shuffle = false,
-  });
+  }) : _currentSongIdx = currentSongIdx;
+
+  // TODO: add a [songs] null/empty check
+
+  // NEXT
+  void next() {
+    _currentSongIdx = (_currentSongIdx + 1) % songs.length;
+  }
+
+  // PREVIOUS
+  void previous() {
+    _currentSongIdx = (_currentSongIdx - 1 + songs.length) % songs.length;
+  }
+
+  // PLAY
+  void play({int atSongIdx = 0}) {
+    _currentSongIdx = atSongIdx % songs.length;
+    // TODO: Add actual play logic here
+  }
+
+  // STOP
+  void stop() {
+    // TODO: Implement stop logic (e.g., store paused state)
+  }
+
+  // RESUME
+  void resume() {
+    // TODO: Resume from stop or call play() if no paused state
+  }
 }
