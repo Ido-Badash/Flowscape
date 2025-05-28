@@ -75,11 +75,11 @@ class PlaylistModel {
   final List<SongModel> songs;
   final String creator;
 
-  // non-required
-  final int currentSongIdx;
+  // optional
+  final int? currentSongIdx;
   final String? description;
   final PlaylistOrder? order;
-  final bool shuffle;
+  final bool? shuffle;
 
   // constructor
   const PlaylistModel({
@@ -87,8 +87,8 @@ class PlaylistModel {
     required this.songs,
     required this.title,
     required this.creator,
-    this.description,
-    this.order,
-    this.shuffle = false
-    });
+    this.description = "",
+    this.order = PlaylistOrder.normal,
+    this.shuffle = false,
+  });
 }
