@@ -1,2 +1,2 @@
-export 'model/playlist.dart';
+export 'models/models_lib.dart';
 export 'repository/playlist_repo.dart';
