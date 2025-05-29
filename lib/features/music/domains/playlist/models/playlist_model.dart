@@ -74,7 +74,7 @@ class PlaylistModel {
   final int id;
 
   // required
-  List<SongModel> songModels;
+  List<SongModel> _songs;
   final String title;
   final String creator;
 
@@ -90,7 +90,7 @@ class PlaylistModel {
 
   // getters
   int get currentSongIdx => _currentSongIdx;
-  List<SongModel> get songs => songModels;
+  List<SongModel> get songs => _songs;
 
   // setters
   set currentSongIdx(int idx) {
@@ -110,15 +110,16 @@ class PlaylistModel {
     required this.id,
     int currentSongIdx = 0,
     int currentSongTime = 0,
-    required this.songModels,
+    List<SongModel> songs = const [],
     required this.title,
     required this.creator,
     this.description = "",
     this.order = PlaylistOrder.normal,
     this.shuffle = false,
     this.playlistImagePath,
-  }) : _currentSongIdx = currentSongIdx,
-       assert(songModels.isNotEmpty, 'Songs list cannot be empty');
+  })  : _songs = songs,
+        _currentSongIdx = currentSongIdx,
+        assert(songs.isNotEmpty, 'Songs list cannot be empty');
 
   void init() {
     updateSongs();
