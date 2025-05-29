@@ -63,14 +63,13 @@ This is what a playlist object is.
 
 // Imports
 import 'dart:math';
-import 'package:isar/isar.dart';
 import 'package:flowscape/features/music/domains/song/model/song_model.dart';
 import 'playlist_order.dart';
 
 // PlaylistModel
 class PlaylistModel {
-  // Isar id
-  int? id;
+  // id
+  final int id;
 
   // required
   List<SongModel> songModels;
@@ -106,7 +105,7 @@ class PlaylistModel {
 
   // constructor
   PlaylistModel({
-    this.id = Isar.autoIncrement,
+    required this.id,
     int currentSongIdx = 0,
     int currentSongTime = 0,
     required this.songModels,
