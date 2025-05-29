@@ -59,6 +59,8 @@ This is what a playlist object is.
 
 - What this model trying to do is just control the currentSongIdx
 
+TODO: Make the class with a factory constructor to call init()
+
 */
 
 // Imports
@@ -116,8 +118,11 @@ class PlaylistModel {
     this.shuffle = false,
     this.playlistImagePath,
   }) : _currentSongIdx = currentSongIdx,
-
        assert(songModels.isNotEmpty, 'Songs list cannot be empty');
+
+  void init() {
+    updateSongs();
+  }
 
   void updateSongs() {
     if (shuffle) {

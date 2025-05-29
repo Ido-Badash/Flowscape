@@ -1,0 +1,9 @@
+/*
+
+PLAYLIST REPO
+pure dart code
+
+Here is an abstracted class that defines the operations
+the app can do with the playlist.
+
+*/
