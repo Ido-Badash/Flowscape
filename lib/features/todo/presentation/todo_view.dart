@@ -25,7 +25,7 @@ class TodoView extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () => _showAddTodoBox(context),
         elevation: 0, // Removes the shadow
-        backgroundColor: Color.fromARGB(50, 36, 49, 71),
+        backgroundColor: Theme.of(context).floatingActionButtonTheme.backgroundColor,
         child: Icon(Icons.add),
       ),
 
