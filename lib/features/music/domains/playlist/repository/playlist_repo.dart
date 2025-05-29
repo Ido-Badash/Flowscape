@@ -32,18 +32,18 @@ the app can do with the playlist.
 --------------------------------------------------------
 ~~~ NOTES ~~~
 - all of the method are Future<void>
-  exept the getAllPlaylists() method
+  except the getAllPlaylists() method
   that is Future<List<Song>>
 
 */
 
 // Imports
-import 'package:flowscape/features/music/domains/playlist/models/models_lib.dart';
+import 'package:flowscape/features/music/domains/playlist/models/playlist_model.dart';
 import 'package:flowscape/features/music/domains/song/model/song_model.dart';
 
 // PlaylistRepo
 abstract class PlaylistRepo {
-  /// gets all playlists
+  /// gets all playlists from the database
   Future<List<PlaylistModel>> getAllPlaylists();
 
   /// adds a song to a playlist
