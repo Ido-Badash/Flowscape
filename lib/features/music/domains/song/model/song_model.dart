@@ -60,10 +60,15 @@ TODO: make the class with a async factory constructor
 import 'package:audio_metadata_reader/audio_metadata_reader.dart';
 import 'dart:io';
 import 'package:flutter/foundation.dart';
+import 'package:isar/isar.dart';
 
 // PlaylistModel
 
+@Collection()
 class SongModel {
+  // Isar id
+  int? id;
+
   // required
   final String title;
   final String artist;
@@ -104,6 +109,7 @@ class SongModel {
   // constructor
   /// Make sure to call `init()` after creating an instance to set the initial duration.
   SongModel({
+    this.id = Isar.autoIncrement,
     required this.title,
     required this.artist,
     required this.audioFilePath,
@@ -114,9 +120,11 @@ class SongModel {
     this.releaseDate,
     int currentSongTime = 0,
   }) : _currentSongTime = currentSongTime,
-       _duration = Duration(seconds: 0); // will be set later when the song is loaded
+       _duration = Duration(
+         seconds: 0,
+       ); // will be set later when the song is loaded
 
-  Future<void> init() async{
+  Future<void> init() async {
     await setInitialDuration();
   }
 
