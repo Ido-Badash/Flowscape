@@ -5,23 +5,19 @@ pure dart code
 
 Here is an abstracted class that defines the operations
 the app can do with the songs.
-stuff like pausing a song and resuming
+stuff like pausing a song and resuming with the savePlayback
 
 --------------------------------------------------------
 ~~~ METHODS ~~~
-* - stop()
-    stops the song so in the Future it can store
+* - savePlayback()
+    saves the playback of the song so in the Future it can store
     where it stoped
-    params:
-      int songId
 
-* - resume()
-    paired with the stop() function
-    it can resume after a stop was made
-    so it fetches from where it was stopped
-    last time
-    params:
-      int songId
+* - update()
+    updates the song in the database
+
+* - delete()
+    deletes the song from the database
 
 --------------------------------------------------------
 ~~~ NOTES ~~~
@@ -30,10 +26,15 @@ stuff like pausing a song and resuming
 */
 
 // PlaylistRepo
-abstract class SongRepo {
-  /// Stops the song and stores the playback in the database
-  Future<void> stop(int songId);
+import 'package:flowscape/features/music/domains/domains_lib.dart';
 
-  /// Resumes the song by fetching the playback stopped in the database
-  Future<void> resume(int songId);
+abstract class SongRepo {
+  /// saves the playback the song and stores it in the database
+  Future<void> savePlayback(int songId);
+
+  /// Updates the song in the database
+  Future<void> update(SongModel song);
+
+  /// Deletes the song from the database
+  Future<void> delete(int songId);
 }

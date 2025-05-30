@@ -60,20 +60,20 @@ class IsarSong {
 
   // getters
   @ignore
-  Duration get currentSongTimeSec => Duration(seconds: currentSongTime);
+  Duration get currentSongTimeDur => Duration(seconds: currentSongTime);
 
-  // convert song db -> domain db
+  /// convert song db -> domain db
   SongModel toDomain() {
     return SongModel(
       id: id,
       title: title,
       artist: artist,
       audioFilePath: audioFilePath,
-      currentSongTime: currentSongTimeSec,
+      currentSongTime: currentSongTimeDur,
     );
   }
 
-  // convert song domain -> song db
+  /// convert song domain -> song db
   static IsarSong fromDomain(SongModel song) {
     return IsarSong()
       ..id = song.id as Id
