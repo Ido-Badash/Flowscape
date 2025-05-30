@@ -74,9 +74,9 @@ class IsarSong {
   }
 
   /// convert song domain -> song db
-  static IsarSong fromDomain(SongModel song) {
+  static IsarSong fromDomain(SongModel ?song) {
     return IsarSong()
-      ..id = song.id as Id
+      ..id = song!.id as Id 
       ..title = song.title
       ..artist = song.artist
       ..audioFilePath = song.audioFilePath

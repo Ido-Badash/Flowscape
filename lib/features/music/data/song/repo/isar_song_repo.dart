@@ -46,7 +46,7 @@ class IsarSongRepo implements SongRepo {
   @override
   Future<void> savePlayback(int songId, int currentTimeSec) async {
     // fetch song
-    final IsarSong? song = await _songIdToIsarSong(songId);
+    final IsarSong song = IsarSong.fromDomain(await getSong(songId));
 
     // simple output for debugging
     if (currentTimeSec > 0) {
@@ -55,10 +55,10 @@ class IsarSongRepo implements SongRepo {
 
     // update the song in the db
     await db.writeTxn(() async {
-      song?.currentSongTime = currentTimeSec;
+      song.currentSongTime = currentTimeSec;
       // save the updated song
       try {
-        await db.collection<IsarSong>().put(song!);
+        await db.collection<IsarSong>().put(song);
       } catch (e) {
         debugPrint("FATAL: Failed to save playback in the database.");
         return;
@@ -109,14 +109,7 @@ class IsarSongRepo implements SongRepo {
 
   @override
   Future<SongModel?> getSong(int id) async {
-    final IsarSong? isarSong = await _songIdToIsarSong(id);
+    final IsarSong? isarSong = await db.collection<IsarSong>().get(id);
     return isarSong?.toDomain();
-  }
-
-  //* private helpers methods
-
-  // songIdToIsarSong
-  Future<IsarSong?> _songIdToIsarSong(int songId) async {
-    return await db.collection<IsarSong>().get(songId);
   }
 }
