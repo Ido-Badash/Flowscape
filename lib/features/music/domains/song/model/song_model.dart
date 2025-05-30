@@ -80,15 +80,15 @@ class SongModel {
 
   // private
   Duration _duration; // in seconds, will have the duration of the song file
-  int _currentSongTime; // in seconds
+  Duration _currentSongTime; // in seconds
 
   // getters
-  int get currentSongTime => _currentSongTime;
+  Duration get currentSongTime => _currentSongTime;
   Duration get duration => _duration;
 
   // setters
-  set currentSongTime(int time) {
-    if (time < 0 || time > duration.inSeconds) {
+  set currentSongTime(Duration time) {
+    if (time < Duration.zero || time.inSeconds > duration.inSeconds) {
       throw ArgumentError(
         'Current song time must be between 0 and ${duration.inSeconds} seconds.',
       );
@@ -115,7 +115,7 @@ class SongModel {
     this.genre,
     this.lyrics,
     this.releaseDate,
-    int currentSongTime = 0,
+    Duration currentSongTime = Duration.zero,
   }) : _currentSongTime = currentSongTime,
        _duration = Duration(
          seconds: 0,
@@ -139,7 +139,7 @@ class SongModel {
   }
 
   // PLAY
-  void play({int fromTime = 0}) {
+  void play({Duration fromTime = Duration.zero}) {
     currentSongTime = fromTime;
   }
 }

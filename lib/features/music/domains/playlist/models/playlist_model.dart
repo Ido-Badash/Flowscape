@@ -74,7 +74,7 @@ class PlaylistModel {
   final int id;
 
   // required
-  List<SongModel> _songs;
+  final List<SongModel> _songs;
   final String title;
   final String creator;
 
@@ -86,11 +86,15 @@ class PlaylistModel {
 
   // private
   int _currentSongIdx;
+  Duration _currentSongTime = Duration.zero;
   final Random _random = Random();
 
   // getters
   int get currentSongIdx => _currentSongIdx;
+  Duration get currentSongTime => _currentSongTime;
+  int get currentSongSec => currentSongTime.inSeconds;
   List<SongModel> get songs => _songs;
+
 
   // setters
   set currentSongIdx(int idx) {
@@ -101,6 +105,17 @@ class PlaylistModel {
     }
   }
 
+  set currentSongTime(Duration time) {
+    final int currentSongInSec = songs[currentSongIdx].duration.inSeconds;
+    if (time < Duration.zero ||
+        time.inSeconds > currentSongInSec) {
+      throw ArgumentError(
+        'Current song time must be between 0 and $currentSongInSec seconds.',
+      );
+    }
+    _currentSongTime = time;
+  }
+
   set songs(List<SongModel> songModels) {
     songs = songModels;
   }
@@ -109,7 +124,7 @@ class PlaylistModel {
   PlaylistModel({
     required this.id,
     int currentSongIdx = 0,
-    int currentSongTime = 0,
+    Duration currentSongTime = Duration.zero,
     List<SongModel> songs = const [],
     required this.title,
     required this.creator,
@@ -117,9 +132,9 @@ class PlaylistModel {
     this.order = PlaylistOrder.normal,
     this.shuffle = false,
     this.playlistImagePath,
-  })  : _songs = songs,
-        _currentSongIdx = currentSongIdx,
-        assert(songs.isNotEmpty, 'Songs list cannot be empty');
+  }) : _songs = songs,
+       _currentSongIdx = currentSongIdx,
+       assert(songs.isNotEmpty, 'Songs list cannot be empty');
 
   void init() {
     updateSongs();
