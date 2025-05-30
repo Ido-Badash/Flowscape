@@ -94,7 +94,7 @@ class IsarPlaylist {
   // the [@ignore] here is used to ignore this getter in the db
   // Dursation is not supported by isar
 
-  // convert isar object -> pure playlist object to use in our app
+  // convert playlist db -> playlist domain
   PlaylistModel toDomain() {
     return PlaylistModel(
       id: id,
@@ -108,7 +108,7 @@ class IsarPlaylist {
     );
   }
 
-  // convert pure playlist object -> isar object to store in isar db
+  // convert playlist domain -> playlist db
   static IsarPlaylist fromDomain(PlaylistModel playlist) {
     return IsarPlaylist()
       ..id = playlist.id
@@ -121,12 +121,12 @@ class IsarPlaylist {
       ..isShuffled = playlist.shuffle;
   }
 
-  // convert isar songs to module songs
+  // convert songs db -> songs domain
   List<SongModel> _isarToModelsSongs(List<IsarSong> songs) {
     return songs.map((isarSong) => isarSong.toDomain()).toList();
   }
 
-  // convert module songs to isar songs
+  // convert songs domain -> songs db
   static List<IsarSong> _modelsToIsarSongs(List<SongModel> songs) {
     return songs.map((song) => IsarSong.fromDomain(song)).toList();
   }
