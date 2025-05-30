@@ -18,6 +18,10 @@ This is what a song object is.
       ? NOTE: file is an mp3 file and it wil decide how long the song is
 
 * - optional:
+  - id
+      int?
+      ? NOTE: the id of the song, can be null if not set
+
   - album
       String
       ? NOTE: the album the song is from
