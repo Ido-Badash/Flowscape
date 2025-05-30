@@ -16,11 +16,16 @@ the methods down below are with the @override tag
 those methods can be found at the SongRepo class in the song domain layer
 also they are asynchronous methods with the Future<T> type
 
-* - savePlayback(int songId)
+* - savePlayback(int songId, int currentTimeSec)
     saved the playback of the song and stores it in the database
+
+* - update(SongModel song)
+    updates the song in the database
 
 * - delete(int songId)
     deletes the song from the database
+
+* - getSong(int id)
 
 */
 
@@ -37,42 +42,11 @@ class IsarSongRepo implements SongRepo {
 
   IsarSongRepo(this.db);
 
-  // getPlaylists
-  Future<List<IsarPlaylist>> _getPlaylists(int songId) async {
-    // Fetch the playlists from the db
-    return await db.collection<IsarPlaylist>().where().findAll();
-  }
-
-  // getPlaylist
-  Future<IsarPlaylist> _getPlaylist(int songId) async {
-    final List<IsarPlaylist> playlistDb = await _getPlaylists(songId);
-    return playlistDb.firstWhere(
-      (playlist) => playlist.songs.any((song) => song.id == songId),
-      orElse: () => throw Exception('Playlist not found for song ID: $songId'),
-    );
-  }
-
-  // songIdToIsarSong
-  Future<IsarSong> _songIdToIsarSong(int songId) async {
-    // local methods to find the song
-    findSong(IsarSong song) => song.id == songId;
-    ifDidntFind() => throw Exception('Song not found in playlist');
-
-    // get playlist with the song id
-    final IsarPlaylist playlist = await _getPlaylist(songId);
-
-    // find song and return it
-    return playlist.songs.firstWhere(findSong, orElse: ifDidntFind);
-  }
-
   // savePlayback song
   @override
-  Future<void> savePlayback(int songId) async {
+  Future<void> savePlayback(int songId, int currentTimeSec) async {
     // fetch song
-    final IsarSong song = await _songIdToIsarSong(songId);
-
-    // get the current time of the song
-    final int currentTimeSec = song.currentSongTime;
+    final IsarSong? song = await _songIdToIsarSong(songId);
 
     // simple output for debugging
     if (currentTimeSec > 0) {
@@ -80,13 +54,14 @@ class IsarSongRepo implements SongRepo {
     }
 
     // update the song in the db
-    return db.writeTxn(() async {
-      song.currentSongTime = currentTimeSec;
+    await db.writeTxn(() async {
+      song?.currentSongTime = currentTimeSec;
       // save the updated song
       try {
-        await db.collection<IsarSong>().put(song);
+        await db.collection<IsarSong>().put(song!);
       } catch (e) {
         debugPrint("FATAL: Failed to save playback in the database.");
+        return;
       }
     });
   }
@@ -101,17 +76,19 @@ class IsarSongRepo implements SongRepo {
       debugPrint(
         "FATAL: Attempted to update a song with an invalid ID: $songId",
       );
+      return;
     }
 
     // fetch song
-    final IsarSong isarSong = await _songIdToIsarSong(songId);
+    final IsarSong isarSong = IsarSong.fromDomain(song);
 
     // update the song in the db
-    return db.writeTxn(() async {
+    await db.writeTxn(() async {
       try {
         await db.collection<IsarSong>().put(isarSong);
       } catch (e) {
         debugPrint("FATAL: Failed to update song in the database.");
+        rethrow;
       }
     });
   }
@@ -119,16 +96,27 @@ class IsarSongRepo implements SongRepo {
   // delete song
   @override
   Future<void> delete(int songId) async {
-    // fetch song
-    final IsarSong song = await _songIdToIsarSong(songId);
-
     // delete song from db
     await db.writeTxn(() async {
       try {
-        await db.collection<IsarSong>().delete(song.id);
+        await db.collection<IsarSong>().delete(songId);
       } catch (e) {
         debugPrint("FATAL: Failed to delete song from the database.");
+        rethrow;
       }
     });
+  }
+
+  @override
+  Future<SongModel?> getSong(int id) async {
+    final IsarSong? isarSong = await _songIdToIsarSong(id);
+    return isarSong?.toDomain();
+  }
+
+  //* private helpers methods
+
+  // songIdToIsarSong
+  Future<IsarSong?> _songIdToIsarSong(int songId) async {
+    return await db.collection<IsarSong>().get(songId);
   }
 }
