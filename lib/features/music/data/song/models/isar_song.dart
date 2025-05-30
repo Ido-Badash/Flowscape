@@ -47,8 +47,7 @@ import 'package:flowscape/features/music/domains/song/song_lib.dart';
 import 'package:isar/isar.dart';
 
 // generate isar song object, run: "dart run build_runner build"
-//! part 'isar_song.g.dart'
-// TODO: remove the //! comment when i finish the data layer
+part 'isar_song.g.dart';
 
 // IsarSong
 @collection
@@ -84,4 +83,3 @@ class IsarSong {
       ..currentSongTime = song.currentSongTime.inSeconds;
   }
 }
-

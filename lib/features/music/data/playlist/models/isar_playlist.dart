@@ -68,8 +68,7 @@ import 'package:isar/isar.dart';
 import 'package:flowscape/features/music/domains/playlist/models/playlist_model.dart';
 
 // generate isar playlist object, run: "dart run build_runner build"
-//! part 'isar_playlist.g.dart'
-// TODO: remove the //! comment when i finish the data layer
+part 'isar_playlist.g.dart';
 
 // IsarPlaylist
 @collection
@@ -77,7 +76,7 @@ class IsarPlaylist {
   Id id = Isar.autoIncrement;
   int currentSongIndex = 0;
   int currentSongTimeSec = 0;
-  List<IsarSong> songs = [];
+  final songs = IsarLinks<IsarSong>();
   bool isShuffled = false;
   late String title;
   late String creator;
@@ -87,12 +86,14 @@ class IsarPlaylist {
   // PlaylistOrder is an enum so @Enumerated is used to store it as a string
 
   // getters
-  List<SongModel> get moduleSongs => _isarToModelsSongs(songs);
+  // the [@ignore] here is used to ignore those getters in the db
+  @ignore
+  List<SongModel> get moduleSongs =>
+      songs.map((isarSong) => isarSong.toDomain()).toList();
 
   @ignore
   Duration get currentSongTime => Duration(seconds: currentSongTimeSec);
-  // the [@ignore] here is used to ignore this getter in the db
-  // Dursation is not supported by isar
+  // Dursation and SongModel arent supported by isar
 
   // convert playlist db -> playlist domain
   PlaylistModel toDomain() {
@@ -109,25 +110,31 @@ class IsarPlaylist {
   }
 
   // convert playlist domain -> playlist db
-  static IsarPlaylist fromDomain(PlaylistModel playlist) {
-    return IsarPlaylist()
-      ..id = playlist.id
-      ..currentSongIndex = playlist.currentSongIdx
-      ..currentSongTimeSec = playlist.currentSongSec
-      ..creator = playlist.creator
-      ..title = playlist.title
-      ..songs = _modelsToIsarSongs(playlist.songs)
-      ..order = playlist.order
-      ..isShuffled = playlist.shuffle;
-  }
+  static Future<IsarPlaylist> fromDomain(
+    PlaylistModel playlist,
+    Isar isar,
+  ) async {
+    final isarPlaylist =
+        IsarPlaylist()
+          ..id = playlist.id
+          ..currentSongIndex = playlist.currentSongIdx
+          ..currentSongTimeSec = playlist.currentSongSec
+          ..creator = playlist.creator
+          ..title = playlist.title
+          ..order = playlist.order
+          ..isShuffled = playlist.shuffle;
 
-  // convert songs db -> songs domain
-  List<SongModel> _isarToModelsSongs(List<IsarSong> songs) {
-    return songs.map((isarSong) => isarSong.toDomain()).toList();
-  }
-
-  // convert songs domain -> songs db
-  static List<IsarSong> _modelsToIsarSongs(List<SongModel> songs) {
-    return songs.map((song) => IsarSong.fromDomain(song)).toList();
+    // Convert and link songs
+    final isarSongs = await Future.wait(
+      playlist.songs.map((song) async {
+        final isarSong = IsarSong.fromDomain(song);
+        await isar.writeTxn(() async {
+          await isar.collection<IsarSong>().put(isarSong);
+        });
+        return isarSong;
+      }),
+    );
+    isarPlaylist.songs.addAll(isarSongs);
+    return isarPlaylist;
   }
 }
