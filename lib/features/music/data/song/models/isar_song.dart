@@ -1,18 +1,87 @@
 /*
-TODO: make a Doc
+ISAR SONG MODEL
+can convert a pure song model into a isar song model
+and vice versa.
+
+-----------------------------------------------------------------------
+~~~ PROPERTIES ~~~
+
+* - id
+    Id
+    ? NOTE: the id will be equal to Isar.autoIncrement by default
+
+* - title
+    late String
+
+* - artist
+    late String
+
+* - audioFilePath
+    late String
+
+* - currentSongTime 
+    int
+
+-----------------------------------------------------------------------
+~~~ METHODS ~~~
+
+* - toDomain()
+    converts the isar song object into a pure song object
+    returns -> SongModel object
+
+* - static fromDomain(Playlist playlist)
+    converts a pure song object into an isar song object
+    returns -> IsarSong object
+
+-----------------------------------------------------------------------
+~~~ NOTES ~~~
+- This class will NOT have a constructor
+
+- DO NOT remove the [part 'isar_song.g.dart']
+  its for the database entire build
+
 */
 
 // Imports
 import 'package:flowscape/features/music/domains/song/song_lib.dart';
+import 'package:isar/isar.dart';
 
+// generate isar song object, run: "dart run build_runner build"
+//! part 'isar_song.g.dart'
+// TODO: remove the //! comment when i finish the data layer
+
+// IsarSong
+@collection
 class IsarSong {
-  SongModel toDomain() { // TODO: make this function
-    return SongModel(id: 1, title: "", artist: "", audioFilePath: "");
+  Id id = Isar.autoIncrement;
+  int currentSongTime = 0;
+  late String title;
+  late String artist;
+  late String audioFilePath;
+
+  // getters
+  @ignore
+  Duration get currentSongTimeSec => Duration(seconds: currentSongTime);
+
+  // convert song db -> domain db
+  SongModel toDomain() {
+    return SongModel(
+      id: id,
+      title: title,
+      artist: artist,
+      audioFilePath: audioFilePath,
+      currentSongTime: currentSongTimeSec,
+    );
   }
 
+  // convert song domain -> song db
   static IsarSong fromDomain(SongModel song) {
-    return IsarSong(); // TODO: implement conversion from SongModel to IsarSong
+    return IsarSong()
+      ..id = song.id as Id
+      ..title = song.title
+      ..artist = song.artist
+      ..audioFilePath = song.audioFilePath
+      ..currentSongTime = song.currentSongTime.inSeconds;
   }
 }
 
-// TODO: make the class based on the Doc
