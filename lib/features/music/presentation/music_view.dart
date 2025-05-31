@@ -18,16 +18,9 @@ class MusicView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // get the MusicCubit
-    final musicCubit = context.read<MusicCubit>();
-
-    // initialize the CalmPlaylist
-    CalmPlaylist.init();
-
     return Scaffold(
       body: BlocBuilder<MusicCubit, List<PlaylistModel>>(
         builder: (context, state) {
-          // TODO: Replace with your actual UI for displaying playlists
           if (state.isEmpty) {
             return const Center(child: Text('No playlists available.'));
           }

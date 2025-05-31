@@ -12,10 +12,10 @@ import 'package:flowscape/features/music/domains/playlist/repository/playlist_re
 import 'music_cubit.dart';
 import 'music_view.dart';
 
-class TodoPage extends StatelessWidget {
+class MusicPage extends StatelessWidget {
   final PlaylistRepo playlistRepo;
 
-  const TodoPage({super.key, required this.playlistRepo});
+  const MusicPage({super.key, required this.playlistRepo});
 
   @override
   Widget build(BuildContext context) {

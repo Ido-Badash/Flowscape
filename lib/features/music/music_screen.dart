@@ -1,3 +1,4 @@
+import 'package:flowscape/features/music/music.dart';
 import 'package:flutter/material.dart';
 // import 'package:provider/provider.dart';
 
@@ -10,6 +11,6 @@ class MusicScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox.shrink();
+    return MusicPage();
   }
 }
