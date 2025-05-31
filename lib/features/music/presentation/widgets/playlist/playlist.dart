@@ -26,22 +26,17 @@ class Playlist extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Flexible(flex: 1, child: buildHead(context)),
-        Flexible(flex: 4, child: buildSongs(context)),
-      ],
+    return SingleChildScrollView(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [buildHead(context), buildSongs(context)],
+      ),
     );
   }
 
   //* --- HEAD ---
   Widget buildHead(BuildContext context) {
-    return Row(
-      children: [
-        Flexible(flex: 1, child: buildHeadImage(context)),
-        Flexible(flex: 3, child: buildHeadText(context)),
-      ],
-    );
+    return Row(children: [buildHeadImage(context), buildHeadText(context)]);
   }
 
   Widget buildHeadImage(BuildContext context) {
@@ -61,20 +56,13 @@ class Playlist extends StatelessWidget {
 
   Widget buildHeadText(BuildContext context) {
     return Column(
+      mainAxisSize: MainAxisSize.min, // Add this line!
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Flexible(
-          flex: 5,
-          child: Text(
-            playlist.title,
-            style: style?.titleStyle ?? _defaultTX(context),
-          ),
-        ),
-        Flexible(
-          flex: 4,
-          child: Text(
-            playlist.creator,
-            style: style?.creatorStyle ?? _defaultTX(context),
-          ),
+        Text(playlist.title, style: style?.titleStyle ?? _defaultTX(context)),
+        Text(
+          playlist.creator,
+          style: style?.creatorStyle ?? _defaultTX(context),
         ),
       ],
     );
@@ -83,15 +71,10 @@ class Playlist extends StatelessWidget {
   //* --- SONGS ---
   Widget buildSongs(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Flexible(
-          flex: 1,
-          child: Row(
-            spacing: 20.0,
-            children: [Text("Title"), Text("Album"), Text("Duration")],
-          ),
-        ),
-        Flexible(flex: 4, child: Column(children: addIdxToSongs())),
+        Row(children: [Text("Title"), Text("Album"), Text("Duration")]),
+        ...addIdxToSongs(),
       ],
     );
   }
@@ -102,9 +85,9 @@ class Playlist extends StatelessWidget {
       songs.length,
       (index) => Row(
         children: [
-          Flexible(flex: 1, child: Text('${index + 1}')),
-          Spacer(flex: 1),
-          Flexible(flex: 9, child: songs[index]),
+          Text('${index + 1}'),
+          SizedBox(width: 8),
+          songs[index], // Only if Row is in a bounded context
         ],
       ),
     );
