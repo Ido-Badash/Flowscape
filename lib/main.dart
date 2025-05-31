@@ -7,10 +7,15 @@ import 'package:provider/provider.dart';
 import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart';
 
-// feature
-import 'package:flowscape/features/todo/data/models/isar_todo.dart';
-import 'package:flowscape/features/todo/data/repository/isar_todo_repo.dart';
-import 'package:flowscape/features/todo/domain/repository/todo_repo.dart';
+// features
+// page: todo
+import 'features/todo/data/models/isar_todo.dart';
+import 'features/todo/data/repository/isar_todo_repo.dart';
+import 'features/todo/domain/repository/todo_repo.dart';
+
+// page: music
+import 'features/music/data/data_lib.dart';
+import 'features/music/domains/domains_lib.dart';
 
 // app
 import 'features/app/app.dart';
@@ -24,18 +29,28 @@ void main() async {
   final dir = await getApplicationDocumentsDirectory();
 
   // open isar db
-  final isar = await Isar.open([TodoIsarSchema], directory: dir.path);
+  final isar = await Isar.open([
+    TodoIsarSchema,
+    IsarPlaylistSchema,
+    IsarSongSchema,
+  ], directory: dir.path);
 
   // init todo repo
   final todoRepo = IsarTodoRepo(isar);
 
+  // init music repos
+  final playlistRepo = IsarPlaylistRepo(isar);
+  final songRepo = IsarSongRepo(isar);
+
   runApp(
-    Provider<TodoRepo>.value(
-      value: todoRepo,
-      child: ChangeNotifierProvider(
-        create: (context) => ThemeProvider(),
-        child: const MyApp(),
-      ),
+    MultiProvider(
+      providers: [
+        Provider<TodoRepo>.value(value: todoRepo),
+        Provider<PlaylistRepo>.value(value: playlistRepo),
+        Provider<SongRepo>.value(value: songRepo),
+        ChangeNotifierProvider(create: (context) => ThemeProvider()),
+      ],
+      child: const MyApp(),
     ),
   );
 }

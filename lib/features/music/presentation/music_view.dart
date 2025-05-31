@@ -20,14 +20,14 @@ class MusicView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: BlocBuilder<MusicCubit, List<PlaylistModel>>(
-        builder: (context, state) {
-          if (state.isEmpty) {
+        builder: (context, playlists) {
+          if (playlists.isEmpty) {
             return const Center(child: Text('No playlists available.'));
           }
           return ListView.builder(
-            itemCount: state.length,
+            itemCount: playlists.length,
             itemBuilder: (context, index) {
-              final playlist = state[index];
+              final playlist = playlists[index];
               return ListTile(
                 title: Text(playlist.title),
                 // Add more playlist details here as needed
