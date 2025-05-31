@@ -27,7 +27,20 @@ class MusicView extends StatelessWidget {
     return Scaffold(
       body: BlocBuilder<MusicCubit, List<PlaylistModel>>(
         builder: (context, state) {
-          return SizedBox.shrink();
+          // TODO: Replace with your actual UI for displaying playlists
+          if (state.isEmpty) {
+            return const Center(child: Text('No playlists available.'));
+          }
+          return ListView.builder(
+            itemCount: state.length,
+            itemBuilder: (context, index) {
+              final playlist = state[index];
+              return ListTile(
+                title: Text(playlist.title),
+                // Add more playlist details here as needed
+              );
+            },
+          );
         },
       ),
     );
