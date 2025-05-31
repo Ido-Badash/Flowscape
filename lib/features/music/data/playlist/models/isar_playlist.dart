@@ -123,18 +123,6 @@ class IsarPlaylist {
           ..title = playlist.title
           ..order = playlist.order
           ..isShuffled = playlist.shuffle;
-
-    // Convert and link songs
-    final isarSongs = await Future.wait(
-      playlist.songs.map((song) async {
-        final isarSong = IsarSong.fromDomain(song);
-        await isar.writeTxn(() async {
-          await isar.collection<IsarSong>().put(isarSong);
-        });
-        return isarSong;
-      }),
-    );
-    isarPlaylist.songs.addAll(isarSongs);
     return isarPlaylist;
   }
 

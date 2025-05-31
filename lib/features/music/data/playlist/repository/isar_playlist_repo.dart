@@ -88,7 +88,21 @@ class IsarPlaylistRepo implements PlaylistRepo {
   @override
   Future<void> addPlaylist(PlaylistModel playlist) async {
     await db.writeTxn(() async {
+      // collect all IsarSongs
+      final isarSongsList = <IsarSong>[];
+      for (final song in playlist.songs) {
+        final isarSong = IsarSong.fromDomain(song);
+        await isarSongs.put(isarSong);
+        isarSongsList.add(isarSong);
+      }
+
+      // get the IsarPlaylist from the domain model
       final isarPlaylist = await IsarPlaylist.fromDomain(playlist, db);
+
+      // link the songs to the playlist
+      isarPlaylist.songs.addAll(isarSongsList);
+
+      // save
       await isarPlaylists.put(isarPlaylist);
       await isarPlaylist.songs.save();
     });
@@ -98,7 +112,21 @@ class IsarPlaylistRepo implements PlaylistRepo {
   @override
   Future<void> updatePlaylist(PlaylistModel playlist) async {
     await db.writeTxn(() async {
+      // collect all IsarSongs
+      final isarSongsList = <IsarSong>[];
+      for (final song in playlist.songs) {
+        final isarSong = IsarSong.fromDomain(song);
+        await isarSongs.put(isarSong);
+        isarSongsList.add(isarSong);
+      }
+
+      // get the IsarPlaylist from the domain model
       final isarPlaylist = await IsarPlaylist.fromDomain(playlist, db);
+
+      // link the songs to the playlist
+      isarPlaylist.songs.addAll(isarSongsList);
+
+      // save
       await isarPlaylists.put(isarPlaylist);
       await isarPlaylist.songs.save();
     });
@@ -207,9 +235,8 @@ class IsarPlaylistRepo implements PlaylistRepo {
 
   //* private methods
   Future<IsarPlaylist?> _playlist(int playlistId) async {
-    final PlaylistModel playlistModel = await getPlaylist(playlistId);
-    playlistModel.init();
-    return IsarPlaylist.fromDomain(playlistModel, db);
+    // Fetch directly from Isar to avoid recursion
+    return await isarPlaylists.get(playlistId);
   }
 
   Future<IsarSong?> _song(int songId) async {

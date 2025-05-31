@@ -74,7 +74,7 @@ class PlaylistModel {
   final int id;
 
   // required
-  final List<SongModel> _songs;
+  List<SongModel> _songs;
   final String title;
   final String creator;
 
@@ -95,10 +95,9 @@ class PlaylistModel {
   int get currentSongSec => currentSongTime.inSeconds;
   List<SongModel> get songs => _songs;
 
-
   // setters
   set currentSongIdx(int idx) {
-    if (idx >= 0 && idx < songs.length) {
+    if (idx >= 0 && idx < _songs.length) {
       _currentSongIdx = idx;
     } else {
       throw RangeError('Index out of range for songs list');
@@ -106,9 +105,8 @@ class PlaylistModel {
   }
 
   set currentSongTime(Duration time) {
-    final int currentSongInSec = songs[currentSongIdx].duration.inSeconds;
-    if (time < Duration.zero ||
-        time.inSeconds > currentSongInSec) {
+    final int currentSongInSec = _songs[_currentSongIdx].duration.inSeconds;
+    if (time < Duration.zero || time.inSeconds > currentSongInSec) {
       throw ArgumentError(
         'Current song time must be between 0 and $currentSongInSec seconds.',
       );
@@ -116,8 +114,9 @@ class PlaylistModel {
     _currentSongTime = time;
   }
 
+  // If you want to allow replacing the whole song list:
   set songs(List<SongModel> songModels) {
-    songs = songModels;
+    _songs = songModels;
   }
 
   // constructor
@@ -132,8 +131,9 @@ class PlaylistModel {
     this.order = PlaylistOrder.normal,
     this.shuffle = false,
     this.playlistImagePath,
-  }) : _songs = songs,
+  }) : _songs = List<SongModel>.from(songs),
        _currentSongIdx = currentSongIdx,
+       _currentSongTime = currentSongTime,
        assert(songs.isNotEmpty, 'Songs list cannot be empty');
 
   void init() {
@@ -142,46 +142,47 @@ class PlaylistModel {
 
   void updateSongs() {
     if (shuffle) {
-      songs.shuffle(_random);
+      _songs.shuffle(_random);
     }
     switch (order) {
-      // by creator
       case PlaylistOrder.byCreator:
         _orderByCreator();
+        break;
       case PlaylistOrder.byCreatorFlipped:
         _orderByCreator(flipped: true);
-
-      // by time
+        break;
       case PlaylistOrder.byTime:
         _orderByTime();
+        break;
       case PlaylistOrder.byTimeFlipped:
         _orderByTime(flipped: true);
-
-      // by title
+        break;
       case PlaylistOrder.byTitle:
         _orderByTitle();
+        break;
       case PlaylistOrder.byTitleFlipped:
         _orderByTitle(flipped: true);
-
-      // normal and flipped
+        break;
       case PlaylistOrder.flipped:
         _flip();
+        break;
       default:
-        songs = songs;
+        // Do nothing for normal order
+        break;
     }
   }
 
   void _orderByCreator({bool flipped = false}) {
     _willItFlip(
       flipped,
-      () => songs.sort((a, b) => a.artist.compareTo(b.artist)),
+      () => _songs.sort((a, b) => a.artist.compareTo(b.artist)),
     );
   }
 
   void _orderByTime({bool flipped = false}) {
     _willItFlip(
       flipped,
-      () => songs.sort(
+      () => _songs.sort(
         (a, b) => a.duration.inSeconds.compareTo(b.duration.inSeconds),
       ),
     );
@@ -190,11 +191,11 @@ class PlaylistModel {
   void _orderByTitle({bool flipped = false}) {
     _willItFlip(
       flipped,
-      () => songs.sort((a, b) => a.title.compareTo(b.title)),
+      () => _songs.sort((a, b) => a.title.compareTo(b.title)),
     );
   }
 
-  void _flip() => songs = songs.reversed.toList();
+  void _flip() => _songs = _songs.reversed.toList();
 
   void _willItFlip(bool flipped, void Function() func) {
     func();
@@ -203,11 +204,11 @@ class PlaylistModel {
 
   // NEXT
   void next() {
-    currentSongIdx = (currentSongIdx + 1) % songs.length;
+    currentSongIdx = (currentSongIdx + 1) % _songs.length;
   }
 
   // PREVIOUS
   void previous() {
-    currentSongIdx = (currentSongIdx - 1 + songs.length) % songs.length;
+    currentSongIdx = (currentSongIdx - 1 + _songs.length) % _songs.length;
   }
 }
