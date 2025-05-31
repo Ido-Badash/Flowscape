@@ -52,6 +52,7 @@ class IsarPlaylistRepo implements PlaylistRepo {
 
   IsarPlaylistRepo(this.db);
 
+  // getAllPlaylists
   @override
   Future<List<PlaylistModel>> getAllPlaylists() async {
     final List<IsarPlaylist> playlists = await isarPlaylists.where().findAll();
@@ -62,6 +63,7 @@ class IsarPlaylistRepo implements PlaylistRepo {
     }).toList();
   }
 
+  // getPlaylist
   @override
   Future<PlaylistModel> getPlaylist(int playlistId) async {
     final IsarPlaylist? isarPlaylist = await isarPlaylists.get(playlistId);
@@ -70,6 +72,7 @@ class IsarPlaylistRepo implements PlaylistRepo {
     return playlist;
   }
 
+  // addSong
   @override
   Future<void> addSong(SongModel songModel, int playlistId) async {
     await db.writeTxn(() async {
@@ -100,11 +103,13 @@ class IsarPlaylistRepo implements PlaylistRepo {
     });
   }
 
+  // updateSong
   @override
   Future<void> updateSong(SongModel songModel, int playlistId) async {
     await addSong(songModel, playlistId);
   }
 
+  // deleteSong
   @override
   Future<void> deleteSong(SongModel songModel, int playlistId) async {
     await db.writeTxn(() async {
