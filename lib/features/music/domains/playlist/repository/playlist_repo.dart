@@ -14,6 +14,15 @@ the app can do with the playlist.
 * - getPlaylist(int playlistId)
     returns a playlist from the database
     
+* - addPlaylist(PlaylistModel playlist)
+    adds a new playlist to the database
+
+* - updatePlaylist(PlaylistModel playlist)
+    updates an existing playlist in the database
+
+* - removePlaylist(int playlistId)
+    removes a playlist from the database
+
 * - addSong(SongModel songModel, int playlistId)
     adds a song to a playlist
 
@@ -42,6 +51,15 @@ abstract class PlaylistRepo {
 
   /// gets a playlist from the database
   Future<PlaylistModel> getPlaylist(int playlistId); 
+
+  /// adds a new playlist to the database
+  Future<void> addPlaylist(PlaylistModel playlist);
+
+  /// updates an existing playlist in the database
+  Future<void> updatePlaylist(PlaylistModel playlist);
+
+  /// removes a playlist from the database
+  Future<void> removePlaylist(int playlistId);
 
   /// adds a song to a playlist
   Future<void> addSong(SongModel songModel, int playlistId);

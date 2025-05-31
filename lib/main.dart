@@ -14,8 +14,7 @@ import 'features/todo/data/repository/isar_todo_repo.dart';
 import 'features/todo/domain/repository/todo_repo.dart';
 
 // page: music
-import 'features/music/data/data_lib.dart';
-import 'features/music/domains/domains_lib.dart';
+import 'features/music/music_lib.dart';
 
 // app
 import 'features/app/app.dart';
@@ -41,6 +40,9 @@ void main() async {
   // init music repos
   final playlistRepo = IsarPlaylistRepo(isar);
   final songRepo = IsarSongRepo(isar);
+
+  // developer manuel playlists addings
+  
 
   runApp(
     MultiProvider(

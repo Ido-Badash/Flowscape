@@ -22,6 +22,18 @@ also they are asynchronous methods with the Future<T> type
 * - getAllPlaylists()
     gets all playlists from the database
 
+* - getPlaylist(int playlistId)
+    gets a playlist from the database
+
+* - addPlaylist(PlaylistModel playlist)
+    adds a new playlist to the database
+
+* - updatePlaylist(PlaylistModel playlist)
+    updates an existing playlist in the database
+
+* - removePlaylist(int playlistId)
+    removes a playlist from the database
+
 * - addSong(SongModel songModel, int playlistId)
     adds a song to a playlist
 
@@ -72,6 +84,34 @@ class IsarPlaylistRepo implements PlaylistRepo {
     return playlist;
   }
 
+  // Add a new playlist
+  @override
+  Future<void> addPlaylist(PlaylistModel playlist) async {
+    await db.writeTxn(() async {
+      final isarPlaylist = await IsarPlaylist.fromDomain(playlist, db);
+      await isarPlaylists.put(isarPlaylist);
+      await isarPlaylist.songs.save();
+    });
+  }
+
+  // Update an existing playlist (by id)
+  @override
+  Future<void> updatePlaylist(PlaylistModel playlist) async {
+    await db.writeTxn(() async {
+      final isarPlaylist = await IsarPlaylist.fromDomain(playlist, db);
+      await isarPlaylists.put(isarPlaylist);
+      await isarPlaylist.songs.save();
+    });
+  }
+
+  // Remove a playlist (by id)
+  @override
+  Future<void> removePlaylist(int playlistId) async {
+    await db.writeTxn(() async {
+      await isarPlaylists.delete(playlistId);
+    });
+  }
+
   // addSong
   @override
   Future<void> addSong(SongModel songModel, int playlistId) async {
@@ -106,7 +146,32 @@ class IsarPlaylistRepo implements PlaylistRepo {
   // updateSong
   @override
   Future<void> updateSong(SongModel songModel, int playlistId) async {
-    await addSong(songModel, playlistId);
+    await db.writeTxn(() async {
+      try {
+        // Convert song and put in db
+        final IsarSong isarSong = IsarSong.fromDomain(songModel);
+        final int songId = await isarSongs.put(isarSong);
+
+        // Fetch playlist from db
+        final IsarPlaylist? playlist = await _playlist(playlistId);
+        if (playlist == null) {
+          throw Exception(
+            "FATAL: Playlist not found while trying to update a song",
+          );
+        }
+
+        // Update the linked song
+        final IsarSong? songInDb = await _song(songId);
+        if (songInDb != null) {
+          final IsarLinks<IsarSong> linkedSongs = playlist.songs;
+          linkedSongs.add(songInDb);
+          await linkedSongs.save();
+        }
+      } catch (e) {
+        debugPrint("FATAL: Failed to update song in the database.");
+        rethrow;
+      }
+    });
   }
 
   // deleteSong
