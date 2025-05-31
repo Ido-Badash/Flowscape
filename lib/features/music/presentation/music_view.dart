@@ -18,10 +18,15 @@ class MusicView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // get the MusicCubit
+    final musicCubit = context.read<MusicCubit>();
+
+    // initialize the CalmPlaylist
+    CalmPlaylist.init();
+
     return Scaffold(
       body: BlocBuilder<MusicCubit, List<PlaylistModel>>(
         builder: (context, state) {
-          CalmPlaylist.init();
           return SizedBox.shrink();
         },
       ),
