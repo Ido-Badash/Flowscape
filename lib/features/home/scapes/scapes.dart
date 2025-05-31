@@ -65,7 +65,7 @@ class _ScapesScreenState extends State<ScapesScreen> {
   }
 
   List<Widget> buildScapes() {
-    return [ManageYourTimeScape()];
+    return [ManageYourTimeScape(), DavidGogginsQuoteScape()];
   }
 
   Widget buildScrollToSeeText() {
