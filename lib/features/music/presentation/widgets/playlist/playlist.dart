@@ -106,6 +106,7 @@ class Playlist extends StatelessWidget {
   }
 
   List<Song> fetchSongs() {
+    playlist.init();
     return playlist.songs
         .map(
           (song) => Song(

@@ -7,6 +7,7 @@ MUSIC VIEW: responsible for UI
 */
 
 import 'package:flowscape/features/music/domains/playlist/models/playlist_model.dart';
+import 'package:flowscape/features/music/presentation/widgets/widgets_lib.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'music_cubit.dart';
@@ -28,10 +29,7 @@ class MusicView extends StatelessWidget {
             itemCount: playlists.length,
             itemBuilder: (context, index) {
               final playlist = playlists[index];
-              return ListTile(
-                title: Text(playlist.title),
-                // Add more playlist details here as needed
-              );
+              return Playlist(playlist: playlist);
             },
           );
         },

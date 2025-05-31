@@ -16,13 +16,9 @@ class CalmPlaylist {
     title: "Calm",
     creator: "FlowScape",
     description: "A playlist by FlowScape that contains calming music.",
-    playlistImagePath: "assets/images/playlists/calm_playlist.png",
+    playlistImagePath: "assets/images/music/playlists/calm.jpg",
     songs: buildSongs(),
   );
-
-  static void init() {
-    playlist.init();
-  }
 
   static List<SongModel> buildSongs() {
     return [
