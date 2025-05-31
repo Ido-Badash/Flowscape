@@ -24,7 +24,7 @@ class DavidGogginsQuoteScape extends StatelessWidget with ScapeUtils {
             date: "31/05/2025",
             quote: "\"Don't stop when you're tired, stop when you're done.\"",
             quoter: "David Goggins",
-            quoteColor: Color.fromARGB(255, 190, 60, 60),
+            quoteColor: Color.fromARGB(255, 210, 65, 65),
             quoterColor: Colors.white.withAlpha(150),
             quoteShadowColor: Colors.black,
             textColor: Colors.white.withAlpha(75),
