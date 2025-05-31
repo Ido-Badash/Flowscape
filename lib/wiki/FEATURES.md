@@ -1,3 +1,31 @@
+# Music data layer text visual
+📦 Music Project Data Layer
+└── 🎶 Playlists (PlaylistModel)
+    ├── id: Unique identifier for the playlist
+    ├── title: Name of the playlist
+    ├── creator: Creator of the playlist
+    ├── description: (Optional) Description of the playlist
+    ├── order: How songs are ordered (e.g., normal, by title, by artist)
+    ├── shuffle: Whether the playlist is shuffled
+    ├── playlistImagePath: (Optional) Path to the playlist's image
+    ├── currentSongIdx: Index of the currently playing song within the playlist
+    ├── currentSongTime: Current playback position of the song
+    └── 🎵 Songs (List<SongModel> - Stored as IsarSong in the database)
+        ├── Song 1
+        │   ├── id: Unique identifier for the song
+        │   ├── title: Title of the song
+        │   ├── artist: Artist of the song
+        │   ├── audioFilePath: Path to the song's audio file
+        │   └── currentSongTime: Current playback position of the song (in seconds)
+        ├── Song 2
+        │   ├── id: Unique identifier for the song
+        │   ├── title: Title of the song
+        │   ├── artist: Artist of the song
+        │   ├── audioFilePath: Path to the song's audio file
+        │   └── currentSongTime: Current playback position of the song (in seconds)
+        └── ... (and so on for all songs in the playlist)
+
+
 # Scapes cards
 
 ## Whiteboard (Idea, Design and steps)

@@ -76,7 +76,7 @@ class IsarPlaylist {
   Id id = Isar.autoIncrement;
   int currentSongIndex = 0;
   int currentSongTimeSec = 0;
-  final songs = IsarLinks<IsarSong>();
+  IsarLinks<IsarSong> songs = IsarLinks<IsarSong>();
   bool isShuffled = false;
   late String title;
   late String creator;
@@ -136,5 +136,14 @@ class IsarPlaylist {
     );
     isarPlaylist.songs.addAll(isarSongs);
     return isarPlaylist;
+  }
+
+  // add to the linked songs with a SongModel
+  Future<void> addSong(SongModel song, Isar isar) async {
+    final isarSong = IsarSong.fromDomain(song);
+    await isar.writeTxn(() async {
+      await isar.collection<IsarSong>().put(isarSong);
+      songs.add(isarSong);
+    });
   }
 }

@@ -10,24 +10,18 @@ the app can do with the playlist.
 ~~~ METHODS ~~~
 * - getAllPlaylists()
     returns a list of all playlists in the database
+
+* - getPlaylist(int playlistId)
+    returns a playlist from the database
     
-* - addSong()
+* - addSong(SongModel songModel, int playlistId)
     adds a song to a playlist
-    params:
-      SongModel songModel,
-      int playlistId
 
-* - updateSong()
+* - updateSong(SongModel songModel, int playlistId)
     updates a song in the playlist
-    params:
-      SongModel songModel,
-      int playlistId
 
-* - deleteSong()
+* - deleteSong(SongModel songModel, int playlistId)
     deletes a song from the playlist
-    params:
-      SongModel songModel,
-      int playlistId
 
 --------------------------------------------------------
 ~~~ NOTES ~~~
@@ -45,6 +39,9 @@ import 'package:flowscape/features/music/domains/song/model/song_model.dart';
 abstract class PlaylistRepo {
   /// gets all playlists from the database
   Future<List<PlaylistModel>> getAllPlaylists();
+
+  /// gets a playlist from the database
+  Future<PlaylistModel> getPlaylist(int playlistId); 
 
   /// adds a song to a playlist
   Future<void> addSong(SongModel songModel, int playlistId);
