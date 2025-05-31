@@ -1,30 +1,40 @@
 # Music data layer text visual
 📦 Music Project Data Layer
-└── 🎶 Playlists (PlaylistModel)
-    ├── id: Unique identifier for the playlist
-    ├── title: Name of the playlist
-    ├── creator: Creator of the playlist
-    ├── description: (Optional) Description of the playlist
-    ├── order: How songs are ordered (e.g., normal, by title, by artist)
-    ├── shuffle: Whether the playlist is shuffled
-    ├── playlistImagePath: (Optional) Path to the playlist's image
-    ├── currentSongIdx: Index of the currently playing song within the playlist
-    ├── currentSongTime: Current playback position of the song
-    └── 🎵 Songs (List<SongModel> - Stored as IsarSong in the database)
-        ├── Song 1
-        │   ├── id: Unique identifier for the song
-        │   ├── title: Title of the song
-        │   ├── artist: Artist of the song
-        │   ├── audioFilePath: Path to the song's audio file
-        │   └── currentSongTime: Current playback position of the song (in seconds)
-        ├── Song 2
-        │   ├── id: Unique identifier for the song
-        │   ├── title: Title of the song
-        │   ├── artist: Artist of the song
-        │   ├── audioFilePath: Path to the song's audio file
-        │   └── currentSongTime: Current playback position of the song (in seconds)
-        └── ... (and so on for all songs in the playlist)
-
+└── 💾 Database (e.g., Isar Database)
+    ├── 🎶 Playlists Collection (e.g., Isar Collection of PlaylistModel objects)
+    │   ├── Playlist 1 (PlaylistModel Object)
+    │   │   ├── id: ...
+    │   │   ├── title: "My Rock Anthems"
+    │   │   ├── creator: "Alice"
+    │   │   ├── songs: List<SongModel>
+    │   │   │   ├── 🎵 Song A (SongModel / IsarSong)
+    │   │   │   │   ├── id: ...
+    │   │   │   │   ├── title: "Bohemian Rhapsody"
+    │   │   │   │   ├── artist: "Queen"
+    │   │   │   │   └── audioFilePath: "..."
+    │   │   │   ├── 🎵 Song B (SongModel / IsarSong)
+    │   │   │   │   ├── id: ...
+    │   │   │   │   ├── title: "Stairway to Heaven"
+    │   │   │   │   ├── artist: "Led Zeppelin"
+    │   │   │   │   └── audioFilePath: "..."
+    │   │   │   └── ... (other songs in Playlist 1)
+    │   ├── Playlist 2 (PlaylistModel Object)
+    │   │   ├── id: ...
+    │   │   ├── title: "Morning Chill"
+    │   │   ├── creator: "Bob"
+    │   │   ├── songs: List<SongModel>
+    │   │   │   ├── 🎵 Song X (SongModel / IsarSong)
+    │   │   │   │   ├── id: ...
+    │   │   │   │   ├── title: "Acoustic Dreams"
+    │   │   │   │   ├── artist: "Indie Artist"
+    │   │   │   │   └── audioFilePath: "..."
+    │   │   │   └── ... (other songs in Playlist 2)
+    │   └── ... (other PlaylistModel objects in the collection)
+    └── 🎵 Songs Collection (e.g., Isar Collection of IsarSong objects - if songs are also stored independently for lookup/reuse)
+        ├── Song A (IsarSong) - The same Song A as in Playlist 1's list
+        ├── Song B (IsarSong) - The same Song B as in Playlist 1's list
+        ├── Song X (IsarSong) - The same Song X as in Playlist 2's list
+        └── ... (all unique songs in your database)
 
 # Scapes cards
 

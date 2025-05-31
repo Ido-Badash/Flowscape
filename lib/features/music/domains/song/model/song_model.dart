@@ -146,4 +146,31 @@ class SongModel {
   void play({Duration fromTime = Duration.zero}) {
     currentSongTime = fromTime;
   }
+
+  // copyWith
+  SongModel copyWith({
+    required int id,
+    required String title,
+    required String artist,
+    required String audioFilePath,
+    String? album,
+    String? coverImagePath,
+    String? genre,
+    String? lyrics,
+    String? releaseDate,
+    Duration currentSongTime = Duration.zero,
+  }) {
+    return SongModel(
+      id: id,
+      title: title,
+      artist: artist,
+      audioFilePath: audioFilePath,
+      album: album ?? this.album,
+      coverImagePath: coverImagePath ?? this.coverImagePath,
+      genre: genre ?? this.genre,
+      lyrics: lyrics ?? this.lyrics,
+      releaseDate: releaseDate ?? this.releaseDate,
+      currentSongTime: currentSongTime,
+    );
+  }
 }
