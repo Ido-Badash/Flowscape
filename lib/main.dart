@@ -42,7 +42,7 @@ void main() async {
   final songRepo = IsarSongRepo(isar);
 
   // developer manuel playlists addings
-  
+  playlistRepo.addPlaylist(CalmPlaylist());
 
   runApp(
     MultiProvider(
