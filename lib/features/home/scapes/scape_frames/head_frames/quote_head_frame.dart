@@ -61,45 +61,43 @@ class QuoteHeadFrame extends StatelessWidget with ScapeUtils {
           ),
         ),
         Center(
-          child: Flexible(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  quote ?? "",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                  color: quoteColor ?? Colors.white,
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold,
-                  fontFamily: "NotoSans",
-                  shadows: [
-                    Shadow(
-                    offset: Offset(0, 0),
-                    blurRadius: 3,
-                    color: quoteShadowColor ?? Colors.black54,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                quote ?? "",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                color: quoteColor ?? Colors.white,
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
+                fontFamily: "NotoSans",
+                shadows: [
+                  Shadow(
+                  offset: Offset(0, 0),
+                  blurRadius: 3,
+                  color: quoteShadowColor ?? Colors.black54,
+                  ),
+                  TextUtils.textOutlineShadow(),
+                ],
+                ),
+              ),
+              if (quoter != null && quoter!.isNotEmpty)
+                Padding(
+                  padding: const EdgeInsets.only(top: 8.0),
+                  child: Text(
+                    "- $quoter",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: quoterColor ?? Colors.white.withAlpha(150),
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: "NotoSans",
+                      shadows: [TextUtils.textOutlineShadow()],
                     ),
-                    TextUtils.textOutlineShadow(),
-                  ],
                   ),
                 ),
-                if (quoter != null && quoter!.isNotEmpty)
-                  Padding(
-                    padding: const EdgeInsets.only(top: 8.0),
-                    child: Text(
-                      "- $quoter",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: quoterColor ?? Colors.white.withAlpha(150),
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                        fontFamily: "NotoSans",
-                        shadows: [TextUtils.textOutlineShadow()],
-                      ),
-                    ),
-                  ),
-              ],
-            ),
+            ],
           ),
         ),
       ],
