@@ -27,10 +27,25 @@ class Playlist extends StatelessWidget {
     );
   }
 
+  //* --- HEAD ---
   Widget buildHead(BuildContext context) {
+    return Row(
+      children: [
+        Flexible(flex: 1, child: buildHeadImage(context)),
+        Flexible(flex: 3, child: buildHeadText(context)),
+      ],
+    );
+  }
+
+  Widget buildHeadImage(BuildContext context) {
     return Container();
   }
 
+  Widget buildHeadText(BuildContext context) {
+    return Container();
+  }
+
+  //* --- SONGS ---
   Widget buildSongs(BuildContext context) {
     return Container();
   }

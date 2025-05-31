@@ -35,7 +35,13 @@ class Song extends StatelessWidget {
 
   // buildImage
   Widget buildImage(BuildContext context) {
-    return Container(color: style?.imageBg ?? Colors.indigo);
+    return Container(
+      color: style?.imageBg ?? Colors.indigo,
+      child:
+          song.coverImagePath != null
+              ? Image.asset(song.coverImagePath!)
+              : throw ("Cover Image provided in Song widget was not found in assets"),
+    );
   }
 
   // buildTitle
