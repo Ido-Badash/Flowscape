@@ -66,18 +66,18 @@ class ManageYourTimeScape extends StatelessWidget with ScapeUtils {
     return AssetFrame(
       stackAlignment: AlignmentDirectional.topCenter,
       bgImage: "assets/images/scapes/manage_your_time/page_1.jpg",
-      children: TextUtils.buildTitleAndText(
-        title: TextUtils.buildClassicTitle(
-          "Plan Ahead",
-          color: Colors.yellow[700],
+      children: [
+        TextUtils.buildTitleAndText(
+          mainAxisAlignment: MainAxisAlignment.center,
+          title: TextUtils.buildClassicTitle("Plan Ahead", color: Colors.brown),
+          text: TextUtils.buildClassicText(
+            "Set weekly goals and break them into daily tasks."
+            "It will helps you stay on track and avoid last-minute stress.",
+            color: Colors.white,
+            fontSize: 18,
+          ),
         ),
-        text: TextUtils.buildClassicText(
-          "Set weekly goals and break them into daily tasks."
-          "It will helps you stay on track and avoid last-minute stress.",
-          color: Colors.white,
-          fontSize: 18,
-        ),
-      ),
+      ],
     );
   }
 
@@ -85,17 +85,19 @@ class ManageYourTimeScape extends StatelessWidget with ScapeUtils {
     return AssetFrame(
       stackAlignment: AlignmentDirectional.topCenter,
       bgImage: "assets/images/scapes/manage_your_time/page_2.jpg",
-      children: TextUtils.buildTitleAndText(
-        title: TextUtils.buildClassicTitle(
-          "Prioritise",
-          color: Color.fromRGBO(188, 164, 140, 1.0),
+      children: [
+        TextUtils.buildTitleAndText(
+          title: TextUtils.buildClassicTitle(
+            "Prioritise",
+            color: Color.fromRGBO(188, 164, 140, 1.0),
+          ),
+          text: TextUtils.buildClassicText(
+            "Focus on tougher subjects when you're most productive. Get the hard work done while your mind is fresh!",
+            color: Colors.white,
+            fontSize: 18,
+          ),
         ),
-        text: TextUtils.buildClassicText(
-          "Focus on tougher subjects when you're most productive. Get the hard work done while your mind is fresh!",
-          color: Colors.white,
-          fontSize: 18,
-        ),
-      ),
+      ],
     );
   }
 
@@ -103,17 +105,19 @@ class ManageYourTimeScape extends StatelessWidget with ScapeUtils {
     return AssetFrame(
       stackAlignment: AlignmentDirectional.topCenter,
       bgImage: "assets/images/scapes/manage_your_time/page_3.jpg",
-      children: TextUtils.buildTitleAndText(
-        title: TextUtils.buildClassicTitle(
-          "Take Breaks",
-          color: Color.fromRGBO(24, 20, 20, 1.0),
+      children: [
+        TextUtils.buildTitleAndText(
+          title: TextUtils.buildClassicTitle(
+            "Take Breaks",
+            color: Color.fromRGBO(24, 20, 20, 1.0),
+          ),
+          text: TextUtils.buildClassicText(
+            "Use the Pomodoro technique: 25 min work, 5 min break. Boosts focus and prevents burnout.",
+            color: Colors.white,
+            fontSize: 18,
+          ),
         ),
-        text: TextUtils.buildClassicText(
-          "Use the Pomodoro technique: 25 min work, 5 min break. Boosts focus and prevents burnout.",
-          color: Colors.white,
-          fontSize: 18,
-        ),
-      ),
+      ],
     );
   }
 
@@ -121,17 +125,23 @@ class ManageYourTimeScape extends StatelessWidget with ScapeUtils {
     return AssetFrame(
       stackAlignment: AlignmentDirectional.topCenter,
       bgImage: "assets/images/scapes/manage_your_time/page_4.jpg",
-      children: TextUtils.buildTitleAndText(
-        title: TextUtils.buildClassicTitle(
-          "Stay Organised",
-          color: Color.fromRGBO(24, 20, 20, 1.0),
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(bottom: 50.0),
+          child: TextUtils.buildTitleAndText(
+            mainAxisAlignment: MainAxisAlignment.center,
+            title: TextUtils.buildClassicTitle(
+              "Stay Organised",
+              color: Color.fromRGBO(24, 20, 20, 1.0),
+            ),
+            text: TextUtils.buildClassicText(
+              "Keep your notes and assignments neat and in order. A tidy space leads to a clear mind.",
+              color: Colors.white,
+              fontSize: 18,
+            ),
+          ),
         ),
-        text: TextUtils.buildClassicText(
-          "Keep your notes and assignments neat and in order. A tidy space leads to a clear mind.",
-          color: Colors.white,
-          fontSize: 18,
-        ),
-      ),
+      ],
     );
   }
 
@@ -139,17 +149,19 @@ class ManageYourTimeScape extends StatelessWidget with ScapeUtils {
     return AssetFrame(
       stackAlignment: AlignmentDirectional.topCenter,
       bgImage: "assets/images/scapes/manage_your_time/page_5.jpg",
-      children: TextUtils.buildTitleAndText(
-        title: TextUtils.buildClassicTitle(
-          "Eliminate Distractions",
-          color: Color.fromRGBO(132, 201, 182, 1),
+      children: [
+        TextUtils.buildTitleAndText(
+          title: TextUtils.buildClassicTitle(
+            "Eliminate Distractions",
+            color: Color.fromRGBO(132, 201, 182, 1),
+          ),
+          text: TextUtils.buildClassicText(
+            "Turn off notifications and stay focused. Increase productivity by minimizing interruptions.",
+            color: Colors.white,
+            fontSize: 18,
+          ),
         ),
-        text: TextUtils.buildClassicText(
-          "Turn off notifications and stay focused. Increase productivity by minimizing interruptions.",
-          color: Colors.white,
-          fontSize: 18,
-        ),
-      ),
+      ],
     );
   }
 }

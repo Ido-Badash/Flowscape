@@ -7,7 +7,7 @@ class DavidGogginsQuoteScape extends StatelessWidget with ScapeUtils {
 
   @override
   Widget build(BuildContext context) {
-    return Scape(children: [buildHeadPage()]);
+    return Scape(removePageIndicator: true, children: [buildHeadPage()]);
   }
 
   Widget buildHeadPage() {
@@ -24,7 +24,9 @@ class DavidGogginsQuoteScape extends StatelessWidget with ScapeUtils {
             date: "31/05/2025",
             quote: "\"Don't stop when you're tired, stop when you're done.\"",
             quoter: "David Goggins",
-            quoteColor: Color.fromARGB(255, 120, 130, 240),
+            quoteColor: Color.fromARGB(255, 190, 60, 60),
+            quoterColor: Colors.white.withAlpha(150),
+            quoteShadowColor: Colors.black,
             textColor: Colors.white.withAlpha(75),
             child: buildQuoteContent(),
           ),

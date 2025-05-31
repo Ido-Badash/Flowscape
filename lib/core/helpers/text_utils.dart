@@ -28,11 +28,7 @@ class TextUtils {
     return Text(
       data,
       textAlign: TextAlign.center,
-      style: TextStyle(
-        color: color,
-        fontSize: fontSize,
-        shadows: textStroke(),
-      ),
+      style: TextStyle(color: color, fontSize: fontSize, shadows: textStroke()),
     );
   }
 
@@ -53,15 +49,21 @@ class TextUtils {
     ];
   }
 
-  static List<Widget> buildTitleAndText({
-    required Text title,
-    required Text text,
+  static Widget buildTitleAndText({
+    required Widget title,
+    required Widget text,
     double titleTop = 30,
-    double textTop = 60,
+    double textTop = 40,
+    MainAxisAlignment mainAxisAlignment = MainAxisAlignment.start,
   }) {
-    return [
-      Positioned(top: titleTop, child: title),
-      Positioned(top: textTop, right: 0, left: 0, child: text),
-    ];
+    return Column(
+      mainAxisAlignment: mainAxisAlignment,
+      children: [
+        SizedBox(height: titleTop),
+        title,
+        SizedBox(height: textTop - titleTop),
+        text,
+      ],
+    );
   }
 }

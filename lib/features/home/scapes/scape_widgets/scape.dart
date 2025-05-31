@@ -10,12 +10,14 @@ class Scape extends StatefulWidget {
   final List<Widget> children;
   final ScapeStyle? style;
   final bool ignored;
+  final bool removePageIndicator;
 
   const Scape({
     super.key,
     this.children = const [],
     this.style,
     this.ignored = false,
+    this.removePageIndicator = false,
   });
 
   @override
@@ -78,27 +80,29 @@ class _ScapeState extends State<Scape> {
   }
 
   Widget buildPageIndicator(BuildContext context) {
-    return Flexible(
-      flex: 1,
-      child: Container(
-        alignment: Alignment.center,
-        child: SmoothPageIndicator(
-          controller: _controller,
-          count: updatedChildren.length,
-          effect: WormEffect(
-            dotColor: widget.style?.offPage ?? Colors.grey,
-            activeDotColor: widget.style?.onPage ?? Colors.indigo,
+    return !widget.removePageIndicator
+        ? Flexible(
+          flex: 1,
+          child: Container(
+            alignment: Alignment.center,
+            child: SmoothPageIndicator(
+              controller: _controller,
+              count: updatedChildren.length,
+              effect: WormEffect(
+                dotColor: widget.style?.offPage ?? Colors.grey,
+                activeDotColor: widget.style?.onPage ?? Colors.indigo,
+              ),
+              onDotClicked: (int idx) {
+                _controller.animateToPage(
+                  idx,
+                  duration: Durations.long4,
+                  curve: Curves.easeInOutCubicEmphasized,
+                );
+              },
+            ),
           ),
-          onDotClicked: (int idx) {
-            _controller.animateToPage(
-              idx,
-              duration: Durations.long4,
-              curve: Curves.easeInOutCubicEmphasized,
-            );
-          },
-        ),
-      ),
-    );
+        )
+        : const SizedBox.shrink();
   }
 
   // the logic of the bg color picked in the style param, return a red color when there is an error
