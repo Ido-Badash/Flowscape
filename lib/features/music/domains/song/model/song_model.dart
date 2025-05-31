@@ -77,7 +77,7 @@ class SongModel {
 
   // optional
   final String? album;
-  final String? coverImagePath;
+  final String coverImagePath;
   final String? genre;
   final String? lyrics;
   final String? releaseDate;
@@ -115,7 +115,7 @@ class SongModel {
     required this.artist,
     required this.audioFilePath,
     this.album,
-    this.coverImagePath,
+    this.coverImagePath = "assets/images/songs/default_cover.jpg",
     this.genre,
     this.lyrics,
     this.releaseDate,

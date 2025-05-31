@@ -1,8 +1,6 @@
 /*
-
-PLAYLIST WIDGET
-Take a PlaylistModel and turn it to a widget
-
+  PLAYLIST WIDGET
+  Take a PlaylistModel and turn it to a widget
 */
 
 // imports
@@ -27,86 +25,131 @@ class Playlist extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
+      padding: const EdgeInsets.all(16.0),
       child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [buildHead(context), buildSongs(context)],
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          buildHead(context),
+          const SizedBox(height: 24),
+          buildSongsHeader(context),
+          const SizedBox(height: 8),
+          ...addIdxToSongs(),
+        ],
       ),
     );
   }
 
   //* --- HEAD ---
   Widget buildHead(BuildContext context) {
-    return Row(children: [buildHeadImage(context), buildHeadText(context)]);
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        buildHeadImage(context),
+        const SizedBox(width: 16),
+        Expanded(child: buildHeadText(context)),
+      ],
+    );
   }
 
   Widget buildHeadImage(BuildContext context) {
     return Container(
-      color: style?.imageBg ?? Colors.indigo,
+      width: 100,
+      height: 100,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(12),
+        color: style?.imageBg ?? Colors.indigo,
+      ),
       child:
           playlist.playlistImagePath != null
-              ? Image.asset(playlist.playlistImagePath!)
-              : () {
-                debugPrint(
-                  "Cover Image provided in Playlist widget was not found in assets",
-                );
-                return SizedBox.shrink();
-              }(),
+              ? ClipRRect(
+                borderRadius: BorderRadius.circular(12),
+                child: Image.asset(
+                  playlist.playlistImagePath!,
+                  fit: BoxFit.cover,
+                ),
+              )
+              : const Icon(Icons.music_note, color: Colors.white),
     );
   }
 
   Widget buildHeadText(BuildContext context) {
     return Column(
-      mainAxisSize: MainAxisSize.min, // Add this line!
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(playlist.title, style: style?.titleStyle ?? _defaultTX(context)),
+        Text(
+          playlist.title,
+          style:
+              style?.titleStyle ??
+              Theme.of(
+                context,
+              ).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.bold),
+        ),
+        const SizedBox(height: 4),
         Text(
           playlist.creator,
-          style: style?.creatorStyle ?? _defaultTX(context),
+          style:
+              style?.creatorStyle ??
+              Theme.of(
+                context,
+              ).textTheme.bodyMedium?.copyWith(color: Colors.grey.shade600),
         ),
       ],
     );
   }
 
-  //* --- SONGS ---
-  Widget buildSongs(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(children: [Text("Title"), Text("Album"), Text("Duration")]),
-        ...addIdxToSongs(),
-      ],
-    );
-  }
-
-  List<Widget> addIdxToSongs() {
-    final songs = fetchSongs();
-    return List<Widget>.generate(
-      songs.length,
-      (index) => Row(
-        children: [
-          Text('${index + 1}'),
+  //* --- SONGS HEADER ---
+  Widget buildSongsHeader(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+      child: Row(
+        children: const [
+          SizedBox(width: 24, child: Text("#")),
           SizedBox(width: 8),
-          songs[index], // Only if Row is in a bounded context
+          Expanded(flex: 2, child: Text("Title")),
+          Expanded(child: Text("Duration", textAlign: TextAlign.right)),
         ],
       ),
     );
   }
 
+  //* --- SONGS ---
+  List<Widget> addIdxToSongs() {
+    final songs = fetchSongs();
+    return List<Widget>.generate(
+      songs.length,
+      (index) => Padding(
+        padding: const EdgeInsets.symmetric(vertical: 4.0),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SizedBox(
+              width: 24,
+              child: Text(
+                '${index + 1}',
+                style: TextStyle(color: Colors.grey.shade600),
+              ),
+            ),
+            const SizedBox(width: 8),
+            Expanded(flex: 2, child: songs[index]),
+          ],
+        ),
+      ),
+    );
+  }
+
   List<Song> fetchSongs() {
-    playlist.init();
     return playlist.songs
+        .asMap()
+        .entries
         .map(
-          (song) => Song(
-            song: song,
-            style: songsStyle?[playlist.songs.indexOf(song)],
+          (entry) => Song(
+            song: entry.value,
+            style:
+                songsStyle != null && songsStyle!.length > entry.key
+                    ? songsStyle![entry.key]
+                    : null,
           ),
         )
         .toList();
-  }
-
-  // _defaultTX -> default Text style
-  TextStyle _defaultTX(BuildContext context) {
-    return TextStyle();
   }
 }

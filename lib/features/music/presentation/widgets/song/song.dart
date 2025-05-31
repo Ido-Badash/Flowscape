@@ -1,8 +1,6 @@
 /*
-
-SONG WIDGET
-Take a SongModel and turn it to a widget
-
+  SONG WIDGET
+  Take a SongModel and turn it to a widget
 */
 
 // imports
@@ -19,56 +17,96 @@ class Song extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.transparent,
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
       child: Row(
-        spacing: 8.0,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
+          // Cover image
           buildImage(context),
-          buildTitle(context),
-          buildArtist(context),
-          buildDuration(context),
+
+          // Space
+          const SizedBox(width: 12.0),
+
+          // Title and Artist in a Column
+          Expanded(
+            flex: 3,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                buildTitle(context),
+                const SizedBox(height: 4),
+                buildArtist(context),
+              ],
+            ),
+          ),
+
+          const SizedBox(width: 12.0),
+
+          // Duration
+          Flexible(
+            flex: 1,
+            child: Align(
+              alignment: Alignment.centerRight,
+              child: buildDuration(context),
+            ),
+          ),
         ],
       ),
     );
   }
 
-  // buildImage
   Widget buildImage(BuildContext context) {
     return Container(
-      color: style?.imageBg ?? Colors.indigo,
-      child:
-          song.coverImagePath != null
-              ? Image.asset(song.coverImagePath!)
-              : () {
-                debugPrint(
-                  "Cover Image provided in Playlist widget was not found in assets",
-                );
-                return SizedBox.shrink();
-              }(),
+      width: 48,
+      height: 48,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(8),
+        color: style?.imageBg ?? Colors.indigo,
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(8),
+        child: Image.asset(song.coverImagePath, fit: BoxFit.cover),
+      ),
     );
   }
 
-  // buildTitle
   Widget buildTitle(BuildContext context) {
-    return Text(song.title, style: style?.titleStyle ?? _defaultTX(context));
-  }
-
-  // buildArtist
-  Widget buildArtist(BuildContext context) {
-    return Text(song.artist, style: style?.artistStyle ?? _defaultTX(context));
-  }
-
-  // buildDuration
-  Widget buildDuration(BuildContext context) {
     return Text(
-      "${song.currentSongTime.inMinutes}:${(song.currentSongTime.inSeconds % 60).toString().padLeft(2, '0')}",
-      style: style?.durationStyle ?? _defaultTX(context),
+      song.title,
+      style: style?.titleStyle ??
+          Theme.of(context)
+              .textTheme
+              .bodyLarge
+              ?.copyWith(fontWeight: FontWeight.w600),
+      overflow: TextOverflow.ellipsis,
+      maxLines: 1,
     );
   }
 
-  // _defaultTX -> default Text style
-  TextStyle _defaultTX(BuildContext context) {
-    return TextStyle();
+  Widget buildArtist(BuildContext context) {
+    return Text(
+      song.artist,
+      style: style?.artistStyle ??
+          Theme.of(context)
+              .textTheme
+              .bodySmall
+              ?.copyWith(color: Colors.grey.shade600),
+      overflow: TextOverflow.ellipsis,
+      maxLines: 1,
+    );
+  }
+
+  Widget buildDuration(BuildContext context) {
+    final minutes = song.currentSongTime.inMinutes;
+    final seconds = (song.currentSongTime.inSeconds % 60).toString().padLeft(2, '0');
+    return Text(
+      "$minutes:$seconds",
+      style: style?.durationStyle ??
+          Theme.of(context)
+              .textTheme
+              .bodySmall
+              ?.copyWith(color: Colors.grey.shade500),
+    );
   }
 }

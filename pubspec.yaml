@@ -77,5 +77,6 @@ flutter:
     - assets/images/flowbgs_dark/
     - assets/images/flowbgs_light/
     - assets/images/scapes/manage_your_time/
-    - assets/images/music/playlists/
+    - assets/images/playlists/
+    - assets/images/songs/
     - assets/audio/calm/
