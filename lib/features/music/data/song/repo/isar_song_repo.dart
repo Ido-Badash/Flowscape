@@ -40,6 +40,9 @@ class IsarSongRepo implements SongRepo {
   // db
   final Isar db;
 
+  // getters
+  IsarCollection<IsarSong> get isarSongs => db.collection<IsarSong>();
+
   IsarSongRepo(this.db);
 
   // savePlayback song
@@ -58,7 +61,7 @@ class IsarSongRepo implements SongRepo {
       song.currentSongTime = currentTimeSec;
       // save the updated song
       try {
-        await db.collection<IsarSong>().put(song);
+        await isarSongs.put(song);
       } catch (e) {
         debugPrint("FATAL: Failed to save playback in the database.");
         return;
@@ -85,7 +88,7 @@ class IsarSongRepo implements SongRepo {
     // update the song in the db
     await db.writeTxn(() async {
       try {
-        await db.collection<IsarSong>().put(isarSong);
+        await isarSongs.put(isarSong);
       } catch (e) {
         debugPrint("FATAL: Failed to update song in the database.");
         rethrow;
