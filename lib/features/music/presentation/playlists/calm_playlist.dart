@@ -9,7 +9,7 @@ class CalmPlaylist extends PlaylistModel {
         title: "Calm",
         creator: "FlowScape",
         description: "A playlist by FlowScape that contains calming music.",
-        playlistImagePath: "assets/images/music/playlists/calm.jpg",
+        playlistImagePath: null,
         songs: _buildSongs(),
       );
 

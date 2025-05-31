@@ -11,7 +11,6 @@ import 'package:flowscape/features/music/presentation/widgets/widgets_lib.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'music_cubit.dart';
-import 'playlists/playlists_lib.dart'; // Importing the playlists library
 
 // MusicView
 class MusicView extends StatelessWidget {
@@ -29,6 +28,7 @@ class MusicView extends StatelessWidget {
             itemCount: playlists.length,
             itemBuilder: (context, index) {
               final playlist = playlists[index];
+              debugPrint("Playlist: ${playlist.title}");
               return Playlist(playlist: playlist);
             },
           );

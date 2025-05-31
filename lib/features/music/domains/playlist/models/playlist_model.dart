@@ -94,6 +94,7 @@ class PlaylistModel {
   Duration get currentSongTime => _currentSongTime;
   int get currentSongSec => currentSongTime.inSeconds;
   List<SongModel> get songs => _songs;
+  // TODO: fix this blue line
 
   // setters
   set currentSongIdx(int idx) {

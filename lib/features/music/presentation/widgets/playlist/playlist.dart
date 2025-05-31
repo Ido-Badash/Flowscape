@@ -50,7 +50,12 @@ class Playlist extends StatelessWidget {
       child:
           playlist.playlistImagePath != null
               ? Image.asset(playlist.playlistImagePath!)
-              : throw ("Cover Image provided in Playlist widget was not found in assets"),
+              : () {
+                debugPrint(
+                  "Cover Image provided in Playlist widget was not found in assets",
+                );
+                return SizedBox.shrink();
+              }(),
     );
   }
 
