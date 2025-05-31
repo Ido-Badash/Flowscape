@@ -104,8 +104,8 @@ class Playlist extends StatelessWidget {
       child: Row(
         children: const [
           SizedBox(width: 24, child: Text("#")),
-          SizedBox(width: 8),
-          Expanded(flex: 2, child: Text("Title")),
+          SizedBox(width: 12),
+          Expanded(flex: 2, child: Text("Song")),
           Expanded(child: Text("Duration", textAlign: TextAlign.right)),
         ],
       ),
@@ -123,7 +123,7 @@ class Playlist extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SizedBox(
-              width: 24,
+              width: 12,
               child: Text(
                 '${index + 1}',
                 style: TextStyle(color: Colors.grey.shade600),

@@ -19,39 +19,47 @@ class Song extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          // Cover image
-          buildImage(context),
+      child: MouseRegion(
+        cursor: SystemMouseCursors.click,
+        child: GestureDetector(
+          onDoubleTap: () {
+            // play song
+          },
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              // Cover image
+              buildImage(context),
 
-          // Space
-          const SizedBox(width: 12.0),
+              // Space
+              const SizedBox(width: 12.0),
 
-          // Title and Artist in a Column
-          Expanded(
-            flex: 3,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                buildTitle(context),
-                const SizedBox(height: 4),
-                buildArtist(context),
-              ],
-            ),
+              // Title and Artist in a Column
+              Expanded(
+                flex: 3,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    buildTitle(context),
+                    const SizedBox(height: 4),
+                    buildArtist(context),
+                  ],
+                ),
+              ),
+
+              const SizedBox(width: 12.0),
+
+              // Duration
+              Flexible(
+                flex: 1,
+                child: Align(
+                  alignment: Alignment.centerRight,
+                  child: buildDuration(context),
+                ),
+              ),
+            ],
           ),
-
-          const SizedBox(width: 12.0),
-
-          // Duration
-          Flexible(
-            flex: 1,
-            child: Align(
-              alignment: Alignment.centerRight,
-              child: buildDuration(context),
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }
@@ -74,11 +82,11 @@ class Song extends StatelessWidget {
   Widget buildTitle(BuildContext context) {
     return Text(
       song.title,
-      style: style?.titleStyle ??
-          Theme.of(context)
-              .textTheme
-              .bodyLarge
-              ?.copyWith(fontWeight: FontWeight.w600),
+      style:
+          style?.titleStyle ??
+          Theme.of(
+            context,
+          ).textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.w600),
       overflow: TextOverflow.ellipsis,
       maxLines: 1,
     );
@@ -87,11 +95,11 @@ class Song extends StatelessWidget {
   Widget buildArtist(BuildContext context) {
     return Text(
       song.artist,
-      style: style?.artistStyle ??
-          Theme.of(context)
-              .textTheme
-              .bodySmall
-              ?.copyWith(color: Colors.grey.shade600),
+      style:
+          style?.artistStyle ??
+          Theme.of(
+            context,
+          ).textTheme.bodySmall?.copyWith(color: Colors.grey.shade600),
       overflow: TextOverflow.ellipsis,
       maxLines: 1,
     );
@@ -99,14 +107,17 @@ class Song extends StatelessWidget {
 
   Widget buildDuration(BuildContext context) {
     final minutes = song.currentSongTime.inMinutes;
-    final seconds = (song.currentSongTime.inSeconds % 60).toString().padLeft(2, '0');
+    final seconds = (song.currentSongTime.inSeconds % 60).toString().padLeft(
+      2,
+      '0',
+    );
     return Text(
       "$minutes:$seconds",
-      style: style?.durationStyle ??
-          Theme.of(context)
-              .textTheme
-              .bodySmall
-              ?.copyWith(color: Colors.grey.shade500),
+      style:
+          style?.durationStyle ??
+          Theme.of(
+            context,
+          ).textTheme.bodySmall?.copyWith(color: Colors.grey.shade500),
     );
   }
 }
