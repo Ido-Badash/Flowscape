@@ -5,7 +5,6 @@
 
 // imports
 import 'package:flowscape/features/music/domains/domains_lib.dart';
-import 'package:flowscape/features/music/presentation/widgets/playlist/playlist_style.dart';
 import 'package:flowscape/features/music/presentation/widgets/widgets_lib.dart';
 import 'package:flutter/material.dart';
 
@@ -46,7 +45,7 @@ class Playlist extends StatelessWidget {
       children: [
         buildHeadImage(context),
         const SizedBox(width: 16),
-        Expanded(child: buildHeadText(context)),
+        buildHeadText(context),
       ],
     );
   }

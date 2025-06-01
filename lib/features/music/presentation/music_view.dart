@@ -7,6 +7,7 @@ MUSIC VIEW: responsible for UI
 */
 
 import 'package:flowscape/features/music/domains/playlist/models/playlist_model.dart';
+import 'package:flowscape/features/music/presentation/widgets/playlist/playlist_button.dart';
 import 'package:flowscape/features/music/presentation/widgets/widgets_lib.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
@@ -24,16 +25,27 @@ class MusicView extends StatelessWidget {
           if (playlists.isEmpty) {
             return const Center(child: Text('No playlists available.'));
           }
-          return ListView.builder(
-            itemCount: playlists.length,
-            itemBuilder: (context, index) {
-              final playlist = playlists[index];
-              debugPrint("On playlist: ${playlist.title}");
-              return Playlist(playlist: playlist);
-            },
-          );
+          return buildPlaylistsPage(playlists);
         },
       ),
+    );
+  }
+
+  Widget buildPlaylistsPage(List<PlaylistModel> playlists) {
+    if (playlists.isEmpty) {
+      return const Center(child: Text('No playlists available.'));
+    }
+    return GridView.builder(
+      itemCount: playlists.length,
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+      ),
+      itemBuilder: (context, idx) {
+        final playlist = playlists[idx];
+        debugPrint("On playlist: ${playlist.title}");
+        // Wrap PlaylistButton with Align and IntrinsicWidth/IntrinsicHeight to shrink its tap area
+        return PlaylistButton(playlist: Playlist(playlist: playlist));
+      },
     );
   }
 }
