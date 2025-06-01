@@ -23,9 +23,13 @@ class TodoView extends StatelessWidget {
     // SCAFFOLD
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: () => _showAddTodoBox(context),
+        onPressed: () {
+          _showAddTodoBox(context);
+          debugPrint("Floating action button pressed");
+        },
         elevation: 0, // Removes the shadow
-        backgroundColor: Theme.of(context).floatingActionButtonTheme.backgroundColor,
+        backgroundColor:
+            Theme.of(context).floatingActionButtonTheme.backgroundColor,
         child: Icon(Icons.add),
       ),
 
@@ -81,7 +85,10 @@ class TodoView extends StatelessWidget {
     return Checkbox(
       // TODO: add a cool animation later
       value: todo.isCompleted,
-      onChanged: (value) => todoCubit.toggleCompletion(todo),
+      onChanged: (value) {
+        todoCubit.toggleCompletion(todo);
+        debugPrint("Todo toggled: ${todo.text}, completed: $value");
+      },
       checkColor: Colors.green,
       side: BorderSide(color: Theme.of(context).colorScheme.onSecondary),
     );
@@ -95,7 +102,10 @@ class TodoView extends StatelessWidget {
   ) {
     return IconButton(
       icon: const Icon(CupertinoIcons.trash, size: 22),
-      onPressed: () => todoCubit.deleteTodo(todo),
+      onPressed: () {
+        todoCubit.deleteTodo(todo);
+        debugPrint("Todo deleted: ${todo.text}");
+      },
     );
   }
 
@@ -133,7 +143,10 @@ class TodoView extends StatelessWidget {
     return [
       // cancel button
       TextButton(
-        onPressed: () => Navigator.of(context).pop(),
+        onPressed: () {
+          Navigator.of(context).pop();
+          debugPrint("Todo adding cancelled");
+        },
         child: const Text('Cancel'),
       ),
 
@@ -146,6 +159,7 @@ class TodoView extends StatelessWidget {
             todoCubit.addTodo(textController.text);
           }
           Navigator.of(context).pop();
+          debugPrint("Todo added: ${textController.text}");
         },
         child: const Text('Add'),
       ),

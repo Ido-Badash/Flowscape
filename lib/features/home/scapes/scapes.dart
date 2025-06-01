@@ -43,6 +43,10 @@ class _ScapesScreenState extends State<ScapesScreen> {
 
     if (index >= 0 && index < pageWidgets.length) {
       currentItem = pageWidgets[index];
+      final Type itemType = currentItem.runtimeType;
+      debugPrint(
+        "Current item in Scapes $index: ${itemType == Column ? 'Header' : itemType}",
+      );
     } else {
       currentItem = Text(
         "Error: Scape not found!",
@@ -140,5 +144,6 @@ class _ScapesScreenState extends State<ScapesScreen> {
 
   void updateQuote() {
     currentQuote = randomQuote();
+    debugPrint("Updated quote: $currentQuote");
   }
 }

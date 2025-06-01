@@ -28,7 +28,7 @@ class MusicView extends StatelessWidget {
             itemCount: playlists.length,
             itemBuilder: (context, index) {
               final playlist = playlists[index];
-              debugPrint("Playlist: ${playlist.title}");
+              debugPrint("On playlist: ${playlist.title}");
               return Playlist(playlist: playlist);
             },
           );

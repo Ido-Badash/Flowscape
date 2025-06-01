@@ -57,6 +57,7 @@ class _FlowScapeState extends State<FlowScape> {
   }
 
   Widget _buildScreen(int index) {
+    debugPrint("---------------------------\nheading to screen: ${pages[index].runtimeType}");
     return pages[index];
   }
 }
