@@ -18,6 +18,8 @@ class FlowScape extends StatefulWidget {
 
 class _FlowScapeState extends State<FlowScape> {
   int currentScreenIdx = 2;
+
+  // PAGES
   final List<Widget> pages = [
     const SettingsPage(),
     const FlowPage(),
@@ -25,23 +27,26 @@ class _FlowScapeState extends State<FlowScape> {
     const TasksPage(),
   ];
 
+  // PAGES ICONS
+  final List<Widget> pagesIcons = [
+    Icon(Icons.settings),
+    Icon(Icons.terrain_outlined),
+    Icon(Icons.home),
+    Icon(Icons.list_alt),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: _buildScreen(currentScreenIdx),
       bottomNavigationBar: BottomNavigationBar(
-        items: const [
-          BottomNavigationBarItem(
-            label: "Settings",
-            icon: Icon(Icons.settings),
-          ),
-          BottomNavigationBarItem(
-            label: "Flow",
-            icon: Icon(Icons.terrain_outlined),
-          ),
-          BottomNavigationBarItem(label: "Home", icon: Icon(Icons.home)),
-          BottomNavigationBarItem(label: "Tasks", icon: Icon(Icons.list_alt)),
-        ],
+        items: List.generate(pages.length, (int idx) {
+          final String label = pages[idx].toString();
+          return BottomNavigationBarItem(
+            label: label.substring(0, label.length - 4),
+            icon: pagesIcons[idx],
+          );
+        }),
         type: BottomNavigationBarType.fixed,
         onTap: (int index) {
           setState(() {
@@ -54,7 +59,10 @@ class _FlowScapeState extends State<FlowScape> {
   }
 
   Widget _buildScreen(int index) {
-    debugPrint("---------------------------\nheading to screen: ${pages[index].runtimeType}");
+    debugPrint(
+      "------------------------------------------------------------------------------\n"
+      "Navigating to screen: ${pages[index].runtimeType}"
+    );
     return pages[index];
   }
 }
