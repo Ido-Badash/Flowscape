@@ -82,7 +82,7 @@ class PlaylistModel {
   final String description;
   final PlaylistOrder order;
   final bool shuffle;
-  String playlistImagePath;
+  final String playlistImagePath;
 
   // private
   int _currentSongIdx;
@@ -131,7 +131,7 @@ class PlaylistModel {
     this.description = "",
     this.order = PlaylistOrder.normal,
     this.shuffle = false,
-    required this.playlistImagePath,
+    this.playlistImagePath = "assets/images/playlists/default_cover.png",
   }) : _songs = List<SongModel>.from(songs),
        _currentSongIdx = currentSongIdx,
        _currentSongTime = currentSongTime;

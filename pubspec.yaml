@@ -81,6 +81,5 @@ flutter:
 
     # Music and Audio Assets
     - assets/images/playlists/
-    - assets/images/playlists/calm.png
     - assets/images/songs/
     - assets/audio/calm/

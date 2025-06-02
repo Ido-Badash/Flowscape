@@ -43,13 +43,8 @@ const IsarPlaylistSchema = CollectionSchema(
       type: IsarType.string,
       enumMap: _IsarPlaylistorderEnumValueMap,
     ),
-    r'playlistImagePath': PropertySchema(
-      id: 5,
-      name: r'playlistImagePath',
-      type: IsarType.string,
-    ),
     r'title': PropertySchema(
-      id: 6,
+      id: 5,
       name: r'title',
       type: IsarType.string,
     )
@@ -83,7 +78,6 @@ int _isarPlaylistEstimateSize(
   var bytesCount = offsets.last;
   bytesCount += 3 + object.creator.length * 3;
   bytesCount += 3 + object.order.name.length * 3;
-  bytesCount += 3 + object.playlistImagePath.length * 3;
   bytesCount += 3 + object.title.length * 3;
   return bytesCount;
 }
@@ -99,8 +93,7 @@ void _isarPlaylistSerialize(
   writer.writeLong(offsets[2], object.currentSongTimeSec);
   writer.writeBool(offsets[3], object.isShuffled);
   writer.writeString(offsets[4], object.order.name);
-  writer.writeString(offsets[5], object.playlistImagePath);
-  writer.writeString(offsets[6], object.title);
+  writer.writeString(offsets[5], object.title);
 }
 
 IsarPlaylist _isarPlaylistDeserialize(
@@ -118,8 +111,7 @@ IsarPlaylist _isarPlaylistDeserialize(
   object.order =
       _IsarPlaylistorderValueEnumMap[reader.readStringOrNull(offsets[4])] ??
           PlaylistOrder.normal;
-  object.playlistImagePath = reader.readString(offsets[5]);
-  object.title = reader.readString(offsets[6]);
+  object.title = reader.readString(offsets[5]);
   return object;
 }
 
@@ -142,8 +134,6 @@ P _isarPlaylistDeserializeProp<P>(
       return (_IsarPlaylistorderValueEnumMap[reader.readStringOrNull(offset)] ??
           PlaylistOrder.normal) as P;
     case 5:
-      return (reader.readString(offset)) as P;
-    case 6:
       return (reader.readString(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -711,142 +701,6 @@ extension IsarPlaylistQueryFilter
     });
   }
 
-  QueryBuilder<IsarPlaylist, IsarPlaylist, QAfterFilterCondition>
-      playlistImagePathEqualTo(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'playlistImagePath',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<IsarPlaylist, IsarPlaylist, QAfterFilterCondition>
-      playlistImagePathGreaterThan(
-    String value, {
-    bool include = false,
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        include: include,
-        property: r'playlistImagePath',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<IsarPlaylist, IsarPlaylist, QAfterFilterCondition>
-      playlistImagePathLessThan(
-    String value, {
-    bool include = false,
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.lessThan(
-        include: include,
-        property: r'playlistImagePath',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<IsarPlaylist, IsarPlaylist, QAfterFilterCondition>
-      playlistImagePathBetween(
-    String lower,
-    String upper, {
-    bool includeLower = true,
-    bool includeUpper = true,
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.between(
-        property: r'playlistImagePath',
-        lower: lower,
-        includeLower: includeLower,
-        upper: upper,
-        includeUpper: includeUpper,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<IsarPlaylist, IsarPlaylist, QAfterFilterCondition>
-      playlistImagePathStartsWith(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.startsWith(
-        property: r'playlistImagePath',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<IsarPlaylist, IsarPlaylist, QAfterFilterCondition>
-      playlistImagePathEndsWith(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.endsWith(
-        property: r'playlistImagePath',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<IsarPlaylist, IsarPlaylist, QAfterFilterCondition>
-      playlistImagePathContains(String value, {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.contains(
-        property: r'playlistImagePath',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<IsarPlaylist, IsarPlaylist, QAfterFilterCondition>
-      playlistImagePathMatches(String pattern, {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.matches(
-        property: r'playlistImagePath',
-        wildcard: pattern,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<IsarPlaylist, IsarPlaylist, QAfterFilterCondition>
-      playlistImagePathIsEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'playlistImagePath',
-        value: '',
-      ));
-    });
-  }
-
-  QueryBuilder<IsarPlaylist, IsarPlaylist, QAfterFilterCondition>
-      playlistImagePathIsNotEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        property: r'playlistImagePath',
-        value: '',
-      ));
-    });
-  }
-
   QueryBuilder<IsarPlaylist, IsarPlaylist, QAfterFilterCondition> titleEqualTo(
     String value, {
     bool caseSensitive = true,
@@ -1116,20 +970,6 @@ extension IsarPlaylistQuerySortBy
     });
   }
 
-  QueryBuilder<IsarPlaylist, IsarPlaylist, QAfterSortBy>
-      sortByPlaylistImagePath() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'playlistImagePath', Sort.asc);
-    });
-  }
-
-  QueryBuilder<IsarPlaylist, IsarPlaylist, QAfterSortBy>
-      sortByPlaylistImagePathDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'playlistImagePath', Sort.desc);
-    });
-  }
-
   QueryBuilder<IsarPlaylist, IsarPlaylist, QAfterSortBy> sortByTitle() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'title', Sort.asc);
@@ -1222,20 +1062,6 @@ extension IsarPlaylistQuerySortThenBy
     });
   }
 
-  QueryBuilder<IsarPlaylist, IsarPlaylist, QAfterSortBy>
-      thenByPlaylistImagePath() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'playlistImagePath', Sort.asc);
-    });
-  }
-
-  QueryBuilder<IsarPlaylist, IsarPlaylist, QAfterSortBy>
-      thenByPlaylistImagePathDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'playlistImagePath', Sort.desc);
-    });
-  }
-
   QueryBuilder<IsarPlaylist, IsarPlaylist, QAfterSortBy> thenByTitle() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'title', Sort.asc);
@@ -1285,14 +1111,6 @@ extension IsarPlaylistQueryWhereDistinct
     });
   }
 
-  QueryBuilder<IsarPlaylist, IsarPlaylist, QDistinct>
-      distinctByPlaylistImagePath({bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'playlistImagePath',
-          caseSensitive: caseSensitive);
-    });
-  }
-
   QueryBuilder<IsarPlaylist, IsarPlaylist, QDistinct> distinctByTitle(
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -1337,13 +1155,6 @@ extension IsarPlaylistQueryProperty
   QueryBuilder<IsarPlaylist, PlaylistOrder, QQueryOperations> orderProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'order');
-    });
-  }
-
-  QueryBuilder<IsarPlaylist, String, QQueryOperations>
-      playlistImagePathProperty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'playlistImagePath');
     });
   }
 
