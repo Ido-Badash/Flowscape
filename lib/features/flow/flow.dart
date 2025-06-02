@@ -1,3 +1,4 @@
+import 'package:flowscape/features/flow/timer/timer_page.dart';
 import 'package:flutter/material.dart';
 
 // screens
@@ -11,7 +12,13 @@ class FlowPage extends StatefulWidget {
 }
 
 class _FlowPageState extends State<FlowPage> {
-  Widget? currentBody = FlowScreen(actions: [],);
+  Widget? currentBody;
+
+  @override
+  void initState() {
+    super.initState();
+    currentBody = FlowScreen(child: TimerPage());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +28,9 @@ class _FlowPageState extends State<FlowPage> {
         actions: [],
         title: Text(
           "Flow",
-          style: TextStyle(fontSize: Theme.of(context).textTheme.displaySmall?.fontSize),
+          style: TextStyle(
+            fontSize: Theme.of(context).textTheme.displaySmall?.fontSize,
+          ),
         ),
         toolbarHeight: 45.0,
       ),

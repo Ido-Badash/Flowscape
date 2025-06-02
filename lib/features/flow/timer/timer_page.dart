@@ -8,14 +8,15 @@ this page will be built on the FlowScreen
 */
 
 // imports
+import 'package:flowscape/features/flow/timer/flow_timer.dart';
 import 'package:flutter/material.dart';
 
-class TimerPage {
-  List actions(BuildContext context) {
-    return [
-      Container(color: Colors.blue),
-      Container(color: Colors.red),
-      Container(color: Colors.green),
-    ];
+// TimerPage
+class TimerPage extends StatelessWidget {
+  const TimerPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return FlowTimer();
   }
 }

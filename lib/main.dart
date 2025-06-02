@@ -1,4 +1,5 @@
 // flutter SDK
+import 'package:flowscape/features/flow/timer/flow_timer_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -25,19 +26,17 @@ void main() async {
   final dir = await getApplicationDocumentsDirectory();
 
   // open isar db
-  final isar = await Isar.open([
-    TodoIsarSchema,
-  ], directory: dir.path);
+  final isar = await Isar.open([TodoIsarSchema], directory: dir.path);
 
   // init todo repo
   final todoRepo = IsarTodoRepo(isar);
-
 
   runApp(
     MultiProvider(
       providers: [
         Provider<TodoRepo>.value(value: todoRepo),
         ChangeNotifierProvider(create: (context) => ThemeProvider()),
+        ChangeNotifierProvider(create: (_) => FlowTimerController()),
       ],
       child: const MyApp(),
     ),

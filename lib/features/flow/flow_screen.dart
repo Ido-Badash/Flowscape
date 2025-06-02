@@ -8,9 +8,9 @@ final List<String> bgImagesLight = getRandomLightImages(10);
 int currentImageIdx = 0;
 
 class FlowScreen extends StatefulWidget {
-  final List<Widget> actions;
+  final Widget child;
 
-  const FlowScreen({super.key, this.actions = const []});
+  const FlowScreen({super.key, this.child = const SizedBox.shrink()});
 
   @override
   State<FlowScreen> createState() => _TimerScreenState();
@@ -51,7 +51,8 @@ class _TimerScreenState extends State<FlowScreen> {
               child: Image.asset(_bgImages[currentImageIdx], fit: BoxFit.cover),
             ),
           ),
-          ...widget.actions,
+          widget.child,
+          // TODO: load this child only after the image is loaded
         ],
       ),
     );

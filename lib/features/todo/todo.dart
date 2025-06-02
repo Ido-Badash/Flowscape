@@ -14,7 +14,7 @@ class _TasksPageState extends State<TasksPage> {
   @override
   void initState() {
     super.initState();
-    currentBody = const TasksScreen();
+    currentBody = const TodoScreen();
   }
 
   @override
