@@ -78,6 +78,7 @@ class IsarPlaylist {
   int currentSongTimeSec = 0;
   IsarLinks<IsarSong> songs = IsarLinks<IsarSong>();
   bool isShuffled = false;
+  String playlistImagePath = "assets/images/playlists/default_cover.png";
   late String title;
   late String creator;
 
@@ -104,6 +105,7 @@ class IsarPlaylist {
       title: title,
       creator: creator,
       songs: moduleSongs,
+      playlistImagePath: playlistImagePath,
       order: order,
       shuffle: isShuffled,
     );
@@ -122,6 +124,7 @@ class IsarPlaylist {
           ..creator = playlist.creator
           ..title = playlist.title
           ..order = playlist.order
+          ..playlistImagePath = playlist.playlistImagePath
           ..isShuffled = playlist.shuffle;
     return isarPlaylist;
   }

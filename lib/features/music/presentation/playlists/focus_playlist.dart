@@ -9,7 +9,6 @@ class FocusPlaylist extends PlaylistModel {
         title: "Focus",
         creator: "FlowScape",
         description: "A playlist by FlowScape that contains music for you to.",
-        playlistImagePath: "assets/images/playlists/",
         songs: _buildSongs(),
       );
 

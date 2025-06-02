@@ -74,12 +74,12 @@ flutter:
         - asset: assets/fonts/default.ttf
 
   assets:
-    - assets/images/flowbgs_dark/
-    - assets/images/flowbgs_light/
-    - assets/images/scapes/manage_your_time/
-    - assets/images/scapes/david_goggins_quote/
-
     # Music and Audio Assets
     - assets/images/playlists/
     - assets/images/songs/
     - assets/audio/calm/
+    - assets/images/flowbgs_dark/
+    - assets/images/flowbgs_light/
+    - assets/images/scapes/manage_your_time/
+    - assets/images/scapes/david_goggins_quote/
+    

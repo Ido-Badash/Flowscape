@@ -54,6 +54,7 @@ part 'isar_song.g.dart';
 class IsarSong {
   Id id = Isar.autoIncrement;
   int currentSongTime = 0;
+  String coverImagePath = "assets/images/songs/default_cover.jpg";
   late String title;
   late String artist;
   late String audioFilePath;
@@ -70,16 +71,18 @@ class IsarSong {
       artist: artist,
       audioFilePath: audioFilePath,
       currentSongTime: currentSongTimeDur,
+      coverImagePath: coverImagePath,
     );
   }
 
   /// convert song domain -> song db
-  static IsarSong fromDomain(SongModel ?song) {
+  static IsarSong fromDomain(SongModel? song) {
     return IsarSong()
-      ..id = song!.id as Id 
+      ..id = song!.id as Id
       ..title = song.title
       ..artist = song.artist
       ..audioFilePath = song.audioFilePath
-      ..currentSongTime = song.currentSongTime.inSeconds;
+      ..currentSongTime = song.currentSongTime.inSeconds
+      ..coverImagePath = song.coverImagePath;
   }
 }

@@ -27,13 +27,18 @@ const IsarSongSchema = CollectionSchema(
       name: r'audioFilePath',
       type: IsarType.string,
     ),
-    r'currentSongTime': PropertySchema(
+    r'coverImagePath': PropertySchema(
       id: 2,
+      name: r'coverImagePath',
+      type: IsarType.string,
+    ),
+    r'currentSongTime': PropertySchema(
+      id: 3,
       name: r'currentSongTime',
       type: IsarType.long,
     ),
     r'title': PropertySchema(
-      id: 3,
+      id: 4,
       name: r'title',
       type: IsarType.string,
     )
@@ -60,6 +65,7 @@ int _isarSongEstimateSize(
   var bytesCount = offsets.last;
   bytesCount += 3 + object.artist.length * 3;
   bytesCount += 3 + object.audioFilePath.length * 3;
+  bytesCount += 3 + object.coverImagePath.length * 3;
   bytesCount += 3 + object.title.length * 3;
   return bytesCount;
 }
@@ -72,8 +78,9 @@ void _isarSongSerialize(
 ) {
   writer.writeString(offsets[0], object.artist);
   writer.writeString(offsets[1], object.audioFilePath);
-  writer.writeLong(offsets[2], object.currentSongTime);
-  writer.writeString(offsets[3], object.title);
+  writer.writeString(offsets[2], object.coverImagePath);
+  writer.writeLong(offsets[3], object.currentSongTime);
+  writer.writeString(offsets[4], object.title);
 }
 
 IsarSong _isarSongDeserialize(
@@ -85,9 +92,10 @@ IsarSong _isarSongDeserialize(
   final object = IsarSong();
   object.artist = reader.readString(offsets[0]);
   object.audioFilePath = reader.readString(offsets[1]);
-  object.currentSongTime = reader.readLong(offsets[2]);
+  object.coverImagePath = reader.readString(offsets[2]);
+  object.currentSongTime = reader.readLong(offsets[3]);
   object.id = id;
-  object.title = reader.readString(offsets[3]);
+  object.title = reader.readString(offsets[4]);
   return object;
 }
 
@@ -103,8 +111,10 @@ P _isarSongDeserializeProp<P>(
     case 1:
       return (reader.readString(offset)) as P;
     case 2:
-      return (reader.readLong(offset)) as P;
+      return (reader.readString(offset)) as P;
     case 3:
+      return (reader.readLong(offset)) as P;
+    case 4:
       return (reader.readString(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -464,6 +474,141 @@ extension IsarSongQueryFilter
     });
   }
 
+  QueryBuilder<IsarSong, IsarSong, QAfterFilterCondition> coverImagePathEqualTo(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'coverImagePath',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<IsarSong, IsarSong, QAfterFilterCondition>
+      coverImagePathGreaterThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'coverImagePath',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<IsarSong, IsarSong, QAfterFilterCondition>
+      coverImagePathLessThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'coverImagePath',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<IsarSong, IsarSong, QAfterFilterCondition> coverImagePathBetween(
+    String lower,
+    String upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'coverImagePath',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<IsarSong, IsarSong, QAfterFilterCondition>
+      coverImagePathStartsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.startsWith(
+        property: r'coverImagePath',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<IsarSong, IsarSong, QAfterFilterCondition>
+      coverImagePathEndsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.endsWith(
+        property: r'coverImagePath',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<IsarSong, IsarSong, QAfterFilterCondition>
+      coverImagePathContains(String value, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.contains(
+        property: r'coverImagePath',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<IsarSong, IsarSong, QAfterFilterCondition> coverImagePathMatches(
+      String pattern,
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.matches(
+        property: r'coverImagePath',
+        wildcard: pattern,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<IsarSong, IsarSong, QAfterFilterCondition>
+      coverImagePathIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'coverImagePath',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<IsarSong, IsarSong, QAfterFilterCondition>
+      coverImagePathIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        property: r'coverImagePath',
+        value: '',
+      ));
+    });
+  }
+
   QueryBuilder<IsarSong, IsarSong, QAfterFilterCondition>
       currentSongTimeEqualTo(int value) {
     return QueryBuilder.apply(this, (query) {
@@ -734,6 +879,18 @@ extension IsarSongQuerySortBy on QueryBuilder<IsarSong, IsarSong, QSortBy> {
     });
   }
 
+  QueryBuilder<IsarSong, IsarSong, QAfterSortBy> sortByCoverImagePath() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'coverImagePath', Sort.asc);
+    });
+  }
+
+  QueryBuilder<IsarSong, IsarSong, QAfterSortBy> sortByCoverImagePathDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'coverImagePath', Sort.desc);
+    });
+  }
+
   QueryBuilder<IsarSong, IsarSong, QAfterSortBy> sortByCurrentSongTime() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'currentSongTime', Sort.asc);
@@ -782,6 +939,18 @@ extension IsarSongQuerySortThenBy
   QueryBuilder<IsarSong, IsarSong, QAfterSortBy> thenByAudioFilePathDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'audioFilePath', Sort.desc);
+    });
+  }
+
+  QueryBuilder<IsarSong, IsarSong, QAfterSortBy> thenByCoverImagePath() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'coverImagePath', Sort.asc);
+    });
+  }
+
+  QueryBuilder<IsarSong, IsarSong, QAfterSortBy> thenByCoverImagePathDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'coverImagePath', Sort.desc);
     });
   }
 
@@ -839,6 +1008,14 @@ extension IsarSongQueryWhereDistinct
     });
   }
 
+  QueryBuilder<IsarSong, IsarSong, QDistinct> distinctByCoverImagePath(
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'coverImagePath',
+          caseSensitive: caseSensitive);
+    });
+  }
+
   QueryBuilder<IsarSong, IsarSong, QDistinct> distinctByCurrentSongTime() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'currentSongTime');
@@ -870,6 +1047,12 @@ extension IsarSongQueryProperty
   QueryBuilder<IsarSong, String, QQueryOperations> audioFilePathProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'audioFilePath');
+    });
+  }
+
+  QueryBuilder<IsarSong, String, QQueryOperations> coverImagePathProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'coverImagePath');
     });
   }
 

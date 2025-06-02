@@ -131,7 +131,7 @@ class PlaylistModel {
     this.description = "",
     this.order = PlaylistOrder.normal,
     this.shuffle = false,
-    this.playlistImagePath = "assets/images/playlists/default_cover.png",
+    this.playlistImagePath = "assets/images/flowbgs_dark/flowbg_1.jpg",
   }) : _songs = List<SongModel>.from(songs),
        _currentSongIdx = currentSongIdx,
        _currentSongTime = currentSongTime;

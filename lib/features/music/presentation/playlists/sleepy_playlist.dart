@@ -9,7 +9,6 @@ class SleepyPlaylist extends PlaylistModel {
         title: "Sleepy",
         creator: "FlowScape",
         description: "A playlist by FlowScape that contains music when your tired.",
-        playlistImagePath: "assets/images/playlists/",
         songs: _buildSongs(),
       );
 
