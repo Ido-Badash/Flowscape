@@ -6,16 +6,12 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:just_audio/just_audio.dart';
 
 // features
 // page: todo
 import 'features/todo/data/models/isar_todo.dart';
 import 'features/todo/data/repository/isar_todo_repo.dart';
 import 'features/todo/domain/repository/todo_repo.dart';
-
-// page: music
-import 'features/music/music_lib.dart';
 
 // app
 import 'features/app/app.dart';
@@ -31,31 +27,16 @@ void main() async {
   // open isar db
   final isar = await Isar.open([
     TodoIsarSchema,
-    IsarPlaylistSchema,
-    IsarSongSchema,
   ], directory: dir.path);
 
   // init todo repo
   final todoRepo = IsarTodoRepo(isar);
 
-  // init music repos
-  final playlistRepo = IsarPlaylistRepo(isar);
-  final songRepo = IsarSongRepo(isar);
-
-  // developer manuel playlists addings
-  await playlistRepo.clear();
-  await playlistRepo.addPlaylist(CalmPlaylist());
-  await playlistRepo.addPlaylist(FocusPlaylist());
-  await playlistRepo.addPlaylist(NaturePlaylist());
-  await playlistRepo.addPlaylist(SleepyPlaylist());
 
   runApp(
     MultiProvider(
       providers: [
         Provider<TodoRepo>.value(value: todoRepo),
-        Provider<PlaylistRepo>.value(value: playlistRepo),
-        Provider<SongRepo>.value(value: songRepo),
-        Provider<AudioPlayer>.value(value: AudioPlayer()),
         ChangeNotifierProvider(create: (context) => ThemeProvider()),
       ],
       child: const MyApp(),
