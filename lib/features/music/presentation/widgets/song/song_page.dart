@@ -1,6 +1,9 @@
+import 'package:audio_video_progress_bar/audio_video_progress_bar.dart';
+import 'package:flowscape/features/music/presentation/widgets/song/postion_data.dart';
 import 'package:flowscape/features/music/presentation/widgets/song/song_controls.dart';
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:rxdart/rxdart.dart';
 
 class SongPage extends StatefulWidget {
   final String songPath;
@@ -14,6 +17,14 @@ class SongPage extends StatefulWidget {
 class _SongPageState extends State<SongPage> {
   late AudioPlayer _audioPlayer;
 
+  Stream<PostionData> get _positionDataStream =>
+      Rx.combineLatest3<Duration, Duration, Duration?, PostionData>(
+        _audioPlayer.positionStream,
+        _audioPlayer.bufferedPositionStream,
+        _audioPlayer.durationStream,
+        (position, bufferedPosition, duration) =>
+            PostionData(position, bufferedPosition, duration ?? Duration.zero),
+      );
   @override
   void initState() {
     super.initState();
@@ -53,7 +64,30 @@ class _SongPageState extends State<SongPage> {
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [SongControls(audioPlayer: _audioPlayer)],
+          children: [
+            StreamBuilder(
+              stream: _positionDataStream,
+              builder: (context, snapshot) {
+                final positionData = snapshot.data;
+                return ProgressBar(
+                  barHeight: 8,
+                  baseBarColor: Colors.grey[600],
+                  bufferedBarColor: Colors.grey,
+                  progressBarColor: Colors.red,
+                  thumbColor: Colors.red,
+                  timeLabelTextStyle: const TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w600,
+                  ),
+                  progress: positionData?.position ?? Duration.zero,
+                  total: positionData?.duration ?? Duration.zero,
+                  buffered: positionData?.bufferedPosition ?? Duration.zero,
+                  onSeek: _audioPlayer.seek,
+                );
+              },
+            ),
+            SongControls(audioPlayer: _audioPlayer),
+          ],
         ),
       ),
     );
