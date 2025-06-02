@@ -13,24 +13,34 @@ import 'package:flutter/material.dart';
 // PlaylistButton
 class PlaylistButton extends StatelessWidget {
   final Playlist playlist;
+  final void Function(BuildContext context) onTap;
 
-  const PlaylistButton({super.key, required this.playlist});
+  const PlaylistButton({
+    super.key,
+    required this.playlist,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () => goToPlaylist(context),
-      borderRadius: BorderRadius.circular(12),
-      child: buildButton(context),
-    );
-  }
-
-  void goToPlaylist(BuildContext context) {
-    // Implement navigation or playlist opening logic here
+    return buildButton(context);
   }
 
   Widget buildButton(context) {
     // Get the widget from buildHead
-    return playlist.buildHeadImage(context);
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Flexible(
+          child: InkWell(
+            onTap: () => onTap(context),
+            borderRadius: BorderRadius.circular(12),
+            child: playlist.buildHeadImage(context),
+          ),
+        ),
+        Flexible(child: playlist.buildHeadText(context)),
+      ],
+    );
   }
 }
