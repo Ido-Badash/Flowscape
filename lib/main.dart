@@ -47,7 +47,6 @@ void main() async {
   await playlistRepo.addPlaylist(FocusPlaylist());
   await playlistRepo.addPlaylist(NaturePlaylist());
   await playlistRepo.addPlaylist(SleepyPlaylist());
-  debugPrint(CalmPlaylist().songs[0].coverImagePath);
 
   runApp(
     MultiProvider(

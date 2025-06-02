@@ -9,6 +9,7 @@ class NaturePlaylist extends PlaylistModel {
         title: "Nature",
         creator: "FlowScape",
         description: "A playlist by FlowScape that contains nature type music.",
+        playlistImagePath: "assets/images/flowbgs_dark/flowbg_4.jpg",
         songs: _buildSongs(),
       );
 

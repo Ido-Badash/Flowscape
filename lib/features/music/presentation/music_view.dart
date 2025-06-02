@@ -42,7 +42,7 @@ class MusicView extends StatelessWidget {
       ),
       itemBuilder: (context, idx) {
         final playlistModel = playlists[idx];
-        debugPrint("On playlist: ${playlistModel.title}");
+        debugPrint("Playlist rendered: ${playlistModel.title}");
         // Wrap PlaylistButton with Align and IntrinsicWidth/IntrinsicHeight to shrink its tap area
         final Playlist playlist = Playlist(playlist: playlistModel);
         return PlaylistButton(

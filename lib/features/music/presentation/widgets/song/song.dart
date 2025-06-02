@@ -12,8 +12,9 @@ import 'package:flowscape/features/music/domains/song/model/song_model.dart';
 class Song extends StatelessWidget {
   final SongModel song;
   final SongStyle? style;
+  final void Function()? onTap;
 
-  const Song({super.key, required this.song, this.style});
+  const Song({super.key, required this.song, this.style, this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -22,9 +23,7 @@ class Song extends StatelessWidget {
       child: MouseRegion(
         cursor: SystemMouseCursors.click,
         child: GestureDetector(
-          onDoubleTap: () {
-            // play song
-          },
+          onTap: onTap,
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [

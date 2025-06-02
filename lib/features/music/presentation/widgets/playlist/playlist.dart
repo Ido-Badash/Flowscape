@@ -23,7 +23,6 @@ class Playlist extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    debugPrint("Playlist: ${playlist.title} created with image: ${playlist.playlistImagePath}");
     return SingleChildScrollView(
       padding: const EdgeInsets.all(16.0),
       child: Column(
@@ -142,6 +141,13 @@ class Playlist extends StatelessWidget {
                 songsStyle != null && songsStyle!.length > entry.key
                     ? songsStyle![entry.key]
                     : null,
+            onTap: () {
+              playlist.currentSongIdx = entry.key;
+              playlist.currentSongTime = Duration.zero;
+              debugPrint(
+                "Tapped on song: ${entry.value.title}, index: ${entry.key}",
+              );
+            },
           ),
         )
         .toList();

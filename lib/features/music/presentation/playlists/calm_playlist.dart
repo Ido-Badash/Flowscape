@@ -10,7 +10,7 @@ class CalmPlaylist extends PlaylistModel {
         title: "Calm",
         creator: "FlowScape",
         description: "A playlist by FlowScape that contains calming music.",
-        playlistImagePath: "assets/images/playlists/calm.jpg",
+        playlistImagePath: "assets/images/flowbgs_dark/flowbg_2.jpg",
         songs: _buildSongs(),
       );
 
@@ -20,7 +20,7 @@ class CalmPlaylist extends PlaylistModel {
       title: "Elegant",
       artist: "Grand Project",
       audioFilePath: "assets/audio/calm/elegant.mp3",
-      coverImagePath: "assets/images/songs/default_cover.jpg",
+      coverImagePath: "assets/images/flowbgs_dark/flowbg_1.jpg",
     );
     debugPrint("CalmPlaylist: ${song1.title} by ${song1.artist} with image: ${song1.coverImagePath}");
     return [song1];
