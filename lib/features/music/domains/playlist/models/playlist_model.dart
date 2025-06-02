@@ -82,7 +82,7 @@ class PlaylistModel {
   final String description;
   final PlaylistOrder order;
   final bool shuffle;
-  final String? playlistImagePath;
+  String playlistImagePath;
 
   // private
   int _currentSongIdx;
@@ -131,11 +131,10 @@ class PlaylistModel {
     this.description = "",
     this.order = PlaylistOrder.normal,
     this.shuffle = false,
-    this.playlistImagePath,
+    required this.playlistImagePath,
   }) : _songs = List<SongModel>.from(songs),
        _currentSongIdx = currentSongIdx,
-       _currentSongTime = currentSongTime,
-       assert(songs.isNotEmpty, 'Songs list cannot be empty');
+       _currentSongTime = currentSongTime;
 
   void init() {
     updateSongs();

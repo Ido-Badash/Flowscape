@@ -43,6 +43,9 @@ also they are asynchronous methods with the Future<T> type
 * - deleteSong(SongModel songModel, int playlistId)
     deletes a song from the playlist
 
+* - clear()
+    clears the database (deletes all playlists and songs)
+
 */
 
 // imports
@@ -230,6 +233,14 @@ class IsarPlaylistRepo implements PlaylistRepo {
         debugPrint("FATAL: Failed to delete song from the database.");
         rethrow;
       }
+    });
+  }
+
+  // clear
+  Future<void> clear() async {
+    await db.writeTxn(() async {
+      await isarPlaylists.clear();
+      await isarSongs.clear();
     });
   }
 

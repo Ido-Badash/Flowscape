@@ -80,6 +80,7 @@ class IsarPlaylist {
   bool isShuffled = false;
   late String title;
   late String creator;
+  late String playlistImagePath;
 
   @Enumerated(EnumType.name)
   late PlaylistOrder order;
@@ -106,6 +107,7 @@ class IsarPlaylist {
       songs: moduleSongs,
       order: order,
       shuffle: isShuffled,
+      playlistImagePath: playlistImagePath,
     );
   }
 

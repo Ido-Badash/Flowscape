@@ -23,6 +23,7 @@ class Playlist extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    debugPrint("Playlist: ${playlist.title} created with image: ${playlist.playlistImagePath}");
     return SingleChildScrollView(
       padding: const EdgeInsets.all(16.0),
       child: Column(
@@ -58,16 +59,10 @@ class Playlist extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
         color: style?.imageBg ?? Colors.indigo,
       ),
-      child:
-          playlist.playlistImagePath != null
-              ? ClipRRect(
-                borderRadius: BorderRadius.circular(12),
-                child: Image.asset(
-                  playlist.playlistImagePath!,
-                  fit: BoxFit.cover,
-                ),
-              )
-              : const Icon(Icons.music_note, color: Colors.white),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(12),
+        child: Image.asset(playlist.playlistImagePath, fit: BoxFit.cover),
+      ),
     );
   }
 

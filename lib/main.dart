@@ -42,7 +42,11 @@ void main() async {
   final songRepo = IsarSongRepo(isar);
 
   // developer manuel playlists addings
-  // playlistRepo.addPlaylist(CalmPlaylist());
+  await playlistRepo.clear();
+  await playlistRepo.addPlaylist(CalmPlaylist());
+  await playlistRepo.addPlaylist(FocusPlaylist());
+  await playlistRepo.addPlaylist(NaturePlaylist());
+  await playlistRepo.addPlaylist(SleepyPlaylist());
 
   runApp(
     MultiProvider(

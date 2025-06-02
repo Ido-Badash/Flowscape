@@ -3,13 +3,15 @@ import 'package:flowscape/features/music/domains/domains_lib.dart';
 
 // CalmPlaylist
 class CalmPlaylist extends PlaylistModel {
-  CalmPlaylist()
+  final String? coverImagePath;
+
+  CalmPlaylist({this.coverImagePath})
     : super(
         id: DateTime.now().millisecondsSinceEpoch,
         title: "Calm",
         creator: "FlowScape",
         description: "A playlist by FlowScape that contains calming music.",
-        playlistImagePath: "assets/images/playlists/calm.jpg",
+        playlistImagePath: coverImagePath ?? "assets/images/playlists/calm.png",
         songs: _buildSongs(),
       );
 
