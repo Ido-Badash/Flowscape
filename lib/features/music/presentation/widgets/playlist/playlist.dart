@@ -5,10 +5,9 @@
 
 // imports
 import 'package:flowscape/features/music/domains/domains_lib.dart';
+import 'package:flowscape/features/music/presentation/widgets/song/song_page.dart';
 import 'package:flowscape/features/music/presentation/widgets/widgets_lib.dart';
 import 'package:flutter/material.dart';
-import 'package:just_audio/just_audio.dart';
-import 'package:provider/provider.dart';
 
 // Playlist
 class Playlist extends StatelessWidget {
@@ -143,7 +142,7 @@ class Playlist extends StatelessWidget {
                 songsStyle != null && songsStyle!.length > entry.key
                     ? songsStyle![entry.key]
                     : null,
-            onTap: () => goToSongPage(entry.value, context)
+            onTap: () => goToSongPage(entry.value, context),
           ),
         )
         .toList();
@@ -153,22 +152,7 @@ class Playlist extends StatelessWidget {
     // Navigate to the song page
     debugPrint("Navigating to song: ${song.title}");
     Navigator.of(context).push(
-      MaterialPageRoute(
-        builder:
-            (_) => Scaffold(
-              appBar: AppBar(),
-              body: buildSongPage(), // Show the Playlist widget full screen
-            ),
-      ),
-    );
-  }
-
-  Widget buildSongPage() {
-    return Center(
-      child: Text(
-        'Now Playing: ${playlist.title}',
-        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-      ),
+      MaterialPageRoute(builder: (_) => SongPage(songPath: song.audioFilePath)),
     );
   }
 }
