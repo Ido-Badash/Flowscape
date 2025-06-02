@@ -73,6 +73,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
       onPressed: () {
         setState(() {
           toggleSettingsCollapse();
+          debugPrint("Settings collapsed state set to: $settingsCollapsed");
         });
       },
       tooltip:
@@ -98,6 +99,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           onTap: () {
             setState(() {
               currentBody = ThemeSelectScreen();
+              debugPrint("Navigating to ThemeSelectScreen");
             });
           },
         ),

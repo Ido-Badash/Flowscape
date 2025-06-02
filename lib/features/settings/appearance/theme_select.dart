@@ -37,12 +37,19 @@ class _ThemeSelectScreenState extends State<ThemeSelectScreen> {
   }
 
   void toggleTheme() {
-    Provider.of<ThemeProvider>(context, listen: false).toggleTheme();
+    final ThemeProvider themeProvider = Provider.of<ThemeProvider>(
+      context,
+      listen: false,
+    );
+    themeProvider.toggleTheme();
     setState(() {
       currentIconTheme =
           currentIconTheme == Icons.nightlight_round_sharp
               ? Icons.wb_sunny_rounded
               : Icons.nightlight_round_sharp;
     });
+    debugPrint(
+      "Theme toggled to: ${themeProvider.themeData.brightness.toString().substring(11)}",
+    );
   }
 }
