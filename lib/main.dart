@@ -55,7 +55,7 @@ void main() async {
         Provider<TodoRepo>.value(value: todoRepo),
         Provider<PlaylistRepo>.value(value: playlistRepo),
         Provider<SongRepo>.value(value: songRepo),
-        Provider<AudioPlayer>(create: (_) => AudioPlayer()),
+        Provider<AudioPlayer>.value(value: AudioPlayer()),
         ChangeNotifierProvider(create: (context) => ThemeProvider()),
       ],
       child: const MyApp(),

@@ -20,7 +20,12 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
   smooth_page_indicator: ^1.2.1
+  
+  cached_network_image: ^3.4.1
+  audio_video_progress_bar: ^2.0.3
   just_audio: ^0.10.3
+  just_audio_background: ^0.0.1-beta.17
+  rxdart: ^0.28.0
 
   provider: ^6.1.5
   path_provider: ^2.1.5

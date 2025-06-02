@@ -143,19 +143,32 @@ class Playlist extends StatelessWidget {
                 songsStyle != null && songsStyle!.length > entry.key
                     ? songsStyle![entry.key]
                     : null,
-            onTap: () async {
-              playlist.currentSongIdx = entry.key;
-              debugPrint(
-                "Tapped on song: ${entry.value.title}, index: ${entry.key}",
-              );
-              final player = Provider.of<AudioPlayer>(context, listen: false);
-              await player.setUrl(entry.value.audioFilePath);
-              await player.seek(entry.value.currentSongTime);
-              await player.play();
-              debugPrint("Playing song: ${entry.value.title}");
-            },
+            onTap: () => goToSongPage(entry.value, context)
           ),
         )
         .toList();
+  }
+
+  void goToSongPage(SongModel song, BuildContext context) {
+    // Navigate to the song page
+    debugPrint("Navigating to song: ${song.title}");
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder:
+            (_) => Scaffold(
+              appBar: AppBar(),
+              body: buildSongPage(), // Show the Playlist widget full screen
+            ),
+      ),
+    );
+  }
+
+  Widget buildSongPage() {
+    return Center(
+      child: Text(
+        'Now Playing: ${playlist.title}',
+        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+      ),
+    );
   }
 }
