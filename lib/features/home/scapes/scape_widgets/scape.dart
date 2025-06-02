@@ -89,7 +89,7 @@ class _ScapeState extends State<Scape> {
               controller: _controller,
               count: updatedChildren.length,
               effect: WormEffect(
-                dotColor: widget.style?.offPage ?? Colors.grey,
+                dotColor: widget.style?.offPage ?? Colors.grey[400]!,
                 activeDotColor: widget.style?.onPage ?? Colors.indigo,
               ),
               onDotClicked: (int idx) {
