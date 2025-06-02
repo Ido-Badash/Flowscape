@@ -7,6 +7,8 @@
 import 'package:flowscape/features/music/domains/domains_lib.dart';
 import 'package:flowscape/features/music/presentation/widgets/widgets_lib.dart';
 import 'package:flutter/material.dart';
+import 'package:just_audio/just_audio.dart';
+import 'package:provider/provider.dart';
 
 // Playlist
 class Playlist extends StatelessWidget {
@@ -32,7 +34,7 @@ class Playlist extends StatelessWidget {
           const SizedBox(height: 24),
           buildSongsHeader(context),
           const SizedBox(height: 8),
-          ...addIdxToSongs(),
+          ...addIdxToSongs(context),
         ],
       ),
     );
@@ -106,8 +108,8 @@ class Playlist extends StatelessWidget {
   }
 
   //* --- SONGS ---
-  List<Widget> addIdxToSongs() {
-    final songs = fetchSongs();
+  List<Widget> addIdxToSongs(BuildContext context) {
+    final songs = fetchSongs(context);
     return List<Widget>.generate(
       songs.length,
       (index) => Padding(
@@ -130,7 +132,7 @@ class Playlist extends StatelessWidget {
     );
   }
 
-  List<Song> fetchSongs() {
+  List<Song> fetchSongs(BuildContext context) {
     return playlist.songs
         .asMap()
         .entries
@@ -141,12 +143,16 @@ class Playlist extends StatelessWidget {
                 songsStyle != null && songsStyle!.length > entry.key
                     ? songsStyle![entry.key]
                     : null,
-            onTap: () {
+            onTap: () async {
               playlist.currentSongIdx = entry.key;
-              playlist.currentSongTime = Duration.zero;
               debugPrint(
                 "Tapped on song: ${entry.value.title}, index: ${entry.key}",
               );
+              final player = Provider.of<AudioPlayer>(context, listen: false);
+              await player.setUrl(entry.value.audioFilePath);
+              await player.seek(entry.value.currentSongTime);
+              await player.play();
+              debugPrint("Playing song: ${entry.value.title}");
             },
           ),
         )

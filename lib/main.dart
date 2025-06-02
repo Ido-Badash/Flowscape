@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:just_audio/just_audio.dart';
 
 // features
 // page: todo
@@ -54,6 +55,7 @@ void main() async {
         Provider<TodoRepo>.value(value: todoRepo),
         Provider<PlaylistRepo>.value(value: playlistRepo),
         Provider<SongRepo>.value(value: songRepo),
+        Provider<AudioPlayer>(create: (_) => AudioPlayer()),
         ChangeNotifierProvider(create: (context) => ThemeProvider()),
       ],
       child: const MyApp(),
