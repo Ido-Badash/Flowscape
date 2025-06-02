@@ -7,14 +7,16 @@ final List<String> bgImagesDark = getRandomDarkImages(10);
 final List<String> bgImagesLight = getRandomLightImages(10);
 int currentImageIdx = 0;
 
-class TimerScreen extends StatefulWidget {
-  const TimerScreen({super.key});
+class FlowScreen extends StatefulWidget {
+  final List<Widget> actions;
+
+  const FlowScreen({super.key, this.actions = const []});
 
   @override
-  State<TimerScreen> createState() => _TimerScreenState();
+  State<FlowScreen> createState() => _TimerScreenState();
 }
 
-class _TimerScreenState extends State<TimerScreen> {
+class _TimerScreenState extends State<FlowScreen> {
   List<String> get _bgImages =>
       Theme.of(context).brightness == Brightness.dark
           ? bgImagesDark
@@ -49,6 +51,7 @@ class _TimerScreenState extends State<TimerScreen> {
               child: Image.asset(_bgImages[currentImageIdx], fit: BoxFit.cover),
             ),
           ),
+          ...widget.actions,
         ],
       ),
     );

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 // screens
-import 'timer/timer.dart';
+import 'flow_screen.dart';
 
 class FlowPage extends StatefulWidget {
   const FlowPage({super.key});
@@ -11,7 +11,7 @@ class FlowPage extends StatefulWidget {
 }
 
 class _FlowPageState extends State<FlowPage> {
-  Widget? currentBody = TimerScreen();
+  Widget? currentBody = FlowScreen(actions: [],);
 
   @override
   Widget build(BuildContext context) {
