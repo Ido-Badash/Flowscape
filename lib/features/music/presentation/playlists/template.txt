@@ -1,0 +1,19 @@
+// imports
+import 'package:flowscape/features/music/domains/domains_lib.dart';
+
+// NamePlaylist
+class NamePlaylist extends PlaylistModel {
+  NamePlaylist()
+    : super(
+        id: DateTime.now().millisecondsSinceEpoch,
+        title: "Name",
+        creator: "FlowScape",
+        description: "A playlist by FlowScape that contains ADD HERE.",
+        playlistImagePath: "assets/images/playlists/",
+        songs: _buildSongs(),
+      );
+
+  static List<SongModel> _buildSongs() {
+    return [];
+  }
+}
