@@ -14,11 +14,16 @@ class FableScape extends StatelessWidget with ScapeUtils {
 
   // HEAD PAGE (Book Cover)
   Widget buildHeadPage() {
-    return ClassicHeadFrame(
-      creator: "Aesop",
-      date: "c. 600 BC",
-      textColor: Colors.white.withAlpha(200),
-      child: buildHeadPageMainBody(),
+    return AssetFrame(
+      bgImage: "assets/images/scapes/fable/head_page.jpg",
+      children: [
+        ClassicHeadFrame(
+          creator: "Aesop",
+          date: "03/06/2025",
+          textColor: Colors.white.withAlpha(200),
+          child: buildHeadPageMainBody(),
+        ),
+      ],
     );
   }
 
@@ -28,14 +33,15 @@ class FableScape extends StatelessWidget with ScapeUtils {
       child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
+          children: [
             Text(
               "The Tortoise and the Hare",
               style: TextStyle(
                 fontSize: 32,
                 fontWeight: FontWeight.bold,
-                color: Colors.white,
+                color: Colors.yellow[600],
                 letterSpacing: 1.2,
+                shadows: TextUtils.textStroke(),
               ),
               textAlign: TextAlign.center,
             ),
@@ -58,15 +64,28 @@ class FableScape extends StatelessWidget with ScapeUtils {
   // PAGE MANAGER
   List<Widget Function()> buildPagesFunctionList() {
     return [
-      buildPage1,
-      buildPage2,
-      buildPage3,
-      buildPage4,
-      buildPage5,
-      buildPage6,
-      buildPage7,
-      buildPage8,
+      ...[
+        buildPage1,
+        buildPage2,
+        buildPage3,
+        buildPage4,
+        buildPage5,
+        buildPage6,
+        buildPage7,
+      ].map((pageFunction) => () => buildPageAsset(pageFunction())),
+      () => buildPageAsset(
+        buildPage8(),
+        bgImage: "assets/images/scapes/fable/page_8.jpg",
+      ),
     ];
+  }
+
+  // Page asset image loader
+  Widget buildPageAsset(Widget child, {String? bgImage}) {
+    return AssetFrame(
+      bgImage: bgImage ?? "assets/images/scapes/fable/page_bg.jpg",
+      children: [child],
+    );
   }
 
   //* - BOOK PAGES - *//
@@ -129,18 +148,37 @@ class FableScape extends StatelessWidget with ScapeUtils {
   }
 
   Widget buildPage8() {
-    return ClassicFrame(
-      child: Center(
-        child: Text(
-          "Moral: Never underestimate the value of persistence and humility.",
-          style: const TextStyle(
-            fontSize: 20,
-            fontStyle: FontStyle.italic,
-            color: Colors.white70,
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Text(
+          "Moral",
+          style: TextStyle(
+            fontSize: 28,
+            fontWeight: FontWeight.bold,
+            color: Colors.indigo[500],
+            letterSpacing: 1.2,
+            shadows: TextUtils.textStroke(),
+            decoration: TextDecoration.underline,
+            decorationColor: Colors.indigo[500]!,
+            decorationThickness: 1.5,
           ),
-          textAlign: TextAlign.center,
         ),
-      ),
+        ClassicFrame(
+          child: Center(
+            child: SelectableText(
+              "Never underestimate the value of persistence and humility.",
+              style: const TextStyle(
+                fontSize: 22,
+                fontStyle: FontStyle.italic,
+                color: Colors.white,
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ),
+        ),
+      ],
     );
   }
 
@@ -150,11 +188,7 @@ class FableScape extends StatelessWidget with ScapeUtils {
       padding: const EdgeInsets.all(24.0),
       child: Text(
         text,
-        style: const TextStyle(
-          fontSize: 20,
-          color: Colors.white,
-          height: 1.4,
-        ),
+        style: const TextStyle(fontSize: 20, color: Colors.white, height: 1.4),
         textAlign: TextAlign.center,
       ),
     );

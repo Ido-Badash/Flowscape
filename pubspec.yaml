@@ -74,8 +74,12 @@ flutter:
         - asset: assets/fonts/default.ttf
 
   assets:
+    # Flow
     - assets/images/flowbgs_dark/
     - assets/images/flowbgs_light/
+
+    # Scapes
     - assets/images/scapes/manage_your_time/
     - assets/images/scapes/david_goggins_quote/
+    - assets/images/scapes/fable/
     
