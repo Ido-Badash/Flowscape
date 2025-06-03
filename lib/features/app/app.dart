@@ -1,3 +1,4 @@
+import 'package:flowscape/features/info/info.dart';
 import 'package:flutter/material.dart';
 
 // screens
@@ -25,6 +26,7 @@ class _FlowScapeState extends State<FlowScape> {
     const FlowPage(),
     const HomePage(),
     const TasksPage(),
+    const InfoPage(),
   ];
 
   // PAGES ICONS
@@ -33,6 +35,7 @@ class _FlowScapeState extends State<FlowScape> {
     Icon(Icons.terrain_outlined),
     Icon(Icons.home),
     Icon(Icons.list_alt),
+    Icon(Icons.info_outline),
   ];
 
   @override
