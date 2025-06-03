@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flowscape/features/home/scapes/scape_lib.dart';
 import 'package:flowscape/core/helpers/helpers.dart';
@@ -12,21 +13,38 @@ class ChickenWrapScape extends StatefulWidget {
 
 class _ChickenWrapScapeState extends State<ChickenWrapScape> with ScapeUtils {
   VideoPlayerController? _controller;
+  double _buttonOpacity = 1.0;
+  Timer? _fadeTimer;
+
+  // Static map to store positions per video asset
+  static final Map<String, Duration> _videoPositions = {};
+  final String _videoAsset =
+      "assets/videos/scapes/chicken_wrap_recipe/chicken_wrap.mp4";
 
   @override
   void initState() {
     super.initState();
-    _controller = VideoPlayerController.asset(
-        "assets/videos/scapes/chicken_wrap_recipe/chicken_wrap.mp4",
-      )
+    _initializeVideo();
+  }
+
+  void _initializeVideo() {
+    _controller = VideoPlayerController.asset(_videoAsset)
       ..initialize().then((_) {
-        setState(() {}); // Update the state once the video is initialized
+        // Restore saved position if exists
+        if (_videoPositions.containsKey(_videoAsset)) {
+          _controller!.seekTo(_videoPositions[_videoAsset]!);
+        }
+        setState(() {});
       });
   }
 
   @override
   void dispose() {
-    _controller?.dispose(); // Clean up the video controller
+    // Save current position before disposal
+    if (_controller != null && _controller!.value.isInitialized) {
+      _videoPositions[_videoAsset] = _controller!.value.position;
+    }
+    _controller?.dispose();
     super.dispose();
   }
 
@@ -41,8 +59,10 @@ class _ChickenWrapScapeState extends State<ChickenWrapScape> with ScapeUtils {
   Widget buildHeadPage() {
     return ClassicHeadFrame(
       creator: "Noel Deyzel",
+      title: "Chicken Wrap Recipe",
       date: "03/06/2025",
       textColor: Colors.white.withAlpha(75),
+      titleUnderline: false,
       child: buildHeadPageMainBody(),
     );
   }
@@ -50,10 +70,7 @@ class _ChickenWrapScapeState extends State<ChickenWrapScape> with ScapeUtils {
   // HEAD PAGE MAIN BODY
   Widget buildHeadPageMainBody() {
     return GeneralWidgetUtils.buildAClipRRPage(
-      child: Stack(alignment: AlignmentDirectional.center, children: [
-          
-        ],
-      ),
+      child: Stack(alignment: AlignmentDirectional.center, children: []),
     );
   }
 
@@ -64,9 +81,59 @@ class _ChickenWrapScapeState extends State<ChickenWrapScape> with ScapeUtils {
 
   //* - BUILDING PAGES - *//
   // PAGE 1
+  void _showButtonTemporarily() {
+    setState(() => _buttonOpacity = 1.0);
+    _fadeTimer?.cancel();
+    _fadeTimer = Timer(const Duration(seconds: 2), () {
+      setState(() => _buttonOpacity = 0.0);
+    });
+  }
+
   Widget buildPage1() {
-    return AspectRatio(aspectRatio: _controller!.value.aspectRatio,
-      child: VideoPlayer(_controller!),
+    if (_controller == null || !_controller!.value.isInitialized) {
+      return const Center(child: CircularProgressIndicator());
+    }
+
+    final videoWidth = MediaQuery.of(context).size.width * 0.9;
+
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          if (_controller!.value.isPlaying) {
+            // SAVE POSITION WHEN PAUSING
+            _videoPositions[_videoAsset] = _controller!.value.position;
+            _controller!.pause();
+          } else {
+            _controller!.play();
+          }
+        });
+        _showButtonTemporarily();
+      },
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          SizedBox(
+            width: videoWidth,
+            child: AspectRatio(
+              aspectRatio: _controller!.value.aspectRatio,
+              child: VideoPlayer(_controller!),
+            ),
+          ),
+          AnimatedOpacity(
+            opacity: _buttonOpacity,
+            duration: const Duration(milliseconds: 400),
+            child: CircleAvatar(
+              backgroundColor: Colors.black54,
+              radius: 30,
+              child: Icon(
+                _controller!.value.isPlaying ? Icons.pause : Icons.play_arrow,
+                color: Colors.white,
+                size: 40,
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
