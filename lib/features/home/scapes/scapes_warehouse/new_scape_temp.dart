@@ -11,7 +11,8 @@ class NameScape extends StatelessWidget with ScapeUtils {
       children: [buildHeadPage(), ...pageManager(buildPagesFunctionList())],
     );
   }
-
+  
+  // HEAD PAGE
   Widget buildHeadPage() {
     return ClassicHeadFrame(
       creator: "Flowscape",
@@ -21,6 +22,7 @@ class NameScape extends StatelessWidget with ScapeUtils {
     );
   }
 
+  // HEAD PAGE MAIN BODY
   Widget buildHeadPageMainBody() {
     return GeneralWidgetUtils.buildAClipRRPage(
       child: Stack(alignment: AlignmentDirectional.center, children: [
@@ -30,10 +32,13 @@ class NameScape extends StatelessWidget with ScapeUtils {
     );
   }
 
+  // PAGE MANAGER
   List<Widget Function()> buildPagesFunctionList() {
     return [buildPage1];
   }
 
+  //* - BUILDING PAGES - *//
+  // PAGE 1
   Widget buildPage1() {
     return ClassicFrame();
   }
