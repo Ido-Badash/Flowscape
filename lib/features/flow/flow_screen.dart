@@ -52,7 +52,6 @@ class _TimerScreenState extends State<FlowScreen> {
             ),
           ),
           widget.child,
-          // TODO: load this child only after the image is loaded
         ],
       ),
     );

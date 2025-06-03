@@ -49,7 +49,7 @@ class FlowTimer extends StatelessWidget {
   // Label for current mode (focus/break)
   Widget _buildModeLabel(FlowTimerController timer) {
     return Text(
-      timer.mode == FlowTimerMode.onFocus ? "focus" : "take a break",
+      timer.mode == FlowTimerMode.onFocus ? "Focus" : "Take a break",
       style: const TextStyle(fontSize: 14, color: Colors.white54),
     );
   }
