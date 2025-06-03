@@ -15,11 +15,7 @@ class _ChickenWrapScapeState extends State<ChickenWrapScape> with ScapeUtils {
   VideoPlayerController? _controller;
   double _buttonOpacity = 1.0;
   Timer? _fadeTimer;
-
-  // Static map to store positions per video asset
-  static final Map<String, Duration> _videoPositions = {};
-  final String _videoAsset =
-      "assets/videos/scapes/chicken_wrap_recipe/chicken_wrap.mp4";
+  Duration _lastPosition = Duration.zero;
 
   @override
   void initState() {
@@ -28,11 +24,12 @@ class _ChickenWrapScapeState extends State<ChickenWrapScape> with ScapeUtils {
   }
 
   void _initializeVideo() {
-    _controller = VideoPlayerController.asset(_videoAsset)
+    _controller = VideoPlayerController.asset(
+      "assets/videos/scapes/chicken_wrap_recipe/chicken_wrap.mp4",
+    )
       ..initialize().then((_) {
-        // Restore saved position if exists
-        if (_videoPositions.containsKey(_videoAsset)) {
-          _controller!.seekTo(_videoPositions[_videoAsset]!);
+        if (_lastPosition > Duration.zero) {
+          _controller!.seekTo(_lastPosition);
         }
         setState(() {});
       });
@@ -40,10 +37,7 @@ class _ChickenWrapScapeState extends State<ChickenWrapScape> with ScapeUtils {
 
   @override
   void dispose() {
-    // Save current position before disposal
-    if (_controller != null && _controller!.value.isInitialized) {
-      _videoPositions[_videoAsset] = _controller!.value.position;
-    }
+    _lastPosition = _controller?.value.position ?? Duration.zero;
     _controller?.dispose();
     super.dispose();
   }
@@ -70,7 +64,10 @@ class _ChickenWrapScapeState extends State<ChickenWrapScape> with ScapeUtils {
   // HEAD PAGE MAIN BODY
   Widget buildHeadPageMainBody() {
     return GeneralWidgetUtils.buildAClipRRPage(
-      child: Stack(alignment: AlignmentDirectional.center, children: []),
+      child: Stack(
+        alignment: AlignmentDirectional.center,
+        children: [],
+      ),
     );
   }
 
@@ -100,8 +97,6 @@ class _ChickenWrapScapeState extends State<ChickenWrapScape> with ScapeUtils {
       onTap: () {
         setState(() {
           if (_controller!.value.isPlaying) {
-            // SAVE POSITION WHEN PAUSING
-            _videoPositions[_videoAsset] = _controller!.value.position;
             _controller!.pause();
           } else {
             _controller!.play();
