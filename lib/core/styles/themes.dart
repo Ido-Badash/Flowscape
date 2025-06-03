@@ -31,6 +31,7 @@ ThemeData appDarkThemeData = ThemeData(
     error: Colors.red,
     onError: Colors.white,
     inversePrimary: FlowColors.textPrimaryDark,
+    onTertiary: Color(0xC8E6F0EF),
     primaryContainer: FlowColors.primaryContainerDark,
   ),
 
@@ -83,6 +84,7 @@ ThemeData appLightThemeData = ThemeData(
     error: FlowColors.errorRedLight,
     onError: Colors.white,
     inversePrimary: FlowColors.textPrimaryLight,
+    onTertiary: Color(0xFF1C2B33),
     primaryContainer: FlowColors.primaryContainerLight,
   ),
 

@@ -5,8 +5,6 @@ import "package:flutter/material.dart";
 class InfoPage extends StatelessWidget {
   const InfoPage({super.key});
 
-  Color get textColor => const Color.fromARGB(200, 230, 240, 239);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,13 +18,13 @@ class InfoPage extends StatelessWidget {
             const SizedBox(height: 10),
             _buildSectionTitle(),
             const SizedBox(height: 30.0),
-            _buildIntroText(),
+            _buildIntroText(context),
             const SizedBox(height: 30.0),
             ..._buildFeatureList(),
             const SizedBox(height: 50.0),
-            _buildSupportSection(),
+            _buildSupportSection(context),
             const SizedBox(height: 50.0),
-            _buildSourceSection(),
+            _buildSourceSection(context),
             const SizedBox(height: 50.0),
           ],
         ),
@@ -65,11 +63,11 @@ class InfoPage extends StatelessWidget {
   }
 
   // Intro text
-  Widget _buildIntroText() {
+  Widget _buildIntroText(BuildContext context) {
     return Text(
       "Flowscape is a focus and learning app designed for productivity, featuring:",
       textAlign: TextAlign.center,
-      style: TextStyle(color: textColor, fontSize: 17, height: 1.6),
+      style: TextStyle(color: Theme.of(context).colorScheme.onTertiary, fontSize: 17, height: 1.6),
     );
   }
 
@@ -100,7 +98,7 @@ class InfoPage extends StatelessWidget {
   }
 
   // Support section
-  Widget _buildSupportSection() {
+  Widget _buildSupportSection(BuildContext context) {
     return Center(
       child: Column(
         children: [
@@ -114,7 +112,7 @@ class InfoPage extends StatelessWidget {
           SelectableText(
             "idoba12012011@gmail.com",
             style: TextStyle(
-              color: textColor,
+              color: Theme.of(context).colorScheme.onTertiary,
               fontSize: 18,
               decoration: TextDecoration.underline,
             ),
@@ -125,7 +123,7 @@ class InfoPage extends StatelessWidget {
   }
 
   // Source section
-  Widget _buildSourceSection() {
+  Widget _buildSourceSection(BuildContext context) {
     return Center(
       child: Column(
         children: [
@@ -138,7 +136,7 @@ class InfoPage extends StatelessWidget {
           const SizedBox(height: 15),
           SelectableText(
             "Version 1.0.0",
-            style: TextStyle(color: textColor, fontSize: 18),
+            style: TextStyle(color: Theme.of(context).colorScheme.onTertiary, fontSize: 18),
           ),
           const SelectableText(
             "https://github.com/Ido-Badash/Flowscape.git",

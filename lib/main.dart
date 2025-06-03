@@ -1,7 +1,11 @@
+/*
+MAIN FILE
+run app here
+*/
+
 // flutter SDK
 import 'package:flowscape/features/flow/timer/flow_timer_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 // third-party package
 import 'package:provider/provider.dart';
@@ -15,9 +19,8 @@ import 'features/todo/data/repository/isar_todo_repo.dart';
 import 'features/todo/domain/repository/todo_repo.dart';
 
 // app
-import 'features/app/app.dart';
-import 'core/styles/themes.dart';
 import 'features/settings/appearance/theme_provider.dart';
+import 'package:flowscape/features/app/my_app.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -41,60 +44,4 @@ void main() async {
       child: const MyApp(),
     ),
   );
-}
-
-class MyApp extends StatefulWidget {
-  const MyApp({super.key});
-
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
-  @override
-  Widget build(BuildContext context) {
-    _updateSystemUIOverlayStyle();
-
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: "FlowScape",
-      theme: Provider.of<ThemeProvider>(context).themeData,
-      themeMode: ThemeMode.system,
-      home: const FlowScape(),
-    );
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addObserver(this);
-  }
-
-  @override
-  void dispose() {
-    WidgetsBinding.instance.removeObserver(this);
-    super.dispose();
-  }
-
-  @override
-  void didChangePlatformBrightness() {
-    super.didChangePlatformBrightness();
-    _updateSystemUIOverlayStyle();
-  }
-
-  void _updateSystemUIOverlayStyle() {
-    final Brightness brightness =
-        WidgetsBinding.instance.platformDispatcher.platformBrightness;
-    final bool isDarkMode = brightness == Brightness.dark;
-
-    SystemChrome.setSystemUIOverlayStyle(
-      SystemUiOverlayStyle(
-        statusBarColor: Colors.transparent,
-        systemNavigationBarColor:
-            isDarkMode
-                ? appDarkThemeData.bottomNavigationBarTheme.backgroundColor
-                : appLightThemeData.bottomNavigationBarTheme.backgroundColor,
-      ),
-    );
-  }
 }
