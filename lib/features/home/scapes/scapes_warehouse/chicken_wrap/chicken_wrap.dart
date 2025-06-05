@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flowscape/features/home/scapes/scape_lib.dart';
 import 'package:flowscape/core/helpers/helpers.dart';
@@ -25,8 +26,8 @@ class _ChickenWrapScapeState extends State<ChickenWrapScape> with ScapeUtils {
 
   void _initializeVideo() {
     _controller = VideoPlayerController.asset(
-      "assets/videos/scapes/chicken_wrap_recipe/chicken_wrap.mp4",
-    )
+        "assets/videos/scapes/chicken_wrap_recipe/chicken_wrap.mp4",
+      )
       ..initialize().then((_) {
         if (_lastPosition > Duration.zero) {
           _controller!.seekTo(_lastPosition);
@@ -45,17 +46,20 @@ class _ChickenWrapScapeState extends State<ChickenWrapScape> with ScapeUtils {
   @override
   Widget build(BuildContext context) {
     return Scape(
-      children: [buildHeadPage(), ...pageManager(buildPagesFunctionList())],
+      children: [
+        buildHeadPage(context),
+        ...pageManager(buildPagesFunctionList()),
+      ],
     );
   }
 
   // HEAD PAGE
-  Widget buildHeadPage() {
+  Widget buildHeadPage(BuildContext context) {
     return ClassicHeadFrame(
       creator: "Noel Deyzel",
       title: "Chicken Wrap Recipe",
       date: "03/06/2025",
-      textColor: Colors.white.withAlpha(75),
+      textColor: Theme.of(context).colorScheme.onSecondary,
       titleUnderline: false,
       child: buildHeadPageMainBody(),
     );
@@ -66,7 +70,20 @@ class _ChickenWrapScapeState extends State<ChickenWrapScape> with ScapeUtils {
     return GeneralWidgetUtils.buildAClipRRPage(
       child: Stack(
         alignment: AlignmentDirectional.center,
-        children: [],
+        children: [
+          Container(
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [Colors.redAccent, Colors.red, Colors.black],
+              ),
+            ),
+            child: const Center(
+              child: Icon(CupertinoIcons.flame, size: 100, color: Colors.white),
+            ),
+          ),
+        ],
       ),
     );
   }

@@ -16,6 +16,12 @@ class ScapesScreen extends StatefulWidget {
 class _ScapesScreenState extends State<ScapesScreen> {
   final PageController _scapesPageController = PageController();
   String currentQuote = firstQuote;
+  final List<Widget> _scapes = [
+    const ManageYourTimeScape(),
+    const DavidGogginsQuoteScape(),
+    const ChickenWrapScape(),
+    const FableScape(),
+  ];
 
   @override
   void dispose() {
@@ -69,12 +75,7 @@ class _ScapesScreenState extends State<ScapesScreen> {
   }
 
   List<Widget> buildScapes() {
-    return [
-      FableScape(),
-      ManageYourTimeScape(),
-      DavidGogginsQuoteScape(),
-      ChickenWrapScape(),
-    ];
+    return [..._scapes];
   }
 
   Widget buildScrollToSeeText() {
