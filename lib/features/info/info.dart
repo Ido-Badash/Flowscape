@@ -140,7 +140,7 @@ class InfoPage extends StatelessWidget {
           ),
           const SelectableText(
             "https://github.com/Ido-Badash/Flowscape.git",
-            style: TextStyle(color: Colors.blue, fontSize: 16),
+            style: TextStyle(color: Colors.blue, fontSize: 14),
           ),
         ],
       ),
