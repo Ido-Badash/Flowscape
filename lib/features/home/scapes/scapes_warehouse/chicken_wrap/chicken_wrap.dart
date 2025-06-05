@@ -40,6 +40,11 @@ class _ChickenWrapScapeState extends State<ChickenWrapScape> with ScapeUtils {
   void dispose() {
     _lastPosition = _controller?.value.position ?? Duration.zero;
     _controller?.dispose();
+    _fadeTimer?.cancel();
+    _controller = null;
+    _fadeTimer = null;
+    _buttonOpacity = 0.0; // Reset button opacity
+    _lastPosition = Duration.zero; // Reset last position
     super.dispose();
   }
 
@@ -94,15 +99,17 @@ class _ChickenWrapScapeState extends State<ChickenWrapScape> with ScapeUtils {
   }
 
   //* - BUILDING PAGES - *//
-  // PAGE 1
   void _showButtonTemporarily() {
     setState(() => _buttonOpacity = 1.0);
     _fadeTimer?.cancel();
     _fadeTimer = Timer(const Duration(seconds: 2), () {
-      setState(() => _buttonOpacity = 0.0);
+      if (mounted) {
+        setState(() => _buttonOpacity = 0.0);
+      }
     });
   }
 
+  // PAGE 1
   Widget buildPage1() {
     if (_controller == null || !_controller!.value.isInitialized) {
       return const Center(child: CircularProgressIndicator());
