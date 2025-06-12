@@ -83,7 +83,7 @@ class TodoView extends StatelessWidget {
     TodoCubit todoCubit,
   ) {
     return Checkbox(
-      // TODO: add a cool animation later
+      // add a cool animation later
       value: todo.isCompleted,
       onChanged: (value) {
         todoCubit.toggleCompletion(todo);
